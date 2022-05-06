@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 import styles from './Login.module.css'
 import {
   Container,
@@ -20,6 +21,8 @@ import loginImage from '../../assets/transaction.png'
 
 const Login = () => {
 
+  const router = useRouter()
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -32,25 +35,23 @@ const Login = () => {
     }),
     onSubmit: (values = {email, password}) => {
       try {
-        axios.post('http://3.95.83.1:3000/api/auth/login', {email: values.email, password: values.password})
-        console.log(values);
-        
+        axios.post(
+          'http://3.95.83.1:3000/api/auth/login', 
+          {email: values.email, password: values.password}
+        ).then(res => {
+          if (res.status === 200) {
+            router.push('/')
+          }
+        })
+        console.log(values); 
       } catch (e) {
         console.error(e)
       }
     },
   });
-  
-  // const handleLogin = (e, email, password) => {
-  //   try {
-  //     axios.post('http://3.95.83.1:3000/api/auth/login', {email, password})
-  //     console.log(email, password)
-      
-  //   } catch (e) {
-  //     console.error(e)
-  //   }
-  // }
 
+  
+  
   return (
     <div className={styles.container}>
       <Grid.Container gap={2} justify="center" className={styles.layout}>
