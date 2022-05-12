@@ -59,6 +59,7 @@
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
+    margin-bottom: 10px;
 }
 
 .register {
@@ -74,15 +75,5 @@
     font-size: 18px;
     font-weight: 600;
     border-radius: 5px;
-    cursor: pointer;
-}
-
-.divider {
-    display: flex;
-    justify-content: center;
-}
-
-.googleBtn {
-    width: 100%;
     cursor: pointer;
 }

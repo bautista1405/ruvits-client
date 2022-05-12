@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
-import styles from './Login.module.css'
+import styles from './Register.module.css'
 import {
   Container,
   Button,
@@ -16,13 +16,11 @@ import {
 import axios from 'axios'
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import { useSession, signIn } from "next-auth/react"
 
 import loginImage from '../../assets/transaction.png'
 
-const Login = () => {
+const Register = () => {
 
-  // const { data: session } = useSession();
   const [error, setError] = useState(null)
 
   const router = useRouter()
@@ -37,17 +35,17 @@ const Login = () => {
       password: Yup.string()
         .required("Contraseña requerida")
     }),
-    onSubmit: (values = {email, password}) => {
+    onSubmit: (values = {email, password, name, lastname}) => {
       try {
         axios.post(
-          'http://3.95.83.1:3000/api/auth/login', 
-          {email: values.email, password: values.password}
+          'http://3.95.83.1:3000/api/auth/', 
+          {email: values.email, password: values.password, name: values.name, lastname: values.lastname}
           ).then(res => {
-            if (res.status === 200) {
-              router.push('/dashboard')
+            if (res.status === 201) {
+              router.push('/successful')
             }
           }).catch(e => {
-              setError('Usuario o contraseña incorrectos') 
+              setError('El email ya está en uso') 
             })
           
         } catch(err) {
@@ -55,6 +53,8 @@ const Login = () => {
         }    
     },
   });
+
+  
   
   return (
     <div className={styles.container}>
@@ -72,7 +72,33 @@ const Login = () => {
           <Grid className={styles.login}>
             
               <form className={styles.form} onSubmit={formik.handleSubmit}>
-                  <h3>Ingresa</h3>
+                  <h3>Registrate</h3>
+
+                  <label htmlFor="name" className={styles.label}>Nombre</label>
+                  <input 
+                    placeholder="Tu nombre..."  
+                    className={styles.input} 
+                    type='text'
+                    id='name'
+                    name='name'
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    required
+                  />
+
+                  <label htmlFor="lastname" className={styles.label}>Apellido</label>
+                  <input 
+                    placeholder="Tu apellido..."  
+                    className={styles.input} 
+                    type='text'
+                    id='lastname'
+                    name='lastname'
+                    value={formik.values.lastname}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    required
+                  />
 
                   <label htmlFor="username" className={styles.label}>Email</label>
                   <input 
@@ -111,14 +137,11 @@ const Login = () => {
                   />
 
                   <p className={styles.register}>
-                    ¿No tenés una cuenta? {" "}
-                    <Link href="/register" >Registrate </Link>
+                    ¿Ya tenés una cuenta? {" "}
+                    <Link href="/login" >Ingresa</Link>
                   </p>
 
-                  <Button className={styles.button}  type='submit'>Ingresar</Button>
-                  {/* <p> o </p>
-                  <button onClick={() => signIn()}>Sign in</button> */}
-              
+                  <Button className={styles.button}  type='submit'>Crear cuenta</Button>
                   
               </form>
           </Grid>
@@ -127,4 +150,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
