@@ -45,21 +45,20 @@ export default function Dashboard() {
 
     const router = useRouter();
 
-    useEffect(() => {
+    useEffect((req, _id) => {
         try {
             axios.get(
                 'http://3.95.83.1:3000/api/purchases', 
                 {
-
+                    authorization: req.headers.authorization,
+                    _id: req._id
                 }
-                ).catch( res => {
-                     if(res.status === 401) {
-                        router.push('/login')
-                     }
-                }
+               
             )
         } catch (e) {
-
+            if(e) {
+                router.push('/login')
+            }
         }
     })
 
