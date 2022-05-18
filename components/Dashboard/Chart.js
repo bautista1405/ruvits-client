@@ -1,4 +1,15 @@
 import React from 'react'
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+  } from 'chart.js'
+  import { Chart } from 'react-chartjs-2'
 import { Line } from 'react-chartjs-2'
 
 const data = {
@@ -50,7 +61,7 @@ const options = {
 }
 
 const MyChart = () => (
-    <Line
+    <Chart
         data={data}
         options={options}
     />
