@@ -1,14 +1,11 @@
-import { NextUIProvider } from '@nextui-org/react';
-// import { SessionProvider } from "next-auth/react";
+import { ChakraProvider } from '@chakra-ui/react'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    // <SessionProvider>
-      <NextUIProvider>
+      <ChakraProvider>
         <Component {...pageProps} />
-      </NextUIProvider> 
-    // </SessionProvider> 
+      </ChakraProvider>
   )
 }
 

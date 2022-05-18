@@ -1,42 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 
-import {
-  Container,
-  Button,
-  Input,
-  Spacer,
-  Text,
-  Link,
-  Card,
-  Grid
-} from '@nextui-org/react';
+import Home from '../components/Home'
 
-// import { useSession, signIn, signOut } from "next-auth/react"
-
-export default function Home() {
-
-  // const { data: session } = useSession();
-
-  // if (session) {
-
-  //   return (
-
-  //     <div className={styles.container}>
-
-  //       Welcome user<br />
-
-  //       <button onClick={() => signOut()}>Sign out</button>
-
-  //     </div>
-
-  //   );
-
-  // }
+export default function HomePage() {
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>NextUI | Create Next App</title>
         <meta
@@ -45,34 +15,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {/* <div className={styles.container}>
-
-        Click to sign into your user account <br />
-
-        <button onClick={() => signIn()}>Sign in</button>
-
-      </div> */}
-        
-        <Grid.Container gap={2} justify="center">
-          <Grid >
-            <Text text="1 of 3">Column 1</Text>
-            <Text text="1 of 3">Column 1</Text>
-            <Text text="1 of 3">Column 1</Text>
-            <Text text="1 of 3">Column 1</Text>
-            <Text text="1 of 3">Column 1</Text>
-            <Text text="1 of 3">Column 1</Text>
-          </Grid>
-          <Grid >
-            <Text text="2 of 3">Column two</Text>
-            <Text text="2 of 3">Column two</Text>
-            <Text text="2 of 3">Column two</Text>
-            <Text text="2 of 3">Column two</Text>
-            <Text text="2 of 3">Column two</Text>
-            <Text text="2 of 3">Column two</Text>
-          </Grid>
-        </Grid.Container>
-      
+      <Home />
     </div>
   );
 }

@@ -3,21 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import styles from './Register.module.css'
-import {
-  Container,
-  Button,
-  Input,
-  Spacer,
-  Text,
-  Card,
-  Grid
-} from '@nextui-org/react';
+import { Grid, GridItem, Button, Text } from '@chakra-ui/react'
 
 import axios from 'axios'
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import loginImage from '../../assets/transaction.png'
+import Header from '../Navbar/Header'
+import Footer from '../Footer'
 
 const Register = () => {
 
@@ -58,8 +52,9 @@ const Register = () => {
   
   return (
     <div className={styles.container}>
-      <Grid.Container gap={2} justify="center" className={styles.layout}>
-          <Grid className={styles.grid1}>
+      <Header />
+      <Grid templateColumns='repeat(2, 1fr)' gap={6} className={styles.layout}>
+          <GridItem className={styles.grid1}>
             <Image 
               src={loginImage}
               alt="transaction.png" 
@@ -68,8 +63,8 @@ const Register = () => {
               className={styles.image1}
             />
             <Text>¡Crea y vende tu contenido!</Text>
-          </Grid>
-          <Grid className={styles.login}>
+          </GridItem>
+          <GridItem className={styles.login}>
             
               <form className={styles.form} onSubmit={formik.handleSubmit}>
                   <h3>Registrate</h3>
@@ -144,8 +139,9 @@ const Register = () => {
                   <Button className={styles.button}  type='submit'>Crear cuenta</Button>
                   
               </form>
-          </Grid>
-      </Grid.Container>
+          </GridItem>
+      </Grid>
+      <Footer />
     </div>
   )
 }
