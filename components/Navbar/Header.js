@@ -1,4 +1,6 @@
 import React from "react";
+import { signIn, signOut, useSession } from "next-auth/client";
+import Image from 'next/image'
 
 import {
   chakra,
@@ -7,6 +9,7 @@ import {
   Link,
   Button,
   useColorModeValue,
+  Avatar,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -19,15 +22,27 @@ import {
   VStack,
   CloseButton,
   useColorMode,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider
 } from "@chakra-ui/react";
 
 import { IoIosArrowDown } from "react-icons/io";
+import {FiChevronDown} from "react-icons/fi"
 import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaMoon, FaSun } from "react-icons/fa";
+
 // import { Logo } from "@choc-ui/logo";
 
 export default function WfWf() {
+  const [session, loading] = useSession();
+  {loading && <p>Loading..</p>}
   const bg = useColorModeValue("white", "gray.800");
   const cl = useColorModeValue("gray.800", "white");
   const mobileNav = useDisclosure();
@@ -39,6 +54,7 @@ export default function WfWf() {
   const tcl = useColorModeValue("gray.900", "gray.50");
   const dcl = useColorModeValue("gray.500", "gray.50");
   const hbgh = useColorModeValue("gray.100", "brand.500");
+
 
   const Section = (props) => {
     return (
@@ -160,21 +176,49 @@ export default function WfWf() {
                   Pricing
                 </Link>
               </Button>
+              <Button
+                bg={bg}
+                color="gray.500"
+                display="inline-flex"
+                alignItems="center"
+                fontSize="md"
+                _hover={{ color: cl }}
+                _focus={{ boxShadow: "none" }}
+              >
+                <Link href="/dashboard">
+                  Dashboard
+                </Link>
+              </Button>
             </HStack>
           </Box>
           <Spacer />
           <Box display="flex" alignItems="center">
             <HStack spacing={1}>
-              <Button colorScheme="brand" variant="ghost" size="sm">
-                <Link href="/login">
-                  Sign in
-                </Link>
-              </Button>
-              <Button colorScheme="brand" variant="ghost" size="sm">
-                <Link href="/register">
-                  Sign up
-                </Link>  
-              </Button>
+            {!session && (
+              <Button
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl: "http://localhost:3000/dashboard",
+                })
+              }
+            >
+              Ingresar
+            </Button>
+            )}
+            {session && (
+              <>
+                <Menu>
+                  <MenuButton as={Button} rightIcon={<FiChevronDown />}>
+                    <Avatar src={session.user.image} alt="user image" width="30px" height="30px"  />
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem>
+                      <Button onClick={() => signOut()}>Cerrar sesión</Button>
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </>
+            )}  
             </HStack>
             <IconButton
               size="md"

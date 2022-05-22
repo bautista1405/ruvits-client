@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {useRouter} from 'next/router'
+import { signIn, signOut, useSession, getSession } from "next-auth/client";
 
 import {
     Flex,
@@ -23,6 +24,7 @@ import {
     InputGroup,
     InputLeftElement
 } from '@chakra-ui/react'
+
 import {
     FiHome,
     FiPieChart,
@@ -38,33 +40,19 @@ import {
 } from "react-icons/fi"
 
 import MyChart from './Chart'
-
 import axios from 'axios'
 
-export default function Dashboard() {
+export default function Dashboard({data}) {
+
+    const [session, loading] = useSession();
 
     const router = useRouter();
-
-    useEffect((req, _id) => {
-        try {
-            axios.get(
-                'http://3.95.83.1:3000/api/purchases', 
-                {
-                    authorization: req.headers.authorization,
-                    _id: req._id
-                }
-               
-            )
-        } catch (e) {
-            if(e) {
-                router.push('/login')
-            }
-        }
-    })
 
     const [display, changeDisplay] = useState('hide')
     const [value, changeValue] = useState(1)
     return (
+      <div>  
+        {session && (
         <Flex
             h={[null, null, "100vh"]}
             maxW="2000px"
@@ -134,10 +122,17 @@ export default function Dashboard() {
                                     <Text fontSize="18px" ml={2}>Services</Text>
                                 </Link>
                             </Flex>
+                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
+                                <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                    <Icon as={FiBox} fontSize="2xl" /></Link>
+                                <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                    <button onClick={() => signOut({ callbackUrl: "/" })}>Sign out</button>
+                                </Link>
+                            </Flex>
                         </Flex>
                     </Flex>
                     <Flex flexDir="column" alignItems="center" mb={10} mt={5}>
-                        <Avatar my={2} src="avatar-1.jpg" />
+                        
                         <Text textAlign="center">Calvin West</Text>
                     </Flex>
                 </Flex>
@@ -183,7 +178,7 @@ export default function Dashboard() {
                                 <Tr>
                                     <Td>
                                         <Flex align="center">
-                                            <Avatar size="sm" mr={2} src="amazon.jpeg" />
+                                            
                                             <Flex flexDir="column">
                                                 <Heading size="sm" letterSpacing="tight">Amazon</Heading>
                                                 <Text fontSize="sm" color="gray">Apr 24, 2021 at 1:40pm</Text>
@@ -197,7 +192,7 @@ export default function Dashboard() {
                                 <Tr>
                                     <Td>
                                         <Flex align="center">
-                                            <Avatar size="sm" mr={2} src="starbucks.png" />
+                                            
                                             <Flex flexDir="column">
                                                 <Heading size="sm" letterSpacing="tight">Starbucks</Heading>
                                                 <Text fontSize="sm" color="gray">Apr 22, 2021 at 2:43pm</Text>
@@ -211,7 +206,7 @@ export default function Dashboard() {
                                 <Tr>
                                     <Td>
                                         <Flex align="center">
-                                            <Avatar size="sm" mr={2} src="youtube.png" />
+                                            
                                             <Flex flexDir="column">
                                                 <Heading size="sm" letterSpacing="tight">YouTube</Heading>
                                                 <Text fontSize="sm" color="gray">Apr 13, 2021 at 11:23am</Text>
@@ -227,7 +222,7 @@ export default function Dashboard() {
                                         <Tr>
                                             <Td>
                                                 <Flex align="center">
-                                                    <Avatar size="sm" mr={2} src="amazon.jpeg" />
+                                                    
                                                     <Flex flexDir="column">
                                                         <Heading size="sm" letterSpacing="tight">Amazon</Heading>
                                                         <Text fontSize="sm" color="gray">Apr 12, 2021 at 9:40pm</Text>
@@ -241,7 +236,7 @@ export default function Dashboard() {
                                         <Tr>
                                             <Td>
                                                 <Flex align="center">
-                                                    <Avatar size="sm" mr={2} src="starbucks.png" />
+                                                    
                                                     <Flex flexDir="column">
                                                         <Heading size="sm" letterSpacing="tight">Starbucks</Heading>
                                                         <Text fontSize="sm" color="gray">Apr 10, 2021 at 2:10pm</Text>
@@ -255,7 +250,7 @@ export default function Dashboard() {
                                         <Tr>
                                             <Td>
                                                 <Flex align="center">
-                                                    <Avatar size="sm" mr={2} src="youtube.png" />
+                                                    
                                                     <Flex flexDir="column">
                                                         <Heading size="sm" letterSpacing="tight">YouTube</Heading>
                                                         <Text fontSize="sm" color="gray">Apr 7, 2021 at 9:03am</Text>
@@ -447,13 +442,7 @@ export default function Dashboard() {
                 </Flex>
                 <Heading letterSpacing="tight" size="md" my={4}>Send money to</Heading>
                 <Flex>
-                    <AvatarGroup size="md" max={3}>
-                        <Avatar src="avatar-2.jpg" />
-                        <Avatar src="avatar-3.jpg" />
-                        <Avatar src="avatar-4.jpg" />
-                        <Avatar src="avatar-4.jpg" />
-                        <Avatar src="avatar-4.jpg" />
-                    </AvatarGroup>
+                    
                     <Avatar icon={<FiPlus />} ml={2} color="#fff" bgColor="gray.300" />
                 </Flex>
                 <Text color="gray" mt={10} mb={2}>Card number</Text>
@@ -475,5 +464,9 @@ export default function Dashboard() {
                 <Button mt={4} bgColor="blackAlpha.900" color="#fff" p={7} borderRadius={15}>Send money</Button>
             </Flex>
         </Flex>
+        )}
+    {!session && (<p>Debes estar logueado para ver esta página</p>)}
+    </div>
+    
     )
 }
