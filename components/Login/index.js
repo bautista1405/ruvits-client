@@ -11,8 +11,6 @@ import * as Yup from "yup";
 // import { useSession, signIn } from "next-auth/react"
 
 import loginImage from '../../assets/transaction.png'
-import Header from '../Navbar/Header'
-import Footer from '../Footer'
 
 const Login = () => {
 
@@ -52,7 +50,6 @@ const Login = () => {
   
   return (
     <div className={styles.container}>
-      <Header />
       <Grid templateColumns='repeat(2, 1fr)' gap={6} className={styles.layout}>
           <GridItem className={styles.grid1}>
             <Image 
@@ -118,7 +115,6 @@ const Login = () => {
               </form>
           </GridItem>
       </Grid>
-      <Footer />
     </div>
   )
 }

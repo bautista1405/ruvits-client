@@ -10,8 +10,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import loginImage from '../../assets/transaction.png'
-import Header from '../Navbar/Header'
-import Footer from '../Footer'
 
 const Register = () => {
 
@@ -52,7 +50,6 @@ const Register = () => {
   
   return (
     <div className={styles.container}>
-      <Header />
       <Grid templateColumns='repeat(2, 1fr)' gap={6} className={styles.layout}>
           <GridItem className={styles.grid1}>
             <Image 
@@ -141,7 +138,6 @@ const Register = () => {
               </form>
           </GridItem>
       </Grid>
-      <Footer />
     </div>
   )
 }

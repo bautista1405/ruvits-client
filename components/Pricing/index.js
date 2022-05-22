@@ -11,9 +11,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import Header from "../Navbar/Header"
-import Footer from "../Footer"
-
 export default function Pricing() {
   const topBg = useColorModeValue("gray.100", "gray.700");
   const bottomBg = useColorModeValue("white", "gray.800");
@@ -45,8 +42,7 @@ export default function Pricing() {
     );
   };
   return (
-    <div>
-        <Header />  
+    <div>  
         <Flex
         boxSize="full"
         bg={useColorModeValue("#F9FAFB", "gray.600")}
@@ -185,7 +181,6 @@ export default function Pricing() {
             </Box>
         </Box>
         </Flex>
-        <Footer />
     </div>
   );
 }

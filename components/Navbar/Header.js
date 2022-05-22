@@ -194,17 +194,6 @@ export default function WfWf() {
           <Spacer />
           <Box display="flex" alignItems="center">
             <HStack spacing={1}>
-            {!session && (
-              <Button
-              onClick={() =>
-                signIn("google", {
-                  callbackUrl: "http://localhost:3000/dashboard",
-                })
-              }
-            >
-              Ingresar
-            </Button>
-            )}
             {session && (
               <>
                 <Menu>
@@ -218,7 +207,19 @@ export default function WfWf() {
                   </MenuList>
                 </Menu>
               </>
-            )}  
+            )}
+            {}  
+            {!session && (
+              <Button
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl: "http://localhost:3000/dashboard",
+                })
+              }
+            >
+              Ingresar
+            </Button>
+            )}
             </HStack>
             <IconButton
               size="md"
