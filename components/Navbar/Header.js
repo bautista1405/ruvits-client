@@ -38,7 +38,7 @@ import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaMoon, FaSun } from "react-icons/fa";
 
-// import { Logo } from "@choc-ui/logo";
+import Logo from '../../assets/ruviits-bg.png'
 
 export default function WfWf() {
   const [session, loading] = useSession();
@@ -134,6 +134,7 @@ export default function WfWf() {
       <chakra.header h="full" bg={bg} w="full" px={{ base: 2, sm: 4 }} py={4}>
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <Link display="flex" alignItems="center" href="/">
+            {/* <Image src={Logo} alt="logo" width="170px" height="170px"/> */}
             Logo
           </Link>
           <Box display={{ base: "none", md: "inline-flex" }}>
@@ -146,9 +147,10 @@ export default function WfWf() {
                   fontSize="md"
                   _hover={{ color: cl }}
                   _focus={{ boxShadow: "none" }}
-                  rightIcon={<IoIosArrowDown />}
                 >
-                  Features
+                  <Link display="flex" alignItems="center" href="/descubre">
+                    Descubrí
+                  </Link>
                 </Button>
                 
               </Box>
@@ -173,7 +175,7 @@ export default function WfWf() {
                 _focus={{ boxShadow: "none" }}
               >
                 <Link href="/pricing">
-                  Pricing
+                  Precios
                 </Link>
               </Button>
               <Button

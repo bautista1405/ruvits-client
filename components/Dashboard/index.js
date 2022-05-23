@@ -40,7 +40,6 @@ import {
 } from "react-icons/fi"
 
 import MyChart from './Chart'
-import axios from 'axios'
 
 export default function Dashboard({data}) {
 
