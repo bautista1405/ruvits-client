@@ -51,6 +51,7 @@ export default function Dashboard({data}) {
     const [value, changeValue] = useState(1)
     return (
       <div>  
+        {!session && (<p>Debes estar logueado para ver esta página</p>)}
         {session && (
         <Flex
             h={[null, null, "100vh"]}
@@ -464,7 +465,6 @@ export default function Dashboard({data}) {
             </Flex>
         </Flex>
         )}
-    {!session && (<p>Debes estar logueado para ver esta página</p>)}
     </div>
     
     )

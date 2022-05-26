@@ -46,7 +46,7 @@ const Discover = () => {
                                 width="500px"
                                 height="500px"
                                 fit="cover"
-                                src={image}
+                                src={product.content[0]}
                                 alt="Article"
                                 />
                                 <hr></hr>

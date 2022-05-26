@@ -41,8 +41,6 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import Logo from '../../assets/ruviits-bg.png'
 
 export default function WfWf() {
-  const [session, loading] = useSession();
-  {loading && <p>Loading..</p>}
   const bg = useColorModeValue("white", "gray.800");
   const cl = useColorModeValue("gray.800", "white");
   const mobileNav = useDisclosure();
@@ -54,7 +52,8 @@ export default function WfWf() {
   const tcl = useColorModeValue("gray.900", "gray.50");
   const dcl = useColorModeValue("gray.500", "gray.50");
   const hbgh = useColorModeValue("gray.100", "brand.500");
-
+  
+  const [session, loading] = useSession();
 
   const Section = (props) => {
     return (
@@ -200,7 +199,7 @@ export default function WfWf() {
               <>
                 <Menu>
                   <MenuButton as={Button} rightIcon={<FiChevronDown />}>
-                    <Avatar src={session.user.image} alt="user image" width="30px" height="30px"  />
+                    <Avatar src={session.user.image} alt="user image" width="30px" height="30px" />
                   </MenuButton>
                   <MenuList>
                     <MenuItem>
