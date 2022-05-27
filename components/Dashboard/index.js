@@ -49,6 +49,7 @@ export default function Dashboard({data}) {
 
     const [display, changeDisplay] = useState('hide')
     const [value, changeValue] = useState(1)
+
     return (
       <div>  
         {!session && (<p>Debes estar logueado para ver esta página</p>)}
@@ -96,15 +97,7 @@ export default function Dashboard({data}) {
                                     <Icon as={FiHome} fontSize="2xl" className="active-icon" />
                                 </Link>
                                 <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                    <Text className="active" fontSize="18px" ml={2}>Home</Text>
-                                </Link>
-                            </Flex>
-                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                                <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                    <Icon as={FiPieChart} fontSize="2xl" />
-                                </Link>
-                                <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                    <Text fontSize="18px" ml={2}>Credit</Text>
+                                    <Text className="active" fontSize="18px" ml={2}>Inicio</Text>
                                 </Link>
                             </Flex>
                             <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
@@ -112,35 +105,33 @@ export default function Dashboard({data}) {
                                     <Icon as={FiDollarSign} fontSize="2xl" />
                                 </Link>
                                 <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                    <Text fontSize="18px" ml={1}>Wallet</Text>
+                                    <Text fontSize="18px" ml={1}>Mis tarjetas</Text>
                                 </Link>
                             </Flex>
                             <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
                                 <Link display={["none", "none", "flex", "flex", "flex"]}>
                                     <Icon as={FiBox} fontSize="2xl" /></Link>
                                 <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                    <Text fontSize="18px" ml={2}>Services</Text>
+                                    <Text fontSize="18px" ml={2}>Mis productos</Text>
                                 </Link>
                             </Flex>
-                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                                <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                    <Icon as={FiBox} fontSize="2xl" /></Link>
-                                <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                    <button onClick={() => signOut({ callbackUrl: "/" })}>Sign out</button>
-                                </Link>
+                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={16}>
+                               <Link href="/nuevo-producto">
+                                 <Button>+ Nuevo producto</Button>
+                                </Link> 
                             </Flex>
                         </Flex>
                     </Flex>
                     <Flex flexDir="column" alignItems="center" mb={10} mt={5}>
                         
-                        <Text textAlign="center">Calvin West</Text>
+                        <Text textAlign="center"> {session.user.name} </Text>
                     </Flex>
                 </Flex>
             </Flex>
 
             {/* Column 2 */}
             <Flex
-                w={["100%", "100%", "60%", "60%", "55%"]}
+                w={["100%", "100%", "60%", "60%", "100%"]}
                 p="3%"
                 flexDir="column"
                 overflow="auto"
@@ -153,12 +144,12 @@ export default function Dashboard({data}) {
                 >
                    Bienvenido, <Flex display="inline-flex" fontWeight="bold"> {session.user.name} </Flex>
                 </Heading>
-                <Text color="gray" fontSize="sm">My Balance</Text>
+                <Text color="gray" fontSize="sm">Mi Balance</Text>
                 <Text fontWeight="bold" fontSize="2xl">$5,750.20</Text>
                 {/* <MyChart /> */}
                 <Flex justifyContent="space-between" mt={8}>
                     <Flex align="flex-end">
-                        <Heading as="h2" size="lg" letterSpacing="tight">Transactions</Heading>
+                        <Heading as="h2" size="lg" letterSpacing="tight">Transacciones</Heading>
                         <Text fontSize="small" color="gray" ml={4}>Apr 2021</Text>
                     </Flex>
                     <IconButton icon={<FiCalendar />} />
@@ -284,14 +275,14 @@ export default function Dashboard({data}) {
             </Flex>
 
             {/* Column 3 */}
-            <Flex
+            {/* <Flex
                 w={["100%", "100%", "30%"]}
                 bgColor="#F5F5F5" p="3%"
                 flexDir="column"
                 overflow="auto"
                 minW={[null, null, "300px", "300px", "400px"]}
-            >
-                <Flex alignContent="center">
+            > */}
+                {/* <Flex alignContent="center">
                     <InputGroup bgColor="#fff" mb={4} border="none" borderColor="#fff" borderRadius="10px" mr={2}>
                         <InputLeftElement
                             pointerEvents="none"
@@ -461,9 +452,9 @@ export default function Dashboard({data}) {
                     />
                     <Input type="number" placeholder="130.00" />
                 </InputGroup>
-                <Button mt={4} bgColor="blackAlpha.900" color="#fff" p={7} borderRadius={15}>Send money</Button>
+                <Button mt={4} bgColor="blackAlpha.900" color="#fff" p={7} borderRadius={15}>Send money</Button> */}
             </Flex>
-        </Flex>
+        // </Flex>
         )}
     </div>
     

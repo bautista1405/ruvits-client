@@ -49,7 +49,7 @@ const Discover = () => {
                                 src={product.content[0]}
                                 alt="Article"
                                 />
-                                <hr></hr>
+                                
                                 <Box p={6}>
                                 <Box>
                                     <Link
