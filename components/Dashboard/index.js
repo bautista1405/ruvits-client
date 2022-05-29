@@ -38,6 +38,7 @@ import {
     FiSearch,
     FiBell
 } from "react-icons/fi"
+import {CgProfile} from 'react-icons/cg'
 
 import MyChart from './Chart'
 
@@ -113,6 +114,13 @@ export default function Dashboard({data}) {
                                     <Icon as={FiBox} fontSize="2xl" /></Link>
                                 <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
                                     <Text fontSize="18px" ml={2}>Mis productos</Text>
+                                </Link>
+                            </Flex>
+                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
+                                <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                    <Icon as={CgProfile} fontSize="2xl" /></Link>
+                                <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]} href="/mi-perfil">
+                                    <Text fontSize="18px" ml={2}>Mi perfil</Text>
                                 </Link>
                             </Flex>
                             <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={16}>
