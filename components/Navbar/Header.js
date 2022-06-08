@@ -208,18 +208,17 @@ export default function WfWf() {
                   </MenuList>
                 </Menu>
               </>
-            )}
-            {}  
+            )} 
             {!session && (
               <Button
-              onClick={() =>
-                signIn("google", {
-                  callbackUrl: "http://localhost:3000/dashboard",
-                })
-              }
-            >
-              Ingresar
-            </Button>
+                onClick={() =>
+                  signIn("google", {
+                    callbackUrl: "http://localhost:3000/dashboard",
+                  })
+                }
+              >
+                Ingresar
+              </Button>
             )}
             </HStack>
             <IconButton
