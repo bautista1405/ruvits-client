@@ -34,7 +34,6 @@ import { useFormik } from "formik";
 import swal from 'sweetalert';
 
 import { FaUser } from "react-icons/fa";
-import SuccessfulAlert from '../../../helpers/Alerts/successful'
 
 export default function ProductForm() {
 
@@ -80,15 +79,14 @@ export default function ProductForm() {
           <GridItem colSpan={{ md: 1 }}>
             <Box px={[4, 0]}>
               <Heading fontSize="lg" fontWeight="md" lineHeight="6">
-                Profile
+                Tu producto
               </Heading>
               <Text
                 mt={1}
                 fontSize="sm"
                 color={useColorModeValue("gray.600", "gray.400")}
               >
-                This information will be displayed publicly so be careful what
-                you share.
+                Acá vas a poder agregar tu producto y toda su información correspondiente.
               </Text>
             </Box>
           </GridItem>
@@ -231,18 +229,6 @@ export default function ProductForm() {
                     </InputGroup>
                   </FormControl>
                 </SimpleGrid>
-
-                {setError 
-                    ? 
-                      <div>
-                        <p className="error">{error}</p>
-                        <style jsx>{`.error{
-                            color: red;
-                          }`}
-                        </style>
-                      </div> 
-                    : <SuccessfulAlert />
-                }
 
                 <FormControl>
                   <FormLabel
