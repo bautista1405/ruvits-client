@@ -59,6 +59,7 @@ const Discover = () => {
                                     fontSize="2xl"
                                     mt={2}
                                     _hover={{ color: "gray.600", textDecor: "underline" }}
+                                    href={`/productos/${product.title}`}
                                     >
                                     {product.title}
                                     </Link>
