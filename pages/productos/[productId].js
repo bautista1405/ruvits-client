@@ -1,135 +1,210 @@
 import React from 'react'
 import Image from 'next/image'
+import Head from 'next/head'
+import Script from 'next/script'
+
 import styles from '../../styles/ProductDetails.module.css'
 
-import { SimpleGrid, Box, Flex, chakra, Link } from '@chakra-ui/react'
+import { SimpleGrid, Box, Flex, chakra, Link, Button } from '@chakra-ui/react'
+import { Formik, Form } from "formik";
+import axios from "axios";
+// import ButtonMercadoPago from '../../services/mp'
 
 const ProductDetails = ({ product }) => {
   console.log(product)
+
+  const handleSubmit = async () => {
+
+    const URL = process.env.NEXT_PUBLIC_MP_API
+
+    product.map(product => {
+      const data = {
+        "items": [
+          {
+            "title": product.title,
+            "quantity": 1,
+            "unit_price": product.price,
+            "img": product.content[0]
+          }
+        ],
+        "back_urls": {
+          "success": "http://localhost:3000/successful"
+        },
+        "payment_methods": {
+          "excluded_payment_methods": [
+            {
+              "id": "atm"
+            }
+          ],
+          "excluded_payment_types": [
+            {
+              "id": "ticket"
+            }
+          ],
+        },
+      };
+  
+      const headers = { 
+        "Authorization": process.env.NEXT_PUBLIC_MERCADO_PAGO_ACCESS_TOKEN,
+        "Content-Type": "application/json"
+      };
+  
+      axios.post(URL, data, { headers })
+        .then(response => {
+          console.log(response.data.sandbox_init_point);
+          window.location.href = response.data.sandbox_init_point;
+        });
+            
+    } )
+    
+  };
+
+
   return (
     <>
       <div className={styles.layout}>
         
-        <ul>
+       <Head>
+          {product.map(product => {
+            return (
+              <title> {`Ruvits | ${product.title}`} </title>
+
+            )
+          })}
+          <Script src="https://sdk.mercadopago.com/js/v2"></Script>
+       </Head>
           
-              {product.length > 0 ?
-                product.map(product => {
+        {product.length > 0 ?
+          product.map(product => {
                 
-                  return (
-        <Flex
-          bg="transparent"
-          p={50}
-          w="full"
-          alignItems="center"
-          justifyContent="center"
-          shadow="base"
-          rounded={[null, "md"]}
-          overflow={{ sm: "hidden" }}
-        >
-          <Box
-            mx="auto"
-            rounded="lg"
-            shadow="md"
-            bg="white"
-            _dark={{
-              bg: "gray.800",
-            }}
-            maxW="2xl"
-          >
-            <Image
-              roundedTop="lg"
-              width="672px"
-              height="500px"
-              fit="cover"
-              src={product.content[0]}
-              alt="Article"
-            />
+            return (
+              <Flex
+                bg="transparent"
+                p={50}
+                w="full"
+                alignItems="center"
+                justifyContent="center"
+                shadow="base"
+                rounded={[null, "md"]}
+                overflow={{ sm: "hidden" }}
+              >
+                <Box
+                  mx="auto"
+                  rounded="lg"
+                  shadow="md"
+                  bg="white"
+                  _dark={{
+                    bg: "gray.800",
+                  }}
+                  maxW="2xl"
+                >
+                  <Image
+                    width="672px"
+                    height="500px"
+                    fit="cover"
+                    src={product.content[0]}
+                    alt="Article"
+                  />
 
-            <Box p={6}>
-              <Box>
-                <chakra.span
-                  fontSize="xs"
-                  textTransform="uppercase"
-                  color="brand.600"
-                  _dark={{
-                    color: "brand.400",
-                  }}
-                >
-                  Product
-                </chakra.span>
-                <Link
-                  display="block"
-                  color="gray.800"
-                  _dark={{
-                    color: "white",
-                  }}
-                  fontWeight="bold"
-                  fontSize="2xl"
-                  mt={2}
-                  _hover={{
-                    color: "gray.600",
-                    textDecor: "underline",
-                  }}
-                >
-                  I Built A Successful Blog In One Year
-                </Link>
-                <chakra.p
-                  mt={2}
-                  fontSize="sm"
-                  color="gray.600"
-                  _dark={{
-                    color: "gray.400",
-                  }}
-                >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie
-                  parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris
-                  egestas quam volutpat viverra. In pretium nec senectus erat. Et
-                  malesuada lobortis.
-                </chakra.p>
-              </Box>
+                  <Box p={6}>
+                    <Box>
+                      <chakra.span
+                        fontSize="xs"
+                        textTransform="uppercase"
+                        color="brand.600"
+                        _dark={{
+                          color: "brand.400",
+                        }}
+                      >
+                        Product
+                      </chakra.span>
+                      <Link
+                        display="block"
+                        color="gray.800"
+                        _dark={{
+                          color: "white",
+                        }}
+                        fontWeight="bold"
+                        fontSize="2xl"
+                        mt={2}
+                        _hover={{
+                          color: "gray.600",
+                          textDecor: "underline",
+                        }}
+                      >
+                        I Built A Successful Blog In One Year
+                      </Link>
+                      <chakra.p
+                        mt={2}
+                        fontSize="sm"
+                        color="gray.600"
+                        _dark={{
+                          color: "gray.400",
+                        }}
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie
+                        parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris
+                        egestas quam volutpat viverra. In pretium nec senectus erat. Et
+                        malesuada lobortis.
+                      </chakra.p>
+                    </Box>
 
-              <Box mt={4}>
-                <Flex alignItems="center">
-                  <Flex alignItems="center">
-                    {/* <Image
-                      h={10}
-                      fit="cover"
-                      rounded="full"
-                      src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
-                      alt="Avatar"
-                    /> */}
-                    <Link
-                      mx={2}
-                      fontWeight="bold"
-                      color="gray.700"
-                      _dark={{
-                        color: "gray.200",
-                      }}
-                    >
-                      Jone Doe
-                    </Link>
-                  </Flex>
-                  <chakra.span
-                    mx={1}
-                    fontSize="sm"
-                    color="gray.600"
-                    _dark={{
-                      color: "gray.300",
-                    }}
-                  >
-                    21 SEP 2015
-                  </chakra.span>
-                </Flex>
-              </Box>
-            </Box>
-          </Box>
-        </Flex>
+                    <Box mt={8}>
+                      <Flex alignItems="center" justifyContent="center">
+                        <Flex alignItems="center">
+                          {/* <Image
+                            h={10}
+                            fit="cover"
+                            rounded="full"
+                            src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
+                            alt="Avatar"
+                          /> */}
+                          <Link
+                            mx={2}
+                            fontWeight="bold"
+                            color="gray.700"
+                            _dark={{
+                              color: "gray.200",
+                            }}
+                          >
+                            Jone Doe
+                          </Link>
+                        </Flex>
+                        <chakra.span
+                          mx={1}
+                          fontSize="sm"
+                          color="gray.600"
+                          _dark={{
+                            color: "gray.300",
+                          }}
+                        >
+                          21 SEP 2015
+                        </chakra.span>
+                        <Formik>
+                          <Form className="my-3" id="form-container" onSubmit={handleSubmit}>
+              
+                            <div className="my-2 inputs_login d-flex">
+                            
+                            <Button 
+                              colorScheme='teal' 
+                              variant='outline' 
+                              type="submit"
+                              marginLeft={5}
+                            >Comprar</Button>
+                            </div>
+                          </Form>
+                        </Formik>
+                      </Flex>
+                    </Box>
+                  </Box>
+                </Box>
+              </Flex>
                     
-                  )
-                }) : <p>¡Oopsss! Este producto no existe.</p> 
-              }
+            )
+        }) : <p>¡Oopsss! Este producto no existe.</p> 
+        }
            
-        </ul>
+        
       </div>
     </>
   )
