@@ -34,10 +34,13 @@ import { useFormik } from "formik";
 import swal from 'sweetalert';
 
 import { FaUser } from "react-icons/fa";
+import { signIn, signOut, useSession, getSession, session } from "next-auth/client";
 
 export default function ProductForm() {
 
     const [error, setError] = useState(null)
+
+    const [session, loading] = useSession();
 
     const router = useRouter()
   
@@ -45,14 +48,21 @@ export default function ProductForm() {
       initialValues: {
         title: '',
         description: '',
-        price: '',
-        content: []
+        price: Number,
+        content: [],
+        mpAccessToken: session.mpAccessToken || null, //we get the access token from the user
       },
-      onSubmit: (values = {title, description, price, content}) => {
+      onSubmit: (values = {title, description, price, content, mpAccessToken}) => {
         try {
           axios.post(
             'http://3.95.83.1:3000/api/products', 
-            {title: values.title, description: values.description, price: values.price, content: values.content}
+            {
+              title: values.title, 
+              description: values.description, 
+              price: values.price, 
+              content: values.content, 
+              mpAccessToken: values.mpAccessToken
+            },
             ).then(res => {
               if (res) {
                 setError('Producto creado exitosamente')
@@ -308,6 +318,15 @@ export default function ProductForm() {
                   </Flex>
                 </FormControl>
               </Stack>
+              
+              <Input 
+                type="hidden"
+                id="mpAccessToken" 
+                name='mpAccessToken'
+                value={formik.values.mpAccessToken}
+                required  
+              />
+              
               <Box
                 px={{ base: 4, sm: 6 }}
                 py={3}
@@ -333,7 +352,7 @@ export default function ProductForm() {
             </chakra.form>
           </GridItem>
         </SimpleGrid>
-        <iframe id="invisible" name="invisible"></iframe>
+        <iframe id="invisible" name="invisible" style={{backgroundColor: "red"}}></iframe>
       </Box>
   );
 }

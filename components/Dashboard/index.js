@@ -105,14 +105,14 @@ export default function Dashboard({data}) {
                                 <Link display={["none", "none", "flex", "flex", "flex"]}>
                                     <Icon as={FiDollarSign} fontSize="2xl" />
                                 </Link>
-                                <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                    <Text fontSize="18px" ml={1}>Mis tarjetas</Text>
+                                <Link href="/dashboard/pagos" _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                    <Text fontSize="18px" ml={1}>Pagos</Text>
                                 </Link>
                             </Flex>
                             <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
                                 <Link display={["none", "none", "flex", "flex", "flex"]}>
                                     <Icon as={FiBox} fontSize="2xl" /></Link>
-                                <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                <Link href="/dashboard/mis-productos" _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
                                     <Text fontSize="18px" ml={2}>Mis productos</Text>
                                 </Link>
                             </Flex>

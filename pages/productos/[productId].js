@@ -1,32 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Head from 'next/head'
 import Script from 'next/script'
+import { useRouter } from 'next/router'
 
 import styles from '../../styles/ProductDetails.module.css'
 
 import { SimpleGrid, Box, Flex, chakra, Link, Button } from '@chakra-ui/react'
 import { Formik, Form } from "formik";
 import axios from "axios";
-// import ButtonMercadoPago from '../../services/mp'
 
 const ProductDetails = ({ product }) => {
-  console.log(product)
+  const router = useRouter()
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (req, res) => {
 
-    const URL = process.env.NEXT_PUBLIC_MP_API
-
+    const authURL = process.env.NEXT_PUBLIC_MP_API_AUTH
+    const authToken = process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN
+    const appID = process.env.APP_ID
+    const appSecret = process.env.APP_SECRET
+    const pubKey = process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY
+    const grant_type = 'authorization_code'
+    const myAccessToken = process.env.NEXT_PUBLIC_MERCADO_PAGO_ACCESS_TOKEN
+    
+    
     product.map(product => {
+      const URL = `https://api.mercadopago.com/checkout/preferences?access_token=${product.mpAccessToken}` //url with the vendor's token
       const data = {
         "items": [
           {
             "title": product.title,
             "quantity": 1,
             "unit_price": product.price,
-            "img": product.content[0]
+            "picture_url": product.content[0]
           }
         ],
+        "marketplace": appID,
+        "marketplace_fee": 1,
+        "auto_return": "approved",
         "back_urls": {
           "success": "http://localhost:3000/successful"
         },
@@ -43,22 +54,27 @@ const ProductDetails = ({ product }) => {
           ],
         },
       };
-  
+      
       const headers = { 
         "Authorization": process.env.NEXT_PUBLIC_MERCADO_PAGO_ACCESS_TOKEN,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+        //'access_token': 'APP_USR-8558616783850676-071520-0342adc3b708c7e413a6178038ce1785-1143711689',
+        'public_key': pubKey
       };
-  
-      axios.post(URL, data, { headers })
-        .then(response => {
-          console.log(response.data.sandbox_init_point);
-          window.location.href = response.data.sandbox_init_point;
-        });
-            
-    } )
+
+            axios.post(URL, data, {headers} )
+              .then(response => {
+                console.log(response);
+                console.log(URL)
+                window.location.href = response.data.init_point;
+              })
+               
+    })
     
   };
-
 
   return (
     <>
@@ -67,11 +83,11 @@ const ProductDetails = ({ product }) => {
        <Head>
           {product.map(product => {
             return (
-              <title> {`Ruvits | ${product.title}`} </title>
+              <title key={product._id}> {`Ruvits | ${product.title}`} </title>
 
             )
           })}
-          <Script src="https://sdk.mercadopago.com/js/v2"></Script>
+          
        </Head>
           
         {product.length > 0 ?
@@ -87,6 +103,7 @@ const ProductDetails = ({ product }) => {
                 shadow="base"
                 rounded={[null, "md"]}
                 overflow={{ sm: "hidden" }}
+                key={product._id}
               >
                 <Box
                   mx="auto"
@@ -97,6 +114,7 @@ const ProductDetails = ({ product }) => {
                     bg: "gray.800",
                   }}
                   maxW="2xl"
+                  
                 >
                   <Image
                     width="672px"
@@ -116,7 +134,7 @@ const ProductDetails = ({ product }) => {
                           color: "brand.400",
                         }}
                       >
-                        Product
+                        {product.title}
                       </chakra.span>
                       <Link
                         display="block"
@@ -132,7 +150,7 @@ const ProductDetails = ({ product }) => {
                           textDecor: "underline",
                         }}
                       >
-                        I Built A Successful Blog In One Year
+                        {product.title}
                       </Link>
                       <chakra.p
                         mt={2}
@@ -142,10 +160,7 @@ const ProductDetails = ({ product }) => {
                           color: "gray.400",
                         }}
                       >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie
-                        parturient et sem ipsum volutpat vel. Natoque sem et aliquam mauris
-                        egestas quam volutpat viverra. In pretium nec senectus erat. Et
-                        malesuada lobortis.
+                       {product.description}
                       </chakra.p>
                     </Box>
 

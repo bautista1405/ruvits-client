@@ -75,7 +75,7 @@ export default function Pricing() {
                 fontSize={["lg", , "xl"]}
                 color={useColorModeValue("gray.600", "gray.400")}
                 >
-                If you're not satisfied, contact us and we'll refund you within
+                If you are not satisfied, contact us and we will refund you within
                 the first 20 days.
                 </chakra.p>
             </Box>
@@ -109,7 +109,7 @@ export default function Pricing() {
                         textTransform="uppercase"
                         color="brand.400"
                     >
-                        What's included
+                        What is included
                     </Text>
                     <Flex
                         ml="15px"
@@ -140,7 +140,7 @@ export default function Pricing() {
                     <Flex
                     align="center"
                     fontSize="5xl"
-                    fontWeight={["bold", , "extrabold"]}
+                    fontWeight={["bold", "extrabold"]}
                     lineHeight="tight"
                     >
                     $500

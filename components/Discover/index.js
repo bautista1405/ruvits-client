@@ -33,6 +33,7 @@ const Discover = () => {
                             w="full"
                             alignItems="center"
                             justifyContent="center"
+                            key={product._id}
                         >
                             <Box
                                 mx="auto"
@@ -40,6 +41,7 @@ const Discover = () => {
                                 shadow="md"
                                 bg="gray"
                                 maxW="2xl"
+                                
                             >
                                 <Image
                                 roundedTop="lg"

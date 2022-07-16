@@ -1,12 +1,16 @@
 import React from 'react'
+import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import NewProduct from '../components/NewProduct'
 
-const newProductPage = () => {
+const NewProductPage = () => {
+  const [session, loading] = useSession();
+
   return (
     <div>
-        <NewProduct />
+      {!session && (<p>Debes estar logueado para ver esta página</p>)}
+      {session && <NewProduct />}
     </div>
   )
 }
 
-export default newProductPage
+export default NewProductPage

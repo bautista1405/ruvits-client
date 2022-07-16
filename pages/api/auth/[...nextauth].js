@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
+
+
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
@@ -13,8 +15,9 @@ export default NextAuth({
 
   callbacks: {
     session: async (session, user) => {
-      session.id = user.id;
-      return session;
+      session.id = user._id;
+      session.mpAccessToken = user.mpAccessToken //here we add the 'mpAccessToken' from the 'user'
+      return session;                           //to be returned within the 'session' object
     },
   },
 });
