@@ -10,10 +10,11 @@ import {
 } from "@chakra-ui/react";
 
 import { FiExternalLink } from "react-icons/fi";
+import learn from '../../assets/learn.png'
 
 const CTA = () => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0} ml={20} mr={20}>
       <Flex bg="brand.400">
         <Image
           src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80"
@@ -40,7 +41,7 @@ const CTA = () => {
           textTransform="uppercase"
           fontWeight="extrabold"
         >
-          Award winning support
+          ¿Querés aprender y no sabés por dónde empezar?
         </chakra.span>
         <chakra.h1
           mb={4}
@@ -50,7 +51,7 @@ const CTA = () => {
           lineHeight="shorter"
           textShadow="2px 0 currentcolor"
         >
-          We&apos;re here to help
+          Nosotros te ayudamos
         </chakra.h1>
         <chakra.p
           pr={{ base: 0, lg: 16 }}
@@ -59,14 +60,14 @@ const CTA = () => {
           color={useColorModeValue("brand.600", "gray.400")}
           letterSpacing="wider"
         >
-          Get the #1 Business Messenger and start delivering personalized
-          experiences at every stage of the customer journey.
+          ¡Visitá <a href='https://it-resources.vercel.app/'> <b>IT Resources</b> </a>, fijate qué es lo que más te gusta y empezá a aprender!
+
         </chakra.p>
         <Box display="inline-flex" rounded="md" shadow="md">
           <chakra.a
             mt={2}
             display="inline-flex"
-            alignItems="center"
+            alignitems="center"
             justifyContent="center"
             px={5}
             py={3}
@@ -74,13 +75,15 @@ const CTA = () => {
             fontWeight="bold"
             w="full"
             rounded="md"
-            color={useColorModeValue("white")}
+            color={useColorModeValue("gray.700")}
             bg={useColorModeValue("brand.600", "brand.500")}
             _hover={{
               bg: useColorModeValue("brand.700", "brand.600"),
             }}
+            href='https://it-resources.vercel.app/'
+            target="blank"
           >
-            Visit the Help Centre
+            Ir a IT Resources
             <Icon as={FiExternalLink} ml={2} />
           </chakra.a>
         </Box>

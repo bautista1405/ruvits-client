@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  api: {
+    bodyParser: true,
+  },
   webpack: (config, { nextRuntime }) => {
     // Undocumented property of next 12.
     if (nextRuntime !== "nodejs") return config;
@@ -17,6 +20,7 @@ const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com', 'bitsroad.s3.amazonaws.com'],
   },
+  
 }
 
 module.exports = nextConfig

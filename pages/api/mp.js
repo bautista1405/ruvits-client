@@ -73,10 +73,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
 
                     }
                 )
-                //const _id = User.paths.id
-                // const schema = Object.keys(User.schema.paths._id.getters)
-                // console.log(schema)
-                //await User.findByIdAndUpdate({ _id }, { mpAccessToken: accessToken })
+               
 
                 const email = session.user.email //define the filter
                 const update = await User.findOneAndUpdate({ email: email }, { mpAccessToken: accessToken }) //populate the field

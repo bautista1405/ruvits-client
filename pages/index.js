@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { signIn, signOut, useSession, getSession } from "next-auth/client";
+
 import Home from '../components/Home'
 
 export default function HomePage() {
@@ -18,4 +20,12 @@ export default function HomePage() {
       <Home />
     </div>
   );
+}
+
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: await getSession(ctx)
+    }
+  }
 }

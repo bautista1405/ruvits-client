@@ -13,4 +13,12 @@ const NewProductPage = () => {
   )
 }
 
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: await getSession(ctx)
+    }
+  }
+}
+
 export default NewProductPage

@@ -1,12 +1,12 @@
 import React from "react";
-import { signIn, signOut, useSession } from "next-auth/client";
+import Link from 'next/link'
+import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import Image from 'next/image'
 
 import {
   chakra,
   Flex,
   HStack,
-  Link,
   Button,
   useColorModeValue,
   Avatar,
@@ -38,7 +38,7 @@ import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaMoon, FaSun } from "react-icons/fa";
 
-import Logo from '../../assets/ruviits-bg.png'
+import Logo from '../../assets/ruvitsLogo-bg.png'
 
 export default function WfWf() {
   const bg = useColorModeValue("white", "gray.800");
@@ -54,41 +54,6 @@ export default function WfWf() {
   const hbgh = useColorModeValue("gray.100", "brand.500");
   
   const [session, loading] = useSession();
-
-  const Section = (props) => {
-    return (
-      <Link
-        m={-3}
-        p={3}
-        display="flex"
-        alignItems="start"
-        rounded="lg"
-        _hover={{ bg: hbg }}
-      >
-        <chakra.svg
-          flexShrink={0}
-          h={6}
-          w={6}
-          color={ic}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          aria-hidden="true"
-        >
-          {props.icon}
-        </chakra.svg>
-        <Box ml={4}>
-          <chakra.p fontSize="sm" fontWeight="700" color={tcl}>
-            {props.title}
-          </chakra.p>
-          <chakra.p mt={1} fontSize="sm" color={dcl}>
-            {props.children}
-          </chakra.p>
-        </Box>
-      </Link>
-    );
-  };
 
   const MobileNavContent = (
     <VStack
@@ -111,90 +76,67 @@ export default function WfWf() {
         justifySelf="self-start"
         onClick={mobileNav.onClose}
       />
+
+      <Link href='/descubre'>
+        <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
+          Descubrí
+        </Button>
+      </Link>
+
+      <Link href='/blog'>
       <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
-        Dashboard
+        Blog
       </Button>
-      <Button
-        w="full"
-        variant="solid"
-        colorScheme="brand"
-        leftIcon={<AiOutlineInbox />}
-      >
-        Inbox
-      </Button>
-      <Button w="full" variant="ghost" leftIcon={<BsFillCameraVideoFill />}>
-        Videos
-      </Button>
+      </Link>
+      
     </VStack>
   );
 
   return (
     <React.Fragment>
-      <chakra.header h="full" bg={bg} w="full" px={{ base: 2, sm: 4 }} py={4}>
-        <Flex alignItems="center" justifyContent="space-between" mx="auto">
-          <Link display="flex" alignItems="center" href="/">
-            {/* <Image src={Logo} alt="logo" width="170px" height="170px"/> */}
-            Logo
+      <chakra.header h="full" bg={bg} w="full" px={{ base: 2, sm: 14 }} >
+        <Flex alignItems="center" justifyContent="space-between" mx="auto" margin="30px" >
+          <Link display="flex" alignItems="center" href="/" >
+            <Image src={Logo} alt="logo" width="100px" height="100px"/>
+            
           </Link>
-          <Box display={{ base: "none", md: "inline-flex" }}>
+          {/* <Spacer /> */}
+          <Box display="flex" alignItems="center">
+            <HStack spacing={2}>
+          <Box display={{ base: "none", md: "inline-flex" }} >
             <HStack spacing={1}>
-              <Box role="group">
-                <Button
+              
+              <Button
                   bg={bg}
-                  color="gray.500"
+                  color="gray.700"
                   alignItems="center"
                   fontSize="md"
                   _hover={{ color: cl }}
                   _focus={{ boxShadow: "none" }}
+                  colorScheme='gray' variant='ghost'
                 >
                   <Link display="flex" alignItems="center" href="/descubre">
                     Descubrí
                   </Link>
                 </Button>
                 
-              </Box>
+              
               <Button
                 bg={bg}
-                color="gray.500"
+                color="gray.700"
                 display="inline-flex"
                 alignItems="center"
                 fontSize="md"
                 _hover={{ color: cl }}
                 _focus={{ boxShadow: "none" }}
+                colorScheme='gray.400' variant='outline'
               >
-                Blog
-              </Button>
-              <Button
-                bg={bg}
-                color="gray.500"
-                display="inline-flex"
-                alignItems="center"
-                fontSize="md"
-                _hover={{ color: cl }}
-                _focus={{ boxShadow: "none" }}
-              >
-                <Link href="/pricing">
-                  Precios
-                </Link>
-              </Button>
-              <Button
-                bg={bg}
-                color="gray.500"
-                display="inline-flex"
-                alignItems="center"
-                fontSize="md"
-                _hover={{ color: cl }}
-                _focus={{ boxShadow: "none" }}
-              >
-                <Link href="/dashboard">
-                  Dashboard
+                <Link display="flex" alignItems="center" href="/blog">
+                    Blog
                 </Link>
               </Button>
             </HStack>
           </Box>
-          <Spacer />
-          <Box display="flex" alignItems="center">
-            <HStack spacing={1}>
             {session && (
               <>
                 <Menu>
@@ -203,7 +145,14 @@ export default function WfWf() {
                   </MenuButton>
                   <MenuList>
                     <MenuItem>
-                      <Button onClick={() => signOut()}>Cerrar sesión</Button>
+                      
+                        <Link href="/dashboard">
+                          <p>Dashboard</p>
+                        </Link> 
+                      
+                    </MenuItem>
+                    <MenuItem>
+                      <p onClick={() => signOut()}>Cerrar sesión</p>
                     </MenuItem>
                   </MenuList>
                 </Menu>
@@ -221,7 +170,7 @@ export default function WfWf() {
               </Button>
             )}
             </HStack>
-            <IconButton
+            {/* <IconButton
               size="md"
               fontSize="lg"
               aria-label={`Switch to ${text} mode`}
@@ -230,7 +179,7 @@ export default function WfWf() {
               ml={{ base: "0", md: "3" }}
               onClick={toggleMode}
               icon={<SwitchIcon />}
-            />
+            /> */}
             <IconButton
               display={{ base: "flex", md: "none" }}
               aria-label="Open menu"
@@ -247,4 +196,13 @@ export default function WfWf() {
       </chakra.header>
     </React.Fragment>
   );
+}
+
+
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: await getSession(ctx)
+    }
+  }
 }

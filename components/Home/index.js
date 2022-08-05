@@ -13,7 +13,7 @@ const Home = () => {
       
       <Hero />
       <CTA />
-      <Fgl />
+      {/* <Fgl /> */}
       
     </div>
   )

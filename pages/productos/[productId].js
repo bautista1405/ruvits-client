@@ -3,18 +3,48 @@ import Image from 'next/image'
 import Head from 'next/head'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
+import { signIn, signOut, useSession, getSession } from "next-auth/client";
 
 import styles from '../../styles/ProductDetails.module.css'
 
 import { SimpleGrid, Box, Flex, chakra, Link, Button } from '@chakra-ui/react'
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  FormControl,
+  FormLabel,
+  Input,
+} from '@chakra-ui/react'
+
 import { Formik, Form } from "formik";
 import axios from "axios";
+import swal from 'sweetalert';
+import { useFormik } from "formik";
+//import nodemailer from "nodemailer";
+//import { payment } from 'mercadopago'
+
+
 
 const ProductDetails = ({ product }) => {
   const router = useRouter()
+  const [session, loading] = useSession();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const initialRef = React.useRef(null)
+  const finalRef = React.useRef(null)
+  
+  
 
+    
+  
+  
   const handleSubmit = async (req, res) => {
-
+    
     const authURL = process.env.NEXT_PUBLIC_MP_API_AUTH
     const authToken = process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN
     const appID = process.env.APP_ID
@@ -22,6 +52,8 @@ const ProductDetails = ({ product }) => {
     const pubKey = process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY
     const grant_type = 'authorization_code'
     const myAccessToken = process.env.NEXT_PUBLIC_MERCADO_PAGO_ACCESS_TOKEN
+    const successfulUrl = 'http://localhost:3000/api/sendmail'
+    const paymentUrl = 'https://api.mercadopago.com/v1/payments/{id}'
     
     
     product.map(product => {
@@ -39,7 +71,7 @@ const ProductDetails = ({ product }) => {
         "marketplace_fee": 1,
         "auto_return": "approved",
         "back_urls": {
-          "success": "http://localhost:3000/successful"
+          "success": "http://localhost:3000/successful",
         },
         "payment_methods": {
           "excluded_payment_methods": [
@@ -55,26 +87,98 @@ const ProductDetails = ({ product }) => {
         },
       };
       
+      
+      const purchasedProduct = {
+        "id": product._id,
+        "title": product.title,
+        "quantity": 1,
+        "unit_price": product.price,
+        "content": product.content[0],
+      }
+      
+      
+      
+      
       const headers = { 
         "Authorization": process.env.NEXT_PUBLIC_MERCADO_PAGO_ACCESS_TOKEN,
         "Content-Type": "application/json",
+        'Accept': 'application/json',
         "Access-Control-Allow-Origin": "*",
         'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-        //'access_token': 'APP_USR-8558616783850676-071520-0342adc3b708c7e413a6178038ce1785-1143711689',
-        'public_key': pubKey
       };
+      
+      axios.post(URL, data, {headers} )
+        .then(response => {
+          //console.log(response);
+          if(typeof window !== 'undefined') {
+        
+            const testProduct = localStorage.setItem('product', JSON.stringify({
+              id: product._id,
+              title: product.title,
+              vendor: product.vendor,
+              description: product.description,
+              price: product.price,
+              content: product.content,
+            }));
+          }
+          
+          //window.location.href = response.data.init_point;
+        })
 
-            axios.post(URL, data, {headers} )
-              .then(response => {
-                console.log(response);
-                console.log(URL)
-                window.location.href = response.data.init_point;
-              })
-               
     })
     
   };
+
+  const deleteItem = (req, res) => {
+    product.map(product => {
+        const id = product._id
+        fetch('http://localhost:3000/api/misproductos', {
+            
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: JSON.stringify({
+                id: id
+            }),
+        })
+        swal({
+            title: "¡Tu producto fue eliminado!",
+            text: "Ya no vas a ver tu producto online.",
+            icon: "success",
+            }).then(() => {router.push('/dashboard')})
+    })
+  }
+
+  const updateItem = (req, res) => { 
+    product.map(product => {
+        const id = product._id
+        fetch('http://localhost:3000/api/update', {
+            
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: JSON.stringify({
+                id: id,
+                title: formik.values.title,
+                description: formik.values.description,
+                price: formik.values.price,
+            }),
+        })
+        swal({
+            title: "¡Tu producto fue actualizado!",
+            text: "Ahora podes ver tu producto con los cambios correspondientes.",
+            icon: "success",
+        }).then(() => {router.push('/dashboard')})
+    })
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      description: '',
+      price: '',
+    },
+  });
+
 
   return (
     <>
@@ -104,6 +208,7 @@ const ProductDetails = ({ product }) => {
                 rounded={[null, "md"]}
                 overflow={{ sm: "hidden" }}
                 key={product._id}
+                backgroundColor="gray.100"
               >
                 <Box
                   mx="auto"
@@ -200,12 +305,118 @@ const ProductDetails = ({ product }) => {
               
                             <div className="my-2 inputs_login d-flex">
                             
-                            <Button 
-                              colorScheme='teal' 
-                              variant='outline' 
-                              type="submit"
-                              marginLeft={5}
-                            >Comprar</Button>
+                              { session && (
+                                  product.vendor !== session.user.name && (
+                                    <Button 
+                                      colorScheme='teal' 
+                                      variant='outline' 
+                                      type="submit"
+                                      marginLeft={5}
+                                    >Comprar</Button>
+                                  )
+                                )
+                              }
+
+                              { !session && (
+                                  
+                                    <Button 
+                                      colorScheme='teal' 
+                                      variant='outline' 
+                                      type="submit"
+                                      marginLeft={5}
+                                    >Comprar</Button>
+                                  
+                                )
+                              } 
+                              
+                              { session && (
+                                  product.vendor === session.user.name && (
+
+                                    <>
+
+                                      <Button onClick={onOpen} ml={5}>Editar</Button>
+                                            {/* <Button ml={4} ref={finalRef}>
+                                              I'll receive focus on close
+                                            </Button> */}
+
+                                            <Modal
+                                              initialFocusRef={initialRef}
+                                              finalFocusRef={finalRef}
+                                              isOpen={isOpen}
+                                              onClose={onClose}
+                                            >
+                                              <ModalOverlay />
+                                              <ModalContent>
+                                                <ModalHeader>Edita tu producto</ModalHeader>
+                                                <ModalCloseButton />
+                                                <ModalBody pb={6}>
+                                                  <FormControl>
+                                                    <FormLabel>Nombre</FormLabel>
+                                                    <Input 
+                                                      ref={initialRef} 
+                                                      placeholder={product.title} 
+                                                      type='text'
+                                                      id='name'
+                                                      name='title'
+                                                      value={formik.values.title}
+                                                      onChange={formik.handleChange}
+                                                      onBlur={formik.handleBlur}
+                                                      required
+                                                    />
+                                                  </FormControl>
+
+                                                  <FormControl mt={4}>
+                                                    <FormLabel>Descripción</FormLabel>
+                                                    <Input 
+                                                      placeholder={product.description} 
+                                                      type='text'
+                                                      //id='name'
+                                                      name='description'
+                                                      value={formik.values.description}
+                                                      onChange={formik.handleChange}
+                                                      onBlur={formik.handleBlur}
+                                                      required
+                                                    />
+                                                  </FormControl>
+
+                                                  <FormControl mt={4}>
+                                                    <FormLabel>Precio</FormLabel>
+                                                    <Input 
+                                                      placeholder={product.price} 
+                                                      type='text'
+                                                      id='name'
+                                                      name='price'
+                                                      value={formik.values.price}
+                                                      onChange={formik.handleChange}
+                                                      onBlur={formik.handleBlur}
+                                                      required
+                                                    />
+                                                  </FormControl>
+
+
+                                                </ModalBody>
+
+                                                <ModalFooter>
+                                                  <Button colorScheme='blue' mr={3} onClick={updateItem}>
+                                                    Guardar
+                                                  </Button>
+                                                  <Button onClick={onClose}>Cancelar</Button>
+                                                </ModalFooter>
+                                              </ModalContent>
+                                            </Modal>
+                                              <Button 
+                                                colorScheme='red' 
+                                                variant='outline' 
+                                                marginLeft={5}
+                                                onClick={deleteItem}
+                                              >Eliminar</Button>
+
+                                    </>
+                                  )
+                                
+                                )
+                              }
+
                             </div>
                           </Form>
                         </Formik>
@@ -216,7 +427,7 @@ const ProductDetails = ({ product }) => {
               </Flex>
                     
             )
-        }) : <p>¡Oopsss! Este producto no existe.</p> 
+        }) : <p>¡Oopsss! Parece que este producto no existe.</p> 
         }
            
         
@@ -264,69 +475,11 @@ export async function getStaticProps({params}) {
 }
 
 
-// export async function getStaticProps({ params }) {
-//   const productId = params.productId.replace(/\-/g, '+')
-//   const results = await fetch(`http://3.95.83.1:3000/api/products?title=${productId}`).then(res => res.json());
+// export async function getServerSideProps(ctx) {
 //   return {
 //     props: {
-//       product: results[0]
+//       session: await getSession(ctx)
 //     }
-//   }
-// }
-
-// export async function getStaticPaths() {
-//   const products = await fetch('http://3.95.83.1:3000/api/products').then(res => res.json());
-//   const paths = products.map(product => {
-//     const productId = product.title.toLowerCase().replace(/ /g, '-');
-//     return {
-//       params: {
-//         productId
-//       }
-//     }
-//   });
-//   console.log(paths)
-//   return {
-//     paths,
-//     fallback: false
-//   }
-// }
-
-// export async function getServerSideProps(context) {
-//   const productId = context.params.productId.replace(/\-/g, '+')
-//   const res = await fetch(`http://3.95.83.1:3000/api/products?product=${productId}`);
-//   const productsList = await res.json();
-//   const [product] = productsList; // Get first item in array returned from API
-//   return {
-//     props: {
-//       productId,
-//       product
-//     }
-//   }
-// }
-
-// export async function getStaticPaths(){
-//   const request  = await fetch('http://3.95.83.1:3000/api/products')
-//   const products = await request.json()
-
-//   const paths = products.map(product =>`/productos/${product.title}`)
-//   // const paths = products.map(product =>({
-//   //     params: {productId: product._id.toString()},
-//   // }))
-
-//   return {
-//       paths,
-//       fallback: false,
-//   }
-// }
-
-// export async function getStaticProps(){
-//   const request = await fetch('http://3.95.83.1:3000/api/products')
-//   const product = await request.json()
-
-//   return{
-//       props:{
-//           product
-//       }
 //   }
 // }
 

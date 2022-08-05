@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react'
 import Image from 'next/image'
 import axios from 'axios'
 import { useSession } from "next-auth/client";
+import {getSession} from "next-auth/client"
 
-import { SimpleGrid, Box, Flex, chakra, Link } from '@chakra-ui/react'
+import { SimpleGrid, Box, Flex, chakra, Link, Input } from '@chakra-ui/react'
 
 import image from '../../assets/transaction.png'
 
@@ -12,105 +13,324 @@ const Discover = () => {
     const [session, loading] = useSession();
     
     const [products, setProducts] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [wordEntered, setWordEntered] = useState("");
 
     const url = "http://3.95.83.1:3000/api/products"
     
     useEffect(() => {
         axios.get(url).then((res) => {
             setProducts(res?.data || []);
-            console.log(res.data)
+            
         })
     }, [url])
 
+
+    // const searchItems = (searchValue) => {
+    //     setSearchInput(searchValue)
+    //     if (searchInput !== '') {
+    //         const filteredData = products.filter((item) => {
+    //             return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+    //         })
+    //         setFilteredResults(filteredData)
+    //     }
+    //     else{
+    //         setFilteredResults(products)
+    //     }
+    // }
+
+    const handleFilter = (event) => {
+        const searchWord = event.target.value;
+        setWordEntered(searchWord);
+        const newFilter = products.filter((value) => {
+          return Object.values(value).join('').toLowerCase().match(searchWord.toLowerCase());
+        });
+        
+        if (searchWord === "") {
+          setFilteredData([]);
+        } 
+        else {
+          setFilteredData(newFilter);
+        }
+    };
+    
+    const clearInput = () => {
+        setFilteredData([]);
+        setWordEntered("");
+    };
+
   return (
     <div>
-        <SimpleGrid columns={2} spacing={10}>
-            {products.map(product => {
-                return (
+        <Input
+          type="text"
+          placeholder='Buscar...'
+          value={wordEntered}
+          onChange={handleFilter}
+        />
+        <SimpleGrid 
+            columns={[1, 2, 2, 3]} 
+            spacing={10} 
+            bg="#edf3f8" 
+            margin="50px" 
+            shadow="base"
+            rounded={[null, "md"]}
+            borderRadius="5px" 
+        >
+
+            {filteredData.length != 0 ? (
+                filteredData.slice(0, 15).map((value, key) => {
+                    return (
                         <Flex
-                            bg="transparent"
-                            p={50}
-                            w="full"
-                            alignItems="center"
+                        p={50}
+                        w="full"
+                        alignItems="center"
+                        justifyContent="center"
+                        key={value._id}
+                        >
+                        <Flex
+                            direction="column"
                             justifyContent="center"
-                            key={product._id}
+                            alignItems="center"
+                            w="sm"
+                            mx="auto"
                         >
                             <Box
-                                mx="auto"
-                                rounded="lg"
-                                shadow="md"
-                                bg="gray"
-                                maxW="2xl"
-                                
+                            bg="gray.300"
+                            h={64}
+                            w="full"
+                            rounded="lg"
+                            shadow="md"
+                            bgSize="cover"
+                            bgPos="center"
+                            style={{
+                                backgroundImage:
+                                `url(${value.content[0]})`,
+                            }}
+                            ></Box>
+
+                            <Box
+                            w={{
+                                base: 56,
+                                md: 64,
+                            }}
+                            bg="gray.800"
+                            _dark={{
+                                bg: "gray.800",
+                            }}
+                            mt={-10}
+                            shadow="lg"
+                            rounded="lg"
+                            overflow="hidden"
                             >
-                                <Image
-                                roundedTop="lg"
-                                width="500px"
-                                height="500px"
-                                fit="cover"
-                                src={product.content[0]}
-                                alt="Article"
-                                />
-                                
-                                <Box p={6}>
-                                <Box>
-                                    <Link
-                                    display="block"
-                                    color="gray.800"
-                                    fontWeight="bold"
-                                    fontSize="2xl"
-                                    mt={2}
-                                    _hover={{ color: "gray.600", textDecor: "underline" }}
-                                    href={`/productos/${product.title}`}
-                                    >
-                                    {product.title}
-                                    </Link>
-                                    <chakra.p
-                                    mt={2}
-                                    fontSize="sm"
-                                    color="gray.600"
-                                    >
-                                    {product.description}
-                                    </chakra.p>
-                                </Box>
-                                
-                                <Box mt={4}>
-                                    <Flex alignItems="center">
-                                    <Flex alignItems="center">
-                                        <Image
-                                        h={10}
-                                        fit="cover"
-                                        rounded="full"
-                                        width="10px"
-                                        height="10px"
-                                        src={image}
-                                        alt="Avatar"
-                                        />
-                                        <Link
-                                        mx={2}
-                                        fontWeight="bold"
-                                        color="gray.400"
-                                        >
-                                        {/* {session.user.name} */}
-                                        </Link>
-                                    </Flex>
-                                    <chakra.span
-                                        mx={1}
-                                        fontSize="sm"
-                                        color="gray.300"
-                                    >
-                                        ${product.price}
-                                    </chakra.span>
-                                    </Flex>
-                                </Box>
-                                </Box>
+                            <chakra.h3
+                                py={2}
+                                textAlign="center"
+                                fontWeight="bold"
+                                textTransform="uppercase"
+                                color="gray.200"
+                                _dark={{
+                                color: "white",
+                                }}
+                                letterSpacing={1}
+                            >
+                                {value.title}
+                            </chakra.h3>
+
+                            <Flex
+                                alignItems="center"
+                                justifyContent="space-between"
+                                py={2}
+                                px={3}
+                                bg="gray.200"
+                                _dark={{
+                                bg: "gray.700",
+                                }}
+                            >
+                                <chakra.span
+                                fontWeight="bold"
+                                color="gray.800"
+                                _dark={{
+                                    color: "gray.200",
+                                }}
+                                >
+                                ${value.price}
+                                </chakra.span>
+                                <chakra.span
+                                fontWeight="bold"
+                                color="gray.800"
+                                _dark={{
+                                    color: "gray.200",
+                                }}
+                                >
+                                ${session.user.name}
+                                </chakra.span>
+                                <a href={`/productos/${value.title}`} >
+                                <chakra.button
+                                bg="gray.800"
+                                fontSize="xs"
+                                fontWeight="bold"
+                                color="white"
+                                px={2}
+                                py={1}
+                                rounded="lg"
+                                textTransform="uppercase"
+                                _hover={{
+                                    bg: "gray.700",
+                                    _dark: {
+                                    bg: "gray.600",
+                                    },
+                                }}
+                                _focus={{
+                                    bg: "gray.700",
+                                    _dark: {
+                                    bg: "gray.600",
+                                    },
+                                    outline: "none",
+                                }}
+                                >
+                                    Ver detalles
+                                </chakra.button>
+                                </a>
+                            </Flex>
                             </Box>
                         </Flex>
+                        </Flex>
                     )
-            })}
+                })
+                ) : (
+            
+
+            products.map((value) => {
+                return (    
+                    <Flex
+                        p={50}
+                        w="full"
+                        alignItems="center"
+                        justifyContent="center"
+                        key={value._id}
+                    >
+                        <Flex
+                            direction="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            w="sm"
+                            mx="auto"
+                        >
+                            <Box
+                            bg="gray.300"
+                            h={64}
+                            w="full"
+                            rounded="lg"
+                            shadow="md"
+                            bgSize="cover"
+                            bgPos="center"
+                            style={{
+                                backgroundImage:
+                                `url(${value.content[0]})`,
+                            }}
+                            ></Box>
+
+                            <Box
+                            w={{
+                                base: 56,
+                                md: 64,
+                            }}
+                            bg="gray.800"
+                            _dark={{
+                                bg: "gray.800",
+                            }}
+                            mt={-10}
+                            shadow="lg"
+                            rounded="lg"
+                            overflow="hidden"
+                            >
+                            <chakra.h3
+                                py={2}
+                                textAlign="center"
+                                fontWeight="bold"
+                                textTransform="uppercase"
+                                color="gray.200"
+                                _dark={{
+                                color: "white",
+                                }}
+                                letterSpacing={1}
+                            >
+                                {value.title}
+                            </chakra.h3>
+
+                            <Flex
+                                alignItems="center"
+                                justifyContent="space-between"
+                                py={2}
+                                px={3}
+                                bg="gray.200"
+                                _dark={{
+                                bg: "gray.700",
+                                }}
+                            >
+                                <chakra.span
+                                fontWeight="bold"
+                                color="gray.800"
+                                _dark={{
+                                    color: "gray.200",
+                                }}
+                                >
+                                ${value.price}
+                                </chakra.span>
+                                <chakra.span
+                                fontWeight="bold"
+                                color="gray.800"
+                                _dark={{
+                                    color: "gray.200",
+                                }}
+                                >
+                                    {value.vendor}
+                                </chakra.span>
+                                <a href={`/productos/${value.title}`} >
+                                <chakra.button
+                                bg="gray.800"
+                                fontSize="xs"
+                                fontWeight="bold"
+                                color="white"
+                                px={2}
+                                py={1}
+                                rounded="lg"
+                                textTransform="uppercase"
+                                _hover={{
+                                    bg: "gray.700",
+                                    _dark: {
+                                    bg: "gray.600",
+                                    },
+                                }}
+                                _focus={{
+                                    bg: "gray.700",
+                                    _dark: {
+                                    bg: "gray.600",
+                                    },
+                                    outline: "none",
+                                }}
+                                >
+                                Ver detalles
+                                </chakra.button>
+                                </a>
+                            </Flex>
+                            </Box>
+                        </Flex>
+                        </Flex>
+                )
+            })
+            )}
         </SimpleGrid>
     </div>
   )
+}
+
+export async function getServerSideProps(ctx) {
+    return {
+      props: {
+        session: await getSession(ctx)
+      }
+    }
 }
 
 export default Discover

@@ -6,7 +6,6 @@ import {
   chakra,
   Box,
   Flex,
-  useColorModeValue,
   SimpleGrid,
   GridItem,
   Heading,
@@ -30,7 +29,7 @@ import {
 } from "@chakra-ui/react";
 
 import axios from 'axios'
-import { useFormik } from "formik";
+import { useFormik, Field, Formik } from "formik";
 import swal from 'sweetalert';
 
 import { FaUser } from "react-icons/fa";
@@ -43,316 +42,391 @@ export default function ProductForm() {
     const [session, loading] = useSession();
 
     const router = useRouter()
+
+    const headers = {
+        'Content-Type': 'multipart/form-data',
+    }
   
     const formik = useFormik({
       initialValues: {
+        vendor: session.user.name,
         title: '',
         description: '',
         price: Number,
         content: [],
         mpAccessToken: session.mpAccessToken || null, //we get the access token from the user
       },
-      onSubmit: (values = {title, description, price, content, mpAccessToken}) => {
+      onSubmit: (values = {vendor, title, description, price, photos, content, mpAccessToken}) => {
         try {
           axios.post(
             'http://3.95.83.1:3000/api/products', 
             {
+              vendor: values.vendor,
               title: values.title, 
               description: values.description, 
               price: values.price, 
+              photos: values.photos,
               content: values.content, 
-              mpAccessToken: values.mpAccessToken
+              mpAccessToken: values.mpAccessToken,
             },
-            ).then(res => {
-              if (res) {
-                setError('Producto creado exitosamente')
-              }
-            }).catch(e => {
-                setError('El email ya está en uso') 
-              })
+            {headers}
+            )
+            .then( () => {
+              swal({
+                title: "Tu producto fue exitosamente creado.",
+                text: "¡Tu producto ya está online!",
+                icon: "success",
+              }).then(() => {router.push('/dashboard')})
+            })
             
           } catch(err) {
               
           }    
       },
     });
-  
 
   return (
-    
-      <Box margin="100px">
-        <SimpleGrid
-          display={{ base: "initial", md: "grid" }}
-          columns={{ md: 3 }}
-          spacing={{ md: 6 }}
-        >
-          <GridItem colSpan={{ md: 1 }}>
-            <Box px={[4, 0]}>
-              <Heading fontSize="lg" fontWeight="md" lineHeight="6">
-                Tu producto
-              </Heading>
-              <Text
-                mt={1}
-                fontSize="sm"
-                color={useColorModeValue("gray.600", "gray.400")}
+    <>
+      {!session && (<p>Debes estar logueado para ver esta página</p>) } 
+      {session && !session.mpAccessToken && 
+        ( 
+        <>
+          <p>
+            Parece que todavía no vinculaste tu cuenta con Mercado Pago.
+          </p>
+          <p mt={5}>
+            <Link href='/dashboard/pagos'>
+              ¡Acá lo podés hacer!
+            </Link>
+          </p>
+          </>
+        ) 
+      }
+
+      {session && session.mpAccessToken &&
+      
+      <Box margin="100px" shadow="base"
+      rounded={[null, "md"]}
+      borderRadius="5px"
+      backgroundColor="gray.100">
+          <SimpleGrid
+            display={{ base: "initial", md: "grid" }}
+            columns={{ md: 3 }}
+            spacing={{ md: 6 }}
+            
+          >
+            <GridItem colSpan={{ md: 1 }}>
+              <Box px={[4, 0]} margin="30px"  >
+                <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
+                  Tu producto
+                </Heading>
+                <Text
+                  mt={1}
+                  fontSize="sm"
+                  color="gray.700"
+                >
+                  Acá vas a poder agregar tu producto y toda su información correspondiente.
+                </Text>
+              </Box>
+            </GridItem>
+            <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
+              
+              <form
+                // target="invisible"
+                encType="multipart/form-data" 
+                // method="post" 
+                // action="http://3.95.83.1:3000/api/products"
+                shadow="base"
+                rounded={[null, "md"]}
+                overflow={{ sm: "hidden" }}
+                onSubmit={formik.handleSubmit}
+                // onSubmit={ () => { swal({
+                //   title: "Tu producto fue exitosamente creado.",
+                //   text: "¡Tu producto ya está online!",
+                //   icon: "success",
+                //   }).then(() => {router.push('/dashboard')})} 
+                // }
               >
-                Acá vas a poder agregar tu producto y toda su información correspondiente.
-              </Text>
-            </Box>
-          </GridItem>
-          <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
-            <chakra.form
-              target="invisible"
-              encType="multipart/form-data" 
-              method="post" 
-              action="http://3.95.83.1:3000/api/products"
-              shadow="base"
-              rounded={[null, "md"]}
-              overflow={{ sm: "hidden" }}
-              onSubmit={ () => { swal({
-                title: "Tu producto fue exitosamente creado.",
-                text: "¡Tu producto ya está online!",
-                icon: "success",
-                }).then(() => {router.push('/dashboard')})} 
-              }
-            >
-              <Stack
-                px={4}
-                py={5}
-                bg={useColorModeValue("white", "gray.700")}
-                spacing={6}
-                p={{ sm: 6 }}
-              >
-                <SimpleGrid columns={3} spacing={6}>
-                  <FormControl as={GridItem} colSpan={[3, 2]}>
-                    <FormLabel
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      Nombre
-                    </FormLabel>
-                    <InputGroup size="sm">
-                      <Input
-                        placeholder="Nombre de tu producto..."  
+                <Stack
+                  px={4}
+                  py={5}
+                  bg="white"
+                  spacing={6}
+                  p={{ sm: 6 }}
+                >
+
+                  <Input 
+                    type="hidden"
+                    id="vendor" 
+                    name='vendor'
+                    value={formik.values.vendor}
+                    required  
+                  />
+
+                  <SimpleGrid columns={3} spacing={6}>
+                    <FormControl as={GridItem} colSpan={[3, 2]}>
+                      <FormLabel
+                        fontSize="sm"
+                        fontWeight="md"
+                        color="gray.700"
+                      >
+                        Nombre
+                      </FormLabel>
+                      <InputGroup size="sm">
+                        <Input
+                          placeholder="Nombre de tu producto..."  
+                          type='text'
+                          id='title'
+                          name='title'
+                          value={formik.values.title}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          required
+                          focusBorderColor="brand.400"
+                          rounded="md"
+                        />
+                      </InputGroup>
+                    </FormControl>
+                  </SimpleGrid>
+
+                  <div>
+                    <FormControl id="email" mt={1}>
+                      <FormLabel
+                        fontSize="sm"
+                        fontWeight="md"
+                        color="gray.700"
+                      >
+                        Descripción
+                      </FormLabel>
+                      <Textarea
+                        placeholder="Describe tu producto..."  
                         type='text'
-                        id='name'
-                        name='title'
-                        value={formik.values.title}
+                        id='description'
+                        name='description'
+                        value={formik.values.description}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         required
+                        mt={1}
+                        rows={3}
+                        shadow="sm"
                         focusBorderColor="brand.400"
-                        rounded="md"
+                        fontSize={{ sm: "sm" }}
                       />
-                    </InputGroup>
-                  </FormControl>
-                </SimpleGrid>
+                      <FormHelperText>
+                        Breve descripción: puede ser el tipo de contenido, el tipo de archivo...
+                      </FormHelperText>
+                    </FormControl>
+                  </div>
 
-                <div>
-                  <FormControl id="email" mt={1}>
+                  <FormControl>
                     <FormLabel
                       fontSize="sm"
                       fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
+                      color="gray.700"
                     >
-                      Descripción
+                      Foto de portada de tu producto
                     </FormLabel>
-                    <Textarea
-                      placeholder="Describe tu producto..."  
-                      type='text'
-                      id='lastname'
-                      name='description'
-                      value={formik.values.description}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      required
+                    <Flex alignItems="center" mt={1}>
+                    <chakra.label
+                            htmlFor="file-upload1"
+                            cursor="pointer"
+                            rounded="md"
+                            fontSize="sm"
+                            color="brand.700"
+                            pos="relative"
+                            _hover={{
+                              color: "brand.400",
+                            }}
+                    >
+                            
+                            <Icon
+                              mx="auto"
+                              boxSize={12}
+                              color="gray.500"
+                              stroke="currentColor"
+                              fill="none"
+                              viewBox="0 0 48 48"
+                              aria-hidden="true"
+                            >
+                              <path
+                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </Icon>
+                            
+                            <VisuallyHidden>
+                              <Input
+                                type="file"  
+                                id="file-upload1"
+                                accept="image/jpeg,image/png"
+                                name='photos'
+                                value={undefined}
+                                onChange={(e) =>
+                                  formik.setFieldValue('photos', e.currentTarget.files[0])
+                                }
+                                onBlur={formik.handleBlur}
+                                required
+                              />
+                            </VisuallyHidden>
+                          </chakra.label>
+                    </Flex>
+                          <FormHelperText>
+                            Esta foto es la que aparecerá cuando vean tu producto
+                          </FormHelperText>
+                  </FormControl>
+
+                  <SimpleGrid columns={3} spacing={6}>
+                    <FormControl as={GridItem} colSpan={[3, 2]}>
+                      <FormLabel
+                        fontSize="sm"
+                        fontWeight="md"
+                        color="gray.700"
+                      >
+                        Precio
+                      </FormLabel>
+                      <InputGroup size="sm">
+                        <Input
+                          placeholder="Precio de tu producto..."  
+                          type='number'
+                          id='price'
+                          name='price'
+                          value={formik.values.price}
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          required
+                          focusBorderColor="brand.400"
+                          rounded="md"
+                        />
+                      </InputGroup>
+                    </FormControl>
+                  </SimpleGrid>
+
+                  <FormControl>
+                    <FormLabel
+                      fontSize="sm"
+                      fontWeight="md"
+                      color="gray.700"
+                    >
+                      Contenido/archivos
+                    </FormLabel>
+                    <Flex
                       mt={1}
-                      rows={3}
-                      shadow="sm"
-                      focusBorderColor="brand.400"
-                      fontSize={{ sm: "sm" }}
-                    />
-                    <FormHelperText>
-                      Breve descripción: puede ser el tipo de contenido, el tipo de archivo...
+                      justify="center"
+                      px={6}
+                      pt={5}
+                      pb={6}
+                      borderWidth={2}
+                      borderColor="gray.500"
+                      borderStyle="dashed"
+                      rounded="md"
+                    >
+                      <Stack spacing={1} textAlign="center">
+                        <Icon
+                          mx="auto"
+                          boxSize={12}
+                          color="gray.400"
+                          stroke="currentColor"
+                          fill="none"
+                          viewBox="0 0 48 48"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </Icon>
+                        <Flex
+                          fontSize="sm"
+                          color="gray.500"
+                          alignItems="baseline"
+                        >
+                          <chakra.label
+                            htmlFor="file-upload"
+                            cursor="pointer"
+                            rounded="md"
+                            fontSize="md"
+                            color="brand.700"
+                            pos="relative"
+                            _hover={{
+                              color: "brand.400",
+                            }}
+                          >
+                            <span>Sube 1 (un) archivo</span>
+                            <VisuallyHidden>
+                              <Input
+                                type="file"  
+                                id="file-upload" 
+                                name='content'
+                                value={undefined}
+                                onChange={(e) =>
+                                  formik.setFieldValue('content', e.currentTarget.files[0])
+                                }
+                                onBlur={formik.handleBlur}
+                                required
+                                />
+                            </VisuallyHidden>
+                          </chakra.label>
+                          
+                        </Flex>
+                        <Text
+                          fontSize="xs"
+                          color="gray.500"
+                        >
+                          PNG, JPG, PDF, MP4, PPT
+                        </Text>
+                      </Stack>
+                    </Flex>
+                    <FormHelperText mt={5} fontSize="md" >
+                    ⚠️ ¡Acordate que cuanto mejor sea la descripción de tu producto, más llamará la atención! ⚠️
                     </FormHelperText>
                   </FormControl>
-                </div>
-
-                {/* <FormControl>
-                  <FormLabel
-                    fontSize="sm"
+                </Stack>
+                
+                <Input 
+                  type="hidden"
+                  id="mpAccessToken" 
+                  name='mpAccessToken'
+                  value={formik.values.mpAccessToken}
+                  required  
+                  />
+                
+                <Box
+                  px={{ base: 4, sm: 6 }}
+                  py={3}
+                  bg="gray.400"
+                  display="flex"
+                  justifyContent="center"
+                  shadow="base"
+                  rounded={[null, "md"]}
+                  borderRadius="5px"
+                  >
+                  <Button
+                    type="submit"
+                    color="gray.700"
+                    _focus={{ shadow: "" }}
                     fontWeight="md"
-                    color={useColorModeValue("gray.700", "gray.50")}
+                    // onSubmit={ () => { swal({
+                      //           title: "Tu producto fue exitosamente creado.",
+                      //           text: "¡Tu producto ya está online!",
+                      //           icon: "success",
+                    //           })} 
+                    //         }
                   >
-                    Photo
-                  </FormLabel>
-                  <Flex alignItems="center" mt={1}>
-                    <Avatar
-                      boxSize={12}
-                      bg={useColorModeValue("gray.100", "gray.800")}
-                      icon={
-                        <Icon
-                          as={FaUser}
-                          boxSize={9}
-                          mt={3}
-                          rounded="full"
-                          color={useColorModeValue("gray.300", "gray.700")}
-                        />
-                      }
-                    />
-                    <Button
-                      type="button"
-                      ml={5}
-                      variant="outline"
-                      size="sm"
-                      fontWeight="medium"
-                      _focus={{ shadow: "none" }}
-                    >
-                      Change
-                    </Button>
-                  </Flex>
-                </FormControl> */}
-
-                <SimpleGrid columns={3} spacing={6}>
-                  <FormControl as={GridItem} colSpan={[3, 2]}>
-                    <FormLabel
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      Precio
-                    </FormLabel>
-                    <InputGroup size="sm">
-                      <Input
-                        placeholder="Precio de tu producto..."  
-                        type='number'
-                        id='email'
-                        name='price'
-                        value={formik.values.price}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        required
-                        focusBorderColor="brand.400"
-                        rounded="md"
-                      />
-                    </InputGroup>
-                  </FormControl>
-                </SimpleGrid>
-
-                <FormControl>
-                  <FormLabel
-                    fontSize="sm"
-                    fontWeight="md"
-                    color={useColorModeValue("gray.700", "gray.50")}
-                  >
-                    Contenido/archivos
-                  </FormLabel>
-                  <Flex
-                    mt={1}
-                    justify="center"
-                    px={6}
-                    pt={5}
-                    pb={6}
-                    borderWidth={2}
-                    borderColor={useColorModeValue("gray.300", "gray.500")}
-                    borderStyle="dashed"
-                    rounded="md"
-                  >
-                    <Stack spacing={1} textAlign="center">
-                      <Icon
-                        mx="auto"
-                        boxSize={12}
-                        color={useColorModeValue("gray.400", "gray.500")}
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 48 48"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </Icon>
-                      <Flex
-                        fontSize="sm"
-                        color={useColorModeValue("gray.600", "gray.400")}
-                        alignItems="baseline"
-                      >
-                        <chakra.label
-                          htmlFor="file-upload"
-                          cursor="pointer"
-                          rounded="md"
-                          fontSize="md"
-                          color={useColorModeValue("brand.600", "brand.200")}
-                          pos="relative"
-                          _hover={{
-                            color: useColorModeValue("brand.400", "brand.300"),
-                          }}
-                        >
-                          <span>Sube un archivo</span>
-                          <VisuallyHidden>
-                            <Input
-                              type="file" 
-                              placeholder="Tu contraseña..." 
-                              id="file-upload" 
-                              name='content'
-                              value={formik.values.content}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              required
-                            />
-                          </VisuallyHidden>
-                        </chakra.label>
-                        
-                      </Flex>
-                      <Text
-                        fontSize="xs"
-                        color={useColorModeValue("gray.500", "gray.50")}
-                      >
-                        PNG, JPG, PDF, MP4
-                      </Text>
-                    </Stack>
-                  </Flex>
-                </FormControl>
-              </Stack>
+                    <b>Crear producto</b>
+                  </Button>
+                </Box>
+              </form>
               
-              <Input 
-                type="hidden"
-                id="mpAccessToken" 
-                name='mpAccessToken'
-                value={formik.values.mpAccessToken}
-                required  
-              />
-              
-              <Box
-                px={{ base: 4, sm: 6 }}
-                py={3}
-                bg={useColorModeValue("gray.50", "gray.900")}
-                display="flex"
-                justifyContent="center"
-              >
-                <Button
-                  type="submit"
-                  color="white"
-                  _focus={{ shadow: "" }}
-                  fontWeight="md"
-                  onSubmit={ () => { swal({
-                            title: "Tu producto fue exitosamente creado.",
-                            text: "¡Tu producto ya está online!",
-                            icon: "success",
-                            })} 
-                          }
-                >
-                  Crear producto
-                </Button>
-              </Box>
-            </chakra.form>
-          </GridItem>
-        </SimpleGrid>
-        <iframe id="invisible" name="invisible" style={{backgroundColor: "red"}}></iframe>
-      </Box>
+            </GridItem>
+          </SimpleGrid>
+          {/* <iframe id="invisible" name="invisible" style={{backgroundColor: "red"}}></iframe> */}
+        </Box>
+      }
+      </>
   );
 }

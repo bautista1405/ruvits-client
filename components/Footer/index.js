@@ -38,7 +38,7 @@ export default function Footer() {
             color: "gray.700",
           }}
         >
-          Brand
+          Ruvits
         </chakra.a>
 
         <chakra.p
@@ -46,7 +46,7 @@ export default function Footer() {
           color="gray.800"
           _dark={{ color: "white" }}
         >
-          All rights reserved
+          Todos los derechos reservados | 2022
         </chakra.p>
 
         <Flex mx="-2">

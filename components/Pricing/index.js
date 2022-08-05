@@ -1,4 +1,5 @@
 import React from "react";
+import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import {
   chakra,
   Box,
@@ -183,4 +184,13 @@ export default function Pricing() {
         </Flex>
     </div>
   );
+}
+
+
+export async function getServerSideProps(ctx) {
+  return {
+    props: {
+      session: await getSession(ctx)
+    }
+  }
 }
