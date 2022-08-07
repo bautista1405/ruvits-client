@@ -79,12 +79,31 @@ const MyProducts = () => {
                 
             >
                 {/* Column 1 */}
+
                 <Flex
-                          flexDir={["column", "column", "column", "column", "column"]}
-                          align={["center", "center", "center", "flex-start", "flex-start"]}
-                          wrap={["wrap", "wrap", "nowrap", "nowrap", "nowrap"]}
-                          justifyContent="center"
-                      >
+                w={["100%", "100%", "10%", "15%", "15%"]}
+                flexDir="column"
+                alignItems="center"
+                padding={10}
+                color="gray.700"
+                pl={[null, null, 100, 100, 5]}
+            >
+                <Flex
+                    flexDir="column"
+                    h={[null, null, "100vh"]}
+                    justifyContent="space-between"
+                >
+                    <Flex
+                        flexDir="column"
+                        as="nav"
+                    >
+
+                <Flex
+                    flexDir={["column", "column", "column", "column", "column"]}
+                    align={["center", "center", "center", "flex-start", "flex-start"]}
+                    wrap={["wrap", "wrap", "nowrap", "nowrap", "nowrap"]}
+                    justifyContent="center"
+                >
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]}>
                               <Link display={["none", "none", "flex", "flex", "flex"]}>
                                   <Icon as={FiHome} fontSize="2xl" className="active-icon" />
@@ -111,7 +130,7 @@ const MyProducts = () => {
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
                               <Link display={["none", "none", "flex", "flex", "flex"]}>
                                   <Icon as={CgProfile} fontSize="2xl" /></Link>
-                              <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]} href="/mi-perfil">
+                              <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]} href="/dashboard/mi-perfil">
                                   <Text fontSize="18px" ml={2}>Mi perfil</Text>
                               </Link>
                           </Flex>
@@ -121,6 +140,9 @@ const MyProducts = () => {
                               </Link> 
                           </Flex>
                       </Flex>
+                    </Flex>
+                </Flex>
+            </Flex>
 
             
                 <SimpleGrid 

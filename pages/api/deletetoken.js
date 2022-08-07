@@ -1,0 +1,51 @@
+import mongoose from 'mongoose';
+import { getSession } from "next-auth/client";
+
+const deleteToken = async (req, res) => {  
+
+    const db = process.env.MONGODB_URI
+
+    try {
+
+                const session = await getSession({req}) //get info from the session
+
+                mongoose.connect(db, {  //connect to the db
+                    useNewUrlParser: true,
+                    useUnifiedTopology: true,
+                });
+
+                mongoose.models = {}
+
+                const User = mongoose.model('users',  //here we define the schema
+                    {
+                        name: {
+                            type: String,
+                        },
+                        email: {
+                            type: String,
+                        },
+                        image: {
+                            type: String,
+                        },
+                        emailVerified: {
+                            type: Date,
+                        },
+                       mpAccessToken: {
+                            type: String,
+                       },
+
+                    }
+                )
+               
+
+                const email = session.user.email //define the filter
+                const update = await User.findOneAndUpdate({ email: email }, {$unset: {mpAccessToken: 1 }}) //remove the field
+                console.log(update)
+                res.status(200).json({ message: 'Token eliminado' })
+                
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export default deleteToken;

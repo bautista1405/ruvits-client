@@ -40,11 +40,34 @@ import {
 } from "react-icons/fi"
 import {CgProfile} from 'react-icons/cg'
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const Payments = () => {
 
   const router = useRouter();
   const [session, loading] = useSession();
+
+  const deleteToken = (req, res) => { 
+    
+        
+        fetch('http://localhost:3000/api/deletetoken', {
+            
+            method: 'POST',
+            // headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            // body: JSON.stringify({
+            //     id: id,
+            //     title: formik.values.title,
+            //     description: formik.values.description,
+            //     price: formik.values.price,
+            // }),
+        })
+        swal({
+            title: "Tu cuenta de MercadoPago fue desvinculada.",
+            text: "Si querés volver a vender tus productos, podés vincularla de nuevo.",
+            icon: "success",
+        }).then(() => {router.push('/dashboard')})
+    
+  }
   
   return (
     <div>
@@ -53,16 +76,17 @@ const Payments = () => {
         {!session && (<p>Debes estar logueado para ver esta página</p>)}
         {session && !session.mpAccessToken && (
         <Flex
-            h={["null", "null", "100vh"]}
+            h={[null, null, "100vh"]}
             maxW="2000px"
-            
+            flexDir={["column", "column", "row"]}
             overflow="hidden"
-            
+            margin={[null, null, "100px"]}
             shadow="base"
             rounded={[null, "md"]}
             borderRadius="5px"
             boxShadow='2xl' 
             p='6'
+            pl={[null, null, 70, 10, 5]}
             
         >
             {/* Column 1 */}
@@ -70,11 +94,9 @@ const Payments = () => {
                 w={["100%", "100%", "10%", "15%", "15%"]}
                 flexDir="column"
                 alignItems="center"
-                rounded={[null, "md"]}
-                borderRadius="5px"
-                boxShadow='base'
-                margin={10}
+                padding={10}
                 color="gray.700"
+                pl={[null, null, 100, 100, 5]}
             
             >
                 <Flex
@@ -117,7 +139,7 @@ const Payments = () => {
                                 </Link>
                             </Flex>
                             <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                                <Link href='/mi-perfil' display={["none", "none", "flex", "flex", "flex"]}>
+                                <Link href="/dashboard/mi-perfil" display={["none", "none", "flex", "flex", "flex"]}>
                                     <Icon as={CgProfile} fontSize="2xl" />
                                 
                                     <Text fontSize="18px" ml={2}>Mi perfil</Text>
@@ -135,9 +157,14 @@ const Payments = () => {
             </Flex>
 
             <Flex 
-                display="column" 
-                justifyContent="center" 
-                mt={90} 
+               display="column" 
+               justifyContent="center" 
+               w={["100%", "100%", "100%", "100%", "100%"]}
+               mt={10}
+               pl={[0, 100, 100]} 
+               rounded={[null, "md"]}
+               borderRadius="5px"
+               boxShadow='sm'
             >
               <p>
                 Para poder vender tus productos, es necesario que vincules tu cuenta de Mercado Pago con la plataforma, así podés recibir pagos.
@@ -155,26 +182,27 @@ const Payments = () => {
 
         {session && session.mpAccessToken && (
           <Flex
-          h={[null, null, "50vh", "50vh", "100vh"]}
-          maxW="2000px"
-          flexDir={["column", "column", "row"]}
-          overflow="hidden"
-          margin={[null, null, "100px"]}
-          shadow="base"
-          rounded={[null, "md"]}
-          borderRadius="5px"
-          boxShadow='2xl' 
-          p='6'
-          pl={[null, null, 70, 10, 5]}
+            h={[null, null, "100vh"]}
+            maxW="2000px"
+            flexDir={["column", "column", "row"]}
+            overflow="hidden"
+            margin={[null, null, "100px"]}
+            shadow="base"
+            rounded={[null, "md"]}
+            borderRadius="5px"
+            boxShadow='2xl' 
+            p='6'
+            pl={[null, null, 70, 10, 5]}
           
       >
           {/* Column 1 */}
           <Flex
-              w={["100%", "100%", "10%", "15%", "15%"]}
-              flexDir="column"
-              alignItems="center"
-              padding={10}
-              color="gray.700"
+               w={["100%", "100%", "10%", "15%", "15%"]}
+               flexDir="column"
+               alignItems="center"
+               padding={10}
+               color="gray.700"
+               pl={[null, null, 100, 100, 5]}
           >
               <Flex
                   flexDir="column"
@@ -218,7 +246,7 @@ const Payments = () => {
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
                               <Link display={["none", "none", "flex", "flex", "flex"]}>
                                   <Icon as={CgProfile} fontSize="2xl" /></Link>
-                              <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]} href="/mi-perfil">
+                              <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]} href="/dashboard/mi-perfil">
                                   <Text fontSize="18px" ml={2}>Mi perfil</Text>
                               </Link>
                           </Flex>
@@ -249,7 +277,7 @@ const Payments = () => {
               
             </p>
             
-                <Button colorScheme='cyan' variant='outline' mt={10}>
+                <Button colorScheme='cyan' variant='outline' mt={10} onClick={deleteToken}>
                     Desvincular mi cuenta de Mercado Pago    
                 </Button> 
             
