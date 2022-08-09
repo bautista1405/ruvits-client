@@ -22,6 +22,7 @@ import {
     Tr,
     Th,
     Td,
+    Tooltip,
     Divider,
     Box,
     Button,
@@ -46,6 +47,7 @@ import {
   import {CgProfile} from 'react-icons/cg'
 import axios from 'axios'
 import swal from 'sweetalert';
+import {BsInfoCircle} from "react-icons/bs"
 
 import image from '../../assets/transaction.png'
 
@@ -63,6 +65,7 @@ const MyProducts = () => {
             
         })
     }, [url])
+    
     const product = products.filter(product => product.vendor === session.user.name)
     
   return (
@@ -113,13 +116,18 @@ const MyProducts = () => {
                               </Link>
                           </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                              <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                  <Icon as={FiDollarSign} fontSize="2xl" />
-                              </Link>
-                              <Link href="/dashboard/pagos" _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                  <Text fontSize="18px" ml={1}>Autorización de pagos</Text>
-                              </Link>
-                          </Flex>
+                                <Link href="/dashboard/pagos" display={["none", "none", "flex", "flex", "flex"]}>
+                                    <Icon as={FiDollarSign} fontSize="2xl" />
+                                
+                                
+                                    <Text fontSize="18px" ml={1}>
+                                        Autorización de pagos {" "} {" "}
+                                        <Tooltip label="Para poder vender tus productos, tenés que vincular tu cuenta de MercadoPago">
+                                           <span> <Icon as={BsInfoCircle} /> </span>
+                                        </Tooltip>
+                                    </Text>
+                                </Link>
+                            </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
                               <Link display={["none", "none", "flex", "flex", "flex"]}>
                                   <Icon as={FiBox} fontSize="2xl" /></Link>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 
@@ -85,30 +85,49 @@ export default function ProductForm() {
       },
     });
 
+    useEffect(() => {
+      if(session && !session.mpAccessToken) {
+        swal({
+          title: "Parece que todavía no vinculaste tu cuenta con MercadoPago.",
+          text: '',
+          icon: "warning",
+          button: "Vincular mi cuenta",
+        })
+        .then(() => {router.push('/dashboard/pagos')})
+      }
+    }, [])
+
   return (
     <>
       {!session && (<p>Debes estar logueado para ver esta página</p>) } 
       {session && !session.mpAccessToken && 
         ( 
         <>
-          <p>
-            Parece que todavía no vinculaste tu cuenta con Mercado Pago.
-          </p>
-          <p mt={5}>
-            <Link href='/dashboard/pagos'>
-              ¡Acá lo podés hacer!
-            </Link>
-          </p>
+          <Flex alignItems="center" justifyContent="center" h="54vh">
+            {/* <p>
+              Parece que todavía no vinculaste tu cuenta con Mercado Pago.
+            </p>
+            <p mt={5}>
+              <Link href='/dashboard/pagos'>
+                ¡Acá lo podés hacer!
+              </Link>
+            </p> */}
+          </Flex>
           </>
         ) 
       }
 
       {session && session.mpAccessToken &&
       
-      <Box margin="100px" shadow="base"
-      rounded={[null, "md"]}
-      borderRadius="5px"
-      backgroundColor="gray.100">
+      <Box 
+        margin="100px" 
+        shadow="base"
+        rounded={[null, "md"]}
+        borderRadius="5px"
+        backgroundColor="gray.100"
+        w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
+        
+      >
           <SimpleGrid
             display={{ base: "initial", md: "grid" }}
             columns={{ md: 3 }}
@@ -393,7 +412,7 @@ export default function ProductForm() {
                   name='mpAccessToken'
                   value={formik.values.mpAccessToken}
                   required  
-                  />
+                />
                 
                 <Box
                   px={{ base: 4, sm: 6 }}
@@ -410,12 +429,7 @@ export default function ProductForm() {
                     color="gray.700"
                     _focus={{ shadow: "" }}
                     fontWeight="md"
-                    // onSubmit={ () => { swal({
-                      //           title: "Tu producto fue exitosamente creado.",
-                      //           text: "¡Tu producto ya está online!",
-                      //           icon: "success",
-                    //           })} 
-                    //         }
+                    
                   >
                     <b>Crear producto</b>
                   </Button>

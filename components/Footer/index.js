@@ -23,9 +23,12 @@ export default function Footer() {
           bg: "gray.800",
         }}
       >
+
+        <Flex align="center" justify="center" flexDir={{ base: "column", sm: "column" }}>
+
         <chakra.a
-          href="#"
-          fontSize="xl"
+          href='/faqs'
+          fontSize="sm"
           fontWeight="bold"
           color="gray.600"
           _dark={{
@@ -38,15 +41,53 @@ export default function Footer() {
             color: "gray.700",
           }}
         >
-          Ruvits
+           Preguntas frecuentes
         </chakra.a>
+        <chakra.a
+          href="/terms"
+          fontSize="sm"
+          fontWeight="bold"
+          color="gray.600"
+          _dark={{
+            color: "white",
+            _hover: {
+              color: "gray.300",
+            },
+          }}
+          _hover={{
+            color: "gray.700",
+          }}
+        >
+          Términos y Condiciones
+        </chakra.a>
+        <chakra.a
+          href="/privacy_policies"
+          fontSize="sm"
+          fontWeight="bold"
+          color="gray.600"
+          _dark={{
+            color: "white",
+            _hover: {
+              color: "gray.300",
+            },
+          }}
+          _hover={{
+            color: "gray.700",
+          }}
+        >
+          Política de Privacidad
+        </chakra.a>
+        </Flex>
 
         <chakra.p
           py={{ base: "2", sm: "0" }}
-          color="gray.800"
+          color="gray.700"
           _dark={{ color: "white" }}
+          fontSize="md"
+          fontWeight="bold"
+          
         >
-          Todos los derechos reservados | 2022
+         ©️ Ruvits | 2022
         </chakra.p>
 
         <Flex mx="-2">

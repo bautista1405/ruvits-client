@@ -18,6 +18,7 @@ import {
   Th,
   Td,
   Divider,
+  Tooltip,
   Box,
   Button,
   Input,
@@ -41,6 +42,7 @@ import {
 import {CgProfile} from 'react-icons/cg'
 import axios from 'axios';
 import swal from 'sweetalert';
+import {BsInfoCircle} from "react-icons/bs"
 
 const Payments = () => {
 
@@ -53,21 +55,18 @@ const Payments = () => {
         fetch('http://localhost:3000/api/deletetoken', {
             
             method: 'POST',
-            // headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-            // body: JSON.stringify({
-            //     id: id,
-            //     title: formik.values.title,
-            //     description: formik.values.description,
-            //     price: formik.values.price,
-            // }),
+            
         })
-        swal({
-            title: "Tu cuenta de MercadoPago fue desvinculada.",
-            text: "Si querés volver a vender tus productos, podés vincularla de nuevo.",
-            icon: "success",
-        }).then(() => {router.push('/dashboard')})
+        .then( () => {
+
+            swal({
+                title: "Tu cuenta de MercadoPago fue desvinculada.",
+                text: "Si querés volver a vender tus productos, podés vincularla de nuevo.",
+                icon: "success",
+            }).then(() => {router.push('/dashboard')})
+        } )
     
-  }
+    }
   
   return (
     <div>
@@ -128,7 +127,12 @@ const Payments = () => {
                                     <Icon as={FiDollarSign} fontSize="2xl" />
                                 
                                 
-                                    <Text fontSize="18px" ml={1}>Pagos</Text>
+                                    <Text fontSize="18px" ml={1}>
+                                        Autorización de pagos {" "} {" "}
+                                        <Tooltip label="Para poder vender tus productos, tenés que vincular tu cuenta de MercadoPago">
+                                           <span> <Icon as={BsInfoCircle} /> </span>
+                                        </Tooltip>
+                                    </Text>
                                 </Link>
                             </Flex>
                             <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
@@ -170,11 +174,11 @@ const Payments = () => {
                 Para poder vender tus productos, es necesario que vincules tu cuenta de Mercado Pago con la plataforma, así podés recibir pagos.
                 
               </p>
-              <Link href={process.env.NEXT_PUBLIC_MP_API_AUTH} >
-                  <Button colorScheme='cyan' variant='outline' mt={10}>
+              <a href={process.env.NEXT_PUBLIC_MP_API_AUTH} >
+                  <Button colorScheme='cyan' variant='solid' mt={10} color="white" >
                       Vincular mi cuenta de Mercado Pago    
                   </Button> 
-              </Link>
+              </a>
             </Flex>
             
             </Flex>
@@ -229,13 +233,18 @@ const Payments = () => {
                               </Link>
                           </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                              <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                  <Icon as={FiDollarSign} fontSize="2xl" />
-                              </Link>
-                              <Link href="/dashboard/pagos" _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                  <Text fontSize="18px" ml={1}>Autorización de pagos</Text>
-                              </Link>
-                          </Flex>
+                                <Link href="/dashboard/pagos" display={["none", "none", "flex", "flex", "flex"]}>
+                                    <Icon as={FiDollarSign} fontSize="2xl" />
+                                
+                                
+                                    <Text fontSize="18px" ml={1}>
+                                        Autorización de pagos {" "} {" "}
+                                        <Tooltip label="Para poder vender tus productos, tenés que vincular tu cuenta de MercadoPago">
+                                           <span> <Icon as={BsInfoCircle} /> </span>
+                                        </Tooltip>
+                                    </Text>
+                                </Link>
+                            </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
                               <Link display={["none", "none", "flex", "flex", "flex"]}>
                                   <Icon as={FiBox} fontSize="2xl" /></Link>

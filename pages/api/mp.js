@@ -9,7 +9,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
     try {
 
         // const { data } = await axios.get(process.env.NEXT_PUBLIC_MP_API_AUTH, code)
-        res.redirect('http://localhost:3000/');
+        res.redirect('http://localhost:3000/vinculacionexitosa');
         const { query } = req
 
         const headers = {

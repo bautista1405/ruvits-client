@@ -23,6 +23,7 @@ import {
     Button,
     Input,
     InputGroup,
+    Tooltip,
     InputLeftElement
 } from '@chakra-ui/react'
 
@@ -40,6 +41,7 @@ import {
     FiBell
 } from "react-icons/fi"
 import {CgProfile} from 'react-icons/cg'
+import {BsInfoCircle} from "react-icons/bs"
 
 import MyChart from './Chart'
 import axios from 'axios';
@@ -116,13 +118,18 @@ export default function Dashboard({data}) {
                               </Link>
                           </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                              <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                  <Icon as={FiDollarSign} fontSize="2xl" />
-                              </Link>
-                              <Link href="/dashboard/pagos" _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                  <Text fontSize="18px" ml={1}>Autorización de pagos</Text>
-                              </Link>
-                          </Flex>
+                                <Link href="/dashboard/pagos" display={["none", "none", "flex", "flex", "flex"]}>
+                                    <Icon as={FiDollarSign} fontSize="2xl" />
+                                
+                                
+                                    <Text fontSize="18px" ml={1}>
+                                        Autorización de pagos {" "} {" "}
+                                        <Tooltip label="Para poder vender tus productos, tenés que vincular tu cuenta de MercadoPago">
+                                           <span> <Icon as={BsInfoCircle} /> </span>
+                                        </Tooltip>
+                                    </Text>
+                                </Link>
+                            </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
                               <Link display={["none", "none", "flex", "flex", "flex"]}>
                                   <Icon as={FiBox} fontSize="2xl" /></Link>

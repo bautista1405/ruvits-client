@@ -1,5 +1,4 @@
 import React from "react";
-import Link from 'next/link'
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import Image from 'next/image'
 
@@ -21,6 +20,7 @@ import {
   Stack,
   VStack,
   CloseButton,
+  Link,
   useColorMode,
   Menu,
   MenuButton,

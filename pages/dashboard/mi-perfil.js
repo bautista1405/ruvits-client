@@ -57,11 +57,31 @@ import {
 import {BsInfoCircle} from "react-icons/bs"
 import {CgProfile} from 'react-icons/cg'
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const MyProfile = () => {
 
     const router = useRouter();
     const [session, loading] = useSession();
+
+    const deleteUser = (req, res) => { 
+    
+        
+        fetch('http://localhost:3000/api/deleteuser', {
+            
+            method: 'POST',
+            
+        })
+        .then( () => {
+
+            swal({
+                title: "Tu cuenta fue eliminada.",
+                text: "¡Te esperamos a la vuelta!",
+                icon: "success",
+            }).then(() => {router.push('/')})
+        })
+    
+    }   
 
   return (
     <>
@@ -204,21 +224,19 @@ const MyProfile = () => {
                                 color: "gray.50",
                             }}
                             >
-                                Nombre
+                                <b>Nombre</b>
                             </FormLabel>
-                            <Input
-                                type="text"
-                                name="first_name"
-                                id="first_name"
-                                autoComplete="given-name"
+                            <Text
+                                
                                 mt={1}
                                 focusBorderColor="brand.400"
                                 shadow="sm"
                                 size="sm"
                                 w="full"
                                 rounded="md"
-                                defaultValue={session.user.name}
-                            />
+                                
+                                color="gray.500"
+                            >{session.user.name}</Text>
                         </FormControl>
 
                         
@@ -233,23 +251,19 @@ const MyProfile = () => {
                                 color: "gray.50",
                             }}
                             >
-                            Email 
+                            <b>Email</b> 
                             </FormLabel>
-                            <Input
-                                type="text"
-                                name="email_address"
-                                id="email_address"
-                                autoComplete="email"
+                            <Text
+                                
                                 mt={1}
                                 focusBorderColor="brand.400"
                                 shadow="sm"
                                 size="sm"
                                 w="full"
                                 rounded="md"
-                                defaultValue={session.user.email}
-                                readOnly
-                                color="gray.400"
-                            />
+                                
+                                color="gray.500"
+                            >{session.user.email}</Text>
                         </FormControl>
 
                        
@@ -271,7 +285,7 @@ const MyProfile = () => {
                         }}
                         textAlign="right"
                     >
-                        <Button
+                        {/* <Button
                         type="submit"
                         colorScheme="cyan"
                         _focus={{
@@ -281,14 +295,14 @@ const MyProfile = () => {
                         variant="outline"
                         >
                             Guardar
-                        </Button>
+                        </Button> */}
                     </Box>
                     </chakra.form>
                         <GridItem mt={20}>
                             <Text fontSize={20} ><b>Otras opciones</b></Text>
                         </GridItem>
                         <GridItem>
-                            <Button colorScheme="red" mt={5} mb={1}>
+                            <Button colorScheme="red" mt={5} mb={1} onClick={deleteUser}>
                                 Borrar cuenta
                             </Button>
                         </GridItem>

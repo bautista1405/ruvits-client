@@ -26,9 +26,6 @@ import { Formik, Form } from "formik";
 import axios from "axios";
 import swal from 'sweetalert';
 import { useFormik } from "formik";
-//import nodemailer from "nodemailer";
-//import { payment } from 'mercadopago'
-
 
 
 const ProductDetails = ({ product }) => {
@@ -45,16 +42,7 @@ const ProductDetails = ({ product }) => {
   
   const handleSubmit = async (req, res) => {
     
-    const authURL = process.env.NEXT_PUBLIC_MP_API_AUTH
-    const authToken = process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN
     const appID = process.env.APP_ID
-    const appSecret = process.env.APP_SECRET
-    const pubKey = process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY
-    const grant_type = 'authorization_code'
-    const myAccessToken = process.env.NEXT_PUBLIC_MERCADO_PAGO_ACCESS_TOKEN
-    const successfulUrl = 'http://localhost:3000/api/sendmail'
-    const paymentUrl = 'https://api.mercadopago.com/v1/payments/{id}'
-    
     
     product.map(product => {
       const URL = `https://api.mercadopago.com/checkout/preferences?access_token=${product.mpAccessToken}` //url with the vendor's token
@@ -86,16 +74,6 @@ const ProductDetails = ({ product }) => {
           ],
         },
       };
-      
-      
-      const purchasedProduct = {
-        "id": product._id,
-        "title": product.title,
-        "quantity": 1,
-        "unit_price": product.price,
-        "content": product.content[0],
-      }
-      
       
       
       
@@ -133,19 +111,29 @@ const ProductDetails = ({ product }) => {
   const deleteItem = (req, res) => {
     product.map(product => {
         const id = product._id
-        fetch('http://localhost:3000/api/misproductos', {
-            
-            method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-            body: JSON.stringify({
-                id: id
-            }),
-        })
         swal({
-            title: "¡Tu producto fue eliminado!",
-            text: "Ya no vas a ver tu producto online.",
-            icon: "success",
-            }).then(() => {router.push('/dashboard')})
+          title: "¿Estás seguro que querés eliminar este producto?",
+          buttons: ["Sí", "No"],
+          icon: "warning",
+          }).then( () => {
+
+            fetch('http://localhost:3000/api/misproductos', {
+                
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                body: JSON.stringify({
+                    id: id
+                }),
+            })
+          })
+          .then( () => {
+
+            swal({
+                title: "¡Tu producto fue eliminado!",
+                text: "Ya no vas a ver tu producto online.",
+                icon: "success",
+                })
+          }).then(() => {router.push('/dashboard')})
     })
   }
 
