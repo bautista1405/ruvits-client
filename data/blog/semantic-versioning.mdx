@@ -1,0 +1,42 @@
+---
+title: "Semantic Versioning"
+publishedAt: "2021-12-09"
+modifiedAt: "22021-12-09"
+author: "Bautista Aramendía Pradal"
+summary: "Controlling your dependencies"
+tags: ["react", "javascript", "optimization"]
+---
+
+## Have you ever had your app crashed and didn't know exactly why?
+
+
+#### It may have something to do with your dependencies.
+
+There is something called **semantic versioning**. But what this means? It means that every number in the version has a semantic meaning:
+For example, "2.5.7":
+<br/>
+-The third number means that some patches or hot-fixes have been made.
+
+-The second number, or "minor", means that some features have been added.
+
+-The first number, or "major", means that the entire version has been updated.
+<br/>
+But we often see the versioning with a caret (^): "^2.5.7". This indicates that the version will be uptaded 
+until certain point. Every time we do `npm install`, we will got the latest version of the package (regarding the patches, not the features nor the entire version).
+
+#### This means that with the caret we don't control what we install. How can we solve it?
+
+<img
+  src="/code-review-bro.png"
+  width="500"
+  height="500"
+  alt="alt of the image"
+  title="title of the image"
+/>
+
+We can solve it by removing the caret from the versioning. Or we could, every single time that we install a package, add the "-E" command:
+`npm install express -E`. Thus, we would be installing the exact version of the package.
+<br/>
+For keeping a close eye regarding our dependencies, we can install a VSCode extension called "Version Lens".
+This extension will allow us to control the version of our dependencies, and will tell If it is the latest version.
+If not, it will indicate us If it is compatible with the current version, and offer us to update to the latest.
