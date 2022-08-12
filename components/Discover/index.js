@@ -187,7 +187,7 @@ const Discover = () => {
                 })
                 ) : (
 
-                    wordEntered !== filteredData  && filteredData.map((value, key) => (
+                    wordEntered.length == 0 && products.map((value, key) => (
 
                     <Flex
                         p={50}

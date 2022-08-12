@@ -119,27 +119,38 @@ const ProductDetails = ({ product }) => {
         const id = product._id
         swal({
           title: "¿Estás seguro que querés eliminar este producto?",
-          buttons: ["Sí", "No"],
+          buttons: {
+            cancel: "No",
+            positive: {
+              text: "Sí",
+              value: "positive",
+            }
+          }, 
           icon: "warning",
-          }).then( () => {
+          }).then( (value) => {
 
-            fetch('http://localhost:3000/api/misproductos', {
-                
-                method: 'POST',
-                headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                body: JSON.stringify({
-                    id: id
-                }),
-            })
-          })
-          .then( () => {
+            switch (value) {
+           
+              case "positive":
+                fetch('http://localhost:3000/api/misproductos', {
+                    
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                    body: JSON.stringify({
+                        id: id
+                    }),
+                }).then( () => {
 
-            swal({
-                title: "¡Tu producto fue eliminado!",
-                text: "Ya no vas a ver tu producto online.",
-                icon: "success",
+                  swal("Tu producto fue exitosamente eliminado.", "Ya no verás tu producto online.", "success")
+                  .then(() => {router.push('/dashboard')})
                 })
-          }).then(() => {router.push('/dashboard')})
+                break;
+           
+              default:
+                swal("Tu producto no fue eliminado.", "Tu producto sigue online.", "success");
+            }
+
+          })
     })
   }
 
@@ -176,7 +187,7 @@ const ProductDetails = ({ product }) => {
 
   return (
     <>
-      <div className={styles.layout}>
+      <div >
         
        <Head>
           {product.map(product => {
@@ -193,123 +204,77 @@ const ProductDetails = ({ product }) => {
                 
             return (
               <Box 
-margin="100px" 
-shadow="base"
-rounded={[null, "md"]}
-borderRadius="5px"
-backgroundColor="gray.100"
-w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
-
->
-  <SimpleGrid
-    display={{ base: "initial", md: "grid" }}
-    columns={{ md: 3 }}
-    spacing={{ md: 6 }}
-    
-  >
-    <GridItem colSpan={{ md: 1 }}>
-      <Box px={[4, 0]} margin="30px"  >
-        <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
-          Tu producto
-        </Heading>
-        <Text
-          mt={1}
-          fontSize="sm"
-          color="gray.700"
-        >
-          Acá vas a poder agregar tu producto y toda su información correspondiente.
-        </Text>
-      </Box>
-    </GridItem>
-    <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
-      
-    <Flex
-                bg="transparent"
-                p={50}
-                w="full"
-                alignItems="center"
-                justifyContent="center"
+                margin="100px" 
                 shadow="base"
                 rounded={[null, "md"]}
-                overflow={{ sm: "hidden" }}
-                key={product._id}
+                borderRadius="5px"
                 backgroundColor="gray.100"
-                >
-                <Box
-                  mx="auto"
-                  rounded="lg"
-                  shadow="md"
-                  bg="white"
-                  _dark={{
-                    bg: "gray.800",
-                  }}
-                  maxW="2xl"
+                w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
+                
+                
+              >
+                <SimpleGrid
+                  display={{ base: "initial", md: "grid" }}
+                  columns={{ md: 3 }}
+                  spacing={{ md: 6 }}
                   
-                  >
-                  <Image
-                    width="672px"
-                    height="500px"
-                    borderRadius="4px"
-                    fit="cover"
-                    src={product.content[0]}
-                    alt="Imagen del producto"
-                  />
-
-                  <Box p={6}>
-                    <Box>
-                      <chakra.span
-                        fontSize="xs"
-                        textTransform="uppercase"
-                        color="brand.600"
-                        _dark={{
-                          color: "brand.400",
-                        }}
-                      >
-                        {product.title}
-                      </chakra.span>
-                      <Link
-                        display="block"
-                        color="gray.800"
-                        _dark={{
-                          color: "white",
-                        }}
-                        fontWeight="bold"
-                        fontSize="2xl"
-                        mt={2}
-                        _hover={{
-                          color: "gray.600",
-                          textDecor: "underline",
-                        }}
-                      >
-                        {product.title}
-                      </Link>
-                      <chakra.p
-                        mt={2}
+                >
+                  <GridItem colSpan={{ md: 1 }}>
+                    <Box px={[4, 0]} margin="30px"  >
+                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
+                        Nombre
+                      </Heading>
+                      <Text
+                        mt={1}
                         fontSize="sm"
-                        color="gray.600"
-                        _dark={{
-                          color: "gray.400",
-                        }}
+                        color="gray.700"
                       >
-                       {product.description}
-                      </chakra.p>
+                        {product.title}
+                      </Text>
                     </Box>
 
-                    <Box mt={8}>
-                      <Flex alignItems="center" >
-                        <Flex alignItems="center">
-                          
-                          <Link
-                            mx={2}
-                            fontWeight="bold"
-                            color="gray.700"
-                            _dark={{
-                              color: "gray.200",
-                            }}
-                          >
-                            {product.vendor}
-                          </Link>
-                        </Flex>
+                    <Box px={[4, 0]} margin="30px"  >
+                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
+                        Descripción
+                      </Heading>
+                      <Text
+                        mt={1}
+                        fontSize="sm"
+                        color="gray.700"
+                      >
+                        {product.description}
+                      </Text>
+                    </Box>
+
+                    <Box px={[4, 0]} margin="30px"  >
+                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
+                        Precio
+                      </Heading>
+                      <Text
+                        mt={1}
+                        fontSize="sm"
+                        color="gray.700"
+                      >
+                        ${product.price}
+                      </Text>
+                    </Box>
+
+                    <Box px={[4, 0]} margin="30px"  >
+                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
+                        Vendedor
+                      </Heading>
+                      <Text
+                        mt={1}
+                        fontSize="sm"
+                        color="gray.700"
+                      >
+                        {product.vendor}
+                      </Text>
+                    </Box>
+
+                    <Box mt={220} >
+                      <Flex  >
+                        
                         
                         <Formik>
                           <Form className="my-3" id="form-container" onSubmit={handleSubmit}>
@@ -320,7 +285,7 @@ w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
                                   product.vendor !== session.user.name && (
                                     <Button 
                                       colorScheme='teal' 
-                                      variant='outline' 
+                                      variant='solid' 
                                       type="submit"
                                       marginLeft={5}
                                     >Comprar</Button>
@@ -332,7 +297,7 @@ w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
                                   
                                     <Button 
                                       colorScheme='teal' 
-                                      variant='outline' 
+                                      variant='solid' 
                                       type="submit"
                                       marginLeft={5}
                                     >Comprar</Button>
@@ -345,7 +310,7 @@ w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
 
                                     <>
 
-                                      <Button onClick={onOpen} ml={5}>Editar</Button>
+                                      <Button onClick={onOpen} ml={5} variant="outline" colorScheme="cyan">Editar</Button>
                                             {/* <Button ml={4} ref={finalRef}>
                                               I'll receive focus on close
                                             </Button> */}
@@ -433,13 +398,28 @@ w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
                         </Formik>
                       </Flex>
                     </Box>
-                  </Box>
-                </Box>
-              </Flex>
+                  </GridItem>
+                  <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }} >
       
-    </GridItem>
-  </SimpleGrid>
-</Box>
+                    
+                    
+                      
+                        <Image
+                          width="full"
+                          height="600px"
+                          borderRadius="4px"
+                          fit="cover"
+                          src={product.content[0]}
+                          alt="Imagen del producto"
+                        />
+
+                        
+                      
+                    
+      
+                  </GridItem>
+        </SimpleGrid>
+      </Box>
                     
             )
         }) : <p>¡Oopsss! Parece que este producto no existe.</p> 
