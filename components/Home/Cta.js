@@ -1,4 +1,4 @@
-import React from "react";
+import Image from 'next/image'
 import {
   chakra,
   Box,
@@ -6,34 +6,41 @@ import {
   Flex,
   SimpleGrid,
   Icon,
-  Image,
 } from "@chakra-ui/react";
 
 import { FiExternalLink } from "react-icons/fi";
+
 import learn from '../../assets/learn.png'
+import designer from '../../assets/designer.png'
+import ideas from '../../assets/ideas.jpg'
+import peep1 from '../../assets/peep1-bg.png'
+import peep2 from '../../assets/peep2-bg.png'
+import peep3 from '../../assets/peep3-bg.png'
+import peep4 from '../../assets/peep4-bg.png'
 
 const CTA = () => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0} ml={20} mr={20}>
-      <Flex bg="brand.400">
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0} pl={20} >
+      <Flex bg="brand.400" display={["none", "none", "block", "block"]} ml={20}>
         <Image
-          src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80"
+          src={peep4}
           alt="3 women looking at a laptop"
           fit="cover"
-          w="full"
-          h={{ base: 64, md: "full" }}
+          width="350px"
+          h="350px"
           bg="gray.100"
           loading="lazy"
-          opacity={0.4}
+          
         />
       </Flex>
       <Flex
         direction="column"
         alignItems="start"
         justifyContent="center"
-        px={{ base: 4, md: 8, lg: 20 }}
-        py={24}
-        zIndex={3}
+        // px={{ base: 4, md: 8, lg: 20 }}
+        // py={24}
+        // zIndex={3}
+        mr={20}
       >
         <chakra.span
           color={useColorModeValue("brand.600", "gray.300")}
@@ -60,7 +67,7 @@ const CTA = () => {
           color={useColorModeValue("brand.600", "gray.400")}
           letterSpacing="wider"
         >
-          ¡Visitá <a href='https://it-resources.vercel.app/'> <b>IT Resources</b> </a>, y encontrá recursos para empezar tu camino!
+          ¡Visitá <a href='https://it-resources.vercel.app/'> <b>IT Resources</b> </a> y encontrá recursos para empezar tu camino!
 
         </chakra.p>
         <Box display="inline-flex" rounded="md" shadow="md">

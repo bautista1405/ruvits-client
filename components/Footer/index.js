@@ -28,7 +28,7 @@ export default function Footer() {
 
         <chakra.a
           href='/faqs'
-          fontSize="sm"
+          fontSize={12}
           fontWeight="bold"
           color="gray.600"
           _dark={{
@@ -45,7 +45,7 @@ export default function Footer() {
         </chakra.a>
         <chakra.a
           href="/terms"
-          fontSize="sm"
+          fontSize={12}
           fontWeight="bold"
           color="gray.600"
           _dark={{
@@ -62,7 +62,7 @@ export default function Footer() {
         </chakra.a>
         <chakra.a
           href="/privacy_policies"
-          fontSize="sm"
+          fontSize={12}
           fontWeight="bold"
           color="gray.600"
           _dark={{

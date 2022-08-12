@@ -83,8 +83,9 @@ const Blog = ({ posts }) => {
               setSearchValue(e.target.value)
             }}
             value={searchValue}
+            borderColor="gray.500"
             variant="outline"
-            placeholder="Search..."
+            placeholder="Buscar..."
             maxWidth="400px"
           />
         </Flex>
@@ -123,7 +124,7 @@ const Blog = ({ posts }) => {
             fontWeight="500"
           >
             <AlertIcon />
-            No blog post has been found!
+            No se encontró ningún artículo.
           </Alert>
         )}
       </Box>

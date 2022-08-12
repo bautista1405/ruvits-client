@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Image from 'next/image'
+// import Image from 'next/image'
 import Head from 'next/head'
 import Script from 'next/script'
 import { useRouter } from 'next/router'
@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getSession } from "next-auth/client";
 
 import styles from '../../styles/ProductDetails.module.css'
 
-import { SimpleGrid, Box, Flex, chakra, Link, Button } from '@chakra-ui/react'
+import { SimpleGrid, Box, Flex, chakra, Link, Button, Image, GridItem, Stackc, Heading } from '@chakra-ui/react'
 import {
   Modal,
   ModalOverlay,
@@ -20,6 +20,12 @@ import {
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
+  Textarea,
+  FormHelperText,
+  Icon,
+  VisuallyHidden,
+  Text,
 } from '@chakra-ui/react'
 
 import { Formik, Form } from "formik";
@@ -186,7 +192,38 @@ const ProductDetails = ({ product }) => {
           product.map(product => {
                 
             return (
-              <Flex
+              <Box 
+margin="100px" 
+shadow="base"
+rounded={[null, "md"]}
+borderRadius="5px"
+backgroundColor="gray.100"
+w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
+
+>
+  <SimpleGrid
+    display={{ base: "initial", md: "grid" }}
+    columns={{ md: 3 }}
+    spacing={{ md: 6 }}
+    
+  >
+    <GridItem colSpan={{ md: 1 }}>
+      <Box px={[4, 0]} margin="30px"  >
+        <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
+          Tu producto
+        </Heading>
+        <Text
+          mt={1}
+          fontSize="sm"
+          color="gray.700"
+        >
+          Acá vas a poder agregar tu producto y toda su información correspondiente.
+        </Text>
+      </Box>
+    </GridItem>
+    <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
+      
+    <Flex
                 bg="transparent"
                 p={50}
                 w="full"
@@ -197,7 +234,7 @@ const ProductDetails = ({ product }) => {
                 overflow={{ sm: "hidden" }}
                 key={product._id}
                 backgroundColor="gray.100"
-              >
+                >
                 <Box
                   mx="auto"
                   rounded="lg"
@@ -208,13 +245,14 @@ const ProductDetails = ({ product }) => {
                   }}
                   maxW="2xl"
                   
-                >
+                  >
                   <Image
                     width="672px"
                     height="500px"
+                    borderRadius="4px"
                     fit="cover"
                     src={product.content[0]}
-                    alt="Article"
+                    alt="Imagen del producto"
                   />
 
                   <Box p={6}>
@@ -258,15 +296,9 @@ const ProductDetails = ({ product }) => {
                     </Box>
 
                     <Box mt={8}>
-                      <Flex alignItems="center" justifyContent="center">
+                      <Flex alignItems="center" >
                         <Flex alignItems="center">
-                          {/* <Image
-                            h={10}
-                            fit="cover"
-                            rounded="full"
-                            src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
-                            alt="Avatar"
-                          /> */}
+                          
                           <Link
                             mx={2}
                             fontWeight="bold"
@@ -275,19 +307,10 @@ const ProductDetails = ({ product }) => {
                               color: "gray.200",
                             }}
                           >
-                            Jone Doe
+                            {product.vendor}
                           </Link>
                         </Flex>
-                        <chakra.span
-                          mx={1}
-                          fontSize="sm"
-                          color="gray.600"
-                          _dark={{
-                            color: "gray.300",
-                          }}
-                        >
-                          21 SEP 2015
-                        </chakra.span>
+                        
                         <Formik>
                           <Form className="my-3" id="form-container" onSubmit={handleSubmit}>
               
@@ -413,6 +436,10 @@ const ProductDetails = ({ product }) => {
                   </Box>
                 </Box>
               </Flex>
+      
+    </GridItem>
+  </SimpleGrid>
+</Box>
                     
             )
         }) : <p>¡Oopsss! Parece que este producto no existe.</p> 

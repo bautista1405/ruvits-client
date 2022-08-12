@@ -13,7 +13,7 @@ const Discover = () => {
     const [session, loading] = useSession();
     
     const [products, setProducts] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
+    const [filteredData, setFilteredData] = useState(products);
     const [wordEntered, setWordEntered] = useState("");
 
     const url = "http://3.95.83.1:3000/api/products"
@@ -25,20 +25,6 @@ const Discover = () => {
         })
     }, [url])
 
-
-    // const searchItems = (searchValue) => {
-    //     setSearchInput(searchValue)
-    //     if (searchInput !== '') {
-    //         const filteredData = products.filter((item) => {
-    //             return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
-    //         })
-    //         setFilteredResults(filteredData)
-    //     }
-    //     else{
-    //         setFilteredResults(products)
-    //     }
-    // }
-
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
@@ -46,7 +32,7 @@ const Discover = () => {
           return Object.values(value).join('').toLowerCase().match(searchWord.toLowerCase());
         });
         
-        if (searchWord === "") {
+        if (searchWord.length === '') {
           setFilteredData([]);
         } 
         else {
@@ -54,19 +40,20 @@ const Discover = () => {
         }
     };
     
-    const clearInput = () => {
-        setFilteredData([]);
-        setWordEntered("");
-    };
 
   return (
     <div>
-        <Input
-          type="text"
-          placeholder='Buscar...'
-          value={wordEntered}
-          onChange={handleFilter}
-        />
+        <Flex justify="center">
+            <Input
+                type="text"
+                placeholder='Buscar...'
+                borderColor="gray.500"
+                margin="50px"
+                value={wordEntered}
+                onChange={handleFilter}
+                width={['60vw', '50vw', '50vw', '50vw', '50vw']}
+            />
+        </Flex>
         <SimpleGrid 
             columns={[1, 2, 2, 3]} 
             spacing={10} 
@@ -77,15 +64,16 @@ const Discover = () => {
             borderRadius="5px" 
         >
 
-            {filteredData.length != 0 ? (
-                filteredData.slice(0, 15).map((value, key) => {
+            {filteredData.length > 0 ? (
+                filteredData.map((value, key) => {
                     return (
                         <Flex
-                        p={50}
-                        w="full"
-                        alignItems="center"
-                        justifyContent="center"
-                        key={value._id}
+                            p={50}
+                            w="full"
+                            h="full"
+                            alignItems="center"
+                            justifyContent="center"
+                            key={value._id}
                         >
                         <Flex
                             direction="column"
@@ -95,32 +83,32 @@ const Discover = () => {
                             mx="auto"
                         >
                             <Box
-                            bg="gray.300"
-                            h={64}
-                            w="full"
-                            rounded="lg"
-                            shadow="md"
-                            bgSize="cover"
-                            bgPos="center"
-                            style={{
-                                backgroundImage:
-                                `url(${value.content[0]})`,
-                            }}
+                                bg="gray.300"
+                                h={64}
+                                w="full"
+                                rounded="lg"
+                                shadow="md"
+                                bgSize="cover"
+                                bgPos="center"
+                                style={{
+                                    backgroundImage:
+                                    `url(${value.content[0]})`,
+                                }}
                             ></Box>
 
                             <Box
-                            w={{
-                                base: 56,
-                                md: 64,
-                            }}
-                            bg="gray.800"
-                            _dark={{
-                                bg: "gray.800",
-                            }}
-                            mt={-10}
-                            shadow="lg"
-                            rounded="lg"
-                            overflow="hidden"
+                                w={{
+                                    base: 56,
+                                    md: 64,
+                                }}
+                                bg="gray.800"
+                                _dark={{
+                                    bg: "gray.800",
+                                }}
+                                mt={-10}
+                                shadow="lg"
+                                rounded="lg"
+                                overflow="hidden"
                             >
                             <chakra.h3
                                 py={2}
@@ -155,15 +143,15 @@ const Discover = () => {
                                 >
                                 ${value.price}
                                 </chakra.span>
-                                <chakra.span
+                                {/* <chakra.span
                                 fontWeight="bold"
                                 color="gray.800"
                                 _dark={{
                                     color: "gray.200",
                                 }}
                                 >
-                                ${session.user.name}
-                                </chakra.span>
+                                ${value.vendor}
+                                </chakra.span> */}
                                 <a href={`/productos/${value.title}`} >
                                 <chakra.button
                                 bg="gray.800"
@@ -198,10 +186,9 @@ const Discover = () => {
                     )
                 })
                 ) : (
-            
 
-            products.map((value) => {
-                return (    
+                    wordEntered !== filteredData  && filteredData.map((value, key) => (
+
                     <Flex
                         p={50}
                         w="full"
@@ -217,32 +204,32 @@ const Discover = () => {
                             mx="auto"
                         >
                             <Box
-                            bg="gray.300"
-                            h={64}
-                            w="full"
-                            rounded="lg"
-                            shadow="md"
-                            bgSize="cover"
-                            bgPos="center"
-                            style={{
-                                backgroundImage:
-                                `url(${value.content[0]})`,
-                            }}
+                                bg="gray.300"
+                                h={64}
+                                w="full"
+                                rounded="lg"
+                                shadow="md"
+                                bgSize="cover"
+                                bgPos="center"
+                                style={{
+                                    backgroundImage:
+                                    `url(${value.content[0]})`,
+                                }}
                             ></Box>
 
                             <Box
-                            w={{
-                                base: 56,
-                                md: 64,
-                            }}
-                            bg="gray.800"
-                            _dark={{
-                                bg: "gray.800",
-                            }}
-                            mt={-10}
-                            shadow="lg"
-                            rounded="lg"
-                            overflow="hidden"
+                                w={{
+                                    base: 56,
+                                    md: 64,
+                                }}
+                                bg="gray.800"
+                                _dark={{
+                                    bg: "gray.800",
+                                }}
+                                mt={-10}
+                                shadow="lg"
+                                rounded="lg"
+                                overflow="hidden"
                             >
                             <chakra.h3
                                 py={2}
@@ -269,46 +256,46 @@ const Discover = () => {
                                 }}
                             >
                                 <chakra.span
-                                fontWeight="bold"
-                                color="gray.800"
-                                _dark={{
-                                    color: "gray.200",
-                                }}
-                                >
-                                ${value.price}
-                                </chakra.span>
-                                <chakra.span
-                                fontWeight="bold"
-                                color="gray.800"
-                                _dark={{
-                                    color: "gray.200",
-                                }}
+                                    fontWeight="bold"
+                                    color="gray.800"
+                                    _dark={{
+                                        color: "gray.200",
+                                    }}
+                                    >
+                                    ${value.price}
+                                    </chakra.span>
+                                    <chakra.span
+                                    fontWeight="bold"
+                                    color="gray.800"
+                                    _dark={{
+                                        color: "gray.200",
+                                    }}
                                 >
                                     {value.vendor}
                                 </chakra.span>
                                 <a href={`/productos/${value.title}`} >
                                 <chakra.button
-                                bg="gray.800"
-                                fontSize="xs"
-                                fontWeight="bold"
-                                color="white"
-                                px={2}
-                                py={1}
-                                rounded="lg"
-                                textTransform="uppercase"
-                                _hover={{
-                                    bg: "gray.700",
-                                    _dark: {
-                                    bg: "gray.600",
-                                    },
-                                }}
-                                _focus={{
-                                    bg: "gray.700",
-                                    _dark: {
-                                    bg: "gray.600",
-                                    },
-                                    outline: "none",
-                                }}
+                                    bg="gray.800"
+                                    fontSize="xs"
+                                    fontWeight="bold"
+                                    color="white"
+                                    px={2}
+                                    py={1}
+                                    rounded="lg"
+                                    textTransform="uppercase"
+                                    _hover={{
+                                        bg: "gray.700",
+                                        _dark: {
+                                        bg: "gray.600",
+                                        },
+                                    }}
+                                    _focus={{
+                                        bg: "gray.700",
+                                        _dark: {
+                                        bg: "gray.600",
+                                        },
+                                        outline: "none",
+                                    }}
                                 >
                                 Ver detalles
                                 </chakra.button>
@@ -317,9 +304,10 @@ const Discover = () => {
                             </Box>
                         </Flex>
                         </Flex>
+                    ))
+            
                 )
-            })
-            )}
+            }
         </SimpleGrid>
     </div>
   )

@@ -53,14 +53,16 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
       />
 
       <MDXProvider components={MDXComponents}>
-      <Flex justify="center" >
+      <Flex justify="center" margin={["20px"]}>
         <Box
-          as="section"
-          px={{ md: "10", lg: "20", xl: "40" }}
-          py="4"
-          fontSize="16px"
-          color="gray.700"
-          w={[900, 900, 1300]}
+           as="section"
+           px={{ md: "10", lg: "20", xl: "80" }}
+           py="4"
+           fontSize="20px"
+           color="gray.700"
+           w={[900, 900, 1300]}
+           margin="auto"
+           mt={10}
         >
           <Box as="header" textAlign="center">
             <Heading as="h1" py="4" size="2xl" >
@@ -96,9 +98,11 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
             </Flex>
           </Box>
 
-          <Box as="article">
-            {content}
-          </Box>
+          <Flex justify="center" >
+            <Box as="article">
+              {content}
+            </Box>
+          </Flex>
         </Box>
        </Flex> 
       </MDXProvider>

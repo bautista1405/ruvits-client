@@ -1,11 +1,17 @@
-import React from "react";
-import { chakra, Box, useColorModeValue, Icon, Image } from "@chakra-ui/react";
+import Image from 'next/image'
+
+import { chakra, Box, useColorModeValue, Icon, Link } from "@chakra-ui/react";
+
 import learn from '../../assets/learn.png'
+import designer from '../../assets/designer.png'
+import ideas from '../../assets/ideas.jpg'
+import peep1 from '../../assets/peep1-bg.png'
+import peep2 from '../../assets/peep2-bg.png'
 
 const Hero = () => {
   const bg = useColorModeValue("white", "gray.800");
   return (
-    <Box pos="relative" overflow="hidden" bg={bg} mt={20} ml={20} mr={20}>
+    <Box pos="relative" overflow="hidden" bg={bg} mt={20} ml={20} >
       <Box maxW="7xl" mx="auto">
         <Box
           pos="relative"
@@ -69,7 +75,8 @@ const Hero = () => {
                 mx={{ sm: "auto", lg: 0 }}
                 color="gray.500"
               >
-                Vender tus productos nunca fue tan fácil. Asociá tu cuenta de Mercado Pago y empezá a vender.
+                Vender tus productos nunca fue tan fácil. Asociá tu cuenta de Mercado Pago y empezá a vender. <br />
+                Acá te dejamos una <Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link> para crear tu primer producto.
               </chakra.p>
               
             </Box>
@@ -77,18 +84,19 @@ const Hero = () => {
         </Box>
       </Box>
       <Box
+        display={["none", "none", "none", "block"]}
         position={{ lg: "absolute" }}
         top={{ lg: 0 }}
         bottom={{ lg: 0 }}
         right={{ lg: 0 }}
-        w={{ lg: "50%" }}
+        w={["300px", "400px", "500px", "500px", "600px"]}
         border="solid 1px transparent"
       >
         <Image
-          h={[56, 72, 96, "full"]}
-          w="full"
+          height="500px"
+          width="500px"
           fit="cover"
-          src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+          src={peep2}
           alt=""
           loading="lazy"
         />
