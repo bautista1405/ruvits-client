@@ -204,12 +204,12 @@ const ProductDetails = ({ product }) => {
                 
             return (
               <Box 
-                margin="100px" 
+                margin="auto" 
                 shadow="base"
                 rounded={[null, "md"]}
                 borderRadius="5px"
                 backgroundColor="gray.100"
-                w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
+                w={["80vw", "100vw", "90vw", "83vw", "86vw"]}
                 
                 
               >
@@ -219,8 +219,8 @@ const ProductDetails = ({ product }) => {
                   spacing={{ md: 6 }}
                   
                 >
-                  <GridItem colSpan={{ md: 1 }}>
-                    <Box px={[4, 0]} margin="30px"  >
+                  <GridItem colSpan={{ md: 1 }} >
+                    <Box px={[4, 0]} py={[4, 0]} margin={["30px", "30px", "30px", "30px", "30px"]}  >
                       <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
                         Nombre
                       </Heading>
@@ -406,7 +406,7 @@ const ProductDetails = ({ product }) => {
                       
                         <Image
                           width="full"
-                          height="600px"
+                          height={["300px", "600px", "600px", "600px", "600px"]}
                           borderRadius="4px"
                           fit="cover"
                           src={product.content[0]}

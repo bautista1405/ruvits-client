@@ -79,8 +79,15 @@ export default function ProductForm() {
               }).then(() => {router.push('/dashboard')})
             })
             
-          } catch(err) {
+          } catch(res) {
+            if(res.status === 500) {
               
+              swal({
+                title: "Oopss. Parece que hubo un error.",
+                text: "Intenta de nuevo.",
+                icon: "error",
+              }).then(() => {router.push('/dashboard')})
+            }
           }    
       },
     });
@@ -120,7 +127,7 @@ export default function ProductForm() {
       {session && session.mpAccessToken &&
       
       <Box 
-        margin="100px" 
+        margin="auto" 
         shadow="base"
         rounded={[null, "md"]}
         borderRadius="5px"
@@ -135,7 +142,7 @@ export default function ProductForm() {
             
           >
             <GridItem colSpan={{ md: 1 }}>
-              <Box px={[4, 0]} margin="30px"  >
+              <Box px={[4, 0]} py={[4, 0]} margin="30px"  >
                 <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
                   Tu producto
                 </Heading>
@@ -233,7 +240,8 @@ export default function ProductForm() {
                         fontSize={{ sm: "sm" }}
                       />
                       <FormHelperText>
-                        Breve descripción: puede ser el tipo de contenido, el tipo de archivo...
+                        Breve descripción: puede ser el tipo de contenido, el tipo de archivo.
+                        ¡Acordate que cuanto mejor sea la descripción de tu producto, más llamará la atención!
                       </FormHelperText>
                     </FormControl>
                   </div>
@@ -401,7 +409,7 @@ export default function ProductForm() {
                       </Stack>
                     </Flex>
                     <FormHelperText mt={5} fontSize="md" >
-                    ⚠️ ¡Acordate que cuanto mejor sea la descripción de tu producto, más llamará la atención! ⚠️
+                     Si tenés varios archivos, los podés comprimir en una carpeta ZIP y subirla 😉
                     </FormHelperText>
                   </FormControl>
                 </Stack>

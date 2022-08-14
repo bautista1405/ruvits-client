@@ -11,7 +11,7 @@ import peep2 from '../../assets/peep2-bg.png'
 const Hero = () => {
   const bg = useColorModeValue("white", "gray.800");
   return (
-    <Box pos="relative" overflow="hidden" bg={bg} mt={20} ml={20} >
+    <Box pos="relative" overflow="hidden" bg={bg} mt={20}  >
       <Box maxW="7xl" mx="auto">
         <Box
           pos="relative"
