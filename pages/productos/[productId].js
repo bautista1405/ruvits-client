@@ -211,6 +211,7 @@ const ProductDetails = ({ product }) => {
                 backgroundColor="gray.100"
                 w={["80vw", "100vw", "90vw", "83vw", "86vw"]}
                 mb={20}
+                key={product._id}
                 
               >
                 <SimpleGrid

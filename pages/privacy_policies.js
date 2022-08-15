@@ -153,7 +153,7 @@ const PrivacyPolicies = () => {
             <b>Publicidad, cookies y otras tecnologías.</b>
             <br />
 
-            Podemos utilizar "cookies" y otras tecnologías de seguimiento (por ejemplo "web beacons") para conocer tus intereses, 
+            Podemos utilizar cookies y otras tecnologías de seguimiento (por ejemplo web beacons) para conocer tus intereses, 
             las páginas navegadas, tus patrones de tráfico y tu comportamiento. Así podremos darte un mejor servicio y acercarte 
             contenidos y publicidades que te interesen.Puedes desactivar las cookies y web beacons en cualquier momento o dar de baja 
             la suscripción para recibir nuestros emails promocionales. Pero puede que al desactivar dichas tecnologías no puedas usar 

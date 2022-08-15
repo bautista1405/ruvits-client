@@ -39,7 +39,7 @@ const TermsAndConditions = () => {
               <br />
               <b> 1- Ruvits</b>
                <br />
-Ruvits (de ahora en más "Sitio") es una página web que ofrece servicios vinculados principalmente al comercio electrónico y a los pagos digitales. 
+Ruvits (de ahora en más &quot;Sitio&quot;) es una página web que ofrece servicios vinculados principalmente al comercio electrónico y a los pagos digitales. 
 
 Los servicios que ofrece el Sitio están pensados y diseñados para fomentar un entorno que permita a las personas vender y comprar productos.
 <br />

@@ -6,6 +6,7 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
+    Link,
     Text
 } from '@chakra-ui/react'
 
@@ -68,7 +69,7 @@ const FrequentQuestions = () => {
                     </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4} w='70vw'>
-                        Simple: creás tu cuenta, <a href='/dashboard/pagos'> <b>vinculas tu cuenta de MercadoPago</b> </a> y subís tu producto.
+                        Simple: creás tu cuenta, <Link href='/dashboard/pagos'> <b>vinculas tu cuenta de MercadoPago</b> </Link> y subís tu producto.
                     </AccordionPanel>
                 </AccordionItem>
 
