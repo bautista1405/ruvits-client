@@ -16,7 +16,7 @@ const Discover = () => {
     const [filteredData, setFilteredData] = useState(products);
     const [wordEntered, setWordEntered] = useState("");
 
-    const url = "http://3.95.83.1:3000/api/products"
+    const url = "3.95.83.1:3000/api/products"
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
