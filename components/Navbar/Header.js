@@ -163,7 +163,7 @@ export default function WfWf() {
               <Button
                 onClick={() =>
                   signIn("google", {
-                    callbackUrl: "http://localhost:3000/dashboard",
+                    callbackUrl: "https://www.ruvits.com/dashboard",
                   })
                 }
                 rightIcon={<FcGoogle />}
