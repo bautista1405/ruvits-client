@@ -34,7 +34,7 @@ import {
 
 import { IoIosArrowDown } from "react-icons/io";
 import {FiChevronDown} from "react-icons/fi"
-import {FcGoogle} from 'react-icons/Fc'
+import {FcGoogle} from 'react-icons/fc'
 import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaMoon, FaSun } from "react-icons/fa";

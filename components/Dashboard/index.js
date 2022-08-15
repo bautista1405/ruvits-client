@@ -42,7 +42,7 @@ import {
 } from "react-icons/fi"
 import {CgProfile} from 'react-icons/cg'
 import {BsInfoCircle} from "react-icons/bs"
-import {FcGoogle} from 'react-icons/Fc'
+
 
 import MyChart from './Chart'
 import axios from 'axios';
