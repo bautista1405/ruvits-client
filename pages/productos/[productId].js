@@ -210,7 +210,7 @@ const ProductDetails = ({ product }) => {
                 borderRadius="5px"
                 backgroundColor="gray.100"
                 w={["80vw", "100vw", "90vw", "83vw", "86vw"]}
-                
+                mb={20}
                 
               >
                 <SimpleGrid

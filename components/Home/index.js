@@ -6,11 +6,13 @@ import { Box, Grid, GridItem, Button, Text, Flex } from '@chakra-ui/react'
 import Hero from './Hero'
 import CTA from './Cta'
 import Fgl from './Features'
+import Header from './Header'
 
 const Home = () => {
   return (
     <>
       <Box margin="auto">
+        <Header />
         <Hero />
         <CTA />
         

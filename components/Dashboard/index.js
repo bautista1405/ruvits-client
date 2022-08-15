@@ -42,6 +42,7 @@ import {
 } from "react-icons/fi"
 import {CgProfile} from 'react-icons/cg'
 import {BsInfoCircle} from "react-icons/bs"
+import {FcGoogle} from 'react-icons/Fc'
 
 import MyChart from './Chart'
 import axios from 'axios';
@@ -57,10 +58,13 @@ export default function Dashboard({data}) {
     const [payments, setPayments] = useState([]);
 
     useEffect( () => {
-        axios.get(getPayments)
-        .then((res) => {
-            setPayments(res?.data?.getPayments || [])
-        })
+        if(session) {
+
+            axios.get(getPayments)
+            .then((res) => {
+                setPayments(res?.data?.getPayments || [])
+            })
+        }
     }, [getPayments]) 
 
     const payment = payments.filter(payment => payment.user === session.user.email)
@@ -68,7 +72,21 @@ export default function Dashboard({data}) {
 
     return (
       <Box >  
-        {!session && (<p>Debes estar logueado para ver esta página</p>)}
+        {!session && (<Flex alignItems="center" justifyContent="center" h="54vh">
+            Para ver tu dashboard debes  
+            <Button
+                onClick={() =>
+                  signIn("google", {
+                    callbackUrl: "http://localhost:3000/dashboard",
+                  })
+                }
+                
+                variant="link"
+                ml={1}
+            >
+                iniciar sesión.
+            </Button>
+        </Flex>)}
         {session && (
         <Flex
             h={[null, null, "100vh"]}

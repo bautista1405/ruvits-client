@@ -77,7 +77,7 @@ const Blog = ({ posts }) => {
         color="gray.700"
         justify="center"
       >
-        <Flex justify="center" marginTop="60px">
+        <Flex justify="center" marginTop="60px" mb={10}>
           <Input
             onChange={(e) => {
               setSearchValue(e.target.value)
@@ -90,7 +90,7 @@ const Blog = ({ posts }) => {
           />
         </Flex>
 
-        <Flex
+        {/* <Flex
           justify="center"
           align="center"
           direction="row"
@@ -109,7 +109,7 @@ const Blog = ({ posts }) => {
               </Box>
             )
           })}
-        </Flex>
+        </Flex> */}
 
         {blogPost.length > 0 ? (
           <BlogPost posts={blogPost} />

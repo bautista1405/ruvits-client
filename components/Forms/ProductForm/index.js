@@ -106,7 +106,7 @@ export default function ProductForm() {
 
   return (
     <>
-      {!session && (<p>Debes estar logueado para ver esta página</p>) } 
+      
       {session && !session.mpAccessToken && 
         ( 
         <>

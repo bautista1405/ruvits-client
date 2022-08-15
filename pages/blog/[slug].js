@@ -75,7 +75,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
                 {dayjs(frontMatter.publishedAt).format("MMMM DD, YYYY")} /{" "}
                 {frontMatter.readingTime.text}
               </Text>
-              <Text py="1">
+              {/* <Text py="1">
                 {frontMatter.tags.map((tag) => {
                   const color = tagColor[tag]
 
@@ -94,7 +94,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
                     </TagComponent>
                   )
                 })}
-              </Text>
+              </Text> */}
             </Flex>
           </Box>
 

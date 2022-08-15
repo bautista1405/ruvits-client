@@ -60,17 +60,40 @@ const MyProducts = () => {
     const url = "http://3.95.83.1:3000/api/products"
     
     useEffect(() => {
-        axios.get(url).then((res) => {
-            setProducts(res?.data || []);
-            
-        })
+        if(session) {
+
+            axios.get(url).then((res) => {
+                setProducts(res?.data || []);
+                
+            })
+        }
     }, [url])
     
     const product = products.filter(product => product.vendor === session.user.name)
     
   return (
     <>
-        {!session && (<p>Debes estar logueado para ver esta página</p>)}            
+        {!session && (
+            <Flex alignItems="center" justifyContent="center" h="54vh">
+                Para ver tus productos debes  
+                <Button
+                    onClick={() =>
+                    signIn("google", {
+                        callbackUrl: "http://localhost:3000/dashboard/mis-productos",
+                    })
+                    }
+                    
+                    variant="link"
+                    ml={1}
+                >
+                    iniciar sesión.
+                </Button>
+            </Flex>
+        )}           
+
+        {session && (
+            <>
+
             <Flex 
                 flexDir={["column", "column", "row", "row", "row"]}
                 maxW="2000px"
@@ -275,6 +298,8 @@ const MyProducts = () => {
                 </SimpleGrid>
                 
                 </Flex>
+            </>
+        )}  
     </>
   )
 }

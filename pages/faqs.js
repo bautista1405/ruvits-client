@@ -26,6 +26,8 @@ const FrequentQuestions = () => {
             <Accordion 
                 allowToggle 
                 p={20}
+                fontFamily="arial"
+                color="gray.600" fontWeight="bold"
             >
                 <AccordionItem mb={3}>
                     <h2>

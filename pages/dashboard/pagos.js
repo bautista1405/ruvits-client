@@ -72,32 +72,48 @@ const Payments = () => {
     <div>
 
         <Box >  
-        {!session && (<p>Debes estar logueado para ver esta página</p>)}
-        {session && !session.mpAccessToken && (
-        <Flex
-            h={[null, null, "100vh"]}
-            maxW="2000px"
-            flexDir={["column", "column", "row"]}
-            overflow="hidden"
-            margin={[null, null, "100px"]}
-            shadow="base"
-            rounded={[null, "md"]}
-            borderRadius="5px"
-            boxShadow='2xl' 
-            p='6'
-            pl={[null, null, 70, 10, 5]}
-            
-        >
-            {/* Column 1 */}
+            {!session && (
+            <Flex alignItems="center" justifyContent="center" h="54vh">
+                Para ver esta página debes  
+                <Button
+                    onClick={() =>
+                    signIn("google", {
+                        callbackUrl: "http://localhost:3000/dashboard/pagos",
+                    })
+                    }
+                    
+                    variant="link"
+                    ml={1}
+                >
+                    iniciar sesión.
+                </Button>
+            </Flex>
+            )}
+            {session && !session.mpAccessToken && (
             <Flex
-                w={["100%", "100%", "10%", "15%", "15%"]}
-                flexDir="column"
-                alignItems="center"
-                padding={10}
-                color="gray.700"
-                pl={[null, null, 100, 100, 5]}
-            
+                h={[null, null, "100vh"]}
+                maxW="2000px"
+                flexDir={["column", "column", "row"]}
+                overflow="hidden"
+                margin={[null, null, "100px"]}
+                shadow="base"
+                rounded={[null, "md"]}
+                borderRadius="5px"
+                boxShadow='2xl' 
+                p='6'
+                pl={[null, null, 70, 10, 5]}
+                
             >
+                {/* Column 1 */}
+                <Flex
+                    w={["100%", "100%", "10%", "15%", "15%"]}
+                    flexDir="column"
+                    alignItems="center"
+                    padding={10}
+                    color="gray.700"
+                    pl={[null, null, 100, 100, 5]}
+                
+                >
                 <Flex
                     flexDir="column"
                     h={[null, null, "100vh"]}

@@ -86,8 +86,27 @@ const MyProfile = () => {
   return (
     <>
         <Box >  
-        {!session && (<p>Debes estar logueado para ver esta página</p>)}
+        {!session && (
+          <Flex alignItems="center" justifyContent="center" h="54vh">
+            Para ver tu perfil debes  
+            <Button
+                onClick={() =>
+                  signIn("google", {
+                    callbackUrl: "http://localhost:3000/dashboard/mi-perfil",
+                  })
+                }
+                
+                variant="link"
+                ml={1}
+            >
+                iniciar sesión.
+            </Button>
+          </Flex>
+        )}
         
+        {session && (
+            <>
+                
         <Flex
             h={[null, null, "100vh"]}
             maxW="2000px"
@@ -310,6 +329,8 @@ const MyProfile = () => {
                 </SimpleGrid>
 
         </Flex>
+            </>
+        )}
 
             
     </Box>

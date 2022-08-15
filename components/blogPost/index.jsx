@@ -1,4 +1,4 @@
-import { Box, Heading, Text, useColorModeValue } from "@chakra-ui/react"
+import { Box, Heading, Text, useColorModeValue, Flex } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import NextLink from "next/link"
 import dayjs from "dayjs"
@@ -34,38 +34,54 @@ const BlogPost = ({ posts }) => {
           <Box my="3" py="2" px="4" rounded="md" key={slug}>
             {YearComponent}
 
-            <Heading as="h3" fontSize="2xl" fontWeight="700">
-              <NextLink href={`/blog/${slug}`}>
-                <a>{title}</a>
-              </NextLink>
-            </Heading>
 
-            <Text fontSize="17px" fontWeight="400" color="gray.600" py="1">
-              {summary}
-            </Text>
+            <Flex 
+              shadow="base"
+              rounded={[null, "md"]}
+              borderRadius="5px"
+              boxShadow='sm' 
+              flexDir="column"
+              bg="#F9FAFB"
+              mt={10}
+            >
+              <Flex
+                flexDir="column"
+                m={10}
+              >
+                <Heading as="h3" fontSize="2xl" fontWeight="700" >
+                  <NextLink href={`/blog/${slug}`}>
+                    <a>{title}</a>
+                  </NextLink>
+                </Heading>
 
-            {tags.map((tag) => {
-              const color = tagColor[tag]
+                <Text fontSize="17px" fontWeight="400" color="gray.600" py="1" mt={2}>
+                  {summary}
+                </Text>
 
-              return (
-                <TagComponent
-                  color={color}
-                  onClick={() =>
-                    router.push({
-                      pathname: "/blog/",
-                      query: { tag },
-                    })
-                  }
-                  key={tag}
-                >
-                  {tag}
-                </TagComponent>
-              )
-            })}
+                {/* {tags.map((tag) => {
+                  const color = tagColor[tag]
 
-            <Text fontSize="16px" fontWeight="500" color={dateColor} py="1">
-              {dayjs(publishedAt).format("MMMM DD, YYYY")}
-            </Text>
+                  return (
+                    <TagComponent
+                      color={color}
+                      onClick={() =>
+                        router.push({
+                          pathname: "/blog/",
+                          query: { tag },
+                        })
+                      }
+                      key={tag}
+                    >
+                      {tag}
+                    </TagComponent>
+                  )
+                })} */}
+
+                <Text fontSize="16px" fontWeight="500" color={dateColor} py="1">
+                  {dayjs(publishedAt).format("MMMM DD, YYYY")}
+                </Text>
+              </Flex>
+            </Flex>
           </Box>
         )
       })}

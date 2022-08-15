@@ -11,7 +11,7 @@ import peep2 from '../../assets/peep2-bg.png'
 const Hero = () => {
   const bg = useColorModeValue("white", "gray.800");
   return (
-    <Box pos="relative" overflow="hidden" bg={bg} mt={20}  >
+    <Box pos="relative" overflow="hidden" bg="#F9FAFB" mt={5}  >
       <Box maxW="7xl" mx="auto">
         <Box
           pos="relative"
@@ -19,26 +19,10 @@ const Hero = () => {
           maxW={{ lg: "2xl" }}
           w={{ lg: "full" }}
           zIndex={1}
-          bg={bg}
+          
           border="solid 1px transparent"
         >
-          <Icon
-            display={{ base: "none", lg: "block" }}
-            position="absolute"
-            right={0}
-            top={0}
-            bottom={0}
-            h="full"
-            w={48}
-            color={bg}
-            transform="translateX(50%)"
-            fill="currentColor"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <polygon points="50,0 100,0 50,100 0,100" />
-          </Icon>
+         
           <Box
             mx="auto"
             maxW={{ base: "7xl" }}
@@ -52,20 +36,20 @@ const Hero = () => {
               alignItems="center"
             >
               <chakra.h1
-                fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
+                fontSize={{ base: "4xl", sm: "4xl", md: "5xl" }}
                 letterSpacing="tight"
                 lineHeight="short"
                 fontWeight="extrabold"
                 color={useColorModeValue("gray.900", "white")}
               >
                 <chakra.span display={{ base: "block", xl: "inline" }}>
-                  Creá y vendé{" "}
+                  ¿Qué productos puedo{" "}
                 </chakra.span>
                 <chakra.span
                   display={{ base: "block", xl: "inline" }}
                   color={useColorModeValue("brand.600", "brand.400")}
                 >
-                  tus productos digitales.
+                  publicar?
                 </chakra.span>
               </chakra.h1>
               <chakra.p
@@ -75,8 +59,9 @@ const Hero = () => {
                 mx={{ sm: "auto", lg: 0 }}
                 color="gray.500"
               >
-                Vender tus productos nunca fue tan fácil. Asociá tu cuenta de Mercado Pago y empezá a vender. <br />
-                Acá te dejamos una <Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link> para crear tu primer producto.
+                Cualquier tipo de archivo digital: desde PDFs, PPTs, hasta videos, audios, imágenes, etcétera. <br />
+                Pueden ser apuntes, trabajos, beats, software (apps, plugins, entre otros), clases, cursos. 
+              
               </chakra.p>
               
             </Box>

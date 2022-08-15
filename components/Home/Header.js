@@ -6,6 +6,7 @@ import {
   Flex,
   SimpleGrid,
   Icon,
+  Link,
 } from "@chakra-ui/react";
 
 import { FiExternalLink } from "react-icons/fi";
@@ -17,13 +18,14 @@ import peep1 from '../../assets/peep1-bg.png'
 import peep2 from '../../assets/peep2-bg.png'
 import peep3 from '../../assets/peep3-bg.png'
 import peep4 from '../../assets/peep4-bg.png'
+import peep5 from '../../assets/peep5-bg.png'
 
-const CTA = () => {
+const Header = () => {
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0} pl={20} >
       <Flex bg="brand.400" display={["none", "none", "block", "block"]} ml={20}>
         <Image
-          src={peep4}
+          src={peep5}
           alt="3 women looking at a laptop"
           fit="cover"
           width="350px"
@@ -48,7 +50,7 @@ const CTA = () => {
           textTransform="uppercase"
           fontWeight="extrabold"
         >
-          ¿Querés aprender y no sabés por dónde empezar?
+          ¿Sos creador de contenido digital?
         </chakra.span>
         <chakra.h1
           mb={4}
@@ -58,7 +60,7 @@ const CTA = () => {
           lineHeight="shorter"
           textShadow="2px 0 currentcolor"
         >
-          Nosotros te ayudamos.
+          Publicá tu contenido en nuestra tienda.
         </chakra.h1>
         <chakra.p
           pr={{ base: 0, lg: 16 }}
@@ -67,36 +69,16 @@ const CTA = () => {
           color={useColorModeValue("brand.600", "gray.400")}
           letterSpacing="wider"
         >
-          ¡Visitá <a href='https://it-resources.vercel.app/'> <b>IT Resources</b> </a> y encontrá recursos para empezar tu camino!
+          Vendé tus productos de una manera simple. Asociá tu cuenta de Mercado Pago y empezá a vender. <br />
+          Acá te dejamos una <Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link> para 
+          crear tu primer producto y te contamos <Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
+            cómo funciona Ruvits.</Link>
 
         </chakra.p>
-        <Box display="inline-flex" rounded="md" shadow="md">
-          <chakra.a
-            mt={2}
-            display="inline-flex"
-            alignitems="center"
-            justifyContent="center"
-            px={5}
-            py={3}
-            border="solid transparent"
-            fontWeight="bold"
-            w="full"
-            rounded="md"
-            color={useColorModeValue("gray.700")}
-            bg={useColorModeValue("brand.600", "brand.500")}
-            _hover={{
-              bg: useColorModeValue("brand.700", "brand.600"),
-            }}
-            href='https://it-resources.vercel.app/'
-            target="blank"
-          >
-            Ir a IT Resources
-            <Icon as={FiExternalLink} ml={2} />
-          </chakra.a>
-        </Box>
+        
       </Flex>
     </SimpleGrid>
   );
 };
 
-export default CTA;
+export default Header;
