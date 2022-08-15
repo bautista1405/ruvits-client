@@ -16,7 +16,7 @@ const Discover = () => {
     const [filteredData, setFilteredData] = useState(products);
     const [wordEntered, setWordEntered] = useState("");
 
-    const url = "https://ec2-3-95-83-1.compute-1.amazonaws.com/"
+    const url = "https://3.95.83.1:3000/api/products"
     
     useEffect(() => {
         axios.get(url).then((res) => {
