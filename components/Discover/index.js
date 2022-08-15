@@ -16,12 +16,12 @@ const Discover = () => {
     const [filteredData, setFilteredData] = useState(products);
     const [wordEntered, setWordEntered] = useState("");
 
-    const url = "https://3.95.83.1:443/api/products"
+    const url = "https://3.95.83.1:3000/api/products"
 
     const headers = {
-        "Access-Control-Allow-Origin": "*",
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+        'Content-Type': 'application/json',
     }
     
     useEffect(() => {
