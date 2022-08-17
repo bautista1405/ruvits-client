@@ -8,8 +8,8 @@ const SuccessfulPage = () => {             //from this page we have to trigger t
   
   const router = useRouter()
 
-  const sendEmailUrl = 'http://localhost:3000/api/sendmail'
-  const createPaymentUrl = 'http://localhost:3000/api/createpayment'
+  const sendEmailUrl = '/api/sendmail'
+  const createPaymentUrl = '/api/createpayment'
 
   
   const headers = {

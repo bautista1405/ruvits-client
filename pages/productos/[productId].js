@@ -65,7 +65,7 @@ const ProductDetails = ({ product }) => {
         "marketplace_fee": 1,
         "auto_return": "approved",
         "back_urls": {
-          "success": "http://localhost:3000/successful",
+          "success": "/successful",
         },
         "payment_methods": {
           "excluded_payment_methods": [
@@ -132,7 +132,7 @@ const ProductDetails = ({ product }) => {
             switch (value) {
            
               case "positive":
-                fetch('http://localhost:3000/api/misproductos', {
+                fetch('/api/misproductos', {
                     
                     method: 'POST',
                     headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -157,7 +157,7 @@ const ProductDetails = ({ product }) => {
   const updateItem = (req, res) => { 
     product.map(product => {
         const id = product._id
-        fetch('http://localhost:3000/api/update', {
+        fetch('/api/update', {
             
             method: 'PATCH',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},

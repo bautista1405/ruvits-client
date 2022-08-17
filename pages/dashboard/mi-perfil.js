@@ -67,7 +67,7 @@ const MyProfile = () => {
     const deleteUser = (req, res) => { 
     
         
-        fetch('http://localhost:3000/api/deleteuser', {
+        fetch('/api/deleteuser', {
             
             method: 'POST',
             
@@ -92,7 +92,7 @@ const MyProfile = () => {
             <Button
                 onClick={() =>
                   signIn("google", {
-                    callbackUrl: "http://localhost:3000/dashboard/mi-perfil",
+                    callbackUrl: "/dashboard/mi-perfil",
                   })
                 }
                 

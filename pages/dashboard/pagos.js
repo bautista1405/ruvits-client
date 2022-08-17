@@ -78,7 +78,7 @@ const Payments = () => {
                 <Button
                     onClick={() =>
                     signIn("google", {
-                        callbackUrl: "http://localhost:3000/dashboard/pagos",
+                        callbackUrl: "/dashboard/pagos",
                     })
                     }
                     

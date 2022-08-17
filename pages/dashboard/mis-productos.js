@@ -79,7 +79,7 @@ const MyProducts = () => {
                 <Button
                     onClick={() =>
                     signIn("google", {
-                        callbackUrl: "http://localhost:3000/dashboard/mis-productos",
+                        callbackUrl: "/dashboard/mis-productos",
                     })
                     }
                     

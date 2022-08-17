@@ -77,7 +77,7 @@ export default function Dashboard({data}) {
             <Button
                 onClick={() =>
                   signIn("google", {
-                    callbackUrl: "http://localhost:3000/dashboard",
+                    callbackUrl: "/dashboard",
                   })
                 }
                 

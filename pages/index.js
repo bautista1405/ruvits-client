@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div>
       <Head>
-        <title>Ruvits | Inicio</title>
+        <title>Ruvits</title>
         <meta
           name="description"
           content="Marketplace de productos digitales"

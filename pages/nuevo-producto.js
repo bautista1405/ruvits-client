@@ -17,7 +17,7 @@ const NewProductPage = () => {
             <Button
                 onClick={() =>
                   signIn("google", {
-                    callbackUrl: "http://localhost:3000/nuevo-producto",
+                    callbackUrl: "/nuevo-producto",
                   })
                 }
                 
