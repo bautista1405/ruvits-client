@@ -49,7 +49,7 @@ import axios from 'axios';
 
 export default function Dashboard({data}) {
 
-    const getPayments = 'http://localhost:3000/api/getpayment'
+    const getPayments = '/api/getpayment'
 
     const [session, loading] = useSession();
 

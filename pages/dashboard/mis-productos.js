@@ -57,7 +57,7 @@ const MyProducts = () => {
     const [session, loading] = useSession();
     const router = useRouter()
     
-    const url = "http://localhost:3000/api/getproducts"
+    const url = "/api/getproducts"
     
     useEffect(() => {
         if(session) {
