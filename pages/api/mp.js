@@ -36,6 +36,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
 
         axios.post(process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN, data, { headers }) //POST request to obtain access token
             .then(async res => {
+                console.log(res)
                 const session = await getSession({req}) //get info from the session
                 const accessToken = res.data.access_token
                 console.log(accessToken)
