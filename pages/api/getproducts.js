@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 // mongoose.set('debug', true);
-import { getSession } from "next-auth/client";
+// import { getSession } from "next-auth/client";
 
 
 export default async function getProducts(req, res) {
@@ -13,7 +13,7 @@ export default async function getProducts(req, res) {
     
     const { query } = req
     const { qry, collection } = query
-    const session = await getSession({req})
+    // const session = await getSession({req})
     
     try {
 
