@@ -3,7 +3,7 @@ import { getSession } from "next-auth/client";
 
 const deleteToken = async (req, res) => {  
 
-    const db = process.env.MONGODB_URI
+    const db = process.env.NEXT_PUBLIC_MONGODB_URI
 
     try {
 
