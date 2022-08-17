@@ -5,7 +5,7 @@ import { getSession } from "next-auth/client";
 
 export default async function getProducts(req, res) {
 
-    const db = process.env.MONGODB_URI
+    const db = process.env.NEXT_PUBLIC_MONGODB_URI
     mongoose.connect(db, {  //connect to the db
         useNewUrlParser: true,
         useUnifiedTopology: true,
