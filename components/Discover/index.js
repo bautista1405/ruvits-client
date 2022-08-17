@@ -16,7 +16,7 @@ const Discover = () => {
     const [filteredData, setFilteredData] = useState(products);
     const [wordEntered, setWordEntered] = useState("");
 
-    const url = "http://localhost:3000/api/getproducts";
+    const url = "https://www.ruvits.com/api/getproducts";
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
