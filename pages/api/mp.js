@@ -4,7 +4,7 @@ import { getSession } from "next-auth/client";
 
 const getCode = (req, res) => {  //in this route we listen to the redirect authorization url to get the authorization code
 
-    const db = process.env.MONGODB_URI
+    const db = process.env.NEXT_PUBLIC_MONGODB_URI
 
     try {
 
