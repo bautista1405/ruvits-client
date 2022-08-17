@@ -9,7 +9,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
     try {
 
         // const { data } = await axios.get(process.env.NEXT_PUBLIC_MP_API_AUTH, code)
-        res.redirect('https://ruvits.com/vinculacionexitosa');
+        
         const { query } = req
 
         const headers = {
@@ -81,6 +81,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                 console.log(update)
             })
 
+            res.redirect('https://ruvits.com/vinculacionexitosa');
         //console.log(res.data.access_token)
     } catch (e) {
         console.log(e)
