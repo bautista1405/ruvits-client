@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 
 export default async function getProducts(req, res) {
 
-    const db = "mongodb+srv://bauti1405:jMyjdHKIHXxeygaz@itcluster.53f2w.mongodb.net/e-commerce"
+    const db = process.env.NEXT_PUBLIC_MONGODB_URI
     mongoose.connect(db, {  //connect to the db
         useNewUrlParser: true,
         useUnifiedTopology: true,
