@@ -4,7 +4,7 @@ import { getSession } from "next-auth/client";
 
 const getCode = (req, res) => {  //in this route we listen to the redirect authorization url to get the authorization code
 
-    const db = "mongodb+srv://bauti1405:jMyjdHKIHXxeygaz@itcluster.53f2w.mongodb.net/e-commerce"
+    const db = process.env.NEXT_PUBLIC_MONGODB_URI
 
     try {
 
@@ -76,7 +76,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                
 
                 const email = session.user.email //define the filter
-                const update = await User.findOneAndUpdate({ email: email }, { mpAccessToken: accessToken }) //populate the field
+                const update = await User.findOneAndUpdate({ email: email }, { $set:  {mpAccessToken: accessToken} }) //populate the field
                 console.log(update)
             })
 
