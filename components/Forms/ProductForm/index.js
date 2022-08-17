@@ -34,6 +34,7 @@ import swal from 'sweetalert';
 
 import { FaUser } from "react-icons/fa";
 import { signIn, signOut, useSession, getSession, session } from "next-auth/client";
+import dayjs from "dayjs";
 
 export default function ProductForm() {
 
@@ -54,20 +55,28 @@ export default function ProductForm() {
         description: '',
         price: Number,
         content: [],
+        creationDate: dayjs().format("DD-MM-YYYY"),
         mpAccessToken: session.mpAccessToken || null, //we get the access token from the user
       },
-      onSubmit: (values = {vendor, title, description, price, photos, content, mpAccessToken}) => {
+      onSubmit: (values = {vendor, title, description, price, photos, content, mpAccessToken, creationDate}) => {
         try {
           axios.post(
-            'http://3.95.83.1:3000/api/products', 
+            'http://localhost:3000/api/createproduct', 
             {
-              vendor: values.vendor,
-              title: values.title, 
-              description: values.description, 
-              price: values.price, 
-              photos: values.photos,
-              content: values.content, 
-              mpAccessToken: values.mpAccessToken,
+              
+
+                
+  
+                  vendor: values.vendor,
+                  title: values.title, 
+                  description: values.description, 
+                  price: values.price, 
+                  photos: values.photos,
+                  content: values.content, 
+                  mpAccessToken: values.mpAccessToken,
+                  creationDate: values.creationDate,
+                
+              
             },
             {headers}
             )
@@ -186,6 +195,14 @@ export default function ProductForm() {
                     id="vendor" 
                     name='vendor'
                     value={formik.values.vendor}
+                    required  
+                  />
+
+                  <Input 
+                    type="hidden"
+                    id="creationDate" 
+                    name='creationDate'
+                    value={formik.values.creationDate}
                     required  
                   />
 
