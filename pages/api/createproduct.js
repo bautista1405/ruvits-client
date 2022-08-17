@@ -90,30 +90,15 @@ const filesUpload = async (req, res) => {
         
         mongoose.models = {}
         const Product = mongoose.model('products', ProductSchema);
-
-        // const newProduct = new Product({
-        //     title,
-        //     vendor,
-        //     price,
-        //     description,
-        //     content,
-        //     mpAccessToken,
-        //     creationDate: dayjs().format("DD-MM-YYYY")
-        // })
     
-          console.log(req.body)
-          console.log(req.files)
-          const newProduct = createProduct(req.body, req.files);
-          console.log(newProduct);
-          const product = new Product(newProduct);
-          await product.save();
-          res.status(201).json({message: 'Producto dado de alta'})
+        console.log(req.body)
+        console.log(req.files)
+        const newProduct = createProduct(req.body, req.files);
+        console.log(newProduct);
+        const product = new Product(newProduct);
+        await product.save();
+        res.status(201).json({message: 'Producto dado de alta'})
         
-          
-        
-    
-
-    // res.end(JSON.stringify({ data: { result: "files uploaded" } }));
 };
 
 

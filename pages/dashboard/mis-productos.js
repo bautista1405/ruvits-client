@@ -57,13 +57,13 @@ const MyProducts = () => {
     const [session, loading] = useSession();
     const router = useRouter()
     
-    const url = "http://3.95.83.1:3000/api/products"
+    const url = "http://localhost:3000/api/getproducts"
     
     useEffect(() => {
         if(session) {
 
             axios.get(url).then((res) => {
-                setProducts(res?.data || []);
+                setProducts(res?.data?.getProducts || []);
                 
             })
         }

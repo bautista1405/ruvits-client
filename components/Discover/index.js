@@ -16,7 +16,7 @@ const Discover = () => {
     const [filteredData, setFilteredData] = useState(products);
     const [wordEntered, setWordEntered] = useState("");
 
-    const url = "http://3.95.83.1:3000/api/products"
+    const url = "http://localhost:3000/api/getproducts";
 
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -26,7 +26,7 @@ const Discover = () => {
     
     useEffect(() => {
         axios.get(url, {headers}).then((res) => {
-            setProducts(res?.data || []);
+            setProducts(res?.data?.getProducts || []);
             
         })
     }, [url])
