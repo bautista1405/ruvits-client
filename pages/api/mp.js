@@ -81,7 +81,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                 const update = await User.findOneAndUpdate({ email: email },  {$set: {mpAccessToken: accessToken }} ) //populate the field
                 console.log(update)
             })
-            console.log(tokenRequest)
+            console.log(await tokenRequest)
 
         //console.log(res.data.access_token)
     } catch (e) {
