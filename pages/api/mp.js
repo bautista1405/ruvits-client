@@ -24,8 +24,8 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
         console.log(code)
 
         const data = {
-            client_id: process.env.NEXT_PUBLIC_APP_ID,
-            client_secret: process.env.NEXT_PUBLIC_APP_SECRET,
+            client_id: process.env.APP_ID,
+            client_secret: process.env.APP_SECRET,
             grant_type: 'authorization_code',
             code: code,
             redirect_uri: 'https://ruvits.com/api/mp',
