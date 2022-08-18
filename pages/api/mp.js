@@ -13,7 +13,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
         const { query } = req
 
         const headers = {
-            "Authorization": process.env.NEXT_PUBLIC_MERCADO_PAGO_ACCESS_TOKEN,
+            "Authorization": process.env.PROD_TOKEN,
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
             'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
@@ -34,7 +34,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
 
         console.log(query)
 
-        const tokenRequest = () => { axios.post(process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN, data, { headers }) //POST request to obtain access token
+        axios.post(process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN, data, { headers }) //POST request to obtain access token
             .then(async res => {
                 console.log(res)
                 const session = await getSession({req}) //get info from the session
@@ -80,9 +80,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                 const email = session.user.email //define the filter
                 const update = await User.findOneAndUpdate({ email: email },  {$set: {mpAccessToken: accessToken }} ) //populate the field
                 console.log(update)
-            })}
-            tokenRequest();
-            console.log(await tokenRequest())
+            })
 
         //console.log(res.data.access_token)
     } catch (e) {
