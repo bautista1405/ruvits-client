@@ -13,7 +13,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
         const { query } = req
 
         const headers = {
-            "Authorization": process.env.AUTH_TOKEN,
+            "Authorization": process.env.NEXT_PUBLIC_AUTH_TOKEN,
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
             'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
@@ -24,8 +24,8 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
         console.log(code)
 
         const data = {
-            client_id: process.env.APP_ID,
-            client_secret: process.env.APP_SECRET,
+            client_id: process.env.NEXT_PUBLIC_APP_ID,
+            client_secret: process.env.NEXT_PUBLIC_APP_SECRET,
             grant_type: 'authorization_code',
             code: code,
             redirect_uri: 'https://ruvits.com/api/mp',
