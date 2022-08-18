@@ -34,7 +34,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
 
         console.log(query)
 
-        axios.post(process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN, data, { headers }) //POST request to obtain access token
+        const tokenRequest = axios.post(process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN, data, { headers }) //POST request to obtain access token
             .then(async res => {
                 console.log(res)
                 const session = await getSession({req}) //get info from the session
@@ -81,6 +81,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                 const update = await User.findOneAndUpdate({ email: email },  {$set: {mpAccessToken: accessToken }} ) //populate the field
                 console.log(update)
             })
+            console.log(tokenRequest)
 
         //console.log(res.data.access_token)
     } catch (e) {
