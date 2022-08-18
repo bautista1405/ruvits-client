@@ -13,7 +13,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
         const { query } = req
 
         const headers = {
-            "Authorization": process.env.NEXT_PUBLIC_AUTH_TOKEN,
+            "Authorization": process.env.NEXT_PUBLIC_MERCADO_PAGO_ACCESS_TOKEN,
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
             'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
