@@ -13,7 +13,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
         const { query } = req
 
         const headers = {
-            "Authorization": "Bearer APP_USR-8558616783850676-061522-3fe8fcc81c508a47e34c1c10c020e912-1143711689",
+            "Authorization": process.env.PROD_TOKEN,
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
             'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
