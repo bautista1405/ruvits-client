@@ -34,53 +34,53 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
 
         console.log(query)
 
-        axios.post(process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN, data, { headers }) //POST request to obtain access token
-            .then(async res => {
-                console.log(res)
-                const session = await getSession({req}) //get info from the session
-                const accessToken = res.data.access_token
-                console.log(accessToken)
-                console.log(session.user.email)
+        // axios.post(process.env.NEXT_PUBLIC_MP_AUTH0_TOKEN, data, { headers }) //POST request to obtain access token
+        //     .then(async res => {
+        //         console.log(res)
+        //         const session = await getSession({req}) //get info from the session
+        //         const accessToken = res.data.access_token
+        //         console.log(accessToken)
+        //         console.log(session.user.email)
 
-                mongoose.connect(db, {  //connect to the db
-                    useNewUrlParser: true,
-                    useUnifiedTopology: true,
-                });
+        //         mongoose.connect(db, {  //connect to the db
+        //             useNewUrlParser: true,
+        //             useUnifiedTopology: true,
+        //         });
 
-                mongoose.models = {}
-                // const User = mongoose.model('users', {
-                //     mpAccessToken: {
-                //         type: String,
-                //     }
-                // })
+        //         mongoose.models = {}
+        //         // const User = mongoose.model('users', {
+        //         //     mpAccessToken: {
+        //         //         type: String,
+        //         //     }
+        //         // })
 
-                const User = mongoose.model('users',  //here we define the schema
-                    {
-                        name: {
-                            type: String,
-                        },
-                        email: {
-                            type: String,
-                        },
-                        image: {
-                            type: String,
-                        },
-                        emailVerified: {
-                            type: Date,
-                        },
-                       mpAccessToken: {
-                            type: String,
-                            required: true,
-                       },
+        //         const User = mongoose.model('users',  //here we define the schema
+        //             {
+        //                 name: {
+        //                     type: String,
+        //                 },
+        //                 email: {
+        //                     type: String,
+        //                 },
+        //                 image: {
+        //                     type: String,
+        //                 },
+        //                 emailVerified: {
+        //                     type: Date,
+        //                 },
+        //                mpAccessToken: {
+        //                     type: String,
+        //                     required: true,
+        //                },
 
-                    }
-                )
+        //             }
+        //         )
                
 
-                const email = session.user.email //define the filter
-                const update = await User.findOneAndUpdate({ email: email }, {upset: true}, {mpAccessToken: accessToken } ) //populate the field
-                console.log(update)
-            })
+        //         const email = session.user.email //define the filter
+        //         const update = await User.findOneAndUpdate({ email: email }, {upset: true}, {mpAccessToken: accessToken } ) //populate the field
+        //         console.log(update)
+        //     })
 
         //console.log(res.data.access_token)
     } catch (e) {
