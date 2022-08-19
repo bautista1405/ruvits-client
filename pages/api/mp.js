@@ -41,6 +41,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                 const accessToken = res.data.access_token
                 console.log(accessToken)
                 console.log(session.user.email)
+                console.log('testttt')
 
                 mongoose.connect(db, {  //connect to the db
                     useNewUrlParser: true,
