@@ -78,7 +78,7 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                
 
                 const email = session.user.email //define the filter
-                const update = await User.findOneAndUpdate({ email: email }, {mpAccessToken: accessToken } ) //populate the field
+                const update = await User.findOneAndUpdate({ email: email }, {mpAccessToken: accessToken }, {upsert: true} ) //populate the field
                 console.log(update)
             })
 
