@@ -116,23 +116,6 @@ export default function ProductForm() {
   return (
     <>
       
-      {session && !session.mpAccessToken && 
-        ( 
-        <>
-          <Flex alignItems="center" justifyContent="center" h="54vh">
-            {/* <p>
-              Parece que todavía no vinculaste tu cuenta con Mercado Pago.
-            </p>
-            <p mt={5}>
-              <Link href='/dashboard/pagos'>
-                ¡Acá lo podés hacer!
-              </Link>
-            </p> */}
-          </Flex>
-          </>
-        ) 
-      }
-
       {session && session.mpAccessToken &&
       
       <Box 
