@@ -202,7 +202,7 @@ const Payments = () => {
             </Flex>
         )}
 
-        {session && session.user.mpAccessToken && (
+        {session && session.mpAccessToken && (
           <Flex
             h={[null, null, "100vh"]}
             maxW="2000px"
