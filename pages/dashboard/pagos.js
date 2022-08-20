@@ -67,6 +67,8 @@ const Payments = () => {
         } )
     
     }
+
+    console.log(session.mpAccessToken)
   
   return (
     <div>
