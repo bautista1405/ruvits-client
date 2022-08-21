@@ -102,7 +102,7 @@ export default function ProductForm() {
     });
 
     useEffect(() => {
-      if(session && !session.user.mpAccessToken) {
+      if(session && !accessToken) {
         swal({
           title: "Parece que todavía no vinculaste tu cuenta con MercadoPago.",
           text: '',
@@ -113,10 +113,22 @@ export default function ProductForm() {
       }
     }, [])
 
+    useEffect( () => {
+      if(session) {
+
+          axios.get(getAccessToken)
+          .then((res) => {
+              setToken(res?.data?.getToken || [])
+          })
+      }
+    }, [getAccessToken])
+
+    const accessToken = token.filter(token => token.email === session.user.email)
+
   return (
     <>
       
-      {session && session.user.mpAccessToken &&
+      {session && accessToken &&
       
       <Box 
         margin="auto" 
