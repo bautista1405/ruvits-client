@@ -51,20 +51,20 @@ const Payments = () => {
 
   const getAccessToken = '/api/gettoken'
 
-  const [token, setToken] = useState([]);
+  const [tokens, setTokens] = useState([]);
 
   useEffect( () => {
       if(session) {
 
           axios.get(getAccessToken)
           .then((res) => {
-              setToken(res?.data?.getToken || [])
+              setTokens(res?.data?.getToken || [])
           })
       }
     }, [getAccessToken])
 
-    const accessToken = token.filter(token => token.name === session.user.name)
-    console.log(accessToken)
+    const token = tokens.filter(token => token.email === session.user.email)
+    
 
 //   const accessToken = token.filter(users => users.user.email === session.user.email)
 
@@ -110,7 +110,7 @@ const Payments = () => {
                 </Button>
             </Flex>
             )}
-            {session && !accessToken && (
+            {session && !token && (
             <Flex
                 h={[null, null, "100vh"]}
                 maxW="2000px"
@@ -221,7 +221,7 @@ const Payments = () => {
             </Flex>
         )}
 
-        {session && accessToken && (
+        {session && token && (
           <Flex
                 h={[null, null, "100vh"]}
                 maxW="2000px"
