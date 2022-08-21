@@ -19,19 +19,13 @@ export default async function getToken(req, res) {
 
         mongoose.models = {}
         
-        const User = mongoose.model('users', 
+        const Token = mongoose.model('tokens', 
             {
                 name: {
                     type: String,
                 },
                 email: {
                     type: String,
-                },
-                image: {
-                    type: String,
-                },
-                emailVerified: {
-                    type: Date,
                 },
                 mpAccessToken: {
                     type: String,
@@ -41,7 +35,7 @@ export default async function getToken(req, res) {
         );
 
         const email = session.user.email
-        const getToken = await User.find({})
+        const getToken = await Token.find({email})
         // console.log(getToken)
 
         res.status(200).json({ getToken })
