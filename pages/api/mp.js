@@ -69,10 +69,10 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                         emailVerified: {
                             type: Date,
                         },
-                       mpAccessToken: {
-                            type: String,
-                            required: true,
-                       },
+                        mpAccessToken: {
+                                type: String,
+                                required: true,
+                        },
 
                     }
                 )
