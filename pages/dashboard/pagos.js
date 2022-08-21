@@ -64,23 +64,23 @@ const Payments = () => {
 //   const accessToken = token.filter(users => users.user.email === session.user.email)
 
 
-const deleteToken = (req, res) => { 
-    
-    
-    fetch('/api/deletetoken', {
+    const deleteToken = (req, res) => { 
         
-        method: 'POST',
         
-    })
-    .then( () => {
-        
-        swal({
-                title: "Tu cuenta de MercadoPago fue desvinculada.",
-                text: "Si querés volver a vender tus productos, podés vincularla de nuevo.",
-                icon: "success",
-            }).then(() => {router.push('/dashboard')})
-        } )
-        
+        fetch('/api/deletetoken', {
+            
+            method: 'POST',
+            
+        })
+        .then( () => {
+            
+            swal({
+                    title: "Tu cuenta de MercadoPago fue desvinculada.",
+                    text: "Si querés volver a vender tus productos, podés vincularla de nuevo.",
+                    icon: "success",
+                }).then(() => {router.push('/dashboard')})
+            } )
+            
     }
     
   
