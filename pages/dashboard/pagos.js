@@ -230,6 +230,9 @@ const Payments = () => {
           </Flex>
         ) : (
 
+            token.map((token) => { 
+                return (
+
             <Flex
                 h={[null, null, "100vh"]}
                 maxW="2000px"
@@ -339,7 +342,7 @@ const Payments = () => {
             
             </Flex>
 
-        )
+        )}))
         
         )})}
     </Box>
