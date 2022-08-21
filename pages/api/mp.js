@@ -55,19 +55,13 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                 //     }
                 // })
 
-                const User = mongoose.model('users',  //here we define the schema
+                const Token = mongoose.model('tokens',  //here we define the schema
                     {
                         name: {
                             type: String,
                         },
                         email: {
                             type: String,
-                        },
-                        image: {
-                            type: String,
-                        },
-                        emailVerified: {
-                            type: Date,
                         },
                         mpAccessToken: {
                             type: String,
@@ -78,12 +72,23 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                 )
                
 
-                const email = session.user.email //define the filter
-                const update = await User.findOneAndUpdate({ email: email }, {mpAccessToken: accessToken } ) //populate the field
-                console.log(update)
+                const newToken = new Token({
+                    name: session.user.name,
+                    email: session.user.email,
+                    mpAccessToken: accessToken,
+                })
+                
+                    
+                if (newToken) {
+        
+                    newToken.save()
+                }
             })
 
-        //console.log(res.data.access_token)
+            res.status(201).json({ success: true })
+            return newToken
+
+        
     } catch (e) {
         console.log(e)
     }
