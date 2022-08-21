@@ -48,11 +48,28 @@ const Payments = () => {
 
   const router = useRouter();
   const [session, loading] = useSession();
+  const [token, setToken] = React.useState(null);
+
+  const getAccessToken = '/api/gettoken'
+
+  useEffect(() => {
+    
+    if(session) {
+
+        axios.get(getAccessToken)
+        .then((res) => {
+            setToken(res?.data?.getToken || null)
+        })
+    }
+
+  }, [getAccessToken])
+
+  console.log(token)
 
   const deleteToken = (req, res) => { 
     
         
-        fetch('http://localhost:3000/api/deletetoken', {
+        fetch('/api/deletetoken', {
             
             method: 'POST',
             
