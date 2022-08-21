@@ -70,8 +70,8 @@ const getCode = (req, res) => {  //in this route we listen to the redirect autho
                             type: Date,
                         },
                         mpAccessToken: {
-                                type: String,
-                                required: true,
+                            type: String,
+                            required: true,
                         },
 
                     }
