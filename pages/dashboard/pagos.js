@@ -48,7 +48,7 @@ const Payments = () => {
 
   const router = useRouter();
   const [session, loading] = useSession();
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState();
 
   const getAccessToken = '/api/gettoken'
 
