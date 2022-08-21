@@ -58,7 +58,7 @@ const Payments = () => {
 
         axios.get(getAccessToken)
         .then((res) => {
-            setToken(res?.data?.getToken || null)
+            setToken(res?.data?.getToken || {})
         })
     }
 
