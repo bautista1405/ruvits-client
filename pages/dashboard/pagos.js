@@ -88,7 +88,7 @@ const Payments = () => {
     
     }
 
-    console.log(session.user.mpAccessToken)
+    console.log(session.user.name)
   
   return (
     <div>
