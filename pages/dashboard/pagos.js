@@ -132,7 +132,7 @@ const Payments = () => {
                 boxShadow='2xl' 
                 p='6'
                 pl={[null, null, 70, 10, 5]}
-          
+                key={token._id}
             >
           {/* Column 1 */}
           <Flex
@@ -245,7 +245,7 @@ const Payments = () => {
                 boxShadow='2xl' 
                 p='6'
                 pl={[null, null, 70, 10, 5]}
-                
+                key={token._id}
             >
                 {/* Column 1 */}
                 <Flex
