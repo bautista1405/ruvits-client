@@ -51,15 +51,22 @@ const Payments = () => {
 
 //   const [token, setToken] = useState([]);
 
-//   const getAccessToken = '/api/gettoken'
+  const getAccessToken = '/api/gettoken'
 
-  useEffect(() => {
-    
-   
-      console.log(session.user.mpAccessToken)
-      console.log(session.user.name)
+  const [token, setToken] = useState([]);
 
-  }, [session])
+  useEffect( () => {
+      if(session) {
+
+          axios.get(getAccessToken)
+          .then((res) => {
+              setToken(res?.data?.getToken || [])
+          })
+      }
+    }, [getAccessToken])
+
+    const accessToken = token.filter(token => token.email === session.user.email)
+    console.log(accessToken)
 
 //   const accessToken = token.filter(users => users.user.email === session.user.email)
 
