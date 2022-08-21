@@ -88,7 +88,7 @@ const Payments = () => {
     
     }
 
-    console.log(session.mpAccessToken)
+    console.log(session.user.mpAccessToken)
   
   return (
     <div>
@@ -111,7 +111,7 @@ const Payments = () => {
                 </Button>
             </Flex>
             )}
-            {session && !session.mpAccessToken && (
+            {session && !session.user.mpAccessToken && (
             <Flex
                 h={[null, null, "100vh"]}
                 maxW="2000px"
@@ -222,7 +222,7 @@ const Payments = () => {
             </Flex>
         )}
 
-        {session && session.mpAccessToken && (
+        {session && session.user.mpAccessToken && (
           <Flex
                 h={[null, null, "100vh"]}
                 maxW="2000px"
