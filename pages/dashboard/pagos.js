@@ -64,7 +64,7 @@ const Payments = () => {
 
   }, [getAccessToken])
 
-  accessToken = token.filter(users => users.user.email === session.user.email)
+  const accessToken = token.filter(users => users.user.email === session.user.email)
 
   console.log(accessToken)
 
