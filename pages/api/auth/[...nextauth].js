@@ -14,9 +14,9 @@ export default NextAuth({
   database: process.env.NEXT_PUBLIC_MONGODB_URI,
 
   callbacks: {
-    session: async (session, user) => {
-      session.id = user._id;
-      return session;                           
+    async session(session, token) {
+      session.user = token.user;
+      return session;
     },
   },
 });
