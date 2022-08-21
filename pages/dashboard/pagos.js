@@ -46,8 +46,10 @@ import {BsInfoCircle} from "react-icons/bs"
 
 const Payments = () => {
 
+    const session = await getSession({req})
+
   const router = useRouter();
-  const [session, loading] = useSession();
+//   const [session, loading] = useSession();
 
 //   const [token, setToken] = useState([]);
 
