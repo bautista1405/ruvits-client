@@ -113,6 +113,8 @@ export default function ProductForm() {
       }
     }, [])
 
+    const getAccessToken = '/api/gettoken'
+
     useEffect( () => {
       if(session) {
 
