@@ -48,7 +48,7 @@ const Payments = () => {
 
   const router = useRouter();
   const [session, loading] = useSession();
-  const [token, setToken] = useState();
+  const [token, setToken] = useState([]);
 
   const getAccessToken = '/api/gettoken'
 
@@ -58,7 +58,7 @@ const Payments = () => {
 
         axios.get(getAccessToken)
         .then((res) => {
-            setToken(res?.data?.getToken || {})
+            setToken(res?.data?.getToken || [])
         })
     }
 
