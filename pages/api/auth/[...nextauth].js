@@ -16,6 +16,7 @@ export default NextAuth({
   callbacks: {
     session: async (session, user) => {
       session.id = user._id;
+      session.mpAccessToken = user.mpAccessToken
       return session;                           
     },
   },
