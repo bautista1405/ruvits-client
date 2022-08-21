@@ -48,25 +48,26 @@ const Payments = () => {
 
   const router = useRouter();
   const [session, loading] = useSession();
-  const [token, setToken] = useState([]);
 
-  const getAccessToken = '/api/gettoken'
+//   const [token, setToken] = useState([]);
 
-  useEffect(() => {
+//   const getAccessToken = '/api/gettoken'
+
+//   useEffect(() => {
     
-    if(session) {
+//     if(session) {
 
-        axios.get(getAccessToken)
-        .then((res) => {
-            setToken(res?.data?.getToken || [])
-        })
-    }
+//         axios.get(getAccessToken)
+//         .then((res) => {
+//             setToken(res?.data?.getToken || [])
+//         })
+//     }
 
-  }, [getAccessToken])
+//   }, [getAccessToken])
 
-  const accessToken = token.filter(users => users.user.email === session.user.email)
+//   const accessToken = token.filter(users => users.user.email === session.user.email)
 
-  console.log(accessToken)
+//   console.log(accessToken)
 
   const deleteToken = (req, res) => { 
     
