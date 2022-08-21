@@ -41,7 +41,7 @@ export default async function getToken(req, res) {
         );
 
         const email = session.user.email
-        const getToken = await User.find({ email })
+        const getToken = await User.find({})
         // console.log(getToken)
 
         res.status(200).json({ getToken })
