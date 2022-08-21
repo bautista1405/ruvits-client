@@ -53,42 +53,36 @@ const Payments = () => {
 
 //   const getAccessToken = '/api/gettoken'
 
-//   useEffect(() => {
+  useEffect(() => {
     
-//     if(session) {
+   
+      console.log(session.user.mpAccessToken)
+      console.log(session.user.name)
 
-//         axios.get(getAccessToken)
-//         .then((res) => {
-//             setToken(res?.data?.getToken || [])
-//         })
-//     }
-
-//   }, [getAccessToken])
+  }, [session])
 
 //   const accessToken = token.filter(users => users.user.email === session.user.email)
 
-   console.log(session.user.mpAccessToken)
 
-  const deleteToken = (req, res) => { 
+const deleteToken = (req, res) => { 
     
+    
+    fetch('/api/deletetoken', {
         
-        fetch('/api/deletetoken', {
-            
-            method: 'POST',
-            
-        })
-        .then( () => {
-
-            swal({
+        method: 'POST',
+        
+    })
+    .then( () => {
+        
+        swal({
                 title: "Tu cuenta de MercadoPago fue desvinculada.",
                 text: "Si querés volver a vender tus productos, podés vincularla de nuevo.",
                 icon: "success",
             }).then(() => {router.push('/dashboard')})
         } )
-    
+        
     }
-
-    console.log(session.user.name)
+    
   
   return (
     <div>
