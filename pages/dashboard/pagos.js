@@ -204,19 +204,19 @@ const Payments = () => {
 
         {session && session.mpAccessToken && (
           <Flex
-            h={[null, null, "100vh"]}
-            maxW="2000px"
-            flexDir={["column", "column", "row"]}
-            overflow="hidden"
-            margin={[null, null, "100px"]}
-            shadow="base"
-            rounded={[null, "md"]}
-            borderRadius="5px"
-            boxShadow='2xl' 
-            p='6'
-            pl={[null, null, 70, 10, 5]}
+                h={[null, null, "100vh"]}
+                maxW="2000px"
+                flexDir={["column", "column", "row"]}
+                overflow="hidden"
+                margin={[null, null, "100px"]}
+                shadow="base"
+                rounded={[null, "md"]}
+                borderRadius="5px"
+                boxShadow='2xl' 
+                p='6'
+                pl={[null, null, 70, 10, 5]}
           
-      >
+            >
           {/* Column 1 */}
           <Flex
                w={["100%", "100%", "10%", "15%", "15%"]}
