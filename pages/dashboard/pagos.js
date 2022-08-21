@@ -111,6 +111,7 @@ const Payments = () => {
             </Flex>
             )}
         {session && token.map((token) => { 
+            return (
             token.email !== session.user.email && (
             <Flex
                 h={[null, null, "100vh"]}
@@ -220,9 +221,10 @@ const Payments = () => {
             </Flex>
             
             </Flex>
-        )})}
+        ))})}
 
         {session && token.map((token) => { 
+            return (
             token.email === session.user.email && (
           <Flex
                 h={[null, null, "100vh"]}
@@ -332,7 +334,7 @@ const Payments = () => {
           </Flex>
           
           </Flex>
-        )})}
+        ))})}
     </Box>
 
     </div>
