@@ -63,7 +63,7 @@ const Payments = () => {
       }
     }, [getAccessToken])
 
-    // const token = tokens.filter(token => token.email === session.user.email)
+    const token = tokens.filter(token => token.email === session.user.email)
     
 
 //   const accessToken = token.filter(users => users.user.email === session.user.email)
@@ -110,7 +110,7 @@ const Payments = () => {
                 </Button>
             </Flex>
             )}
-            {session && tokens.email !== session.user.email && (
+            {session && token.email !== session.user.email && (
             <Flex
                 h={[null, null, "100vh"]}
                 maxW="2000px"
@@ -221,7 +221,7 @@ const Payments = () => {
             </Flex>
         )}
 
-        {session && tokens.email === session.user.email && (
+        {session && token.email === session.user.email && (
           <Flex
                 h={[null, null, "100vh"]}
                 maxW="2000px"
