@@ -39,6 +39,7 @@ import dayjs from "dayjs";
 export default function ProductForm() {
 
     const [error, setError] = useState(null)
+    const [token, setToken] = useState([]);
 
     const [session, loading] = useSession();
 
