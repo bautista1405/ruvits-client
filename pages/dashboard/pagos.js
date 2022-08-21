@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
@@ -48,7 +48,7 @@ const Payments = () => {
 
   const router = useRouter();
   const [session, loading] = useSession();
-  const [token, setToken] = React.useState(null);
+  const [token, setToken] = useState(null);
 
   const getAccessToken = '/api/gettoken'
 
