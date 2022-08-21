@@ -102,7 +102,7 @@ export default function ProductForm() {
     });
 
     useEffect(() => {
-      if(session && !session.mpAccessToken) {
+      if(session && !session.user.mpAccessToken) {
         swal({
           title: "Parece que todavía no vinculaste tu cuenta con MercadoPago.",
           text: '',
@@ -116,7 +116,7 @@ export default function ProductForm() {
   return (
     <>
       
-      {session && session.mpAccessToken &&
+      {session && session.user.mpAccessToken &&
       
       <Box 
         margin="auto" 
