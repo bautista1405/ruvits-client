@@ -49,8 +49,6 @@ const Payments = () => {
   const router = useRouter();
   const [session, loading] = useSession();
 
-//   const [token, setToken] = useState([]);
-
   const getAccessToken = '/api/gettoken'
 
   const [token, setToken] = useState([]);
@@ -65,7 +63,7 @@ const Payments = () => {
       }
     }, [getAccessToken])
 
-    const accessToken = token.filter(token => token.email === session.user.email)
+    const accessToken = token.filter(token => token.name === session.user.name)
     console.log(accessToken)
 
 //   const accessToken = token.filter(users => users.user.email === session.user.email)
