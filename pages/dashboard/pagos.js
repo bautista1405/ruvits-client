@@ -127,7 +127,7 @@ const Payments = () => {
                         boxShadow='2xl' 
                         p='6'
                         pl={[null, null, 70, 10, 5]}
-                        key={token._id}
+                        key={session.user.name}
                     >
                     
                     {/* Column 1 */}
