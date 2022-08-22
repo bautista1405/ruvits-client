@@ -64,6 +64,7 @@ const Payments = () => {
     }, [getAccessToken])
 
     const token = tokens.filter(token => token.email === session.user.email)
+    const noToken = tokens.filter(token => token.email != session.user.email)
     
 
 //   const accessToken = token.filter(users => users.user.email === session.user.email)
@@ -111,9 +112,9 @@ const Payments = () => {
             </Flex>
             )}
         
-            {session && tokens.map((token) => { 
+            {session && noToken.map((noToken) => { 
                 return (
-                token.name != session.user.name && (
+                noToken && (
                     <Flex
                         h={[null, null, "100vh"]}
                         maxW="2000px"
