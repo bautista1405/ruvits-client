@@ -24,12 +24,6 @@ const deleteToken = async (req, res) => {
                         email: {
                             type: String,
                         },
-                        image: {
-                            type: String,
-                        },
-                        emailVerified: {
-                            type: Date,
-                        },
                        mpAccessToken: {
                             type: String,
                        },
