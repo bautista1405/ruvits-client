@@ -123,7 +123,7 @@ export default function ProductForm() {
     
     return (
       <>
-      {session && token.length == 0 && (
+      {session && token.length == 0 && 
         swal({
           title: "Parece que todavía no vinculaste tu cuenta con MercadoPago.",
           text: '',
@@ -131,7 +131,7 @@ export default function ProductForm() {
           button: "Vincular mi cuenta",
         })
         .then(() => {router.push('/dashboard/pagos')})
-      )}
+      }
       
       {session && token.length > 0 &&
       
