@@ -38,12 +38,26 @@ import dayjs from "dayjs";
 
 export default function ProductForm() {
 
-    const [error, setError] = useState(null)
-    const [token, setToken] = useState([]);
+  const router = useRouter()
+  const [error, setError] = useState(null)
 
-    const [session, loading] = useSession();
+  const [session, loading] = useSession();
 
-    const router = useRouter()
+  const getAccessToken = '/api/gettoken'
+
+  const [tokens, setTokens] = useState([]);
+
+    useEffect( () => {
+        if(session) {
+
+            axios.get(getAccessToken)
+            .then((res) => {
+                setTokens(res?.data?.getToken || [])
+            })
+        }
+    }, [getAccessToken])
+
+    const token = tokens.filter(token => token.email === session.user.email)
 
     const headers = {
         'Content-Type': 'multipart/form-data',
@@ -57,7 +71,7 @@ export default function ProductForm() {
         price: Number,
         content: [],
         creationDate: dayjs().format("DD-MM-YYYY"),
-        mpAccessToken: session.mpAccessToken || null, //we get the access token from the user
+        mpAccessToken: token.mpAccessToken || null, //we get the access token from the user
       },
       onSubmit: (values = {vendor, title, description, price, photos, content, mpAccessToken, creationDate}) => {
         try {
@@ -114,24 +128,11 @@ export default function ProductForm() {
       }
     }, [])
 
-    const getAccessToken = '/api/gettoken'
-
-    useEffect( () => {
-      if(session) {
-
-          axios.get(getAccessToken)
-          .then((res) => {
-              setToken(res?.data?.getToken || [])
-          })
-      }
-    }, [getAccessToken])
-
-    const accessToken = token.filter(token => token.email === session.user.email)
 
   return (
     <>
       
-      {session && accessToken &&
+      {session && mpAccessToken &&
       
       <Box 
         margin="auto" 
