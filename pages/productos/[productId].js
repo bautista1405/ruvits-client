@@ -84,7 +84,7 @@ const ProductDetails = ({ product }) => {
       
       
       const headers = { 
-        "Authorization": process.env.NEXT_PUBLIC_MERCADO_PAGO_ACCESS_TOKEN,
+        "Authorization": process.env.PROD_TOKEN,
         "Content-Type": "application/json",
         'Accept': 'application/json',
         "Access-Control-Allow-Origin": "*",

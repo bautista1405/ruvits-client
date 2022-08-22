@@ -17,7 +17,7 @@ export default async function createPayment(req, res) {
 
     try {
 
-        const db = process.env.MONGODB_URI
+        const db = process.env.NEXT_PUBLIC_MONGODB_URI
 
         // const conn = mongoose.connection;
       
