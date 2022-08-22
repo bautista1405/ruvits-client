@@ -112,9 +112,7 @@ const Payments = () => {
             </Flex>
             )}
         
-            {session && noToken.map((noToken) => { 
-                return (
-                noToken && (
+            {session && noToken (
                     <Flex
                         h={[null, null, "100vh"]}
                         maxW="2000px"
@@ -224,7 +222,7 @@ const Payments = () => {
                 </Flex>
                 
                 </Flex>
-             ))}
+             
             )}
 
         {session && token.map((token) => { 
