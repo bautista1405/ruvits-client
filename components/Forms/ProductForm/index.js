@@ -65,8 +65,11 @@ export default function ProductForm() {
 
   
     token.map((token) => {
-      const vendorToken = localStorage.setItem('vendorAccessToken', token.mpAccessToken);
+      if(typeof window !== 'undefined') {
+        const vendorToken = localStorage.setItem('vendorAccessToken', token.mpAccessToken);
+      }
     })
+
     const formik =  useFormik({
       initialValues: {
         vendor: session.user.name,
@@ -75,7 +78,7 @@ export default function ProductForm() {
         price: Number,
         content: [],
         creationDate: dayjs().format("DD-MM-YYYY"),
-        mpAccessToken: localStorage.getItem('vendorAccessToken') || null, //we get the access token from the user
+        mpAccessToken: '', //we get the access token from the user
       },
       onSubmit: (values = {vendor, title, description, price, photos, content, mpAccessToken, creationDate}) => {
         try {
@@ -447,7 +450,7 @@ export default function ProductForm() {
                   type="hidden"
                   id="mpAccessToken" 
                   name='mpAccessToken'
-                  value={formik.values.mpAccessToken}
+                  value={localStorage.getItem('vendorAccessToken')}
                   required  
                 />
                 
