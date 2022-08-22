@@ -33,7 +33,7 @@ const deleteToken = async (req, res) => {
                
 
                 const email = session.user.email //define the filter
-                const update = await Token.findOneAndUpdate({ email: email }, {$unset: {mpAccessToken: 1 }}) //remove the field
+                const update = await Token.findOneAndRemove({ email: email }) //remove the field
                 console.log(update)
                 res.status(200).json({ message: 'Token eliminado' })
                 
