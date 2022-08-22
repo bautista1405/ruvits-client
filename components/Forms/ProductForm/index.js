@@ -135,9 +135,7 @@ export default function ProductForm() {
           Para subir tu producto primero debes
           <Button
               onClick={() =>
-                signIn("google", {
-                  callbackUrl: "/dashboard/pagos",
-                })
+                router.push("/dashboard/pagos")
               }
               
               variant="link"
