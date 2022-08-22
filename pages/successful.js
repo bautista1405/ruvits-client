@@ -29,8 +29,12 @@ const SuccessfulPage = () => {             //from this page we have to trigger t
     // axios.get(`https://api.mercadopago.com/merchant_orders/${id}`, {headers})
     // console.log(res)
     const product = localStorage.getItem('product');
-    axios.post(sendEmailUrl, {product}, {headers});
-    axios.post(createPaymentUrl, {product})
+    
+    axios.post(sendEmailUrl, {product}, {headers})
+    .then( () => {
+
+      axios.post(createPaymentUrl, {product})
+    })
     .then( () => {
       router.push('/')
     })
