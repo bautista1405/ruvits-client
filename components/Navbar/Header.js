@@ -117,7 +117,7 @@ export default function WfWf() {
                   colorScheme='gray' variant='ghost'
                 >
                   <Link display="flex" alignItems="center" href="/descubre">
-                    Descubrí
+                    Descubrir
                   </Link>
                 </Button>
                 
