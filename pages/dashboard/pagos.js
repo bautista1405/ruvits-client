@@ -111,7 +111,7 @@ const Payments = () => {
             </Flex>
             )}
         
-            {session && token.map((token) => { 
+            {session && tokens.map((token) => { 
                 return (
                 token.name != session.user.name && (
                     <Flex
