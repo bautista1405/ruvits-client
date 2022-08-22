@@ -116,8 +116,14 @@ export default function ProductForm() {
       },
     });
 
-    useEffect(() => {
-      if(token.length == 0) {
+    
+    
+    
+    
+    
+    return (
+      <>
+      {session && token.length == 0 && (
         swal({
           title: "Parece que todavía no vinculaste tu cuenta con MercadoPago.",
           text: '',
@@ -125,12 +131,7 @@ export default function ProductForm() {
           button: "Vincular mi cuenta",
         })
         .then(() => {router.push('/dashboard/pagos')})
-      }
-    }, [])
-
-
-  return (
-    <>
+      )}
       
       {session && token.length > 0 &&
       
