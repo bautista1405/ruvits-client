@@ -113,8 +113,8 @@ const Payments = () => {
             )}
         
         {token.length > 0 ? (
-    token.map((token) => { 
-        return (
+            token.map((token) => { 
+            return (
                     <Flex
                     h={[null, null, "100vh"]}
                     maxW="2000px"
@@ -227,7 +227,7 @@ const Payments = () => {
     })
     ) : (
 
-        token.length == 0 && token.map((token, key) => (
+        token.length == 0 && (
 
             <Flex
                 h={[null, null, "100vh"]}
@@ -338,10 +338,10 @@ const Payments = () => {
             </Flex>
             
             </Flex>
-        ))
+        )
 
-    )
-}
+        )
+    }
 
         </Box>
 
