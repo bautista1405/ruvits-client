@@ -117,7 +117,7 @@ export default function ProductForm() {
     });
 
     useEffect(() => {
-      if(session && token.length == 0) {
+      if(token.length == 0) {
         swal({
           title: "Parece que todavía no vinculaste tu cuenta con MercadoPago.",
           text: '',
