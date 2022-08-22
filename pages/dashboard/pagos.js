@@ -113,7 +113,7 @@ const Payments = () => {
         
             {session && token.map((token) => { 
                 return (
-                
+                token.name != session.user.name && (
                     <Flex
                         h={[null, null, "100vh"]}
                         maxW="2000px"
@@ -223,7 +223,7 @@ const Payments = () => {
                 </Flex>
                 
                 </Flex>
-             )}
+             ))}
             )}
 
         {session && token.map((token) => { 
