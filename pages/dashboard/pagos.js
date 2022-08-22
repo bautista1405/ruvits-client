@@ -232,9 +232,8 @@ const Payments = () => {
         
         : (
             
-            session && token.email != session.user.email && token.map(() => {
-                return (
-
+            session (
+            
             <Flex
                 h={[null, null, "100vh"]}
                 maxW="2000px"
@@ -343,12 +342,10 @@ const Payments = () => {
             </Flex>
             
             </Flex>
-            )
-            
-            })
+           
 
 
-        )
+        ))
         
         )})}
     </Box>
