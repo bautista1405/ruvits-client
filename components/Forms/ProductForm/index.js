@@ -64,10 +64,10 @@ export default function ProductForm() {
     }
 
   
-    
-    const formik = token.map((token) => { 
-      
-      useFormik({
+    token.map((token) => {
+      const vendorToken = localStorage.setItem('vendorAccessToken', token.mpAccessToken);
+    })
+    const formik =  useFormik({
       initialValues: {
         vendor: session.user.name,
         title: '',
@@ -75,7 +75,7 @@ export default function ProductForm() {
         price: Number,
         content: [],
         creationDate: dayjs().format("DD-MM-YYYY"),
-        mpAccessToken: token.mpAccessToken || null, //we get the access token from the user
+        mpAccessToken: localStorage.getItem('vendorAccessToken') || null, //we get the access token from the user
       },
       onSubmit: (values = {vendor, title, description, price, photos, content, mpAccessToken, creationDate}) => {
         try {
@@ -118,8 +118,7 @@ export default function ProductForm() {
             }
           }    
       },
-    })
-    })
+    });
 
     
     
