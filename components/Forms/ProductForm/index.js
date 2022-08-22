@@ -123,7 +123,7 @@ export default function ProductForm() {
     
     return (
       <>
-      {session && token.length == 0 && 
+      {token.length == 0 && 
         <Flex alignItems="center" justifyContent="center" h="54vh">
           Para subir tu producto primero debes
           <Button
@@ -141,7 +141,7 @@ export default function ProductForm() {
         </Flex>
       }
       
-      {session && token.length > 0 &&
+      {token.length > 0 &&
       
       <Box 
         margin="auto" 
