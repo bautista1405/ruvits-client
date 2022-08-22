@@ -95,7 +95,7 @@ export default function ProductForm() {
                   price: values.price, 
                   photos: values.photos,
                   content: values.content, 
-                  mpAccessToken,
+                  mpAccessToken: localStorage.getItem('vendorAccessToken'),
                   creationDate: values.creationDate,
                 
               
@@ -450,7 +450,7 @@ export default function ProductForm() {
                   type="hidden"
                   id="mpAccessToken" 
                   name='mpAccessToken'
-                  value={localStorage.getItem('vendorAccessToken')}
+                  value={formik.values.mpAccessToken}
                   required  
                 />
                 
