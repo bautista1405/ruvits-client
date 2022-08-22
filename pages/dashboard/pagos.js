@@ -114,7 +114,7 @@ const Payments = () => {
         
             {tokens.map((token) => { 
                 return (
-                !token && (
+                token && token.email != session.user.email (
                     <Flex
                         h={[null, null, "100vh"]}
                         maxW="2000px"
