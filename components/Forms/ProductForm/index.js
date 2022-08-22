@@ -95,7 +95,7 @@ export default function ProductForm() {
                   price: values.price, 
                   photos: values.photos,
                   content: values.content, 
-                  mpAccessToken: values.mpAccessToken,
+                  mpAccessToken,
                   creationDate: values.creationDate,
                 
               
