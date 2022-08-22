@@ -230,6 +230,7 @@ const Payments = () => {
           </Flex>
         ) : (
             
+            token.map((token) => (
 
             <Flex
                 h={[null, null, "100vh"]}
@@ -339,6 +340,8 @@ const Payments = () => {
             </Flex>
             
             </Flex>
+            ))
+
 
         )
         
