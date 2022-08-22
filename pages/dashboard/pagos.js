@@ -232,7 +232,7 @@ const Payments = () => {
         
         : (
             
-            token.email != session.user.email && token.map(() => (
+            session && token.email != session.user.email && token.map(() => (
 
             <Flex
                 h={[null, null, "100vh"]}
