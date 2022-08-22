@@ -112,7 +112,8 @@ const Payments = () => {
             </Flex>
             )}
         
-            {session && noToken.map((noToken) => { 
+            {session && tokens.filter((token) => { 
+                token => token.email != session.user.email
                 return (
                 
                     <Flex
