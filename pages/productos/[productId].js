@@ -441,7 +441,7 @@ const ProductDetails = ({ product }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch('/api/getproducts')
+  const res = await fetch('https://ruvits.com/api/getproducts')
   const products = res?.data?.getProducts || []
 
   // Get the paths we want to pre-render based on products
@@ -460,7 +460,7 @@ export async function getStaticPaths() {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
-  const res = await fetch('/api/getproducts')
+  const res = await fetch('https://ruvits.com/api/getproducts')
   const products = res?.data?.getProducts || [];
   const product = products.filter(product => product.title === params.productId)
   
