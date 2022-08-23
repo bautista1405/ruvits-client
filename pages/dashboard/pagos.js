@@ -112,7 +112,7 @@ const Payments = () => {
                 </Flex>
             )}
         
-        {token.length > 0 ? (
+        {token.length == 1 ? (
             token.map((token) => { 
             return (
                     <Flex
