@@ -95,19 +95,19 @@ const ProductDetails = ({ product }) => {
       axios.post(URL, data, {headers} )
         .then(response => {
           
-          window.location.href = response.data.init_point
-          // if(typeof window !== 'undefined') {
+          if(typeof window !== 'undefined') {
         
-          //   const testProduct = localStorage.setItem('product', JSON.stringify({
-          //     id: product._id,
-          //     title: product.title,
-          //     vendor: product.vendor,
-          //     description: product.description,
-          //     price: product.price,
-          //     content: product.content,
-          //   }))
+            const testProduct = localStorage.setItem('product', JSON.stringify({
+              id: product._id,
+              title: product.title,
+              vendor: product.vendor,
+              description: product.description,
+              price: product.price,
+              content: product.content,
+            }))
             
-          // }
+          }
+          window.location.href = response.data.init_point
           
         
         })
@@ -438,7 +438,7 @@ const ProductDetails = ({ product }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch('http://3.95.83.1:3000/api/products')
+  const res = await fetch('/api/getproducts')
   const products = await res.json()
 
   // Get the paths we want to pre-render based on products
@@ -457,7 +457,7 @@ export async function getStaticPaths() {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
-  const res = await fetch('http://3.95.83.1:3000/api/products')
+  const res = await fetch('/api/getproducts')
   const products = await res.json();
   const product = products.filter(product => product.title === params.productId)
   
