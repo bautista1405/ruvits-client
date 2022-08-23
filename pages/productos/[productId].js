@@ -46,10 +46,8 @@ const ProductDetails = ({ product }) => {
     
   
   
-  const handleSubmit = async (req, res, e) => {
+  const handleSubmit = async (req, res) => {
     
-    e.preventDefault();
-
     const appID = process.env.APP_ID
     
     product.map(product => {
