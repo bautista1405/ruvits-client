@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 export default async function handler(req, res) {
 
     try {
-      const db = process.env.MONGODB_URI
+      const db = process.env.NEXT_PUBLIC_MONGODB_URI
       
         mongoose.connect(db, {  //connect to the db
           useNewUrlParser: true,
