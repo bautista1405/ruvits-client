@@ -105,9 +105,9 @@ const ProductDetails = ({ product }) => {
               price: product.price,
               content: product.content,
             }));
+            window.location.href = response.data.init_point
           }
           
-          window.location.href = response.data.init_point
         
         })
         
