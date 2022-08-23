@@ -280,7 +280,7 @@ const ProductDetails = ({ product }) => {
                         
                         
                         <Formik>
-                          <Form className="my-3" id="form-container" onSubmit={handleSubmit}>
+                          <Form className="my-3" id="form-container" onSubmit={handleSubmit} method="POST">
               
                             <div className="my-2 inputs_login d-flex">
                             
