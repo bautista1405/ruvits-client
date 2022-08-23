@@ -46,7 +46,7 @@ const ProductDetails = ({ product }) => {
     
   
   
-  const handleSubmit = (req, res) => {
+  const handleSubmit = async (req, res) => {
     
     const appID = process.env.APP_ID
     
@@ -302,7 +302,7 @@ const ProductDetails = ({ product }) => {
                                       colorScheme='teal' 
                                       variant='solid' 
                                       type="button"
-                                      onSubmit={handleSubmit}
+                                      onClick={handleSubmit}
                                       marginLeft={5}
                                     >Comprar</Button>
                                   
