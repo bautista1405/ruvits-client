@@ -46,7 +46,7 @@ const ProductDetails = ({ product }) => {
     
   
   
-  const handleSubmit = async (req, res) => {
+  const handleSubmit = (req, res) => {
     
     const appID = process.env.APP_ID
     
