@@ -93,8 +93,9 @@ const ProductDetails = ({ product }) => {
       };
       
       axios.post(URL, data, {headers} )
-        .then( async () => {
-          await router.push(response.data.init_point)
+        .then(response => {
+          
+          window.location.href = response.data.init_point
           if(typeof window !== 'undefined') {
         
             const testProduct = localStorage.setItem('product', JSON.stringify({
@@ -110,7 +111,6 @@ const ProductDetails = ({ product }) => {
           
         
         })
-        
         
     })
     
