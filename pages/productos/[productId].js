@@ -425,7 +425,10 @@ const ProductDetails = ({ product }) => {
       </Box>
                     
             )
-        }) : <p>¡Oopsss! Parece que este producto no existe.</p> 
+        }) : 
+              <Flex alignItems="center" justifyContent="center" h="54vh">
+                <p>¡Oopsss! Parece que este producto no existe.</p> 
+              </Flex>
         }
            
         
@@ -438,7 +441,11 @@ const ProductDetails = ({ product }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch('https://ruvits.com/api/getproducts')
+  const [productss, setProducts] = useState([]);
+  const res = axios.get('https://ruvits.com/api/getproducts').then((res) => {
+    setProducts(res?.data?.getProducts || []);
+    
+  });
   const products = await res.json()
 
   // Get the paths we want to pre-render based on products
@@ -457,7 +464,11 @@ export async function getStaticPaths() {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
-  const res = await fetch('https://ruvits.com/api/getproducts')
+  const [productss, setProducts] = useState([]);
+  const res = axios.get('https://ruvits.com/api/getproducts').then((res) => {
+    setProducts(res?.data?.getProducts || []);
+    
+  });
   const products = await res.json();
   const product = products.filter(product => product.title === params.productId)
   
