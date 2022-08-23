@@ -107,6 +107,9 @@ const ProductDetails = ({ product }) => {
             }));
           }
           
+        })
+        .then( () => {
+          
           router.push(response.data.init_point);
         })
 
