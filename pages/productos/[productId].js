@@ -107,12 +107,10 @@ const ProductDetails = ({ product }) => {
             }));
           }
           
-        })
-        .then( () => {
-          
           window.location.href = response.data.init_point
+        
         })
-
+        
     })
     
   };
