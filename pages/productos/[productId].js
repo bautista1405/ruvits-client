@@ -302,7 +302,7 @@ const ProductDetails = ({ product }) => {
                                       colorScheme='teal' 
                                       variant='solid' 
                                       type="submit"
-                                      onClick={handleSubmit}
+                                      onSubmit={handleSubmit}
                                       marginLeft={5}
                                     >Comprar</Button>
                                   
