@@ -47,6 +47,8 @@ const ProductDetails = ({ product }) => {
   
   
   const handleSubmit = async (req, res) => {
+
+    const router = useRouter();
     
     const appID = process.env.APP_ID
     
@@ -107,7 +109,7 @@ const ProductDetails = ({ product }) => {
             }));
           }
           
-          //window.location.href = response.data.init_point;
+          router.push(response.data.init_point);
         })
 
     })
