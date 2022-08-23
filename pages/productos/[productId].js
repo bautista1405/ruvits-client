@@ -95,19 +95,19 @@ const ProductDetails = ({ product }) => {
       axios.post(URL, data, {headers} )
         .then(response => {
           
-          if(typeof window !== 'undefined') {
+          window.location.href = response.data.init_point
+          // if(typeof window !== 'undefined') {
+        
+          //   const testProduct = localStorage.setItem('product', JSON.stringify({
+          //     id: product._id,
+          //     title: product.title,
+          //     vendor: product.vendor,
+          //     description: product.description,
+          //     price: product.price,
+          //     content: product.content,
+          //   }))
             
-            window.location.href = response.data.init_point
-            const testProduct = localStorage.setItem('product', JSON.stringify({
-              id: product._id,
-              title: product.title,
-              vendor: product.vendor,
-              description: product.description,
-              price: product.price,
-              content: product.content,
-            }))
-            
-          }
+          // }
           
         
         })
