@@ -253,6 +253,16 @@ const Discover = () => {
                                 bg: "gray.700",
                                 }}
                             >
+
+                                <chakra.span
+                                    fontWeight="bold"
+                                    color="gray.800"
+                                    _dark={{
+                                        color: "gray.200",
+                                    }}
+                                    >
+                                    ${value.price}
+                                </chakra.span>
                                 
                                 <a href={`/productos/${value.title}`} >
                                 <chakra.button
