@@ -93,7 +93,7 @@ const ProductDetails = ({ product }) => {
       };
       
       axios.post(URL, data, {headers} )
-        .then( () => {
+        .then( async () => {
           await router.push(response.data.init_point)
           if(typeof window !== 'undefined') {
         
