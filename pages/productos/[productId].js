@@ -105,13 +105,14 @@ const ProductDetails = ({ product }) => {
               price: product.price,
               content: product.content,
             }))
-            .then(() => {
-
-              window.location.href = response.data.init_point
-            })
+            
           }
           
         
+        })
+        .then(() => {
+
+          window.location.href = response.data.init_point
         })
         
     })
