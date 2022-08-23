@@ -34,16 +34,28 @@ import swal from 'sweetalert';
 import { useFormik } from "formik";
 
 
-const ProductDetails = ({ product }) => {
+const ProductDetails = () => {
   const router = useRouter();
   const [session, loading] = useSession();
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
   
-  
+  const [products, setProducts] = useState([]);
 
+  const url = "/api/getproducts"
     
+    useEffect(() => {
+        if(session) {
+
+            axios.get(url).then((res) => {
+                setProducts(res?.data?.getProducts || []);
+                
+            })
+        }
+    }, [url])
+
+    const product = products.filter((product) => product.id === router.query.id);
   
   
   const handleSubmit = async (req, res) => {
@@ -441,11 +453,7 @@ const ProductDetails = ({ product }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const [productss, setProducts] = useState([]);
-  const res = axios.get('https://ruvits.com/api/getproducts').then((res) => {
-    setProducts(res?.data?.getProducts || []);
-    
-  });
+  const res = await fetch('http://3.95.83.1/products')
   const products = await res.json()
 
   // Get the paths we want to pre-render based on products
@@ -459,28 +467,6 @@ export async function getStaticPaths() {
   // on-demand if the path doesn't exist.
   
   return { paths, fallback: 'blocking' }
-}
-// This function gets called at build time on server-side.
-// It may be called again, on a serverless function, if
-// revalidation is enabled and a new request comes in
-export async function getStaticProps({params}) {
-  const [productss, setProducts] = useState([]);
-  const res = axios.get('https://ruvits.com/api/getproducts').then((res) => {
-    setProducts(res?.data?.getProducts || []);
-    
-  });
-  const products = await res.json();
-  const product = products.filter(product => product.title === params.productId)
-  
-  return {
-    props: {
-      product
-    },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 10 seconds
-    revalidate: 10, // In seconds
-  }
 }
 
 
