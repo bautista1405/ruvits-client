@@ -42,7 +42,9 @@ const SuccessfulPage = () => {             //from this page we have to trigger t
   
   return (
     <>
-      <p>Tu compra ha sido realizada con éxito, a la brevedad te llegará un email con el producto que compraste. ¡Gracias!</p>
+      <Flex alignItems="center" justifyContent="center" h="54vh">
+        <p>Tu compra ha sido realizada con éxito, a la brevedad te llegará un email con el producto que compraste. ¡Gracias!</p>
+      </Flex>
     </>
   )
 }
