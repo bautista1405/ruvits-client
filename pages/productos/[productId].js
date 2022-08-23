@@ -35,7 +35,7 @@ import { useFormik } from "formik";
 
 
 const ProductDetails = ({ product }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [session, loading] = useSession();
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
@@ -47,8 +47,6 @@ const ProductDetails = ({ product }) => {
   
   
   const handleSubmit = async (req, res) => {
-
-    const router = useRouter();
     
     const appID = process.env.APP_ID
     
@@ -109,7 +107,7 @@ const ProductDetails = ({ product }) => {
             }));
           }
           
-          window.location.href = response.data.init_point;
+          router.push(response.data.init_point);
         })
 
     })
