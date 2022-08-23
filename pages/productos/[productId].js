@@ -109,7 +109,7 @@ const ProductDetails = ({ product }) => {
             }));
           }
           
-          router.push(response.data.init_point);
+          window.location.href = response.data.init_point;
         })
 
     })
