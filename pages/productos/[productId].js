@@ -49,9 +49,9 @@ const ProductDetails = ({ product }) => {
   const handleSubmit = async (req, res) => {
     
     const appID = process.env.APP_ID
+    const URL = `https://api.mercadopago.com/checkout/preferences?access_token=${product.mpAccessToken}` //url with the vendor's token
     
     product.map(product => {
-      const URL = `https://api.mercadopago.com/checkout/preferences?access_token=${product.mpAccessToken}` //url with the vendor's token
       const data = {
         "items": [
           {
@@ -92,8 +92,7 @@ const ProductDetails = ({ product }) => {
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
       };
       
-      axios.post(URL, data, {headers}, e )
-        e.preventDefault()
+      axios.post(URL, data, {headers} )
         .then(response => {
           
           if(typeof window !== 'undefined') {
@@ -281,7 +280,7 @@ const ProductDetails = ({ product }) => {
                         
                         
                         
-                          <form className="my-3" id="form-container" onSubmit={handleSubmit}>
+                          <form className="my-3" id="form-container" >
               
                             <div className="my-2 inputs_login d-flex">
                             
@@ -291,6 +290,7 @@ const ProductDetails = ({ product }) => {
                                       colorScheme='teal' 
                                       variant='solid' 
                                       type="submit"
+                                      onSubmit={handleSubmit}
                                       marginLeft={5}
                                     >Comprar</Button>
                                   )
