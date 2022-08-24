@@ -280,7 +280,7 @@ const ProductDetails = ({ product }) => {
                         
                         
                         <Formik>
-                          <Form className="my-3" id="form-container" onSubmit={handleSubmit} method="POST">
+                          <Form className="my-3" id="form-container" onSubmit={handleSubmit}>
               
                             <div className="my-2 inputs_login d-flex">
                             
@@ -302,7 +302,6 @@ const ProductDetails = ({ product }) => {
                                       colorScheme='teal' 
                                       variant='solid' 
                                       type="submit"
-                                      onClick={(e) => e.preventDefault()}
                                       marginLeft={5}
                                     >Comprar</Button>
                                   
