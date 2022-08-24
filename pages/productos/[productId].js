@@ -92,7 +92,8 @@ const ProductDetails = ({ product }) => {
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
       };
       
-      axios.post(URL, data, {headers} )
+      axios.post(URL, data, {headers}, e )
+        e.preventDefault()
         .then(response => {
           
           if(typeof window !== 'undefined') {
@@ -280,7 +281,7 @@ const ProductDetails = ({ product }) => {
                         
                         
                         
-                          <form className="my-3" id="form-container" onSubmit={(e) => (e.preventDefault()).then(() => handleSubmit)}>
+                          <form className="my-3" id="form-container" onSubmit={handleSubmit}>
               
                             <div className="my-2 inputs_login d-flex">
                             
