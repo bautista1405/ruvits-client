@@ -279,8 +279,8 @@ const ProductDetails = ({ product }) => {
                       <Flex  >
                         
                         
-                        <Formik>
-                          <Form className="my-3" id="form-container" onSubmit={handleSubmit} method="post">
+                        
+                          <form className="my-3" id="form-container" onSubmit={handleSubmit}>
               
                             <div className="my-2 inputs_login d-flex">
                             
@@ -397,8 +397,8 @@ const ProductDetails = ({ product }) => {
                               }
 
                             </div>
-                          </Form>
-                        </Formik>
+                          </form>
+                        
                       </Flex>
                     </Box>
                   </GridItem>
