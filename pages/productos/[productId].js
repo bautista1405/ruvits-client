@@ -46,8 +46,9 @@ const ProductDetails = ({ product }) => {
     
   
   
-  const handleSubmit = async (req, res) => {
+  const handleSubmit = async (req, res, e) => {
     
+    e.preventDefault();
     const appID = process.env.APP_ID
     const URL = `https://api.mercadopago.com/checkout/preferences?access_token=${product.mpAccessToken}` //url with the vendor's token
     
