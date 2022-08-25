@@ -27,7 +27,7 @@ const PrivacyPolicies = () => {
             realizamos sobre tus datos personales para poder prestar nuestro Servicio y otros fines.
 
             Puedes acceder a esta Política de Privacidad en cualquier momento, ya que se encuentra a tu disposición en el apartado “Privacidad” de la web de Ruvits 
-            https://Ruvits.app (en adelante, el “Sitio”). En el Sitio, el apartado “Privacidad” se encuentra en https://Ruvits.app/privacy_policies.
+            https://ruvits.com (en adelante, el “Sitio”). En el Sitio, el apartado “Privacidad” se encuentra en https://ruvits.com/privacy_policies.
             <br />
             <br />
                         

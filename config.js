@@ -1,7 +1,7 @@
 export const seo = {
-    title: "Bautista's Portfolio",
+    title: "Ruvits",
     description:
-      "A Next.js portfolio",
-    image: "/bighead.svg",
-    canonical: "https://bautista-aramendia-portfolio.vercel.app/",
+      "A marketplace for buying and selling digital products.",
+    image: "/assets/ruvitsLogo-bg.png",
+    canonical: "https://ruvits.com",
 }
