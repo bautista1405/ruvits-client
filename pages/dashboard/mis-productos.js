@@ -176,6 +176,7 @@ const MyProducts = () => {
                 </Flex>
             </Flex>
 
+            {loading && ( <Spinner /> )} 
 
             {loading ? <Spinner /> : product.length == 0 && (
                             
