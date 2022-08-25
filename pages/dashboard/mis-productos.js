@@ -177,7 +177,7 @@ const MyProducts = () => {
             </Flex>
 
 
-            {loading ? (<Spinner />) : product.length == 0 && (
+            {loading ? <Spinner /> : product.length == 0 && (
                             
                         <Flex 
                             display="column" 
@@ -215,7 +215,7 @@ const MyProducts = () => {
                  
             )}
 
-            {loading ? (<Spinner />) : product.length > 0 && (
+            {loading ? <Spinner /> : product.length > 0 && (
 
                 <SimpleGrid 
                     columns={[1, 1, 1, 1, 3]} 
