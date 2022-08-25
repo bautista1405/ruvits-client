@@ -46,7 +46,7 @@ const ProductDetails = ({ product }) => {
     
   
   
-  const handleSubmit = async (req, res) => {
+  const handleSubmit = (req, res) => {
     
     const appID = process.env.APP_ID
     
@@ -92,19 +92,8 @@ const ProductDetails = ({ product }) => {
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
       };
       
-      fetch(URL, {
-        method: 'POST',
-        data,  
-        headers: { 
-          "Authorization": process.env.PROD_TOKEN,
-          "Content-Type": "application/json",
-          'Accept': 'application/json',
-          "Access-Control-Allow-Origin": "*",
-          'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-        }
-      })
-      .then(response => {
+      axios.post(URL, data, {headers} )
+        .then(response => {
           
           if(typeof window !== 'undefined') {
         
@@ -121,7 +110,7 @@ const ProductDetails = ({ product }) => {
           window.location.href = response.data.init_point
           
         
-      })
+        })
         
     })
     
@@ -290,8 +279,8 @@ const ProductDetails = ({ product }) => {
                       <Flex  >
                         
                         
-                        
-                          <form className="my-3" id="form-container" method="post" onSubmit={(e) => e.preventDefault().then(() => handleSubmit() )}>
+                        <Formik>
+                          <Form className="my-3" id="form-container" onSubmit={handleSubmit}>
               
                             <div className="my-2 inputs_login d-flex">
                             
@@ -408,8 +397,8 @@ const ProductDetails = ({ product }) => {
                               }
 
                             </div>
-                          </form>
-                        
+                          </Form>
+                        </Formik>
                       </Flex>
                     </Box>
                   </GridItem>
