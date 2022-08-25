@@ -65,7 +65,7 @@ const ProductDetails = ({ product }) => {
         "marketplace_fee": 1,
         "auto_return": "approved",
         "back_urls": {
-          "success": "/successful",
+          "success": "https://ruvits.com/successful",
         },
         "payment_methods": {
           "excluded_payment_methods": [
