@@ -206,7 +206,7 @@ const Payments = () => {
             <Flex
                 h={[null, null, "100vh"]}
                 maxW="2000px"
-                flexDir={["column", "column", "row"]}
+                flexDir={["column", "column", "column"]}
                 overflow="hidden"
                 margin={[null, null, "100px"]}
                 shadow="base"
