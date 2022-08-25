@@ -92,8 +92,19 @@ const ProductDetails = ({ product }) => {
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
       };
       
-      axios.post(URL, data, {headers} )
-        .then(response => {
+      fetch(URL, {
+        method: 'POST',
+        data,  
+        headers: { 
+          "Authorization": process.env.PROD_TOKEN,
+          "Content-Type": "application/json",
+          'Accept': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+        }
+      })
+      .then(response => {
           
           if(typeof window !== 'undefined') {
         
@@ -110,7 +121,7 @@ const ProductDetails = ({ product }) => {
           window.location.href = response.data.init_point
           
         
-        })
+      })
         
     })
     
@@ -280,7 +291,7 @@ const ProductDetails = ({ product }) => {
                         
                         
                         <Formik>
-                          <Form className="my-3" id="form-container" onSubmit={handleSubmit} method="post">
+                          <Form className="my-3" id="form-container" onSubmit={handleSubmit}>
               
                             <div className="my-2 inputs_login d-flex">
                             
