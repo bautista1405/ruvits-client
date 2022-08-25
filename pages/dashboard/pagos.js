@@ -1,43 +1,21 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { signIn, signOut, useSession, getSession } from "next-auth/client";
+import { signIn, useSession, getSession } from "next-auth/client";
 import {
   Flex,
-  Heading,
-  Avatar,
-  AvatarGroup,
   Text,
   Icon,
-  IconButton,
-  Table,
   Link,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Divider,
   Tooltip,
   Box,
   Button,
-  Input,
-  InputGroup,
-  InputLeftElement
 } from '@chakra-ui/react'
 
 import {
   FiHome,
-  FiPieChart,
   FiDollarSign,
   FiBox,
-  FiCalendar,
-  FiChevronDown,
-  FiChevronUp,
-  FiPlus,
-  FiCreditCard,
-  FiSearch,
-  FiBell
 } from "react-icons/fi"
 import {CgProfile} from 'react-icons/cg'
 import axios from 'axios';
@@ -64,13 +42,9 @@ const Payments = () => {
     }, [getAccessToken])
 
     const token = tokens.filter(token => token.email === session.user.email)
-    const noToken = tokens.filter(token => token.email != session.user.email)
-    
-
-//   const accessToken = token.filter(users => users.user.email === session.user.email)
 
 
-    const deleteToken = (req, res) => { 
+    const deleteToken = () => { 
         
         
         fetch('/api/deletetoken', {
@@ -116,18 +90,18 @@ const Payments = () => {
             token.map((token) => { 
             return (
                     <Flex
-                    h={[null, null, "100vh"]}
-                    maxW="2000px"
-                    flexDir={["column", "column", "row"]}
-                    overflow="hidden"
-                    margin={[null, null, "100px"]}
-                    shadow="base"
-                    rounded={[null, "md"]}
-                    borderRadius="5px"
-                    boxShadow='2xl' 
-                    p='6'
-                    pl={[null, null, 70, 10, 5]}
-                    key={token._id}
+                        h={[null, null, "100vh"]}
+                        maxW="2000px"
+                        flexDir={["column", "column", "row"]}
+                        overflow="hidden"
+                        margin={[null, null, "100px"]}
+                        shadow="base"
+                        rounded={[null, "md"]}
+                        borderRadius="5px"
+                        boxShadow='2xl' 
+                        p='6'
+                        pl={[null, null, 70, 10, 5]}
+                        key={token._id}
                     >
                         {/* Column 1 */}
                         <Flex
@@ -317,14 +291,14 @@ const Payments = () => {
             </Flex>
 
             <Flex 
-            display="column" 
-            justifyContent="center" 
-            w={["100%", "100%", "100%", "100%", "100%"]}
-            mt={10}
-            pl={[0, 100, 100]} 
-            rounded={[null, "md"]}
-            borderRadius="5px"
-            boxShadow='sm'
+                display="column" 
+                justifyContent="center" 
+                w={["100%", "100%", "100%", "100%", "100%"]}
+                mt={10}
+                pl={[0, 100, 100]} 
+                rounded={[null, "md"]}
+                borderRadius="5px"
+                boxShadow='sm'
             >
             <p>
                 Para poder vender tus productos, es necesario que vincules tu cuenta de Mercado Pago con la plataforma, así podés recibir pagos.
