@@ -175,7 +175,46 @@ const MyProducts = () => {
                 </Flex>
             </Flex>
 
-            
+
+            {product.length == 0 && (
+                            
+                        <Flex 
+                            display="column" 
+                            justifyContent="center" 
+                            w={["100%", "100%", "100%", "100%", "100%"]}
+                            mt={10}
+                            pl={[0, 100, 100]} 
+                            rounded={[null, "md"]}
+                            borderRadius="5px"
+                            boxShadow='sm'
+                        >
+                        
+                        <Flex 
+                                display="column" 
+                                justifyContent="center" 
+                                w={["100%", "100%", "100%", "100%", "100%"]}
+                                mt={10}
+                                pl={[0, 100, 100]} 
+                                rounded={[null, "md"]}
+                                borderRadius="5px"
+                                boxShadow='sm'
+                            >
+                                <Text fontWeight="bold" fontSize={16} >
+                                    Parece que no tenés ningún producto publicado. Para crear uno hacé click en el botón "Nuevo producto".
+                                </Text>
+
+                            </Flex>
+                        </Flex>
+                        
+                        
+                 
+                        
+                 
+                 
+            )}
+
+            {product.length > 0 && (
+
                 <SimpleGrid 
                     columns={[1, 1, 1, 1, 3]} 
                     justifyContent="center" 
@@ -187,6 +226,8 @@ const MyProducts = () => {
                     p='6' 
                     ml={[null, 100, 200, 100, null]}
                 >
+
+
                     {product.map( product =>  {
                         return (
                             <Flex
@@ -296,6 +337,8 @@ const MyProducts = () => {
                             )
                     })}
                 </SimpleGrid>
+            )}
+            
                 
                 </Flex>
             </>
