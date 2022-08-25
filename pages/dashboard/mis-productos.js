@@ -200,7 +200,8 @@ const MyProducts = () => {
                                 boxShadow='sm'
                             >
                                 <Text fontWeight="bold" fontSize={16} >
-                                    Parece que no tenés ningún producto publicado. Para crear uno hacé click en el botón "Nuevo producto".
+                                    Parece que no tenés ningún producto publicado. Para crear uno hacé click en el botón 
+                                    &quot;Nuevo producto&quot;.
                                 </Text>
 
                             </Flex>
