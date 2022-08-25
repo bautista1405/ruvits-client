@@ -123,7 +123,7 @@ export default function Dashboard({data}) {
                         
                         <Flex
                           flexDir={["column", "column", "column", "column", "column"]}
-                          align={["center", "center", "center", "flex-start", "flex-start"]}
+                          align={["center", "center", "flex-start", "flex-start", "flex-start"]}
                           wrap={["wrap", "wrap", "nowrap", "nowrap", "nowrap"]}
                           justifyContent="center"
                       >
