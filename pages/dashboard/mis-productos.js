@@ -139,18 +139,18 @@ const MyProducts = () => {
                               </Link>
                           </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                                <Link href="/dashboard/pagos" display={["none", "none", "flex", "flex", "flex"]}>
-                                    <Icon as={FiDollarSign} fontSize="2xl" />
-                                
-                                
-                                    <Text fontSize="18px" ml={1}>
+                            <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                  <Icon as={FiDollarSign} fontSize="2xl" className="active-icon" />
+                            </Link>
+                            <Link href='/dashboard/pagos' _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                <Text fontSize="18px" ml={1}>
                                         Autorización de pagos {" "} {" "}
-                                        <Tooltip label="Para poder vender tus productos, tenés que vincular tu cuenta de MercadoPago">
+                                    <Tooltip label="Para poder vender tus productos, tenés que vincular tu cuenta de MercadoPago">
                                            <span> <Icon as={BsInfoCircle} /> </span>
-                                        </Tooltip>
-                                    </Text>
-                                </Link>
-                            </Flex>
+                                    </Tooltip>
+                                </Text>
+                            </Link>
+                          </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
                               <Link display={["none", "none", "flex", "flex", "flex"]}>
                                   <Icon as={FiBox} fontSize="2xl" /></Link>
