@@ -46,8 +46,8 @@ const ProductDetails = ({ product }) => {
     
   
   
-  const handleSubmit = async (req, res, e) => {
-    e.preventDefault();
+  const handleSubmit = async (req, res) => {
+    
     const appID = process.env.APP_ID
     
     product.map(product => {
@@ -291,7 +291,7 @@ const ProductDetails = ({ product }) => {
                         
                         
                         
-                          <form className="my-3" id="form-container" onSubmit={handleSubmit}>
+                          <form className="my-3" id="form-container" onSubmit={(e) => e.preventDefault().then(() => handleSubmit )}>
               
                             <div className="my-2 inputs_login d-flex">
                             
