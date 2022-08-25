@@ -107,10 +107,7 @@ const ProductDetails = ({ product }) => {
             }))
             
           }
-          if(response) {
-
-            window.location.href = response.data.init_point
-          }
+          
           
         
         })
@@ -118,6 +115,10 @@ const ProductDetails = ({ product }) => {
     })
     
   };
+
+  const handleProduct = () => {
+    handleSubmit();
+  }
 
   const deleteItem = (req, res) => {
     product.map(product => {
@@ -283,7 +284,7 @@ const ProductDetails = ({ product }) => {
                         
                         
                         <Formik>
-                          <Form className="my-3" id="form-container" onSubmit={handleSubmit}>
+                          <Form className="my-3" id="form-container" onSubmit={handleProduct}>
               
                             <div className="my-2 inputs_login d-flex">
                             
