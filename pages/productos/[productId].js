@@ -116,7 +116,8 @@ const ProductDetails = ({ product }) => {
     
   };
 
-  const handleProduct = () => {
+  const handleProduct = (e) => {
+    e.preventDefault();
     handleSubmit();
   }
 
