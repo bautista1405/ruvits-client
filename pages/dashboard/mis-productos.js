@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { signIn, signOut, useSession, getSession, session } from "next-auth/client";
 import {
     HStack,
+    Spinner,
     SimpleGrid,
     chakra,
     Flex,
@@ -176,7 +177,7 @@ const MyProducts = () => {
             </Flex>
 
 
-            {product.length == 0 && (
+            {loading ? (<Spinner />) : product.length == 0 && (
                             
                         <Flex 
                             display="column" 
