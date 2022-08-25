@@ -19,7 +19,9 @@ const SuccessfulConnection = () => {
 
   return (
     <>
-        <Flex alignItems="center" justifyContent="center" h="54vh"></Flex>
+        <Flex alignItems="center" justifyContent="center" h="54vh">
+          <p>Tu cuenta de Mercado Pago fue vinculada. ¡Ahora podés crear tus productos y empezar a vender!</p>
+        </Flex>
     </>
   )
 }
