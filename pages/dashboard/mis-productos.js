@@ -215,7 +215,7 @@ const MyProducts = () => {
                  
             )}
 
-            {product.length > 0 && (
+            {loading ? (<Spinner />) : product.length > 0 && (
 
                 <SimpleGrid 
                     columns={[1, 1, 1, 1, 3]} 
