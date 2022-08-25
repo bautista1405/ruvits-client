@@ -291,7 +291,7 @@ const ProductDetails = ({ product }) => {
                         
                         
                         
-                          <form className="my-3" id="form-container" onSubmit={(e) => e.preventDefault().then(() => handleSubmit() )}>
+                          <form className="my-3" id="form-container" method="post" onSubmit={(e) => e.preventDefault().then(() => handleSubmit() )}>
               
                             <div className="my-2 inputs_login d-flex">
                             
