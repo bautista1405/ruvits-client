@@ -74,7 +74,7 @@ const MyProducts = () => {
     
   return (
     <>
-        {!session && (
+        {/* {!session && (
             <Flex alignItems="center" justifyContent="center" h="54vh">
                 Para ver tus productos debes  
                 <Button
@@ -90,9 +90,9 @@ const MyProducts = () => {
                     iniciar sesión.
                 </Button>
             </Flex>
-        )}           
+        )}            */}
 
-        {session && (
+        {!session && (
             <>
 
             <Flex 
@@ -103,18 +103,18 @@ const MyProducts = () => {
                 boxShadow='2xl' 
                 p='6'
                 margin={[null, "null", "100px"]}
-                
+                h={["null", "null", "40vh", "50vh", "60vh"]}
             >
                 {/* Column 1 */}
 
                 <Flex
-                w={["100%", "100%", "10%", "15%", "15%"]}
-                flexDir="column"
-                alignItems="center"
-                padding={10}
-                color="gray.700"
-                pl={[null, null, 100, 100, 5]}
-            >
+                    w={["100%", "100%", "10%", "15%", "15%"]}
+                    flexDir="column"
+                    alignItems="center"
+                    padding={10}
+                    color="gray.700"
+                    pl={[null, null, 100, 100, 5]}
+                >
                 <Flex
                     flexDir="column"
                     h={[null, null, "100vh"]}
@@ -176,9 +176,8 @@ const MyProducts = () => {
                 </Flex>
             </Flex>
 
-            {loading && ( <Spinner /> )} 
 
-            {loading ? <Spinner /> : product.length == 0 && (
+            {product.length == 0 && (
                             
                         <Flex 
                             display="column" 
@@ -216,7 +215,7 @@ const MyProducts = () => {
                  
             )}
 
-            {loading ? <Spinner /> : product.length > 0 && (
+            {product.length > 0 && (
 
                 <SimpleGrid 
                     columns={[1, 1, 1, 1, 3]} 
