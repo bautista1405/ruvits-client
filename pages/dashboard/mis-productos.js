@@ -307,7 +307,7 @@ const MyProducts = () => {
                             // boxShadow='base' 
                             // mt={10}
                             // p='6' 
-                            ml={[null, 100, 200, 100, null]}
+                            // ml={[null, 100, 200, 100, null]}
                         >
 
 
