@@ -210,6 +210,11 @@ const MyProducts = () => {
                 
                 </Flex>
 
+                </>
+            )}
+
+            {session && product.length > 0 && (
+
                 <Flex 
                     flexDir={["column", "column", "row", "row", "row"]}
                     maxW="2000px"
@@ -418,9 +423,10 @@ const MyProducts = () => {
                     )}
 
                 </Flex>
+            )}
 
-            </>
-        )}  
+
+              
     </>
   )
 }
