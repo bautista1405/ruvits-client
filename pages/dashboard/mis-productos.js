@@ -92,7 +92,7 @@ const MyProducts = () => {
             </Flex>
         )}           
 
-        {session && (
+        {session && product.length == 0 && (
             <>
 
             <Flex 
@@ -103,7 +103,7 @@ const MyProducts = () => {
                 boxShadow='2xl' 
                 p='6'
                 margin={[null, "null", "100px"]}
-                h={["null", "null", "40vh", "50vh", "60vh"]}
+                h={["20vh", "20vh", "40vh", "50vh", "60vh"]}
             >
                 {/* Column 1 */}
 
@@ -177,7 +177,7 @@ const MyProducts = () => {
             </Flex>
 
 
-            {product.length == 0 && (
+            
                             
                         <Flex 
                             display="column" 
@@ -207,142 +207,218 @@ const MyProducts = () => {
 
                             </Flex>
                         </Flex>
-                        
-                        
-                 
-                        
-                 
-                 
-            )}
-
-            {product.length > 0 && (
-
-                <SimpleGrid 
-                    columns={[1, 1, 1, 1, 3]} 
-                    justifyContent="center" 
-                    spacing={10} 
-                    rounded={[null, "md"]}
-                    borderRadius="5px"
-                    boxShadow='base' 
-                    mt={10}
-                    p='6' 
-                    ml={[null, 100, 200, 100, null]}
-                >
-
-
-                    {product.map( product =>  {
-                        return (
-                            <Flex
-                            justifyContent="center" 
-                            ml={[null, 100, 0, 0, 5]}
-                            key={product._id}
-                            >
-                            <Flex
-                                direction="column"
-                                justifyContent="center"
-                                alignItems="center"
-                                w="sm"
-                                mx="auto"
-                            >
-                                <Box
-                                bg="gray.300"
-                                h={64}
-                                w="full"
-                                rounded="lg"
-                                shadow="md"
-                                bgSize="cover"
-                                bgPos="center"
-                                style={{
-                                    backgroundImage:
-                                    `url(${product.content[0]})`,
-                                }}
-                                ></Box>
-    
-                                <Box
-                                w={{
-                                    base: 56,
-                                    md: 64,
-                                }}
-                                bg="gray.800"
-                                _dark={{
-                                    bg: "gray.800",
-                                }}
-                                mt={-10}
-                                shadow="lg"
-                                rounded="lg"
-                                overflow="hidden"
-                                >
-                                <chakra.h3
-                                    py={2}
-                                    textAlign="center"
-                                    fontWeight="bold"
-                                    textTransform="uppercase"
-                                    color="gray.200"
-                                    _dark={{
-                                    color: "white",
-                                    }}
-                                    letterSpacing={1}
-                                >
-                                    {product.title}
-                                </chakra.h3>
-    
-                                <Flex
-                                    alignItems="center"
-                                    justifyContent="space-between"
-                                    py={2}
-                                    px={3}
-                                    bg="gray.200"
-                                    _dark={{
-                                    bg: "gray.700",
-                                    }}
-                                >
-                                    <chakra.span
-                                    fontWeight="bold"
-                                    color="gray.800"
-                                    _dark={{
-                                        color: "gray.200",
-                                    }}
-                                    >
-                                    ${product.price}
-                                    </chakra.span>
-                                    <a href={`/productos/${product.title}`} >
-                                    <chakra.button
-                                    bg="gray.800"
-                                    fontSize="xs"
-                                    fontWeight="bold"
-                                    color="white"
-                                    px={2}
-                                    py={1}
-                                    rounded="lg"
-                                    textTransform="uppercase"
-                                    _hover={{
-                                        bg: "gray.700",
-                                        _dark: {
-                                        bg: "gray.600",
-                                        },
-                                    }}
-                                    _focus={{
-                                        bg: "gray.700",
-                                        _dark: {
-                                        bg: "gray.600",
-                                        },
-                                        outline: "none",
-                                    }}
-                                    >
-                                    Ver detalles
-                                    </chakra.button>
-                                    </a>
-                                </Flex>
-                                </Box>
-                            </Flex>
-                            </Flex>
-                            )
-                    })}
-                </SimpleGrid>
-            )}
-            
                 
                 </Flex>
+
+                <Flex 
+                    flexDir={["column", "column", "row", "row", "row"]}
+                    maxW="2000px"
+                    rounded={[null, "md"]}
+                    borderRadius="5px"
+                    boxShadow='2xl' 
+                    p='6'
+                    margin={[null, "null", "100px"]}
+                    
+                >
+                    {/* Column 1 */}
+
+                    <Flex
+                        w={["100%", "100%", "10%", "15%", "15%"]}
+                        flexDir="column"
+                        alignItems="center"
+                        padding={10}
+                        color="gray.700"
+                        pl={[null, null, 100, 100, 5]}
+                    >
+                    <Flex
+                        flexDir="column"
+                        h={[null, null, "100vh"]}
+                        justifyContent="space-between"
+                    >
+                        <Flex
+                            flexDir="column"
+                            as="nav"
+                        >
+
+                    <Flex
+                        flexDir={["column", "column", "column", "column", "column"]}
+                        align={["center", "center", "center", "flex-start", "flex-start"]}
+                        wrap={["wrap", "wrap", "nowrap", "nowrap", "nowrap"]}
+                        justifyContent="center"
+                    >
+                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]}>
+                                <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                    <Icon as={FiHome} fontSize="2xl" className="active-icon" />
+                                </Link>
+                                <Link href='/dashboard' _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                    <Text className="active" fontSize="18px" ml={2}>Inicio</Text>
+                                </Link>
+                            </Flex>
+                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
+                                <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                    <Icon as={FiDollarSign} fontSize="2xl" className="active-icon" />
+                                </Link>
+                                <Link href='/dashboard/pagos' _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                    <Text fontSize="18px" ml={1}>
+                                            Autorización de pagos {" "} {" "}
+                                        <Tooltip label="Para poder vender tus productos, tenés que vincular tu cuenta de MercadoPago">
+                                            <span> <Icon as={BsInfoCircle} /> </span>
+                                        </Tooltip>
+                                    </Text>
+                                </Link>
+                            </Flex>
+                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
+                                <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                    <Icon as={FiBox} fontSize="2xl" /></Link>
+                                <Link href="/dashboard/mis-productos" _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                    <Text fontSize="18px" ml={2}>Mis productos</Text>
+                                </Link>
+                            </Flex>
+                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
+                                <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                    <Icon as={CgProfile} fontSize="2xl" /></Link>
+                                <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]} href="/dashboard/mi-perfil">
+                                    <Text fontSize="18px" ml={2}>Mi perfil</Text>
+                                </Link>
+                            </Flex>
+                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={10}>
+                                <Link href="/nuevo-producto">
+                                <Button colorScheme="white" variant="outline">+ Nuevo producto</Button>
+                                </Link> 
+                            </Flex>
+                        </Flex>
+                        </Flex>
+                    </Flex>
+                    </Flex>
+
+                    {product.length > 0 && (
+
+                        <SimpleGrid 
+                            columns={[1, 1, 1, 1, 3]} 
+                            justifyContent="center" 
+                            spacing={10} 
+                            rounded={[null, "md"]}
+                            borderRadius="5px"
+                            boxShadow='base' 
+                            mt={10}
+                            p='6' 
+                            ml={[null, 100, 200, 100, null]}
+                        >
+
+
+                            {product.map( product =>  {
+                                return (
+                                    <Flex
+                                    justifyContent="center" 
+                                    ml={[null, 100, 0, 0, 5]}
+                                    key={product._id}
+                                    >
+                                    <Flex
+                                        direction="column"
+                                        justifyContent="center"
+                                        alignItems="center"
+                                        w="sm"
+                                        mx="auto"
+                                    >
+                                        <Box
+                                        bg="gray.300"
+                                        h={64}
+                                        w="full"
+                                        rounded="lg"
+                                        shadow="md"
+                                        bgSize="cover"
+                                        bgPos="center"
+                                        style={{
+                                            backgroundImage:
+                                            `url(${product.content[0]})`,
+                                        }}
+                                        ></Box>
+
+                                        <Box
+                                        w={{
+                                            base: 56,
+                                            md: 64,
+                                        }}
+                                        bg="gray.800"
+                                        _dark={{
+                                            bg: "gray.800",
+                                        }}
+                                        mt={-10}
+                                        shadow="lg"
+                                        rounded="lg"
+                                        overflow="hidden"
+                                        >
+                                        <chakra.h3
+                                            py={2}
+                                            textAlign="center"
+                                            fontWeight="bold"
+                                            textTransform="uppercase"
+                                            color="gray.200"
+                                            _dark={{
+                                            color: "white",
+                                            }}
+                                            letterSpacing={1}
+                                        >
+                                            {product.title}
+                                        </chakra.h3>
+
+                                        <Flex
+                                            alignItems="center"
+                                            justifyContent="space-between"
+                                            py={2}
+                                            px={3}
+                                            bg="gray.200"
+                                            _dark={{
+                                            bg: "gray.700",
+                                            }}
+                                        >
+                                            <chakra.span
+                                            fontWeight="bold"
+                                            color="gray.800"
+                                            _dark={{
+                                                color: "gray.200",
+                                            }}
+                                            >
+                                            ${product.price}
+                                            </chakra.span>
+                                            <a href={`/productos/${product.title}`} >
+                                            <chakra.button
+                                            bg="gray.800"
+                                            fontSize="xs"
+                                            fontWeight="bold"
+                                            color="white"
+                                            px={2}
+                                            py={1}
+                                            rounded="lg"
+                                            textTransform="uppercase"
+                                            _hover={{
+                                                bg: "gray.700",
+                                                _dark: {
+                                                bg: "gray.600",
+                                                },
+                                            }}
+                                            _focus={{
+                                                bg: "gray.700",
+                                                _dark: {
+                                                bg: "gray.600",
+                                                },
+                                                outline: "none",
+                                            }}
+                                            >
+                                            Ver detalles
+                                            </chakra.button>
+                                            </a>
+                                        </Flex>
+                                        </Box>
+                                    </Flex>
+                                    </Flex>
+                                )
+                            })}
+                        </SimpleGrid>
+                    )}
+
+                </Flex>
+
             </>
         )}  
     </>
