@@ -74,7 +74,7 @@ const MyProducts = () => {
     
   return (
     <>
-        {/* {!session && (
+        {!session && (
             <Flex alignItems="center" justifyContent="center" h="54vh">
                 Para ver tus productos debes  
                 <Button
@@ -90,9 +90,9 @@ const MyProducts = () => {
                     iniciar sesión.
                 </Button>
             </Flex>
-        )}            */}
+        )}           
 
-        {!session && (
+        {session && (
             <>
 
             <Flex 
