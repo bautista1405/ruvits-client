@@ -301,7 +301,7 @@ const MyProducts = () => {
                         <SimpleGrid 
                             columns={[1, 1, 1, 1, 3]} 
                             // justifyContent="center" 
-                            spacing={10} 
+                            // spacing={10} 
                             // rounded={[null, "md"]}
                             // borderRadius="5px"
                             // boxShadow='base' 
