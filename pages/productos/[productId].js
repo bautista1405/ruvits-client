@@ -208,7 +208,7 @@ const ProductDetails = ({ product }) => {
           product.map(product => {
                 
             return (
-              <Container maxW={'7xl'}>
+              <Container maxW={'7xl'} key={product._id}>
               <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
                 spacing={{ base: 8, md: 10 }}
