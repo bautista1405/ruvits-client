@@ -298,18 +298,19 @@ const MyProducts = () => {
 
                     {product.length > 0 && (
 
-                        <Flex>
+                        <Flex
+                            justifyContent="center" 
+                            rounded={[null, "md"]}
+                            borderRadius="5px"
+                            boxShadow='base' 
+                            mt={10}
+                            p='6' 
+                            ml={[null, 100, 200, 100, null]}
+                        >
 
                         <SimpleGrid 
                             columns={[1, 1, 1, 1, 3]} 
-                            // justifyContent="center" 
-                            // spacing={10} 
-                            // rounded={[null, "md"]}
-                            // borderRadius="5px"
-                            // boxShadow='base' 
-                            // mt={10}
-                            // p='6' 
-                            // ml={[null, 100, 200, 100, null]}
+                            spacing={10}
                         >
 
 
