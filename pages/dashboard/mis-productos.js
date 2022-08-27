@@ -103,7 +103,7 @@ const MyProducts = () => {
                 boxShadow='2xl' 
                 p='6'
                 margin={[null, "null", "100px"]}
-                h={["20vh", "20vh", "40vh", "50vh", "60vh"]}
+                h={["null", "null", "40vh", "50vh", "60vh"]}
             >
                 {/* Column 1 */}
 
