@@ -261,7 +261,9 @@ const ProductDetails = ({ product }) => {
                         color="gray.700"
                         fontSize={'2xl'}
                         fontWeight={'300'}
-                        noOfLines={[1, 2, 3]}
+                        text-overflow="ellipsis"
+                        overflow="hidden"
+                        white-space="nowrap"
                       >
                         {product.description}
                       </Text>
