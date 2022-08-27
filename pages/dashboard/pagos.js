@@ -91,7 +91,7 @@ const Payments = () => {
             return (
                     <Flex
                         h={["null", "null", "40vh", "50vh", "70vh"]}
-                        
+                        w="100%"
                         maxW="2000px"
                         flexDir={["column", "column", "row"]}
                         overflow="hidden"
@@ -206,7 +206,7 @@ const Payments = () => {
 
             <Flex
                 h={["null", "null", "40vh", "50vh", "70vh"]}
-                
+                w="100%"
                 maxW="2000px"
                 flexDir={["column", "column", "column"]}
                 overflow="hidden"
