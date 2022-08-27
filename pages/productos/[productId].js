@@ -261,12 +261,11 @@ const ProductDetails = ({ product }) => {
                         color="gray.700"
                         fontSize={'2xl'}
                         fontWeight={'300'}
+                        noOfLines={1}
                       >
                         {product.description}
                       </Text>
-                      <Text fontSize={'lg'}>
-                        {product.description}
-                      </Text>
+                      
                     </VStack>
                     <Box>
                       <Text
