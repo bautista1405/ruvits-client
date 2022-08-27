@@ -92,7 +92,7 @@ const MyProducts = () => {
             </Flex>
         )}           
 
-        {session && product.length == 0 && (
+        {product.length == 0 && (
             <>
 
             <Flex 
@@ -213,7 +213,7 @@ const MyProducts = () => {
                 </>
             )}
 
-            {session && product.length > 0 && (
+            {product.length > 0 && (
 
                 <Flex 
                     flexDir={["column", "column", "row", "row", "row"]}
@@ -296,7 +296,7 @@ const MyProducts = () => {
                     </Flex>
                     </Flex>
 
-                    {product.length > 0 && (
+                    
 
                         <Flex
                             justifyContent="center" 
@@ -424,7 +424,7 @@ const MyProducts = () => {
                             })}
                         </SimpleGrid>
                         </Flex>
-                    )}
+                    
 
                 </Flex>
             )}
