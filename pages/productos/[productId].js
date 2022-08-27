@@ -265,10 +265,7 @@ const ProductDetails = ({ product }) => {
                         {product.description}
                       </Text>
                       <Text fontSize={'lg'}>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                        aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                        maxime modi nam officiis porro, quae, quisquam quos
-                        reprehenderit velit? Natus, totam.
+                        {product.description}
                       </Text>
                     </VStack>
                     <Box>
