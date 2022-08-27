@@ -92,7 +92,7 @@ const MyProducts = () => {
             </Flex>
         )}           
 
-        {product.length == 0 && (
+        {session && product.length == 0 && (
             <>
 
             <Flex 
