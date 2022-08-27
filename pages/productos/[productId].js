@@ -5,10 +5,9 @@ import Script from 'next/script'
 import { useRouter } from 'next/router'
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 
-import styles from '../../styles/ProductDetails.module.css'
 
-import { SimpleGrid, Box, Flex, chakra, Link, Button, Image, GridItem, Stackc, Heading } from '@chakra-ui/react'
 import {
+  SimpleGrid, Box, Flex, chakra, Link, Button, Image, GridItem, Stack, Heading,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -26,12 +25,20 @@ import {
   Icon,
   VisuallyHidden,
   Text,
+  Container,
+  Stack,
+  VStack,
+  StackDivider,
+  useColorModeValue,
+  List,
+  ListItem,
 } from '@chakra-ui/react'
+import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { MdLocalShipping } from 'react-icons/md';
 
 import { Formik, Form } from "formik";
 import axios from "axios";
 import swal from 'sweetalert';
-import { useFormik } from "formik";
 
 
 const ProductDetails = ({ product }) => {
@@ -201,224 +208,167 @@ const ProductDetails = ({ product }) => {
           product.map(product => {
                 
             return (
-              <Box 
-                margin="auto" 
-                shadow="base"
-                rounded={[null, "md"]}
-                borderRadius="5px"
-                backgroundColor="gray.100"
-                w={["80vw", "100vw", "90vw", "83vw", "86vw"]}
-                mb={20}
-                key={product._id}
-                
-              >
-                <SimpleGrid
-                  display={{ base: "initial", md: "grid" }}
-                  columns={{ md: 3 }}
-                  spacing={{ md: 6 }}
-                  
-                >
-                  <GridItem colSpan={{ md: 1 }} >
-                    <Box px={[4, 0]} py={[4, 0]} margin={["30px", "30px", "30px", "30px", "30px"]}  >
-                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
-                        Nombre
-                      </Heading>
+              <Container maxW={'7xl'}>
+              <SimpleGrid
+                columns={{ base: 1, lg: 2 }}
+                spacing={{ base: 8, md: 10 }}
+                py={{ base: 18, md: 24 }}>
+                <Flex>
+                  <Image
+                    rounded={'md'}
+                    alt={'product image'}
+                    src={
+                      'https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080'
+                    }
+                    fit={'cover'}
+                    align={'center'}
+                    w={'100%'}
+                    h={{ base: '100%', sm: '400px', lg: '500px' }}
+                  />
+                </Flex>
+                <Stack spacing={{ base: 6, md: 10 }}>
+                  <Box as={'header'}>
+                    <Heading
+                      lineHeight={1.1}
+                      fontWeight={600}
+                      fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
+                      Automatic Watch
+                    </Heading>
+                    <Text
+                      color={useColorModeValue('gray.900', 'gray.400')}
+                      fontWeight={300}
+                      fontSize={'2xl'}>
+                      $350.00 USD
+                    </Text>
+                  </Box>
+        
+                  <Stack
+                    spacing={{ base: 4, sm: 6 }}
+                    direction={'column'}
+                    divider={
+                      <StackDivider
+                        borderColor={useColorModeValue('gray.200', 'gray.600')}
+                      />
+                    }>
+                    <VStack spacing={{ base: 4, sm: 6 }}>
                       <Text
-                        mt={1}
-                        fontSize="sm"
-                        color="gray.700"
-                      >
-                        {product.title}
+                        color={useColorModeValue('gray.500', 'gray.400')}
+                        fontSize={'2xl'}
+                        fontWeight={'300'}>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                        diam nonumy eirmod tempor invidunt ut labore
                       </Text>
-                    </Box>
-
-                    <Box px={[4, 0]} margin="30px"  >
-                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
-                        Descripción
-                      </Heading>
+                      <Text fontSize={'lg'}>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                        aliquid amet at delectus doloribus dolorum expedita hic, ipsum
+                        maxime modi nam officiis porro, quae, quisquam quos
+                        reprehenderit velit? Natus, totam.
+                      </Text>
+                    </VStack>
+                    <Box>
                       <Text
-                        mt={1}
-                        fontSize="sm"
-                        color="gray.700"
-                      >
-                        {product.description}
+                        fontSize={{ base: '16px', lg: '18px' }}
+                        color={useColorModeValue('yellow.500', 'yellow.300')}
+                        fontWeight={'500'}
+                        textTransform={'uppercase'}
+                        mb={'4'}>
+                        Features
                       </Text>
+        
+                      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+                        <List spacing={2}>
+                          <ListItem>Chronograph</ListItem>
+                          <ListItem>Master Chronometer Certified</ListItem>{' '}
+                          <ListItem>Tachymeter</ListItem>
+                        </List>
+                        <List spacing={2}>
+                          <ListItem>Anti‑magnetic</ListItem>
+                          <ListItem>Chronometer</ListItem>
+                          <ListItem>Small seconds</ListItem>
+                        </List>
+                      </SimpleGrid>
                     </Box>
-
-                    <Box px={[4, 0]} margin="30px"  >
-                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
-                        Precio
-                      </Heading>
+                    <Box>
                       <Text
-                        mt={1}
-                        fontSize="sm"
-                        color="gray.700"
-                      >
-                        ${product.price}
+                        fontSize={{ base: '16px', lg: '18px' }}
+                        color={useColorModeValue('yellow.500', 'yellow.300')}
+                        fontWeight={'500'}
+                        textTransform={'uppercase'}
+                        mb={'4'}>
+                        Product Details
                       </Text>
+        
+                      <List spacing={2}>
+                        <ListItem>
+                          <Text as={'span'} fontWeight={'bold'}>
+                            Between lugs:
+                          </Text>{' '}
+                          20 mm
+                        </ListItem>
+                        <ListItem>
+                          <Text as={'span'} fontWeight={'bold'}>
+                            Bracelet:
+                          </Text>{' '}
+                          leather strap
+                        </ListItem>
+                        <ListItem>
+                          <Text as={'span'} fontWeight={'bold'}>
+                            Case:
+                          </Text>{' '}
+                          Steel
+                        </ListItem>
+                        <ListItem>
+                          <Text as={'span'} fontWeight={'bold'}>
+                            Case diameter:
+                          </Text>{' '}
+                          42 mm
+                        </ListItem>
+                        <ListItem>
+                          <Text as={'span'} fontWeight={'bold'}>
+                            Dial color:
+                          </Text>{' '}
+                          Black
+                        </ListItem>
+                        <ListItem>
+                          <Text as={'span'} fontWeight={'bold'}>
+                            Crystal:
+                          </Text>{' '}
+                          Domed, scratch‑resistant sapphire crystal with anti‑reflective
+                          treatment inside
+                        </ListItem>
+                        <ListItem>
+                          <Text as={'span'} fontWeight={'bold'}>
+                            Water resistance:
+                          </Text>{' '}
+                          5 bar (50 metres / 167 feet){' '}
+                        </ListItem>
+                      </List>
                     </Box>
-
-                    <Box px={[4, 0]} margin="30px"  >
-                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
-                        Vendedor
-                      </Heading>
-                      <Text
-                        mt={1}
-                        fontSize="sm"
-                        color="gray.700"
-                      >
-                        {product.vendor}
-                      </Text>
-                    </Box>
-
-                    <Box mt={220} >
-                      <Flex  >
-                        
-                        
-                        <Formik>
-                          <Form className="my-3" id="form-container" onSubmit={handleProduct}>
-              
-                            <div className="my-2 inputs_login d-flex">
-                            
-                              { session && (
-                                  product.vendor !== session.user.name && (
-                                    <Button 
-                                      colorScheme='teal' 
-                                      variant='solid' 
-                                      type="submit"
-                                      marginLeft={5}
-                                    >Comprar</Button>
-                                  )
-                                )
-                              }
-
-                              { !session && (
-                                  
-                                    <Button 
-                                      colorScheme='teal' 
-                                      variant='solid' 
-                                      type="submit"
-                                      marginLeft={5}
-                                    >Comprar</Button>
-                                  
-                                )
-                              } 
-                              
-                              { session && (
-                                  product.vendor === session.user.name && (
-
-                                    <>
-
-                                      <Button onClick={onOpen} ml={5} variant="outline" colorScheme="cyan">Editar</Button>
-                                            {/* <Button ml={4} ref={finalRef}>
-                                              I'll receive focus on close
-                                            </Button> */}
-
-                                            <Modal
-                                              initialFocusRef={initialRef}
-                                              finalFocusRef={finalRef}
-                                              isOpen={isOpen}
-                                              onClose={onClose}
-                                            >
-                                              <ModalOverlay />
-                                              <ModalContent>
-                                                <ModalHeader>Edita tu producto</ModalHeader>
-                                                <ModalCloseButton />
-                                                <ModalBody pb={6}>
-                                                  <FormControl>
-                                                    <FormLabel>Nombre</FormLabel>
-                                                    <Input 
-                                                      ref={initialRef} 
-                                                      placeholder={product.title} 
-                                                      type='text'
-                                                      id='name'
-                                                      name='title'
-                                                      value={formik.values.title}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
-                                                      required
-                                                    />
-                                                  </FormControl>
-
-                                                  <FormControl mt={4}>
-                                                    <FormLabel>Descripción</FormLabel>
-                                                    <Textarea 
-                                                      placeholder={product.description} 
-                                                      type='text'
-                                                      //id='name'
-                                                      name='description'
-                                                      value={formik.values.description}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
-                                                      required
-                                                    />
-                                                  </FormControl>
-
-                                                  <FormControl mt={4}>
-                                                    <FormLabel>Precio</FormLabel>
-                                                    <Input 
-                                                      placeholder={product.price} 
-                                                      type='text'
-                                                      id='name'
-                                                      name='price'
-                                                      value={formik.values.price}
-                                                      onChange={formik.handleChange}
-                                                      onBlur={formik.handleBlur}
-                                                      required
-                                                    />
-                                                  </FormControl>
-
-
-                                                </ModalBody>
-
-                                                <ModalFooter>
-                                                  <Button colorScheme='blue' mr={3} onClick={updateItem}>
-                                                    Guardar
-                                                  </Button>
-                                                  <Button onClick={onClose}>Cancelar</Button>
-                                                </ModalFooter>
-                                              </ModalContent>
-                                            </Modal>
-                                              <Button 
-                                                colorScheme='red' 
-                                                variant='outline' 
-                                                marginLeft={5}
-                                                onClick={deleteItem}
-                                              >Eliminar</Button>
-
-                                    </>
-                                  )
-                                
-                                )
-                              }
-
-                            </div>
-                          </Form>
-                        </Formik>
-                      </Flex>
-                    </Box>
-                  </GridItem>
-                  <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }} >
-      
-                    
-                    
-                      
-                        <Image
-                          width="full"
-                          height={["300px", "600px", "600px", "600px", "600px"]}
-                          borderRadius="4px"
-                          fit="cover"
-                          src={product.content[0]}
-                          alt="Imagen del producto"
-                        />
-
-                        
-                      
-                    
-      
-                  </GridItem>
-        </SimpleGrid>
-      </Box>
+                  </Stack>
+        
+                  <Button
+                    rounded={'none'}
+                    w={'full'}
+                    mt={8}
+                    size={'lg'}
+                    py={'7'}
+                    bg={useColorModeValue('gray.900', 'gray.50')}
+                    color={useColorModeValue('white', 'gray.900')}
+                    textTransform={'uppercase'}
+                    _hover={{
+                      transform: 'translateY(2px)',
+                      boxShadow: 'lg',
+                    }}>
+                    Add to cart
+                  </Button>
+        
+                  <Stack direction="row" alignItems="center" justifyContent={'center'}>
+                    <MdLocalShipping />
+                    <Text>2-3 business days delivery</Text>
+                  </Stack>
+                </Stack>
+              </SimpleGrid>
+            </Container>
                     
             )
         }) : 
