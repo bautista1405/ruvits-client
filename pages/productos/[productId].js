@@ -208,7 +208,13 @@ const ProductDetails = ({ product }) => {
           product.map(product => {
                 
             return (
-              <Container maxW={'7xl'} key={product._id}>
+              <Container 
+                maxW={'7xl'} 
+                key={product._id} 
+                rounded={[null, "md"]}
+                borderRadius="5px"
+                boxShadow='2xl' 
+              >
               <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
                 spacing={{ base: 8, md: 10 }}
@@ -250,11 +256,11 @@ const ProductDetails = ({ product }) => {
                     }>
                     <VStack spacing={{ base: 4, sm: 6 }}>
                       
-                      <Text fontSize={'lg'}>
+                      <Text fontSize={'lg'} >
                         {product.description}
                       </Text>
                     </VStack>
-                    {/* <Box>
+                    <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
                         color="gray.700"
@@ -276,8 +282,8 @@ const ProductDetails = ({ product }) => {
                           <ListItem>Small seconds</ListItem>
                         </List>
                       </SimpleGrid>
-                    </Box> */}
-                    {/* <Box>
+                    </Box>
+                    <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
                         color="gray.800"
@@ -332,7 +338,7 @@ const ProductDetails = ({ product }) => {
                           5 bar (50 metres / 167 feet){' '}
                         </ListItem>
                       </List>
-                    </Box> */}
+                    </Box>
                   </Stack>
         
                   <Button
