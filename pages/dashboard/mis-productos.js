@@ -298,8 +298,10 @@ const MyProducts = () => {
 
                     {product.length > 0 && (
 
+                        <Flex>
+
                         <SimpleGrid 
-                            columns={[1, 1, 1, 1, 2]} 
+                            columns={[1, 1, 1, 1, 3]} 
                             // justifyContent="center" 
                             // spacing={10} 
                             // rounded={[null, "md"]}
@@ -420,6 +422,7 @@ const MyProducts = () => {
                                 )
                             })}
                         </SimpleGrid>
+                        </Flex>
                     )}
 
                 </Flex>
