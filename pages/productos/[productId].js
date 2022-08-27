@@ -258,10 +258,8 @@ const ProductDetails = ({ product }) => {
                     }>
 
                     
-                    <Box px={[4, 0]} margin="30px"  >
-                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
-                        Descripción
-                      </Heading>
+                    <Box margin="30px">
+                      
                       <Text
                         mt={1}
                         fontSize="sm"
@@ -271,7 +269,7 @@ const ProductDetails = ({ product }) => {
                       </Text>
                     </Box>
                     
-                    <Box>
+                    {/* <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
                         color="gray.700"
@@ -349,7 +347,7 @@ const ProductDetails = ({ product }) => {
                           5 bar (50 metres / 167 feet){' '}
                         </ListItem>
                       </List>
-                    </Box>
+                    </Box> */}
                   </Stack>
         
                   <Button
