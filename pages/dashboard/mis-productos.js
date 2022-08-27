@@ -303,7 +303,7 @@ const MyProducts = () => {
                             rounded={[null, "md"]}
                             borderRadius="5px"
                             boxShadow='base' 
-                            mt={10}
+                            
                             p='6' 
                             ml={[null, 100, 200, 100, null]}
                         >
