@@ -235,7 +235,7 @@ const ProductDetails = ({ product }) => {
                       Automatic Watch
                     </Heading>
                     <Text
-                      color={useColorModeValue('gray.900', 'gray.400')}
+                      color="gray.800"
                       fontWeight={300}
                       fontSize={'2xl'}>
                       $350.00 USD
@@ -247,12 +247,12 @@ const ProductDetails = ({ product }) => {
                     direction={'column'}
                     divider={
                       <StackDivider
-                        borderColor={useColorModeValue('gray.200', 'gray.600')}
+                        borderColor="gray.700"
                       />
                     }>
                     <VStack spacing={{ base: 4, sm: 6 }}>
                       <Text
-                        color={useColorModeValue('gray.500', 'gray.400')}
+                        color="gray.700"
                         fontSize={'2xl'}
                         fontWeight={'300'}>
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
@@ -268,7 +268,7 @@ const ProductDetails = ({ product }) => {
                     <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
-                        color={useColorModeValue('yellow.500', 'yellow.300')}
+                        color="gray.700"
                         fontWeight={'500'}
                         textTransform={'uppercase'}
                         mb={'4'}>
@@ -291,7 +291,7 @@ const ProductDetails = ({ product }) => {
                     <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
-                        color={useColorModeValue('yellow.500', 'yellow.300')}
+                        color="gray.800"
                         fontWeight={'500'}
                         textTransform={'uppercase'}
                         mb={'4'}>
@@ -352,8 +352,8 @@ const ProductDetails = ({ product }) => {
                     mt={8}
                     size={'lg'}
                     py={'7'}
-                    bg={useColorModeValue('gray.900', 'gray.50')}
-                    color={useColorModeValue('white', 'gray.900')}
+                    bg="teal"
+                    color="white"
                     textTransform={'uppercase'}
                     _hover={{
                       transform: 'translateY(2px)',
