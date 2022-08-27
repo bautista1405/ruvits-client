@@ -90,7 +90,8 @@ const Payments = () => {
             token.map((token) => { 
             return (
                     <Flex
-                        h={["null", "null", "40vh", "50vh", "60vh"]}
+                        h={["null", "null", "40vh", "50vh", "70vh"]}
+                        w={["null", "null", "40vw", "50vw", "60vw"]}
                         maxW="2000px"
                         flexDir={["column", "column", "row"]}
                         overflow="hidden"
@@ -204,7 +205,8 @@ const Payments = () => {
         token.length == 0 && (
 
             <Flex
-                h={["null", "null", "40vh", "50vh", "60vh"]}
+                h={["null", "null", "40vh", "50vh", "70vh"]}
+                w={["null", "null", "40vw", null, null]}
                 maxW="2000px"
                 flexDir={["column", "column", "column"]}
                 overflow="hidden"
