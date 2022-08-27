@@ -311,7 +311,7 @@ const MyProducts = () => {
                         <SimpleGrid 
                             columns={[1, 1, 1, 1, 3]} 
                             spacing={10}
-                            h={[null, null, "50vh", "50vh", "50vh"]}
+                            h={[null, null, "50vh", "50vh", null]}
                         >
 
 
