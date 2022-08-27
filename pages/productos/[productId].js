@@ -258,7 +258,7 @@ const ProductDetails = ({ product }) => {
                     }>
 
                     
-                    <Box margin="30px">
+                    <Box>
                       
                       <Text
                         mt={1}
