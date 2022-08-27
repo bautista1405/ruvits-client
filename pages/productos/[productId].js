@@ -148,7 +148,7 @@ const ProductDetails = ({ product }) => {
                     }),
                 }).then( () => {
 
-                  swal("Tu producto fue exitosamente eliminado.", "Ya no verás tu producto online.", "success")
+                  swal("Tu producto fue eliminado.", "Ya no verás tu producto online.", "success")
                   .then(() => {router.push('/dashboard')})
                 })
                 break;
@@ -161,7 +161,7 @@ const ProductDetails = ({ product }) => {
     })
   }
 
-  const updateItem = (req, res) => { 
+  const updateItem = () => { 
     product.map(product => {
         const id = product._id
         fetch('/api/update', {
@@ -182,15 +182,6 @@ const ProductDetails = ({ product }) => {
         }).then(() => {router.push('/dashboard')})
     })
   }
-
-  const formik = useFormik({
-    initialValues: {
-      title: '',
-      description: '',
-      price: '',
-    },
-  });
-
 
   return (
     <>
@@ -351,7 +342,7 @@ const ProductDetails = ({ product }) => {
 
                                                   <FormControl mt={4}>
                                                     <FormLabel>Descripción</FormLabel>
-                                                    <Input 
+                                                    <Textarea 
                                                       placeholder={product.description} 
                                                       type='text'
                                                       //id='name'
@@ -414,7 +405,7 @@ const ProductDetails = ({ product }) => {
                       
                         <Image
                           width="full"
-                          height={["300px", "600px", "600px", "600px", "600px"]}
+                          height={["300px", "600px", "600px", "600px", "full"]}
                           borderRadius="4px"
                           fit="cover"
                           src={product.content[0]}
