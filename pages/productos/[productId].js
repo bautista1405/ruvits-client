@@ -214,6 +214,8 @@ const ProductDetails = ({ product }) => {
                 rounded={[null, "md"]}
                 borderRadius="5px"
                 boxShadow='2xl' 
+                p='6'
+                margin={[null, "null", "100px"]}
               >
               <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
@@ -254,12 +256,14 @@ const ProductDetails = ({ product }) => {
                         borderColor="gray.700"
                       />
                     }>
-                    <VStack spacing={{ base: 4, sm: 6 }}>
-                      
-                      <Text fontSize={'lg'} >
-                        {product.description}
-                      </Text>
-                    </VStack>
+                    <Box>
+                      <VStack spacing={{ base: 4, sm: 6 }}>
+                        
+                        <Text fontSize={'lg'} >
+                          {product.description}
+                        </Text>
+                      </VStack>
+                    </Box>
                     <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
@@ -342,7 +346,6 @@ const ProductDetails = ({ product }) => {
                   </Stack>
         
                   <Button
-                    rounded={'none'}
                     w={'full'}
                     mt={8}
                     size={'lg'}
