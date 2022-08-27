@@ -256,14 +256,21 @@ const ProductDetails = ({ product }) => {
                         borderColor="gray.700"
                       />
                     }>
-                    <Box>
-                      <VStack spacing={{ base: 4, sm: 6 }}>
-                        
-                        <Text fontSize={'lg'} >
-                          {product.description}
-                        </Text>
-                      </VStack>
-                    </Box>
+                    <VStack spacing={{ base: 4, sm: 6 }}>
+                      <Text
+                        color="gray.700"
+                        fontSize={'2xl'}
+                        fontWeight={'300'}
+                      >
+                        {product.description}
+                      </Text>
+                      <Text fontSize={'lg'}>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                        aliquid amet at delectus doloribus dolorum expedita hic, ipsum
+                        maxime modi nam officiis porro, quae, quisquam quos
+                        reprehenderit velit? Natus, totam.
+                      </Text>
+                    </VStack>
                     <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
