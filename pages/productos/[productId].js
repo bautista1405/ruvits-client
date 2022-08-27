@@ -261,7 +261,7 @@ const ProductDetails = ({ product }) => {
                         color="gray.700"
                         fontSize={'2xl'}
                         fontWeight={'300'}
-                        noOfLines={1}
+                        noOfLines={[1, 2, 3]}
                       >
                         {product.description}
                       </Text>
