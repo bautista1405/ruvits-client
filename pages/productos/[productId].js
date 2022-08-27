@@ -257,7 +257,7 @@ const ProductDetails = ({ product }) => {
                       />
                     }>
                     <VStack spacing={{ base: 4, sm: 6 }}>
-                      <Text
+                      <p
                         color="gray.700"
                         fontSize={'2xl'}
                         fontWeight={'300'}
@@ -266,7 +266,7 @@ const ProductDetails = ({ product }) => {
                         white-space="nowrap"
                       >
                         {product.description}
-                      </Text>
+                      </p>
                       
                     </VStack>
                     <Box>
