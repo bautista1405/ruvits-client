@@ -257,23 +257,19 @@ const ProductDetails = ({ product }) => {
                       />
                     }>
 
-                    <div
-                      text-overflow="ellipsis"
-                      overflow="hidden"
-                      white-space="nowrap"
-                    >
-                      <VStack spacing={{ base: 4, sm: 6 }}>
-                        <p
-                          color="gray.700"
-                          fontSize={'2xl'}
-                          fontWeight={'300'}
-                          
-                        >
-                          {product.description}
-                        </p>
-                        
-                      </VStack>
-                    </div>
+                    
+                    <Box px={[4, 0]} margin="30px"  >
+                      <Heading fontSize="lg" fontWeight="md" lineHeight="6" >
+                        Descripción
+                      </Heading>
+                      <Text
+                        mt={1}
+                        fontSize="sm"
+                        color="gray.700"
+                      >
+                        {product.description}
+                      </Text>
+                    </Box>
                     
                     <Box>
                       <Text
