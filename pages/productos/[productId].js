@@ -256,19 +256,25 @@ const ProductDetails = ({ product }) => {
                         borderColor="gray.700"
                       />
                     }>
-                    <VStack spacing={{ base: 4, sm: 6 }}>
-                      <p
-                        color="gray.700"
-                        fontSize={'2xl'}
-                        fontWeight={'300'}
-                        text-overflow="ellipsis"
-                        overflow="hidden"
-                        white-space="nowrap"
-                      >
-                        {product.description}
-                      </p>
-                      
-                    </VStack>
+
+                    <div
+                      text-overflow="ellipsis"
+                      overflow="hidden"
+                      white-space="nowrap"
+                    >
+                      <VStack spacing={{ base: 4, sm: 6 }}>
+                        <p
+                          color="gray.700"
+                          fontSize={'2xl'}
+                          fontWeight={'300'}
+                          
+                        >
+                          {product.description}
+                        </p>
+                        
+                      </VStack>
+                    </div>
+                    
                     <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
