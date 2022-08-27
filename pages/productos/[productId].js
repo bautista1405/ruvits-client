@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getSession } from "next-auth/client";
 
 
 import {
-  SimpleGrid, Box, Flex, chakra, Link, Button, Image, GridItem, Stack, Heading,
+  SimpleGrid, Box, Flex, chakra, Link, Button, Image, GridItem, Heading,
   Modal,
   ModalOverlay,
   ModalContent,
