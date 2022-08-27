@@ -299,7 +299,7 @@ const MyProducts = () => {
                     {product.length > 0 && (
 
                         <SimpleGrid 
-                            columns={[1, 1, 1, 1, 3]} 
+                            columns={[1, 1, 1, 1, 2]} 
                             // justifyContent="center" 
                             // spacing={10} 
                             // rounded={[null, "md"]}
@@ -314,9 +314,9 @@ const MyProducts = () => {
                             {product.map( product =>  {
                                 return (
                                     <Flex
-                                    justifyContent="center" 
-                                    ml={[null, 100, 0, 0, 5]}
-                                    key={product._id}
+                                        justifyContent="center" 
+                                        ml={[null, 100, 0, 0, 5]}
+                                        key={product._id}
                                     >
                                     <Flex
                                         direction="column"
@@ -326,32 +326,32 @@ const MyProducts = () => {
                                         mx="auto"
                                     >
                                         <Box
-                                        bg="gray.300"
-                                        h={64}
-                                        w="full"
-                                        rounded="lg"
-                                        shadow="md"
-                                        bgSize="cover"
-                                        bgPos="center"
-                                        style={{
-                                            backgroundImage:
-                                            `url(${product.content[0]})`,
-                                        }}
+                                            bg="gray.300"
+                                            h={64}
+                                            w="full"
+                                            rounded="lg"
+                                            shadow="md"
+                                            bgSize="cover"
+                                            bgPos="center"
+                                            style={{
+                                                backgroundImage:
+                                                `url(${product.content[0]})`,
+                                            }}
                                         ></Box>
 
                                         <Box
-                                        w={{
-                                            base: 56,
-                                            md: 64,
-                                        }}
-                                        bg="gray.800"
-                                        _dark={{
-                                            bg: "gray.800",
-                                        }}
-                                        mt={-10}
-                                        shadow="lg"
-                                        rounded="lg"
-                                        overflow="hidden"
+                                            w={{
+                                                base: 56,
+                                                md: 64,
+                                            }}
+                                            bg="gray.800"
+                                            _dark={{
+                                                bg: "gray.800",
+                                            }}
+                                            mt={-10}
+                                            shadow="lg"
+                                            rounded="lg"
+                                            overflow="hidden"
                                         >
                                         <chakra.h3
                                             py={2}
