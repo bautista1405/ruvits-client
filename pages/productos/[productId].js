@@ -216,10 +216,8 @@ const ProductDetails = ({ product }) => {
                 <Flex>
                   <Image
                     rounded={'md'}
-                    alt={'product image'}
-                    src={
-                      'https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080'
-                    }
+                    alt={'imagen del producto'}
+                    src={product.content[0]}
                     fit={'cover'}
                     align={'center'}
                     w={'100%'}
@@ -232,13 +230,13 @@ const ProductDetails = ({ product }) => {
                       lineHeight={1.1}
                       fontWeight={600}
                       fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-                      Automatic Watch
+                      {product.title}
                     </Heading>
                     <Text
                       color="gray.800"
                       fontWeight={300}
                       fontSize={'2xl'}>
-                      $350.00 USD
+                      ${product.price}
                     </Text>
                   </Box>
         
@@ -251,21 +249,12 @@ const ProductDetails = ({ product }) => {
                       />
                     }>
                     <VStack spacing={{ base: 4, sm: 6 }}>
-                      <Text
-                        color="gray.700"
-                        fontSize={'2xl'}
-                        fontWeight={'300'}>
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                        diam nonumy eirmod tempor invidunt ut labore
-                      </Text>
+                      
                       <Text fontSize={'lg'}>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                        aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                        maxime modi nam officiis porro, quae, quisquam quos
-                        reprehenderit velit? Natus, totam.
+                        {product.description}
                       </Text>
                     </VStack>
-                    <Box>
+                    {/* <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
                         color="gray.700"
@@ -287,8 +276,8 @@ const ProductDetails = ({ product }) => {
                           <ListItem>Small seconds</ListItem>
                         </List>
                       </SimpleGrid>
-                    </Box>
-                    <Box>
+                    </Box> */}
+                    {/* <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
                         color="gray.800"
@@ -343,7 +332,7 @@ const ProductDetails = ({ product }) => {
                           5 bar (50 metres / 167 feet){' '}
                         </ListItem>
                       </List>
-                    </Box>
+                    </Box> */}
                   </Stack>
         
                   <Button
@@ -359,12 +348,12 @@ const ProductDetails = ({ product }) => {
                       transform: 'translateY(2px)',
                       boxShadow: 'lg',
                     }}>
-                    Add to cart
+                    Comprar
                   </Button>
         
                   <Stack direction="row" alignItems="center" justifyContent={'center'}>
                     <MdLocalShipping />
-                    <Text>2-3 business days delivery</Text>
+                    <Text>El producto te llega a tu mail.</Text>
                   </Stack>
                 </Stack>
               </SimpleGrid>
