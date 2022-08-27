@@ -259,7 +259,7 @@ export default function ProductForm() {
                         shadow="sm"
                         focusBorderColor="brand.400"
                         fontSize={{ sm: "sm" }}
-                        max="1000"
+                        maxLength="1000"
                       />
                       <FormHelperText>
                         Breve descripción: puede ser el tipo de contenido, el tipo de archivo. <b> Máximo 1000 caracteres.</b>
