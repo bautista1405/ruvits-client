@@ -93,7 +93,7 @@ const Payments = () => {
                         h={["null", "null", "40vh", "50vh", "70vh"]}
                         w="100wh"
                         maxW="2000px"
-                        flexDir={["column", "column", "row"]}
+                        flexDir={["column", "column", "column"]}
                         overflow="hidden"
                         margin={[null, null, "100px"]}
                         shadow="base"
