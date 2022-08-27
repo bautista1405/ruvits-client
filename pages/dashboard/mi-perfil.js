@@ -142,20 +142,20 @@ const MyProfile = () => {
                     >
                         
                         <Flex
-                            flexDir={["column", "column", "column", "column", "column"]}
-                            align={["center", "center", "center", "flex-start", "flex-start"]}
-                            wrap={["wrap", "wrap", "nowrap", "nowrap", "nowrap"]}
-                            justifyContent="center"
-                        >
-                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]}>
-                                <Link href="/dashboard" display={["none", "none", "flex", "flex", "flex"]}>
-                                    <Icon as={FiHome} fontSize="2xl" className="active-icon" />
-                                
-                                
-                                    <Text className="active" fontSize="18px" ml={2}>Inicio</Text>
-                                </Link>
-                            </Flex>
-                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
+                    flexDir={["column", "column", "column", "column", "column"]}
+                    align={["center", "center", "center", "flex-start", "flex-start"]}
+                    wrap={["wrap", "wrap", "nowrap", "nowrap", "nowrap"]}
+                    justifyContent="center"
+                >
+                          <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]}>
+                              <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                  <Icon as={FiHome} fontSize="2xl" className="active-icon" />
+                              </Link>
+                              <Link href='/dashboard' _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                  <Text className="active" fontSize="18px" ml={2}>Inicio</Text>
+                              </Link>
+                          </Flex>
+                          <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
                             <Link display={["none", "none", "flex", "flex", "flex"]}>
                                   <Icon as={FiDollarSign} fontSize="2xl" className="active-icon" />
                             </Link>
@@ -168,26 +168,27 @@ const MyProfile = () => {
                                 </Text>
                             </Link>
                           </Flex>
-                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                                <Link href="/dashboard/mis-productos" display={["none", "none", "flex", "flex", "flex"]}>
-                                    <Icon as={FiBox} fontSize="2xl" />
-                                
-                                    <Text fontSize="18px" ml={2}>Mis productos</Text>
-                                </Link>
-                            </Flex>
-                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                                <Link href='/mi-perfil' display={["none", "none", "flex", "flex", "flex"]}>
-                                    <Icon as={CgProfile} fontSize="2xl" />
-                                
-                                    <Text fontSize="18px" ml={2}>Mi perfil</Text>
-                                </Link>
-                            </Flex>
-                            <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={10} mb={10}>
-                               <Link href="/nuevo-producto">
-                                 <Button colorScheme="white" variant="outline">+ Nuevo producto</Button>
-                                </Link> 
-                            </Flex>
-                        </Flex>
+                          <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
+                              <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                  <Icon as={FiBox} fontSize="2xl" /></Link>
+                              <Link href="/dashboard/mis-productos" _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                  <Text fontSize="18px" ml={2}>Mis productos</Text>
+                              </Link>
+                          </Flex>
+                          <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
+                              <Link display={["none", "none", "flex", "flex", "flex"]}>
+                                  <Icon as={CgProfile} fontSize="2xl" /></Link>
+                              <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]} href="/dashboard/mi-perfil">
+                                  <Text fontSize="18px" ml={2}>Mi perfil</Text>
+                              </Link>
+                          </Flex>
+                          <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={10}>
+                             <Link href="/nuevo-producto">
+                               <Button colorScheme="white" variant="outline">+ Nuevo producto</Button>
+                              </Link> 
+                          </Flex>
+                      </Flex>
+
                     </Flex>
                     
                 </Flex>
