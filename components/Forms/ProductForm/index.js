@@ -180,20 +180,11 @@ export default function ProductForm() {
             <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
               
               <form
-                // target="invisible"
                 encType="multipart/form-data" 
-                // method="post" 
-                // action="http://3.95.83.1:3000/api/products"
                 shadow="base"
                 rounded={[null, "md"]}
                 overflow={{ sm: "hidden" }}
                 onSubmit={formik.handleSubmit}
-                // onSubmit={ () => { swal({
-                //   title: "Tu producto fue exitosamente creado.",
-                //   text: "¡Tu producto ya está online!",
-                //   icon: "success",
-                //   }).then(() => {router.push('/dashboard')})} 
-                // }
               >
                 <Stack
                   px={4}
@@ -268,9 +259,10 @@ export default function ProductForm() {
                         shadow="sm"
                         focusBorderColor="brand.400"
                         fontSize={{ sm: "sm" }}
+                        max="1000"
                       />
                       <FormHelperText>
-                        Breve descripción: puede ser el tipo de contenido, el tipo de archivo.
+                        Breve descripción: puede ser el tipo de contenido, el tipo de archivo. <b> Máximo 1000 caracteres.</b>
                         ¡Acordate que cuanto mejor sea la descripción de tu producto, más llamará la atención!
                       </FormHelperText>
                     </FormControl>
@@ -413,7 +405,7 @@ export default function ProductForm() {
                               color: "brand.400",
                             }}
                           >
-                            <span>Sube 1 (un) archivo</span>
+                            <span>Sube 1 (uno) archivo</span>
                             <VisuallyHidden>
                               <Input
                                 type="file"  
