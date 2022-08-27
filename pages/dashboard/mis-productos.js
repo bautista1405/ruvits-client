@@ -304,7 +304,7 @@ const MyProducts = () => {
                             borderRadius="5px"
                             boxShadow='base' 
                             
-                            p='6' 
+                           
                             ml={[null, 100, 200, 100, null]}
                         >
 
