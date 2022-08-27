@@ -405,7 +405,7 @@ const ProductDetails = ({ product }) => {
                       
                         <Image
                           width="full"
-                          height={["300px", "600px", "600px", "600px", "100vh"]}
+                          height={["300px", "600px", "600px", "600px", "600px"]}
                           borderRadius="4px"
                           fit="cover"
                           src={product.content[0]}
