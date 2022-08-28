@@ -86,7 +86,7 @@ const MyProfile = () => {
             <>
                 
         <Flex
-            h={["80vh", null, "80vh"]}
+            h={["100vh", null, "60vh"]}
             maxW="2000px"
             flexDir={["column", "column", "row"]}
             overflow="hidden"
