@@ -42,7 +42,7 @@ const MyProfile = () => {
     const router = useRouter();
     const [session, loading] = useSession();
 
-    const deleteUser = (req, res) => { 
+    const deleteUser = () => { 
     
         swal({
             title: "¿Estás seguro que querés eliminar tu cuenta?",
@@ -65,13 +65,13 @@ const MyProfile = () => {
                       
                   }).then( () => {
   
-                    swal("Tu cuenta fue eliminada.", "success")
+                    swal("Tu cuenta fue eliminada.", "Ya no podrás utilizar los servicios de la plataforma.", "success")
                     .then(() => {router.push('/')})
                   })
                   break;
              
                 default:
-                  swal("Tu cuenta sigue activa.", "success");
+                  swal("Tu cuenta sigue activa.", "Podés seguir usando nuestros servicios.", "success");
               }
   
             })
