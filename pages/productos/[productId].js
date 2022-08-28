@@ -168,7 +168,13 @@ const ProductDetails = ({ product }) => {
     })
   }
 
-  const formik = useFormik({})
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      description: '',
+      price: '',
+    }
+  })
 
   const updateItem = () => { 
     product.map(product => {
