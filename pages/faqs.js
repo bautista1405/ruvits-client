@@ -16,6 +16,7 @@ const FrequentQuestions = () => {
     <>
         <Head>
             <title>Preguntas frecuentes</title>
+            <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
         </Head>
         <Flex justifyContent="center" fontSize={32} color="gray.600" fontWeight="bold"> Preguntas frecuentes </Flex>
         <Flex 

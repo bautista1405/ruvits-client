@@ -61,6 +61,7 @@ const MyProducts = () => {
     <>
         <Head>
             <title>Mis productos</title>
+            <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
         </Head>
         {!session && (
             <Flex alignItems="center" justifyContent="center" h="54vh">

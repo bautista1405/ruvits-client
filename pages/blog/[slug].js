@@ -19,6 +19,7 @@ import { seo } from "config"
 import { tagColor } from "../../components/UI/tagColor"
 import MDXComponents from "../../components/MDXComponents"
 import TagComponent from "../../components/UI/tag"
+import Head from "next/head"
 
 const BlogPost = ({ mdxSource, frontMatter }) => {
   const { push } = useRouter()
@@ -35,6 +36,9 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
 
   return (
     <>
+      <Head>
+        <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
+      </Head> 
       <NextSeo
         title={title}
         description={description}

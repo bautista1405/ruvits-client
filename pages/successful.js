@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import { Flex } from '@chakra-ui/react'
 import axios from 'axios';
+import Head from 'next/head';
 
 
 const SuccessfulPage = () => {             //from this page we have to trigger the API call to send the email to the user with the product
@@ -43,6 +44,10 @@ const SuccessfulPage = () => {             //from this page we have to trigger t
   
   return (
     <>
+      <Head>
+        <title>Compra exitosa</title>
+        <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
+      </Head>
       <Flex alignItems="center" justifyContent="center" h="54vh">
         <p>Tu compra ha sido realizada con éxito, a la brevedad te llegará un email con el producto que compraste. ¡Gracias!</p>
       </Flex>

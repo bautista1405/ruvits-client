@@ -8,6 +8,7 @@ const DiscoverPage = () => {
     <div>
       <Head>
         <title>Ruvits | Descubre</title>
+        <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
       </Head>
         <Discover />
     </div>
