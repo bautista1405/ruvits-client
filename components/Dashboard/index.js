@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import {useRouter} from 'next/router'
 
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
@@ -7,7 +8,6 @@ import {
     Flex,
     Heading,
     Avatar,
-    Link,
     AvatarGroup,
     Text,
     Icon,
@@ -128,18 +128,18 @@ export default function Dashboard({data}) {
                           justifyContent="center"
                       >
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]}>
-                              <Link display={["none", "none", "flex", "flex", "flex"]}>
+                              <Link display={["none", "none", "flex", "flex", "flex"]} href='/dashboard' _hover={{ textDecor: 'none' }}>
                                   <Icon as={FiHome} fontSize="2xl" className="active-icon" />
-                              </Link>
-                              <Link href='/dashboard' _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                              
+                              
                                   <Text className="active" fontSize="18px" ml={2}>Inicio</Text>
                               </Link>
                           </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                            <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                  <Icon as={FiDollarSign} fontSize="2xl" className="active-icon" />
-                            </Link>
                             <Link href='/dashboard/pagos' _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                  <Icon as={FiDollarSign} fontSize="2xl" className="active-icon" />
+                            
+                            
                                 <Text fontSize="18px" ml={1}>
                                         Autorización de pagos {" "} {" "}
                                     <Tooltip label="Para poder vender tus productos, tenés que vincular tu cuenta de MercadoPago">
@@ -149,16 +149,16 @@ export default function Dashboard({data}) {
                             </Link>
                           </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                              <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                  <Icon as={FiBox} fontSize="2xl" /></Link>
                               <Link href="/dashboard/mis-productos" _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
+                                  <Icon as={FiBox} fontSize="2xl" /></Link>
+                              
                                   <Text fontSize="18px" ml={2}>Mis productos</Text>
-                              </Link>
+                              
                           </Flex>
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                              <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                  <Icon as={CgProfile} fontSize="2xl" /></Link>
                               <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]} href="/dashboard/mi-perfil">
+                                  <Icon as={CgProfile} fontSize="2xl" />
+                             
                                   <Text fontSize="18px" ml={2}>Mi perfil</Text>
                               </Link>
                           </Flex>
