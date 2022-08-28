@@ -203,13 +203,13 @@ const Payments = () => {
     })
     ) : (
 
-        token.length == 0 && (
+            session && token.length == 0 && (
 
             <Flex
                 h={["null", "null", "40vh", "50vh", "70vh"]}
                 w="100wh"
                 maxW="2000px"
-                flexDir={["column", "column", "column"]}
+                flexDir={["column", "column", "row"]}
                 overflow="hidden"
                 margin={[null, null, "100px"]}
                 shadow="base"
