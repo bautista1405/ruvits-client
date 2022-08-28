@@ -373,20 +373,155 @@ const ProductDetails = ({ product }) => {
                   </Stack> */}
                 </Stack>
               </SimpleGrid>
-                <Button
-                    w={'full'}
-                    mt={8}
-                    size={'lg'}
-                    py={'7'}
-                    bg="teal"
-                    color="white"
-                    textTransform={'uppercase'}
-                    _hover={{
-                      transform: 'translateY(2px)',
-                      boxShadow: 'lg',
-                    }}>
-                    Comprar
-                  </Button>
+                
+                      
+                        
+                        
+                        <Formik>
+                          <Form className="my-3" id="form-container" onSubmit={handleProduct}>
+              
+                            <div className="my-2 inputs_login d-flex">
+                            
+                              { session && (
+                                  product.vendor !== session.user.name && (
+                                    <Button 
+                                      type='submit'
+                                      w={'full'}
+                                      mt={8}
+                                      size={'lg'}
+                                      py={'7'}
+                                      bg="teal"
+                                      color="white"
+                                      textTransform={'uppercase'}
+                                      _hover={{
+                                        transform: 'translateY(2px)',
+                                        boxShadow: 'lg',
+                                      }}
+                                    >Comprar</Button>
+                                  )
+                                )
+                              }
+
+                              { !session && (
+                                  
+                                    <Button
+                                      onClick={ () => {
+                                        swal({
+                                          title: "Parece que todavía no estás registrado.",
+                                          text: "Create una cuenta para poder comprar.",
+                                          icon: "warning",
+                                        })
+                                      }
+                                      }
+                                      w={'full'}
+                                      mt={8}
+                                      size={'lg'}
+                                      py={'7'}
+                                      bg="teal"
+                                      color="white"
+                                      textTransform={'uppercase'}
+                                      _hover={{
+                                        transform: 'translateY(2px)',
+                                        boxShadow: 'lg',
+                                      }}
+                                    >Comprar</Button>
+                                  
+                                )
+                              } 
+                              
+                              { session && (
+                                  product.vendor === session.user.name && (
+
+                                    <>
+
+                                      <Button onClick={onOpen} ml={5} variant="outline" colorScheme="cyan">Editar</Button>
+                                            {/* <Button ml={4} ref={finalRef}>
+                                              I'll receive focus on close
+                                            </Button> */}
+
+                                            <Modal
+                                              initialFocusRef={initialRef}
+                                              finalFocusRef={finalRef}
+                                              isOpen={isOpen}
+                                              onClose={onClose}
+                                            >
+                                              <ModalOverlay />
+                                              <ModalContent>
+                                                <ModalHeader>Edita tu producto</ModalHeader>
+                                                <ModalCloseButton />
+                                                <ModalBody pb={6}>
+                                                  <FormControl>
+                                                    <FormLabel>Nombre</FormLabel>
+                                                    <Input 
+                                                      ref={initialRef} 
+                                                      placeholder={product.title} 
+                                                      type='text'
+                                                      id='name'
+                                                      name='title'
+                                                      value={formik.values.title}
+                                                      onChange={formik.handleChange}
+                                                      onBlur={formik.handleBlur}
+                                                      required
+                                                    />
+                                                  </FormControl>
+
+                                                  <FormControl mt={4}>
+                                                    <FormLabel>Descripción</FormLabel>
+                                                    <Textarea 
+                                                      placeholder={product.description} 
+                                                      type='text'
+                                                      //id='name'
+                                                      name='description'
+                                                      value={formik.values.description}
+                                                      onChange={formik.handleChange}
+                                                      onBlur={formik.handleBlur}
+                                                      required
+                                                      maxLength="2000"
+                                                    />
+                                                  </FormControl>
+
+                                                  <FormControl mt={4}>
+                                                    <FormLabel>Precio</FormLabel>
+                                                    <Input 
+                                                      placeholder={product.price} 
+                                                      type='text'
+                                                      id='name'
+                                                      name='price'
+                                                      value={formik.values.price}
+                                                      onChange={formik.handleChange}
+                                                      onBlur={formik.handleBlur}
+                                                      required
+                                                    />
+                                                  </FormControl>
+
+
+                                                </ModalBody>
+
+                                                <ModalFooter>
+                                                  <Button colorScheme='blue' mr={3} onClick={updateItem}>
+                                                    Guardar
+                                                  </Button>
+                                                  <Button onClick={onClose}>Cancelar</Button>
+                                                </ModalFooter>
+                                              </ModalContent>
+                                            </Modal>
+                                              <Button 
+                                                colorScheme='red' 
+                                                variant='outline' 
+                                                marginLeft={5}
+                                                onClick={deleteItem}
+                                              >Eliminar</Button>
+
+                                    </>
+                                  )
+                                
+                                )
+                              }
+
+                            </div>
+                          </Form>
+                        </Formik>
+                      
         
                   <Stack direction="row" alignItems="center" justifyContent={'center'} mt={5}>
                     <MdLocalShipping />
