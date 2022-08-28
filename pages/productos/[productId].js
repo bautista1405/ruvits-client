@@ -36,7 +36,7 @@ import {
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
 
-import { Formik, Form } from "formik";
+import { Formik, Form, useFormik } from "formik";
 import axios from "axios";
 import swal from 'sweetalert';
 
@@ -167,6 +167,8 @@ const ProductDetails = ({ product }) => {
           })
     })
   }
+
+  const formik = useFormik({})
 
   const updateItem = () => { 
     product.map(product => {
