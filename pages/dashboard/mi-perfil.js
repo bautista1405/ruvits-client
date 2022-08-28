@@ -44,20 +44,37 @@ const MyProfile = () => {
 
     const deleteUser = (req, res) => { 
     
-        
-        fetch('/api/deleteuser', {
-            
-            method: 'POST',
-            
-        })
-        .then( () => {
-
-            swal({
-                title: "Tu cuenta fue eliminada.",
-                text: "¡Te esperamos a la vuelta!",
-                icon: "success",
-            }).then(() => {router.push('/')})
-        })
+        swal({
+            title: "¿Estás seguro que querés eliminar tu cuenta?",
+            buttons: {
+              cancel: "No",
+              positive: {
+                text: "Sí",
+                value: "positive",
+              }
+            }, 
+            icon: "warning",
+            }).then( (value) => {
+  
+              switch (value) {
+             
+                case "positive":
+                  fetch('/api/deleteuser', {
+                      
+                      method: 'POST',
+                      
+                  }).then( () => {
+  
+                    swal("Tu cuenta fue eliminada.", "success")
+                    .then(() => {router.push('/')})
+                  })
+                  break;
+             
+                default:
+                  swal("Tu cuenta sigue activa.", "success");
+              }
+  
+            })
     
     }   
 
