@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react'
-// import Image from 'next/image'
+import React from 'react'
 import Head from 'next/head'
-import Script from 'next/script'
 import { useRouter } from 'next/router'
-import { signIn, signOut, useSession, getSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 
 
 import {
-  SimpleGrid, Box, Flex, chakra, Link, Button, Image, GridItem, Heading,
+  SimpleGrid, Box, Flex, Button, Image, Heading,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -19,19 +17,11 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
   Textarea,
-  FormHelperText,
-  Icon,
-  VisuallyHidden,
   Text,
   Container,
   Stack,
-  VStack,
   StackDivider,
-  useColorModeValue,
-  List,
-  ListItem,
 } from '@chakra-ui/react'
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
@@ -53,7 +43,7 @@ const ProductDetails = ({ product }) => {
     
   
   
-  const handleSubmit = (req, res) => {
+  const handleSubmit = () => {
     
     const appID = process.env.APP_ID
     
@@ -128,7 +118,7 @@ const ProductDetails = ({ product }) => {
     handleSubmit();
   }
 
-  const deleteItem = (req, res) => {
+  const deleteItem = () => {
     product.map(product => {
         const id = product._id
         swal({
@@ -223,7 +213,7 @@ const ProductDetails = ({ product }) => {
                 borderRadius="5px"
                 boxShadow='2xl' 
                 p='6'
-                margin={[null, "null", "100px"]}
+                margin='auto'
               >
               <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
