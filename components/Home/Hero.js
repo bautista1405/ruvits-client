@@ -11,15 +11,15 @@ import peep2 from '../../assets/peep2-bg.png'
 const Hero = () => {
   const bg = useColorModeValue("white", "gray.800");
   return (
-    <Box pos="relative" overflow="hidden" bg="#F9FAFB" mt={5}  >
-      <Box maxW="7xl" mx="auto">
+    <Box pos="relative" overflow="hidden" bg="#F9FAFB" mt={5} columns={{ base: 1, md: 2 }} spacing={0} >
+      <Box maxW="7xl" mx="auto" >
         <Box
           pos="relative"
           pb={{ base: 8, sm: 16, md: 20, lg: 28, xl: 32 }}
           maxW={{ lg: "2xl" }}
           w={{ lg: "full" }}
           zIndex={1}
-          
+          m={[20, null, 10, null, null]}
           border="solid 1px transparent"
         >
          
@@ -59,7 +59,7 @@ const Hero = () => {
                 mx={{ sm: "auto", lg: 0 }}
                 color="gray.500"
               >
-                Cualquier tipo de archivo digital: desde PDFs, PPTs, hasta videos, audios, imágenes, etcétera. <br />
+                Puede ser cualquier tipo de archivo digital: desde PDFs, PPTs, hasta videos, audios, imágenes, etcétera. <br />
                 Pueden ser apuntes, trabajos, beats, snippets de código, software (apps, plugins, entre otros), clases, cursos, diseños, ilustraciones. 
               
               </chakra.p>

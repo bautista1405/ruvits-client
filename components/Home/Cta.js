@@ -20,11 +20,11 @@ import peep4 from '../../assets/peep4-bg.png'
 
 const CTA = () => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={0} pl={20} >
-      <Flex bg="brand.400" display={["none", "none", "block", "block"]} ml={20}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={100} ml={['100px', null, null, null, null]} mb={5}>
+      <Flex bg="brand.400" display={["none", "none", "block", "block"]} ml={20} >
         <Image
           src={peep4}
-          alt="3 women looking at a laptop"
+          alt="cta image"
           fit="cover"
           width="350px"
           h="350px"
@@ -41,6 +41,7 @@ const CTA = () => {
         // py={24}
         // zIndex={3}
         mr={20}
+        mt={5}
       >
         <chakra.span
           color={useColorModeValue("brand.600", "gray.300")}
