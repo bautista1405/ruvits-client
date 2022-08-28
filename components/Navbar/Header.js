@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link'
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import Image from 'next/image'
 
@@ -20,7 +21,7 @@ import {
   Stack,
   VStack,
   CloseButton,
-  Link,
+ 
   useColorMode,
   Menu,
   MenuButton,
@@ -97,8 +98,8 @@ export default function WfWf() {
     <React.Fragment>
       <chakra.header h="full" bg={bg} w="full" px={{ base: 2, sm: 14 }} >
         <Flex alignItems="center" justifyContent="space-between" mx="auto" margin="30px" >
-          <Link display="flex" alignItems="center" href="/" >
-            <Image src={Logo} alt="logo" width="100px" height="100px"/>
+          <Link display="flex" alignItems="center" href="/"  >
+            <Image src={Logo} alt="logo" width="100px" height="100px" style={{cursor: 'pointer'}} />
             
           </Link>
           {/* <Spacer /> */}

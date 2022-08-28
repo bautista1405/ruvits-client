@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import {
   chakra,
   Box,
@@ -6,7 +7,7 @@ import {
   Flex,
   SimpleGrid,
   Icon,
-  Link,
+  
 } from "@chakra-ui/react";
 
 import { FiExternalLink } from "react-icons/fi";
@@ -70,9 +71,9 @@ const Header = () => {
           letterSpacing="wider"
         >
           Vendé tus productos de una manera simple. Asociá tu cuenta de Mercado Pago y empezá a vender. <br />
-          Acá te dejamos una <Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link> para 
-          crear tu primer producto y te contamos <Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
-            cómo funciona Ruvits.</Link>
+          Acá te dejamos una  <b><Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link></b> para 
+          crear tu primer producto y te contamos <b><Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
+            cómo funciona Ruvits.</Link></b>
 
         </chakra.p>
         
