@@ -43,13 +43,13 @@ const Hero = () => {
                 color={useColorModeValue("gray.900", "white")}
               >
                 <chakra.span display={{ base: "block", xl: "inline" }}>
-                  ¿Qué productos puedo{" "}
+                  Crealo una vez, vendelo{" "}
                 </chakra.span>
                 <chakra.span
                   display={{ base: "block", xl: "inline" }}
                   color={useColorModeValue("brand.600", "brand.400")}
                 >
-                  publicar?
+                  muchas veces.
                 </chakra.span>
               </chakra.h1>
               <chakra.p
@@ -60,7 +60,7 @@ const Hero = () => {
                 color="gray.500"
               >
                 Cualquier tipo de archivo digital: desde PDFs, PPTs, hasta videos, audios, imágenes, etcétera. <br />
-                Pueden ser apuntes, trabajos, beats, software (apps, plugins, entre otros), clases, cursos, diseños, ilustraciones. 
+                Pueden ser apuntes, trabajos, beats, snippets de código, software (apps, plugins, entre otros), clases, cursos, diseños, ilustraciones. 
               
               </chakra.p>
               
