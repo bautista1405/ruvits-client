@@ -7,10 +7,14 @@ import {
     chakra,
     Link
 } from '@chakra-ui/react'
+import Head from "next/head";
 
 const TermsAndConditions = () => {
   return (
     <>
+        <Head>
+          <title>Términos y condiciones</title>
+        </Head> 
         <Flex justifyContent="center" flexDir="column" margin="100px"> 
 
           <Flex justifyContent="center">

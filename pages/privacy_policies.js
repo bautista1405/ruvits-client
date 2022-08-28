@@ -4,11 +4,15 @@ import {
     Text,
     chakra
 } from '@chakra-ui/react'
+import Head from 'next/head'
 
 
 const PrivacyPolicies = () => {
   return (
     <>
+      <Head>
+        <title>Política de privacidad</title>
+      </Head>
       <Flex justifyContent="center" flexDir="column" margin="100px">
         
         <Flex justifyContent="center">

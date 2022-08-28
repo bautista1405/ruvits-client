@@ -35,6 +35,7 @@ import swal from 'sweetalert';
 import {BsInfoCircle} from "react-icons/bs"
 
 import image from '../../assets/transaction.png'
+import Head from 'next/head';
 
 const MyProducts = () => {
 
@@ -58,6 +59,9 @@ const MyProducts = () => {
     
   return (
     <>
+        <Head>
+            <title>Mis productos</title>
+        </Head>
         {!session && (
             <Flex alignItems="center" justifyContent="center" h="54vh">
                 Para ver tus productos debes  

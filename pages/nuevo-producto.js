@@ -5,12 +5,16 @@ import {
   Button,
 } from '@chakra-ui/react'
 import NewProduct from '../components/NewProduct'
+import Head from 'next/head';
 
 const NewProductPage = () => {
   const [session, loading] = useSession();
 
   return (
     <div>
+      <Head>
+        <title>Nuevo producto</title>  
+      </Head> 
       {!session && (
           <Flex alignItems="center" justifyContent="center" h="54vh">
             Para subir tu producto debes  

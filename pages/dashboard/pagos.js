@@ -21,6 +21,7 @@ import {CgProfile} from 'react-icons/cg'
 import axios from 'axios';
 import swal from 'sweetalert';
 import {BsInfoCircle} from "react-icons/bs"
+import Head from 'next/head';
 
 const Payments = () => {
 
@@ -66,6 +67,9 @@ const Payments = () => {
   
   return (
     <div>
+        <Head>
+            <title>Pagos</title>
+        </Head>
 
         <Box >  
             {!session && (

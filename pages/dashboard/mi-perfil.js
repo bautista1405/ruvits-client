@@ -36,6 +36,7 @@ import {BsInfoCircle} from "react-icons/bs"
 import {CgProfile} from 'react-icons/cg'
 import axios from 'axios';
 import swal from 'sweetalert';
+import Head from 'next/head';
 
 const MyProfile = () => {
 
@@ -80,6 +81,9 @@ const MyProfile = () => {
 
   return (
     <>
+        <Head>
+            <title>Mi perfil</title>
+        </Head> 
         <Box >  
         {!session && (
           <Flex alignItems="center" justifyContent="center" h="54vh">

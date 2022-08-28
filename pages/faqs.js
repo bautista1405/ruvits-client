@@ -9,10 +9,14 @@ import {
     Link,
     Text
 } from '@chakra-ui/react'
+import Head from 'next/head'
 
 const FrequentQuestions = () => {
   return (
     <>
+        <Head>
+            <title>Preguntas frecuentes</title>
+        </Head>
         <Flex justifyContent="center" fontSize={32} color="gray.600" fontWeight="bold"> Preguntas frecuentes </Flex>
         <Flex 
             justifyContent="center" 
