@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
 import {useRouter} from 'next/router'
 
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
@@ -8,6 +7,7 @@ import {
     Flex,
     Heading,
     Avatar,
+    Link,
     AvatarGroup,
     Text,
     Icon,
