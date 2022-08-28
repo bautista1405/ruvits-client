@@ -26,7 +26,8 @@ class MyDocument extends Document {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', '${process.env.NEXT_PUBLIC_GA}');`
+            gtag('config', '${process.env.NEXT_PUBLIC_GA}', , {
+              page_path: window.location.pathname,);`
             }}
           ></script>
 
