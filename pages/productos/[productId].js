@@ -352,7 +352,7 @@ const ProductDetails = ({ product }) => {
         
                   <Button
                     w={'full'}
-                    mt={8}
+                    mt={20}
                     size={'lg'}
                     py={'7'}
                     bg="teal"
