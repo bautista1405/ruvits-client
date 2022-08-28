@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import { signIn, useSession, getSession } from "next-auth/client";
 import {
   Flex,
   Text,
   Icon,
-  Link,
   Tooltip,
   Box,
   Button,
@@ -130,19 +130,15 @@ const Payments = () => {
                                         justifyContent="center"
                                     >
                                         <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]}>
-                                            <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                                <Icon as={FiHome} fontSize="2xl" className="active-icon" />
-                                            </Link>
-                                            <Link href='/dashboard' _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                                <Text className="active" fontSize="18px" ml={2}>Inicio</Text>
+                                            <Icon as={FiHome} fontSize="2xl" className="active-icon" />
+                                            <Link display={["none", "none", "flex", "flex", "flex"]} href='/dashboard' _hover={{ textDecor: 'none' }}>
+                                                <Text className="active" fontSize="18px" ml={2} style={{cursor: 'pointer'}}>Inicio</Text>
                                             </Link>
                                         </Flex>
                                         <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                                            <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                                <Icon as={FiDollarSign} fontSize="2xl" className="active-icon" />
-                                            </Link>
+                                            <Icon as={FiDollarSign} fontSize="2xl" className="active-icon" />
                                             <Link href='/dashboard/pagos' _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                                <Text fontSize="18px" ml={1}>
+                                                <Text fontSize="18px" ml={1} style={{cursor: 'pointer'}}>
                                                         Autorización de pagos {" "} {" "}
                                                     <Tooltip label="Para poder vender tus productos, tenés que vincular tu cuenta de MercadoPago">
                                                         <span> <Icon as={BsInfoCircle} /> </span>
@@ -151,17 +147,17 @@ const Payments = () => {
                                             </Link>
                                         </Flex>
                                         <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                                            <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                                <Icon as={FiBox} fontSize="2xl" /></Link>
+                                                <Icon as={FiBox} fontSize="2xl" />
                                             <Link href="/dashboard/mis-productos" _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]}>
-                                                <Text fontSize="18px" ml={2}>Mis productos</Text>
+                                            
+                                                <Text fontSize="18px" ml={2} style={{cursor: 'pointer'}}>Mis productos</Text>
                                             </Link>
                                         </Flex>
                                         <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={6}>
-                                            <Link display={["none", "none", "flex", "flex", "flex"]}>
-                                                <Icon as={CgProfile} fontSize="2xl" /></Link>
+                                                <Icon as={CgProfile} fontSize="2xl" />
                                             <Link _hover={{ textDecor: 'none' }} display={["flex", "flex", "none", "flex", "flex"]} href="/dashboard/mi-perfil">
-                                                <Text fontSize="18px" ml={2}>Mi perfil</Text>
+                                            
+                                                <Text fontSize="18px" ml={2} style={{cursor: 'pointer'}}>Mi perfil</Text>
                                             </Link>
                                         </Flex>
                                         <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]} mt={10}>

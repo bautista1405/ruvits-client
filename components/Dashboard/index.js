@@ -126,7 +126,7 @@ export default function Dashboard({data}) {
                           align={["center", "center", "center", "flex-start", "flex-start"]}
                           wrap={["wrap", "wrap", "nowrap", "nowrap", "nowrap"]}
                           justifyContent="center"
-                      >
+                        >
                           <Flex className="sidebar-items" mr={[2, 6, 0, 0, 0]}>
                               <Icon as={FiHome} fontSize="2xl" className="active-icon" />
                               <Link display={["none", "none", "flex", "flex", "flex"]} href='/dashboard' _hover={{ textDecor: 'none' }}>
