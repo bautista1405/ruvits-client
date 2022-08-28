@@ -1,6 +1,6 @@
 import React from "react";
 import Link from 'next/link'
-import { chakra, Flex, Icon, useColorModeValue } from "@chakra-ui/react";
+import { chakra, Flex, Icon, useColorModeValue, Text } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 
 export default function Footer() {
@@ -30,7 +30,6 @@ export default function Footer() {
 
         <Link
           href='/faqs'
-          fontSize={12}
           fontWeight="bold"
           color="gray.600"
           _dark={{
@@ -43,11 +42,10 @@ export default function Footer() {
             color: "gray.700",
           }}
         >
-           Preguntas frecuentes
+          <Text fontSize={14} fontWeight="bold" style={{cursor: 'pointer'}}> Preguntas frecuentes </Text>
         </Link>
         <Link
           href="/terms"
-          fontSize={12}
           fontWeight="bold"
           color="gray.600"
           _dark={{
@@ -60,11 +58,10 @@ export default function Footer() {
             color: "gray.700",
           }}
         >
-          Términos y Condiciones
+          <Text fontSize={14} fontWeight="bold" style={{cursor: 'pointer'}}> Términos y condiciones </Text>
         </Link>
         <Link
           href="/privacy_policies"
-          fontSize={12}
           fontWeight="bold"
           color="gray.600"
           _dark={{
@@ -77,7 +74,7 @@ export default function Footer() {
             color: "gray.700",
           }}
         >
-          Política de Privacidad
+          <Text fontSize={14} fontWeight="bold" style={{cursor: 'pointer'}}> Política de privacidad </Text>
         </Link>
         </Flex>
 
@@ -93,7 +90,7 @@ export default function Footer() {
         </chakra.p>
 
         <Flex mx="-2">
-          <Link
+          <chakra.a
             href="#"
             mx="2"
             color="gray.600"
@@ -102,13 +99,14 @@ export default function Footer() {
               color: "gray.500",
             }}
             aria-label="Reddit"
+            
           >
             <Icon boxSize="5" viewBox="0 0 24 24" fill="currentColor" as={FaTwitter}>
               
             </Icon>
-          </Link>
+          </chakra.a>
 
-          <Link
+          <chakra.a
             href="#"
             mx="2"
             color="gray.600"
@@ -121,7 +119,7 @@ export default function Footer() {
             <Icon boxSize="5" viewBox="0 0 24 24" fill="currentColor" as={FaInstagram}>
               
             </Icon>
-          </Link>
+          </chakra.a>
 
          
         </Flex>
