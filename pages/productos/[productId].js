@@ -350,9 +350,11 @@ const ProductDetails = ({ product }) => {
                     </Box> */}
                   </Stack>
         
-                  <Button
+                  
+                  
+                  {/* <Button
                     w={'full'}
-                    mt={220}
+                    mt={8}
                     size={'lg'}
                     py={'7'}
                     bg="teal"
@@ -368,9 +370,28 @@ const ProductDetails = ({ product }) => {
                   <Stack direction="row" alignItems="center" justifyContent={'center'}>
                     <MdLocalShipping />
                     <Text>El producto te llega a tu mail.</Text>
-                  </Stack>
+                  </Stack> */}
                 </Stack>
               </SimpleGrid>
+                <Button
+                    w={'full'}
+                    mt={8}
+                    size={'lg'}
+                    py={'7'}
+                    bg="teal"
+                    color="white"
+                    textTransform={'uppercase'}
+                    _hover={{
+                      transform: 'translateY(2px)',
+                      boxShadow: 'lg',
+                    }}>
+                    Comprar
+                  </Button>
+        
+                  <Stack direction="row" alignItems="center" justifyContent={'center'} mt={5}>
+                    <MdLocalShipping />
+                    <Text>El producto te llega a tu mail.</Text>
+                  </Stack>
             </Container>
                     
             )
