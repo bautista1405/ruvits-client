@@ -40,7 +40,7 @@ import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaMoon, FaSun } from "react-icons/fa";
 
-import Logo from '../../assets/ruvitsLogo-bg.png'
+import Logo from '../../assets/logo-bg.png'
 
 export default function WfWf() {
   const bg = useColorModeValue("white", "gray.800");
@@ -104,7 +104,7 @@ export default function WfWf() {
           </Link>
           {/* <Spacer /> */}
           <Box display="flex" alignItems="center">
-            <HStack spacing={2}>
+          <HStack spacing={2}>
           <Box display={{ base: "none", md: "inline-flex" }} >
             <HStack spacing={1}>
               

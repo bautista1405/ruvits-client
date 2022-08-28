@@ -15,7 +15,7 @@ export default function HomePage() {
           name="description"
           content="Marketplace de productos digitales"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
       </Head>
       <Home />
     </div>
