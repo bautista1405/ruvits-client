@@ -37,6 +37,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import {FiChevronDown} from "react-icons/fi"
 import {FcGoogle} from 'react-icons/fc'
 import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
+import {GrBlog} from "react-icons/gr"
+import {RiCompassDiscoverLine} from "react-icons/ri"
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import { FaMoon, FaSun } from "react-icons/fa";
 
@@ -80,13 +82,13 @@ export default function WfWf() {
       />
 
       <Link href='/descubre'>
-        <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
-          Descubrí
+        <Button w="full" variant="ghost" leftIcon={<RiCompassDiscoverLine />}>
+          Descubrir
         </Button>
       </Link>
 
       <Link href='/blog'>
-      <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
+      <Button w="full" variant="ghost" leftIcon={<GrBlog />}>
         Blog
       </Button>
       </Link>
