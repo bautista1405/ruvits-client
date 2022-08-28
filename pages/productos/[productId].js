@@ -214,6 +214,7 @@ const ProductDetails = ({ product }) => {
                 boxShadow='2xl' 
                 p='6'
                 margin='auto'
+                mb={20}
               >
               <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
