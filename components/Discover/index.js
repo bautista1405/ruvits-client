@@ -127,7 +127,7 @@ const Discover = () => {
                                 }}
                                 letterSpacing={1}
                             >
-                                {value.title}
+                                {value.productName}
                             </chakra.h3>
 
                             <Flex
@@ -240,7 +240,7 @@ const Discover = () => {
                                 }}
                                 letterSpacing={1}
                             >
-                                {value.title}
+                                {value.productName}
                             </chakra.h3>
 
                             <Flex

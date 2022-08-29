@@ -52,7 +52,7 @@ const ProductDetails = ({ product }) => {
       const data = {
         "items": [
           {
-            "title": product.title,
+            "title": product.productName,
             "quantity": 1,
             "unit_price": product.price,
             "picture_url": product.content[0]
@@ -97,6 +97,7 @@ const ProductDetails = ({ product }) => {
             const testProduct = localStorage.setItem('product', JSON.stringify({
               id: product._id,
               title: product.title,
+              productName: product.productName,
               vendor: product.vendor,
               description: product.description,
               price: product.price,
@@ -161,6 +162,7 @@ const ProductDetails = ({ product }) => {
   const formik = useFormik({
     initialValues: {
       title: '',
+      productName: '',
       description: '',
       price: '',
     }
@@ -175,7 +177,8 @@ const ProductDetails = ({ product }) => {
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             body: JSON.stringify({
                 id: id,
-                title: formik.values.title,
+                title: formik.values.productName.replace(/\s+/g, ''),
+                productName: formik.values.productName,
                 description: formik.values.description,
                 price: formik.values.price,
             }),
@@ -237,7 +240,7 @@ const ProductDetails = ({ product }) => {
                       lineHeight={1.1}
                       fontWeight={600}
                       fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-                      {product.title}
+                      {product.productName}
                     </Heading>
                     <Text
                       color="gray.800"
@@ -453,9 +456,22 @@ const ProductDetails = ({ product }) => {
                                                     <FormLabel>Nombre</FormLabel>
                                                     <Input 
                                                       ref={initialRef} 
-                                                      placeholder={product.title} 
+                                                      placeholder={product.productName} 
                                                       type='text'
-                                                      id='name'
+                                                      // id='name'
+                                                      name='productName'
+                                                      value={formik.values.productName}
+                                                      onChange={formik.handleChange}
+                                                      onBlur={formik.handleBlur}
+                                                      required
+                                                    />
+                                                  </FormControl>
+
+                                                  <FormControl>
+                                                    
+                                                    <Input 
+                                                      type="hidden"
+                                                      // id='name'
                                                       name='title'
                                                       value={formik.values.title}
                                                       onChange={formik.handleChange}

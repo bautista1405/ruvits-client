@@ -11,7 +11,7 @@ export default async function sendEmail(req, res) {
   const parsedProduct = JSON.parse(product)
   // console.log(body);
   // console.log(parsedProduct)
-  const {id, title, description, price, content} = parsedProduct
+  const {id, title, productName, description, price, content} = parsedProduct
   const session = await getSession({req})
   
   const user = process.env.NEXT_PUBLIC_USER
@@ -40,9 +40,9 @@ export default async function sendEmail(req, res) {
           Precio:  $${price}
         `, // plain text body
         html: `
-          Hola, acá te dejamos el producto que compraste: ${title}
-          Descripción: ${description}
-          Precio:  $${price}
+          Hola, acá te dejamos el producto que compraste: ${productName} <br></br>
+          Descripción: ${description} <br></br>
+          Precio:  $${price} <br></br>
           <a href=${content[1]} download> Descargar producto </a>
         `, // html body
       });
