@@ -255,6 +255,10 @@ export default function ProductForm() {
                           pattern="[^()/><\][\\\x22,;|]+"
                         />
                       </InputGroup>
+
+                      <FormHelperText>
+                        Acordate que <b>no se permiten caracteres especiales </b>
+                      </FormHelperText>
                     </FormControl>
                   </SimpleGrid>
 
