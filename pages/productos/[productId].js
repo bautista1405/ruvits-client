@@ -545,7 +545,7 @@ const ProductDetails = ({ product }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch('http://3.95.83.1:3000/api/products')
+  const res = await fetch(process.env.GET_ALL_PRODUCTS)
   const products = await res.json()
 
   // Get the paths we want to pre-render based on products
@@ -564,7 +564,7 @@ export async function getStaticPaths() {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
-  const res = await fetch('http://3.95.83.1:3000/api/products')
+  const res = await fetch(process.env.GET_ALL_PRODUCTS)
   const products = await res.json();
   const product = products.filter(product => product.title === params.productId)
   

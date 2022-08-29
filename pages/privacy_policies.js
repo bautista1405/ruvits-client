@@ -36,7 +36,7 @@ const PrivacyPolicies = () => {
             <br />
             <br />
                         
-            <b>Protección de la privacidad</b>
+            <b>Cómo protegemos tus datos</b>
             <br />
 
             Te explicamos de manera simple y clara los usos que le damos a tu información, cómo y por qué procesamos tus datos y con quién 
@@ -44,14 +44,14 @@ const PrivacyPolicies = () => {
             <br />
             <br />
 
-            <b>Generamos valor</b>
+            <b>Apuntamos a brindar una experiencia personalizada</b>
             <br />
 
             Procesamos tus datos de manera responsable para brindarte servicios personalizados.
             <br />
             <br />
 
-            <b>Trabajamos con calidad</b>
+            <b>Trabajamos con calidad </b>
             <br />
 
             Nos esforzamos por procesar información de calidad, precisa y actualizada. Por ejemplo, guardamos tu información y la 
@@ -59,14 +59,14 @@ const PrivacyPolicies = () => {
             <br />
             <br />
 
-           <b> Protegemos tus datos</b>
+           <b> Protegemos tu información</b>
            <br />
 
             Protegemos tu información personal con los más altos estándares de seguridad. No comercializamos tus datos.
             <br />
             <br />
 
-            <b>Procesamos datos por tiempo limitado</b>
+            <b>Por cuánto tiempo trabajamos con tus datos</b>
             <br />
 
             Mantenemos tus datos solo el tiempo en el que los necesitamos para facilitarte el uso de nuestros productos. Después de eso 
@@ -74,7 +74,7 @@ const PrivacyPolicies = () => {
             <br />
             <br />
 
-            <b>En esta sección resumimos cómo tratamos tus datos y cuáles son tus derechos.</b>
+            <b>Cómo tratamos tus datos y cuáles son tus derechos</b>
             <br />
 
             Nos basamos en tus datos para ofrecerte una experiencia personalizada para que puedas disfrutar de nuestros servicios y que 
@@ -89,7 +89,7 @@ const PrivacyPolicies = () => {
             <br />
             <br />
 
-            <b>Tu privacidad: cuáles son tus derechos</b>
+            <b>Tu privacidad y qué derechos tenés</b>
             <br />
 
             Tienes derecho a acceder, actualizar, corregir y tener confidencialidad sobre tu información personal. También puedes pedir 
@@ -112,7 +112,7 @@ const PrivacyPolicies = () => {
             <br />
             <br />
 
-            <b>Tipos de datos que recolectamos:</b>
+            <b>Los datos que recolectamos:</b>
             <br />
 
             
@@ -135,7 +135,7 @@ const PrivacyPolicies = () => {
             <br />
             <br />
 
-            <b>Algunos de los fines para los que tratamos tus datos:</b>
+            <b>Para qué utilizamos tus datos</b>
             <br />
 
             Difundir anuncios y contactos publicitarios y promocionales adaptados a tus intereses. Prevenir fraude, abusos y delitos 
@@ -176,11 +176,11 @@ const PrivacyPolicies = () => {
             <br />
             <br />
 
-            <b>Editar información personal</b>
+            <b>Tu información personal</b>
             <br />
 
-            Puedes editar, eliminar o desvincular información de tu cuenta de cliente Ruvits enviando una solicitud a nuestro 
-            Centro de Ayuda al email ac@Ruvits.com describiendo que datos deseas modificar.
+            Puedes editar, eliminar o desvincular información de tu cuenta de cliente Ruvits enviando una solicitud al email 
+            ruvitsarg@gmail.com describiendo que datos deseas modificar.
           </Text>
         </Flex>
 
