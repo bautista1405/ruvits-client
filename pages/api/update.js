@@ -46,7 +46,7 @@ const updateProduct = async (req, res) => {  //in this route we listen to the up
           })
           
           const { body } = req
-          const { id, title, description, price} = body
+          const { id, productName, title, description, price} = body
           //console.log(req)
           await Product.findByIdAndUpdate(id, { title, productName, description, price }) 
           res.status(200).json({ message: 'Producto actualizado' })
