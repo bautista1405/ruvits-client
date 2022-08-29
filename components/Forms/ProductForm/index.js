@@ -123,17 +123,17 @@ export default function ProductForm() {
       },
     });
 
-    useEffect(() => {
-      setTimeout(() => {
-        if(token.length == 0) {
-          swal({
-            title: "Oopss. Parece que todavía no vinculaste tu cuenta de Mercado Pago.",
-            text: "Vinculá tu cuenta e intentá de nuevo.",
-            icon: "warning",
-          }).then(() => {router.push('/dashboard/pagos')})
-        }
-      }, (5000))
-    }, [])
+    // useEffect(() => {
+    //   setTimeout(() => {
+    //     if(token.length == 0) {
+    //       swal({
+    //         title: "Oopss. Parece que todavía no vinculaste tu cuenta de Mercado Pago.",
+    //         text: "Vinculá tu cuenta e intentá de nuevo.",
+    //         icon: "warning",
+    //       }).then(() => {router.push('/dashboard/pagos')})
+    //     }
+    //   }, (5000))
+    // }, [])
     
     
     
