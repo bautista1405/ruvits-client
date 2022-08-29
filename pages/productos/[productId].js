@@ -223,7 +223,13 @@ const ProductDetails = ({ product }) => {
                 columns={{ base: 1, lg: 2 }}
                 spacing={{ base: 8, md: 10 }}
                 py={{ base: 18, md: 24 }}>
-                <Flex>
+                <Flex
+                  rounded={[null, "md"]}
+                  borderRadius="5px"
+                  boxShadow='2xl'
+                  p='6'
+                  margin='auto'
+                >
                   <Image
                     rounded={'md'}
                     alt={'imagen del producto'}
