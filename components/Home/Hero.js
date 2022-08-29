@@ -43,13 +43,13 @@ const Hero = () => {
                 color={useColorModeValue("gray.900", "white")}
               >
                 <chakra.span display={{ base: "block", xl: "inline" }}>
-                  Crealo una vez, vendelo{" "}
+                  ¿Qué productos puedo{" "}
                 </chakra.span>
                 <chakra.span
                   display={{ base: "block", xl: "inline" }}
                   color={useColorModeValue("brand.600", "brand.400")}
                 >
-                  muchas veces.
+                  publicar?
                 </chakra.span>
               </chakra.h1>
               <chakra.p

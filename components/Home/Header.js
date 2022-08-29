@@ -61,7 +61,7 @@ const Header = () => {
           lineHeight="shorter"
           textShadow="2px 0 currentcolor"
         >
-          Publicá y vendé tu contenido en nuestra tienda.
+          Crealo una vez, vendelo muchas veces.
         </chakra.h1>
         <chakra.p
           pr={{ base: 0, lg: 16 }}
