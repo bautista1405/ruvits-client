@@ -350,7 +350,7 @@ const MyProducts = () => {
                                         }}
                                         letterSpacing={1}
                                     >
-                                        {product.title}
+                                        {product.productName}
                                     </chakra.h3>
 
                                     <Flex
