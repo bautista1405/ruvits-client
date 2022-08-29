@@ -90,7 +90,7 @@ export default function ProductForm() {
                 
   
                   vendor: values.vendor,
-                  title: values.title, 
+                  title: values.title.replace(/\s+/g, ''), 
                   description: values.description, 
                   price: values.price, 
                   photos: values.photos,
