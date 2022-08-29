@@ -123,7 +123,7 @@ export default function ProductForm() {
       },
     });
 
-    if(token.length == 0) {
+    if(session && token.length == 0) {
       <Flex alignItems="center" justifyContent="center" h="54vh">
           Para subir tu producto primero debes
           <Button
