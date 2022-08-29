@@ -15,6 +15,7 @@ export default function HomePage() {
           name="description"
           content="Marketplace de productos digitales"
         />
+        <meta name="twitter:image" content="/assets/ruvitsLogo-bg.png" />
         <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
       </Head>
       <Home />
