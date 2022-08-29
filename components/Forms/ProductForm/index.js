@@ -132,7 +132,7 @@ export default function ProductForm() {
             icon: "warning",
           }).then(() => {router.push('/dashboard/pagos')})
         }
-      }, (300))
+      }, (3000))
     }, [])
     
     
