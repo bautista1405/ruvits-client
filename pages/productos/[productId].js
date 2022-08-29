@@ -198,7 +198,7 @@ const ProductDetails = ({ product }) => {
        <Head>
           {product.map(product => {
             return (
-              <title key={product._id}> {`Ruvits | ${product.title}`} </title>
+              <title key={product._id}> {`Ruvits | ${product.productName}`} </title>
 
             )
           })}
