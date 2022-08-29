@@ -62,6 +62,10 @@ const filesUpload = async (req, res) => {
                 type: String,
                 required: true,
             },
+            productName: {
+                type: String,
+                required: true,
+            },
             vendor: {
                 type: String,
                 required: true,

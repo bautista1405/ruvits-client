@@ -74,13 +74,14 @@ export default function ProductForm() {
       initialValues: {
         vendor: session.user.name,
         title: '',
+        productName: '',
         description: '',
         price: Number,
         content: [],
         creationDate: dayjs().format("DD-MM-YYYY"),
         mpAccessToken: '', //we get the access token from the user
       },
-      onSubmit: (values = {vendor, title, description, price, photos, content, mpAccessToken, creationDate}) => {
+      onSubmit: (values = {vendor, title, productName, description, price, photos, content, mpAccessToken, creationDate}) => {
         try {
           axios.post(
             '/api/createproduct', 
@@ -90,7 +91,8 @@ export default function ProductForm() {
                 
   
                   vendor: values.vendor,
-                  title: values.title.replace(/\s+/g, ''), 
+                  title: values.title.replace(/\s+/g, ''),
+                  productName: values.title, 
                   description: values.description, 
                   price: values.price, 
                   photos: values.photos,
@@ -217,6 +219,14 @@ export default function ProductForm() {
                     id="creationDate" 
                     name='creationDate'
                     value={formik.values.creationDate}
+                    required  
+                  />
+
+                  <Input 
+                    type="hidden"
+                    id="productName" 
+                    name='productName'
+                    value={formik.values.productName}
                     required  
                   />
 
