@@ -123,7 +123,7 @@ export default function ProductForm() {
       },
     });
 
-    useEffect(() => {
+    
       if(token.length == 0) {
         swal({
           title: "Oopss. Parece que todavía no vinculaste tu cuenta de Mercado Pago.",
@@ -131,7 +131,7 @@ export default function ProductForm() {
           icon: "warning",
         }).then(() => {router.push('/dashboard/pagos')})
       }
-    }, [])
+    
     
     
     
