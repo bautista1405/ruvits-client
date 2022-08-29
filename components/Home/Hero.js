@@ -60,7 +60,8 @@ const Hero = () => {
                 color="gray.500"
               >
                 Puede ser cualquier tipo de archivo digital: desde PDFs, PPTs, hasta videos, audios, imágenes, etcétera. <br />
-                Pueden ser apuntes, trabajos, beats, snippets de código, software (apps, plugins, entre otros), clases, cursos, diseños, ilustraciones. 
+                Apuntes, guías, manuales, trabajos, beats, snippets de código, software (apps, plugins, entre otros), clases, 
+                cursos, diseños, ilustraciones. 
               
               </chakra.p>
               
