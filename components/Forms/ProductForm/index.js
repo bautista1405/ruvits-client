@@ -167,7 +167,7 @@ export default function ProductForm() {
         borderRadius="5px"
         backgroundColor="gray.100"
         w={["70vw", "100vw", "90vw", "83vw", "86vw"]}
-        
+        mb={20}
       >
           <SimpleGrid
             display={{ base: "initial", md: "grid" }}
