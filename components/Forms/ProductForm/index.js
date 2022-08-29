@@ -123,28 +123,14 @@ export default function ProductForm() {
       },
     });
 
-    if(session && token.length == 0) {
-      <Flex alignItems="center" justifyContent="center" h="54vh">
-          Para subir tu producto primero debes
-          <Button
-              onClick={() =>
-                router.push("/dashboard/pagos")
-              }
-              
-              variant="link"
-              ml={1}
-            >
-              vincular tu cuenta de Mercado Pago.
-          </Button>
-        </Flex>
-    }
+    
     
     
     
     
     return (
       <>
-      {/* {token.length == 0 && 
+      {token.length == 0 && 
         <Flex alignItems="center" justifyContent="center" h="54vh">
           Para subir tu producto primero debes
           <Button
@@ -158,7 +144,7 @@ export default function ProductForm() {
               vincular tu cuenta de Mercado Pago.
           </Button>
         </Flex>
-      } */}
+      }
       
       {token.length > 0 &&
       
