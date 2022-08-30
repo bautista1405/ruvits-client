@@ -91,7 +91,7 @@ export default function Footer() {
 
         <Flex mx="-2">
           <chakra.a
-            href="#"
+            href="https://twitter.com/ruvitsarg"
             mx="2"
             color="gray.600"
             _dark={{ color: "gray.300", _hover: { color: "gray.400" } }}
