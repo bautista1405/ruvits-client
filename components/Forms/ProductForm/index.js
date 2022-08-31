@@ -125,17 +125,17 @@ export default function ProductForm() {
       },
     });
 
-    // useEffect(() => {
-    //   setTimeout(() => {
-    //     if(token.length == 0) {
-    //       swal({
-    //         title: "Oopss. Parece que todavía no vinculaste tu cuenta de Mercado Pago.",
-    //         text: "Vinculá tu cuenta e intentá de nuevo.",
-    //         icon: "warning",
-    //       }).then(() => {router.push('/dashboard/pagos')})
-    //     }
-    //   }, (5000))
-    // }, [])
+    useEffect(() => {
+      setTimeout(() => {
+        token.length == 0 ? (
+          swal({
+            title: "Oopss. Parece que todavía no vinculaste tu cuenta de Mercado Pago.",
+            text: "Vinculá tu cuenta e intentá de nuevo.",
+            icon: "warning",
+          }).then(() => {router.push('/dashboard/pagos')})
+        ) : ("")
+      }, (5000))
+    }, [])
     
     
     
@@ -483,19 +483,7 @@ export default function ProductForm() {
           
         </Box>
         ) : (
-          <Flex alignItems="center" justifyContent="center" h="54vh">
-            Para subir tu producto primero debes
-            <Button
-                onClick={() =>
-                  router.push("/dashboard/pagos")
-                }
-                
-                variant="link"
-                ml={1}
-              >
-                vincular tu cuenta de Mercado Pago.
-            </Button>
-          </Flex>
+          ""
         ) 
       }
       </>
