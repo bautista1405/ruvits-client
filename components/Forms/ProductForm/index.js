@@ -125,7 +125,7 @@ export default function ProductForm() {
       },
     });
 
-    useEffect(() => {
+    
       setTimeout(() => {
         token.length == 0 ? (
           swal({
@@ -135,7 +135,7 @@ export default function ProductForm() {
           }).then(() => {router.push('/dashboard/pagos')})
         ) : ("")
       }, (5000))
-    }, [])
+    
     
     
     
