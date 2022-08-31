@@ -26,6 +26,7 @@ import {
   Checkbox,
   RadioGroup,
   Radio,
+  Spinner,
 } from "@chakra-ui/react";
 
 import axios from 'axios'
@@ -125,29 +126,37 @@ export default function ProductForm() {
       },
     });
 
-    if(token.length == 0) {
-      return (
-        <Flex alignItems="center" justifyContent="center" h="54vh">
-          Para subir tu producto primero debes
-          <Button
-              onClick={() =>
-                router.push("/dashboard/pagos")
-              }
-              
-              variant="link"
-              ml={1}
-            >
-              vincular tu cuenta de Mercado Pago.
-          </Button>
-        </Flex> 
-      )
-    }
+
+    // setTimeout(() => {
+
+    //   if(token.length == 0) {
+    //     return (
+    //       <Flex alignItems="center" justifyContent="center" h="54vh">
+    //         Para subir tu producto primero debes
+    //         <Button
+    //             onClick={() =>
+    //               router.push("/dashboard/pagos")
+    //             }
+                
+    //             variant="link"
+    //             ml={1}
+    //           >
+    //             vincular tu cuenta de Mercado Pago.
+    //         </Button>
+    //       </Flex> 
+    //     )
+    //   }
+    // }, (5000))
+    
     
     
     
     return (
       <>
-      {/* {token.length == 0 && 
+
+      {loading && <Spinner /> }
+
+      {token.length == 0 && 
         <Flex alignItems="center" justifyContent="center" h="54vh">
           Para subir tu producto primero debes
           <Button
@@ -161,7 +170,7 @@ export default function ProductForm() {
               vincular tu cuenta de Mercado Pago.
           </Button>
         </Flex>
-      } */}
+      }
       
       {token.length > 0 &&
       
