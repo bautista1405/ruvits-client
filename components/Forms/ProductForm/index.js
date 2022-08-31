@@ -125,24 +125,29 @@ export default function ProductForm() {
       },
     });
 
-    // useEffect(() => {
-    //   setTimeout(() => {
-    //     if(token.length == 0) {
-    //       swal({
-    //         title: "Oopss. Parece que todavía no vinculaste tu cuenta de Mercado Pago.",
-    //         text: "Vinculá tu cuenta e intentá de nuevo.",
-    //         icon: "warning",
-    //       }).then(() => {router.push('/dashboard/pagos')})
-    //     }
-    //   }, (5000))
-    // }, [])
-    
+    if(token.length == 0) {
+      return (
+        <Flex alignItems="center" justifyContent="center" h="54vh">
+          Para subir tu producto primero debes
+          <Button
+              onClick={() =>
+                router.push("/dashboard/pagos")
+              }
+              
+              variant="link"
+              ml={1}
+            >
+              vincular tu cuenta de Mercado Pago.
+          </Button>
+        </Flex> 
+      )
+    }
     
     
     
     return (
       <>
-      {token.length == 0 && 
+      {/* {token.length == 0 && 
         <Flex alignItems="center" justifyContent="center" h="54vh">
           Para subir tu producto primero debes
           <Button
@@ -156,7 +161,7 @@ export default function ProductForm() {
               vincular tu cuenta de Mercado Pago.
           </Button>
         </Flex>
-      }
+      } */}
       
       {token.length > 0 &&
       
