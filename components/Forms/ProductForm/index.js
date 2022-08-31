@@ -26,7 +26,6 @@ import {
   Checkbox,
   RadioGroup,
   Radio,
-  Spinner,
 } from "@chakra-ui/react";
 
 import axios from 'axios'
@@ -126,17 +125,42 @@ export default function ProductForm() {
       },
     });
 
-    useEffect(() => {
-      setTimeout(() => {
-        if(token.length == 0) {
-          swal({
-            title: "Oopss. Parece que todavía no vinculaste tu cuenta de Mercado Pago.",
-            text: "Vinculá tu cuenta e intentá de nuevo.",
-            icon: "warning",
-          }).then(() => {router.push('/dashboard/pagos')})
-        } if(token.length == 1) {
-          return (
-            <Box 
+    // useEffect(() => {
+    //   setTimeout(() => {
+    //     if(token.length == 0) {
+    //       swal({
+    //         title: "Oopss. Parece que todavía no vinculaste tu cuenta de Mercado Pago.",
+    //         text: "Vinculá tu cuenta e intentá de nuevo.",
+    //         icon: "warning",
+    //       }).then(() => {router.push('/dashboard/pagos')})
+    //     }
+    //   }, (5000))
+    // }, [])
+    
+    
+    
+    
+    return (
+      <>
+      {token.length == 0 && 
+        <Flex alignItems="center" justifyContent="center" h="54vh">
+          Para subir tu producto primero debes
+          <Button
+              onClick={() =>
+                router.push("/dashboard/pagos")
+              }
+              
+              variant="link"
+              ml={1}
+            >
+              vincular tu cuenta de Mercado Pago.
+          </Button>
+        </Flex>
+      }
+      
+      {token.length > 0 &&
+      
+      <Box 
         margin="auto" 
         shadow="base"
         rounded={[null, "md"]}
@@ -472,23 +496,7 @@ export default function ProductForm() {
           </SimpleGrid>
           
         </Box>
-          )
-        } else {
-          return (
-            <Spinner />
-          )
-        }
-      }, (5000))
-    }, [])
-    
-    
-    
-    
-    return (
-      <>
-      
-      
-      
+      }
       </>
   );
 }
