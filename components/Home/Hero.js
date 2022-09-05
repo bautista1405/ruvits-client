@@ -54,10 +54,13 @@ const Hero = () => {
               </chakra.h1>
               <chakra.p
                 mt={{ base: 3, sm: 5, md: 5 }}
-                fontSize={{ sm: "lg", md: "xl" }}
                 maxW={{ sm: "xl" }}
                 mx={{ sm: "auto", lg: 0 }}
-                color="gray.500"
+                pr={{ base: 0, lg: 16 }}
+                mb={4}
+                fontSize="lg"
+                color={useColorModeValue("brand.600", "gray.400")}
+                letterSpacing="wider"
               >
                 Puede ser cualquier tipo de archivo digital: desde PDFs, PPTs, hasta videos, audios, imágenes, etcétera. <br />
                 Apuntes, guías, manuales, trabajos, beats, snippets de código, software (apps, plugins, entre otros), clases, 
