@@ -226,7 +226,7 @@ const ProductDetails = ({ product }) => {
                 <Flex
                   rounded={[null, "md"]}
                   borderRadius="5px"
-                  boxShadow='2xl'
+                  boxShadow='dark-lg'
                   p='6'
                   margin='auto'
                 >
