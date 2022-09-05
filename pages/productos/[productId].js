@@ -237,7 +237,7 @@ const ProductDetails = ({ product }) => {
                     fit={'cover'}
                     align={'center'}
                     w={'100%'}
-                    h={{ base: '100%', sm: '400px', lg: '500px' }}
+                    h={{ base: '100%', sm: '300px', lg: '300px' }}
                   />
                 </Flex>
                 <Stack spacing={{ base: 6, md: 10 }}>

@@ -23,8 +23,8 @@ import peep5 from '../../assets/peep5-bg.png'
 
 const Header = () => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={50} pl={20} >
-      <Flex bg="brand.400" display={["none", "none", "block", "block"]} ml={20}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={50} pl={20}>
+      <Flex display={["none", "none", "block", "block"]} ml={20}>
         <Image
           src={peep5}
           alt="3 women looking at a laptop"
