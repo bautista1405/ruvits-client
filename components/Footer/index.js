@@ -115,6 +115,7 @@ export default function Footer() {
               color: "gray.500",
             }}
             aria-label="Facebook"
+            target="_blank"
           >
             <Icon boxSize="5" viewBox="0 0 24 24" fill="currentColor" as={FaInstagram}>
               
