@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ruvits.com
+
+# Sitemaps
+Sitemap: https://ruvits.com/sitemap.xml
