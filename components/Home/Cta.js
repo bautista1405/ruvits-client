@@ -30,7 +30,7 @@ const CTA = () => {
           h="350px"
           bg="gray.100"
           loading="lazy"
-          
+          // style={{filter:"drop-shadow(8px 8px 100px rgb(88, 200, 228))"}}
         />
       </Flex>
       <Flex

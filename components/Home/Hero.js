@@ -88,6 +88,7 @@ const Hero = () => {
           src={peep2}
           alt=""
           loading="lazy"
+          // style={{filter:"drop-shadow(8px 8px 100px rgb(88, 200, 228))"}}
         />
       </Box>
     </Box>

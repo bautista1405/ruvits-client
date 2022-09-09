@@ -33,7 +33,7 @@ const Header = () => {
           h="350px"
           bg="gray.100"
           loading="lazy"
-          
+          // style={{filter:"drop-shadow(8px 8px 30px rgb(88, 200, 228))"}}
         />
       </Flex>
       <Flex
