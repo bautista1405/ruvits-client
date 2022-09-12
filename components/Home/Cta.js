@@ -68,7 +68,7 @@ const CTA = () => {
           color={useColorModeValue("brand.600", "gray.400")}
           letterSpacing="wider"
         >
-          ¡Visitá <a href='https://it-resources.vercel.app/'> <b>IT Resources</b> </a> y encontrá recursos para empezar tu camino!
+          ¡Visitá <a href='https://itresources.info/'> <b>IT Resources</b> </a> y encontrá recursos para empezar tu camino!
 
         </chakra.p>
         <Box display="inline-flex" rounded="md" shadow="md">
