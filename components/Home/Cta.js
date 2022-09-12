@@ -68,7 +68,7 @@ const CTA = () => {
           color={useColorModeValue("brand.600", "gray.400")}
           letterSpacing="wider"
         >
-          ¡Visitá <a href='https://itresources.info/'> <b>IT Resources</b> </a> y encontrá recursos para empezar tu camino!
+          ¡Visitá <a href='https://itresources.info/' target="blank"> <b>IT Resources</b> </a> y encontrá recursos para empezar tu camino!
 
         </chakra.p>
         <Box display="inline-flex" rounded="md" shadow="md">
@@ -88,7 +88,7 @@ const CTA = () => {
             _hover={{
               bg: useColorModeValue("brand.700", "brand.600"),
             }}
-            href='https://it-resources.vercel.app/'
+            href='https://itresources.info/'
             target="blank"
           >
             Ir a IT Resources
