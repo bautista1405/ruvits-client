@@ -255,7 +255,7 @@ export default async function sendEmail(req, res) {
           <div class="v-text-align" style="color: #413b3b; line-height: 140%; text-align: left; word-wrap: break-word;">
             <p style="font-size: 14px; line-height: 140%;">Precio: $${price}</p>
         <p style="font-size: 14px; line-height: 140%;"> </p>
-        <p style="font-size: 14px; line-height: 140%;">Vendedor: ${vendor} </p>
+        
           </div>
         
               </td>
