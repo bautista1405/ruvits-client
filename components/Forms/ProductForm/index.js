@@ -237,7 +237,7 @@ export default function ProductForm() {
                           required
                           focusBorderColor="brand.400"
                           rounded="md"
-                          maxLength="25"
+                          maxLength="35"
                           pattern="[^()/><\][\\\x22,;|]+"
                         />
                       </InputGroup>
