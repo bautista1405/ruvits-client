@@ -222,22 +222,24 @@ const ProductDetails = ({ product }) => {
               <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
                 spacing={{ base: 8, md: 10 }}
-                py={{ base: 18, md: 24 }}>
+                py={{ base: 18, md: 24 }}
+              >
                 <Flex
                   rounded={[null, "md"]}
                   borderRadius="5px"
                   boxShadow='dark-lg'
-                  p='6'
                   margin='auto'
+                  h="300px"
+                  w="500px"
+                  
                 >
                   <Image
                     rounded={'md'}
                     alt={'imagen del producto'}
                     src={product.content[0]}
-                    fit={'cover'}
+                    backgroundSize="contain"
                     align={'center'}
-                    w={'100%'}
-                    h={{ base: '100%', sm: '300px', lg: '300px' }}
+                    
                   />
                 </Flex>
                 <Stack spacing={{ base: 6, md: 10 }}>

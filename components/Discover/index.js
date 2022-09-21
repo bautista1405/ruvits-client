@@ -200,6 +200,7 @@ const Discover = () => {
                             alignItems="center"
                             w="sm"
                             mx="auto"
+                            p='5'
                         >
                             <Box
                                 bg="gray.300"
@@ -213,6 +214,7 @@ const Discover = () => {
                                     backgroundImage:
                                     `url(${value.content[0]})`,
                                 }}
+                                backgroundSize="contain"
                             ></Box>
 
                             <Box
