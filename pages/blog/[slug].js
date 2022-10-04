@@ -74,7 +74,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
             </Heading>
 
             <Flex direction="column">
-              <Text fontSize="16px" color="gray.600" py="1">
+              <Text fontSize="16px" color="gray.700" py="1">
                 {frontMatter.author} /{" "}
                 {dayjs(frontMatter.publishedAt).format("MMMM DD, YYYY")} /{" "}
                 {frontMatter.readingTime.text}
