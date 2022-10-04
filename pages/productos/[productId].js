@@ -239,6 +239,7 @@ const ProductDetails = ({ product }) => {
                     src={product.content[0]}
                     backgroundSize="contain"
                     align={'center'}
+                    width="100%"
                     
                   />
                 </Flex>
