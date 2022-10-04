@@ -12,7 +12,7 @@ import {
 import { MDXProvider } from "@mdx-js/react"
 import { MdEdit } from "react-icons/md"
 import dayjs from "dayjs"
-
+import hydrate from "next-mdx-remote/hydrate"
 
 import { getFiles, getFileBySlug } from "../../lib/posts"
 import { seo } from "config"
@@ -26,7 +26,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
 
   const color = useColorModeValue("gray.700", "gray.400")
 
-  const content = (mdxSource, {
+  const content = hydrate(mdxSource, {
     components: MDXComponents,
   })
 
