@@ -23,7 +23,7 @@ import MDXComponents from "../../components/MDXComponents"
 import TagComponent from "../../components/UI/tag"
 import Head from "next/head"
 
-const BlogPost = ({ frontMatter }) => {
+const BlogPost = ({ frontMatter, source }) => {
   const { push } = useRouter()
 
   const color = useColorModeValue("gray.700", "gray.400")
