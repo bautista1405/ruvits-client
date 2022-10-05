@@ -28,7 +28,7 @@ const BlogPost = ({ frontMatter, source }) => {
 
   const color = useColorModeValue("gray.700", "gray.400")
 
-  // const content = { MDXComponents }
+  const content = { MDXComponents }
 
   const title = `${frontMatter.title}`
   const description = frontMatter.summary
@@ -56,7 +56,7 @@ const BlogPost = ({ frontMatter, source }) => {
         }}
       />
 
-      
+      <MDXRemote {...source} components={MDXComponents} />
       <Flex justify="center" margin={["20px"]}>
         <Box
            as="section"
@@ -104,7 +104,7 @@ const BlogPost = ({ frontMatter, source }) => {
 
           <Flex justify="center" >
             <Box as="article">
-              <MDXRemote {...source} components={MDXComponents} />
+              {content}
             </Box>
           </Flex>
         </Box>
