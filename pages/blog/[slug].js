@@ -12,7 +12,9 @@ import {
 import { MDXProvider } from "@mdx-js/react"
 import { MdEdit } from "react-icons/md"
 import dayjs from "dayjs"
+
 import hydrate from "next-mdx-remote/hydrate"
+import { MDXRemote } from 'next-mdx-remote'
 
 import { getFiles, getFileBySlug } from "../../lib/posts"
 import { seo } from "config"
@@ -21,14 +23,12 @@ import MDXComponents from "../../components/MDXComponents"
 import TagComponent from "../../components/UI/tag"
 import Head from "next/head"
 
-const BlogPost = ({ mdxSource, frontMatter }) => {
+const BlogPost = ({ frontMatter }) => {
   const { push } = useRouter()
 
   const color = useColorModeValue("gray.700", "gray.400")
 
-  const content = hydrate(mdxSource, {
-    components: MDXComponents,
-  })
+  const content = { MDXComponents }
 
   const title = `${frontMatter.title}`
   const description = frontMatter.summary
@@ -56,7 +56,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
         }}
       />
 
-      <MDXProvider components={MDXComponents}>
+      <MDXRemote {...source} components={MDXComponents} />
       <Flex justify="center" margin={["20px"]}>
         <Box
            as="section"
@@ -109,7 +109,7 @@ const BlogPost = ({ mdxSource, frontMatter }) => {
           </Flex>
         </Box>
        </Flex> 
-      </MDXProvider>
+      
     </>
   )
 }
