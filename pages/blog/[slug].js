@@ -13,7 +13,7 @@ import { MDXProvider } from "@mdx-js/react"
 import { MdEdit } from "react-icons/md"
 import dayjs from "dayjs"
 
-import hydrate from "next-mdx-remote/hydrate"
+// import hydrate from "next-mdx-remote/hydrate"
 import { MDXRemote } from 'next-mdx-remote'
 
 import { getFiles, getFileBySlug } from "../../lib/posts"
