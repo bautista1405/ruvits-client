@@ -87,11 +87,11 @@ export default function WfWf() {
         </Button>
       </Link>
 
-      <Link href='/blog'>
+      {/* <Link href='/blog'>
       <Button w="full" variant="ghost" leftIcon={<GrBlog />}>
         Blog
       </Button>
-      </Link>
+      </Link> */}
       
     </VStack>
   );
@@ -125,7 +125,7 @@ export default function WfWf() {
                 </Button>
                 
               
-              <Button
+              {/* <Button
                 bg={bg}
                 color="gray.700"
                 display="inline-flex"
@@ -138,7 +138,7 @@ export default function WfWf() {
                 <Link display="flex" alignItems="center" href="/blog">
                     Blog
                 </Link>
-              </Button>
+              </Button> */}
             </HStack>
           </Box>
             {session && (
