@@ -112,19 +112,19 @@ const BlogPost = ({ frontMatter, source }) => {
 
                 <br />
                 <br />
-                2. Dirigite a tu dashboard y hacé click en la tab de "Autorización de pagos".
-                Luego, a través del botón "Vincular mi cuenta de MercadoPago", vinculá tu cuenta
+                2. Dirigite a tu dashboard y hacé click en la tab de &quot;Autorización de pagos&quot;.
+                Luego, a través del botón &quot;Vincular mi cuenta de MercadoPago&quot;, vinculá tu cuenta
                 de MercadoPago a tu cuenta de la tienda.
 
                 <br />
                 <br />
-                3. Volviendo al dashboard, hacé click en el botón "Nuevo producto": allí agregá
+                3. Volviendo al dashboard, hacé click en el botón &quot;Nuevo producto&quot;: allí agregá
                 toda la información correspondiente a tu producto; nombre, descripción, precio,
                 foto de portada y contenido (archivos como videos, imágenes, PDFs, MP4, PPTs).
 
                 <br />
                 <br />
-                4. Dale click al botón "Crear producto".
+                4. Dale click al botón &quot;Crear producto&quot;.
 
                 <br />
                 <br />
