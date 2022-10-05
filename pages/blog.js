@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import { NextSeo } from "next-seo"
 import Fuse from "fuse.js"
 
-import { getAllFilesFrontMatter } from "../lib/posts"
+// import { getAllFilesFrontMatter } from "../lib/posts"
 import { tagColor } from "../components/UI/tagColor"
 import { seo } from "config"
 import TagComponent from "../components/UI/tag"
@@ -133,13 +133,13 @@ const Blog = ({ posts }) => {
   )
 }
 
-export async function getStaticProps() {
-  const data = await getAllFilesFrontMatter("blog")
-  const posts = data.sort(
-    (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
-  )
+// export async function getStaticProps() {
+//   const data = await getAllFilesFrontMatter("blog")
+//   const posts = data.sort(
+//     (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt))
+//   )
 
-  return { props: { posts } }
-}
+//   return { props: { posts } }
+// }
 
 export default Blog
