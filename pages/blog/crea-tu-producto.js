@@ -1,0 +1,162 @@
+import { NextSeo } from "next-seo"
+import { useRouter } from "next/router"
+import {
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Link as ChakraLink,
+  useColorModeValue,
+  Icon,
+} from "@chakra-ui/react"
+import { MDXProvider } from "@mdx-js/react"
+import { MdEdit } from "react-icons/md"
+import dayjs from "dayjs"
+
+// import hydrate from "next-mdx-remote/hydrate"
+// import { MDXRemote } from 'next-mdx-remote'
+
+import { getFiles, getFileBySlug } from "../../lib/posts"
+import { seo } from "config"
+import { tagColor } from "../../components/UI/tagColor"
+// import MDXComponents from "../../components/MDXComponents"
+import TagComponent from "../../components/UI/tag"
+import Head from "next/head"
+
+const BlogPost = ({ frontMatter, source }) => {
+  const { push } = useRouter()
+
+  const color = useColorModeValue("gray.700", "gray.400")
+
+  // const content = { MDXComponents }
+
+  // const title = `${frontMatter.title}`
+  // const description = frontMatter.summary
+  // const url = `${seo.canonical}blog/${frontMatter.slug}`
+
+  return (
+    <>
+      <Head>
+        <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
+      </Head> 
+      <NextSeo
+        title="Crea tu producto"
+        description="Crea tu producto digital"
+        // canonical={url}
+        // openGraph={{
+        //   title,
+        //   description,
+        //   url,
+        //   type: "article",
+        //   article: {
+        //     publishedTime: frontMatter.publishedAt,
+        //     modifiedTime: frontMatter.modifiedAt,
+        //     tags: frontMatter.tags?.map((tag) => tag),
+        //   },
+        // }}
+      />
+
+      {/* <MDXRemote {...source} components={MDXComponents} /> */}
+      <Flex justify="center" margin={["20px"]}>
+        <Box
+           as="section"
+           px={{ md: "10", lg: "20", xl: "80" }}
+           py="4"
+           fontSize="20px"
+           color="gray.700"
+           w={[900, 900, 1300]}
+           margin="auto"
+           mt={10}
+        >
+          <Box as="header" textAlign="center">
+            <Heading as="h1" py="4" size="2xl" >
+              Creá tu primer producto
+            </Heading>
+
+            <Flex direction="column">
+              <Text fontSize="16px" color="gray.600" py="1">
+                Ruvits /{" "}
+                2022-08-10 /{" "}
+                1 mins read
+              </Text>
+              {/* <Text py="1">
+                {frontMatter.tags.map((tag) => {
+                  const color = tagColor[tag]
+
+                  return (
+                    <TagComponent
+                      color={color}
+                      onClick={() =>
+                        push({
+                          pathname: "/blog/",
+                          query: { tag },
+                        })
+                      }
+                      key={tag}
+                    >
+                      {tag}
+                    </TagComponent>
+                  )
+                })}
+              </Text> */}
+            </Flex>
+          </Box>
+
+          <Flex justify="center" >
+            <Box as="article">
+              <Text>
+                
+
+                <br />
+                1. Asegurate de tener una cuenta: si no tenés, create una.
+
+                <br />
+                <br />
+                2. Dirigite a tu dashboard y hacé click en la tab de "Autorización de pagos".
+                Luego, a través del botón "Vincular mi cuenta de MercadoPago", vinculá tu cuenta
+                de MercadoPago a tu cuenta de la tienda.
+
+                <br />
+                <br />
+                3. Volviendo al dashboard, hacé click en el botón "Nuevo producto": allí agregá
+                toda la información correspondiente a tu producto; nombre, descripción, precio,
+                foto de portada y contenido (archivos como videos, imágenes, PDFs, MP4, PPTs).
+
+                <br />
+                <br />
+                4. Dale click al botón "Crear producto".
+
+                <br />
+                <br />
+                5. ¡Listo! Tu producto ya está online en la tienda.
+              </Text>
+            </Box>
+          </Flex>
+        </Box>
+       </Flex> 
+      
+    </>
+  )
+}
+
+// export const getStaticPaths = async () => {
+//   const posts = await getFiles("blog")
+
+//   return {
+//     paths: posts.map((post) => ({
+//       params: {
+//         slug: post.replace(/\.mdx/, ""),
+//       },
+//     })),
+
+//     fallback: false,
+//   }
+// }
+
+// export const getStaticProps = async ({ params }) => {
+//   const post = await getFileBySlug("blog", params.slug)
+
+//   return { props: post }
+// }
+
+export default BlogPost
