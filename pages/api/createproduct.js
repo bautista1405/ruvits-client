@@ -78,6 +78,10 @@ const filesUpload = async (req, res) => {
                 type: String,
                 required: true,
             },
+            category: {
+                type: String,
+                required: true,
+            },
             content: {
                 type: [],
                 required: true,
@@ -101,6 +105,7 @@ const filesUpload = async (req, res) => {
         console.log(newProduct);
         const product = new Product(newProduct);
         await product.save();
+        console.log(product)
         res.status(201).json({message: 'Producto dado de alta'})
         
 };

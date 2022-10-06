@@ -76,12 +76,13 @@ export default function ProductForm() {
         title: '',
         productName: '',
         description: '',
+        category: '',
         price: Number,
         content: [],
         creationDate: dayjs().format("DD-MM-YYYY"),
         mpAccessToken: '', //we get the access token from the user
       },
-      onSubmit: (values = {vendor, title, productName, description, price, photos, content, mpAccessToken, creationDate}) => {
+      onSubmit: (values = {vendor, title, productName, description, category, price, photos, content, mpAccessToken, creationDate}) => {
         try {
           axios.post(
             '/api/createproduct', 
@@ -94,6 +95,7 @@ export default function ProductForm() {
                   title: values.title.replace(/\s+/g, ''),
                   productName: values.title, 
                   description: values.description, 
+                  category: values.category,
                   price: values.price, 
                   photos: values.photos,
                   content: values.content, 
@@ -220,7 +222,7 @@ export default function ProductForm() {
                     <FormControl as={GridItem} colSpan={[3, 2]}>
                       <FormLabel
                         fontSize="sm"
-                        fontWeight="md"
+                        fontWeight="bold"
                         color="gray.700"
                       >
                         Nombre
@@ -252,7 +254,7 @@ export default function ProductForm() {
                     <FormControl id="email" mt={1}>
                       <FormLabel
                         fontSize="sm"
-                        fontWeight="md"
+                        fontWeight="bold"
                         color="gray.700"
                       >
                         Descripción
@@ -280,10 +282,48 @@ export default function ProductForm() {
                     </FormControl>
                   </div>
 
+                  <div>
+                    <FormControl id="email" mt={1}>
+                      <FormLabel
+                        fontSize="sm"
+                        fontWeight="bold"
+                        color="gray.700"
+                      >
+                        Categoría
+                      </FormLabel>
+
+                      <Select 
+                        placeholder='Elegí una categoría'
+                        id='category'
+                        name='category'
+                        value={formik.values.category}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        required
+                        mt={1}
+                        rows={3}
+                        shadow="sm"
+                        focusBorderColor="brand.400"
+                        fontSize={{ sm: "sm" }}
+                      >
+                        <option value='Apuntes/Trabajos'>Apuntes/Trabajos</option>
+                        <option value='Ilustraciones/Diseños'>Ilustraciones/Diseños</option>
+                        <option value='Manuales/Guías'>Manuales/Guías</option>
+                        <option value='Clases/Cursos'>Clases/Cursos</option>
+                        <option value='Beats/Tracks'>Beats/Tracks</option>
+                        <option value='Snippets de código'>Snippets de código</option>
+                      </Select>
+                     
+                      <FormHelperText>
+                        Elegí la categoría de tu producto para que sea más fácil de encontrar.
+                      </FormHelperText>
+                    </FormControl>
+                  </div>
+
                   <FormControl>
                     <FormLabel
                       fontSize="sm"
-                      fontWeight="md"
+                      fontWeight="bold"
                       color="gray.700"
                     >
                       Foto de portada de tu producto
@@ -343,7 +383,7 @@ export default function ProductForm() {
                     <FormControl as={GridItem} colSpan={[3, 2]}>
                       <FormLabel
                         fontSize="sm"
-                        fontWeight="md"
+                        fontWeight="bold"
                         color="gray.700"
                       >
                         Precio
@@ -368,7 +408,7 @@ export default function ProductForm() {
                   <FormControl>
                     <FormLabel
                       fontSize="sm"
-                      fontWeight="md"
+                      fontWeight="bold"
                       color="gray.700"
                     >
                       Contenido/archivos
@@ -482,7 +522,7 @@ export default function ProductForm() {
           </SimpleGrid>
           
         </Box>
-        ) : (
+         ) : ( 
           <Flex alignItems="center" justifyContent="center" h="54vh">
             Para subir tu producto primero debes
             <Button
@@ -496,8 +536,8 @@ export default function ProductForm() {
                 vincular tu cuenta de Mercado Pago.
             </Button>
           </Flex>
-        ) 
-      }
+         ) 
+      } 
       </>
   );
 }
