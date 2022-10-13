@@ -340,9 +340,35 @@ const Discover = () => {
                     })
                     ) : (
                         
-                        !selectedCategory ? (
-                            products.map((product) => {
-                                return (
+                         wordEntered.length > 0 && filteredData.length == 0 ? (
+                            
+                                
+                                    <Flex
+                                        p={50}
+                                        w="full"
+                                        alignItems="center"
+                                        justifyContent="center"
+                                        
+                                    >
+                                        <Flex
+                                            direction="column"
+                                            justifyContent="center"
+                                            alignItems="center"
+                                            w="sm"
+                                            mx="auto"
+                                            p='5'
+                                        >
+                                            <h3>¡Ooppsss! Parece que ese producto no existe.</h3>
+                                        </Flex>
+                                    </Flex>
+                                
+                            
+                        
+                        ) : (
+
+                        !selectedCategory && products.map((product) => {
+                            return (
+
                                     <Flex
                                         p={50}
                                         w="full"
@@ -451,31 +477,9 @@ const Discover = () => {
                                         </Box>
                                     </Flex>
                                     </Flex>
-                                )
-                            })
-                        ) : 
-
-                        wordEntered.length > 0 && filteredData.length == 0 && 
-    
-                        <Flex
-                            p={50}
-                            w="full"
-                            alignItems="center"
-                            justifyContent="center"
-                            
-                        >
-                            <Flex
-                                direction="column"
-                                justifyContent="center"
-                                alignItems="center"
-                                w="sm"
-                                mx="auto"
-                                p='5'
-                            >
-                                <h3>¡Ooppsss! Parece que ese producto no existe.</h3>
-                            </Flex>
-                            </Flex>
-                        )
+                            )})
+                       
+                        ))
                 
                     
             )
