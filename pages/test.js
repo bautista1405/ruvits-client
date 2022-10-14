@@ -21,7 +21,7 @@ const Test = () => {
     <div>
         {users.length > 0 && users.map((user) => {
             return (
-                <Text> {user.name} </Text>
+                <Text key={user._id} > {user.name} </Text>
             )
         })}
     </div>
