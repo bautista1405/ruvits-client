@@ -24,7 +24,7 @@ const StoreOwner = ({ user }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-    const res = await fetch('http://localhost:3000/api/getusers')
+    const res = await fetch('https://ruvits.com/api/getusers')
     const users = await res?.data?.getUsers
   
     // Get the paths we want to pre-render based on users
@@ -43,7 +43,7 @@ export async function getStaticPaths() {
   // It may be called again, on a serverless function, if
   // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
-    const res = await fetch('http://localhost:3000/api/getusers')
+    const res = await fetch('https://ruvits.com/api/getusers')
     const users = await res?.data?.getUsers
     const user = users.filter(user => user.name === params.userId)
     
