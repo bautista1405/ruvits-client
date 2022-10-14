@@ -1,28 +1,30 @@
-// import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 
 
-// const StoreOwner = ({ user }) => {
+const StoreOwner = ({ user }) => {
 
-//     const getUser = '/api/getusers'
+    const getUser = '/api/getusers'
 
-//   return (
-//     <>
-//         <Flex justify="center">
-//             {user.length > 0 && user.map((user) => {
-//                 return (
-//                     <Text key={user._id} >{user.name}</Text>
-//                 )
-//             }) }
-//         </Flex>
-//     </>
-//   )
-// }
+  return (
+    <>
+        {/* <Flex justify="center">
+            {user.length > 0 && user.map((user) => {
+                return (
+                    <Text key={user._id} >{user.name}</Text>
+                )
+            }) }
+        </Flex> */}
+
+        <Text>hola</Text>
+    </>
+  )
+}
 
 
 
-// // This function gets called at build time on server-side.
-// // It may be called again, on a serverless function, if
-// // the path has not been generated.
+// This function gets called at build time on server-side.
+// It may be called again, on a serverless function, if
+// the path has not been generated.
 // export async function getStaticPaths() {
 //     const res = await fetch('https://ruvits.com/api/getusers')
 //     const users = await res?.data?.getUsers
@@ -59,4 +61,4 @@
 // }
   
 
-// export default StoreOwner
+export default StoreOwner
