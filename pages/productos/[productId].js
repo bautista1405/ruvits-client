@@ -177,7 +177,7 @@ const ProductDetails = ({ product }) => {
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
             body: JSON.stringify({
                 id: id,
-                title: formik.values.productName.replace(/\s+/g, ''),
+                title: formik.values.productName.replace(/\s+/g, '') || product.productName.replace(/\s+/g, ''),
                 productName: formik.values.productName || product.productName,
                 description: formik.values.description || product.description,
                 price: formik.values.price || product.price,
