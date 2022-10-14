@@ -1,0 +1,31 @@
+import {useEffect, useState} from 'react'
+import axios from 'axios'
+import { Text } from '@chakra-ui/react';
+
+const test = () => {
+
+    const getUser = '/api/getusers'
+    const [users, setUsers] = useState([]);
+
+    useEffect( () => {
+        
+
+            axios.get(getUser)
+            .then((res) => {
+                setUsers(res?.data?.getUsers || [])
+            })
+        
+    }, [getUser]) 
+
+  return (
+    <div>
+        {users.length > 0 && users.map((user) => {
+            return (
+                <Text> {user.name} </Text>
+            )
+        })}
+    </div>
+  )
+}
+
+export default test

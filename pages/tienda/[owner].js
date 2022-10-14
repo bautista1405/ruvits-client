@@ -1,9 +1,19 @@
+import { Flex, Text } from '@chakra-ui/react'
 
 
-const StoreOwner = () => {
+const StoreOwner = ({ user }) => {
+
+    const getUser = '/api/getusers'
+
   return (
     <>
-        StoreOwner
+        <Flex justify="center">
+            {user.length > 0 && user.map((user) => {
+                return (
+                    <Text>{user.name}</Text>
+                )
+            }) }
+        </Flex>
     </>
   )
 }
@@ -14,12 +24,12 @@ const StoreOwner = () => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-    const res = await fetch(process.env.GET_ALL_PRODUCTS)
-    const products = await res.json()
+    const res = await fetch('http://localhost:3000/api/getusers')
+    const users = await res?.data?.getUsers
   
-    // Get the paths we want to pre-render based on products
-    const paths = products.map((product) => ({
-      params: { productId: product._id.toString() },
+    // Get the paths we want to pre-render based on users
+    const paths = users.map((user) => ({
+      params: { userId: user._id.toString() },
       
     }))
   
@@ -33,13 +43,13 @@ export async function getStaticPaths() {
   // It may be called again, on a serverless function, if
   // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
-    const res = await fetch(process.env.GET_ALL_PRODUCTS)
-    const products = await res.json();
-    const product = products.filter(product => product.title === params.productId)
+    const res = await fetch('http://localhost:3000/api/getusers')
+    const users = await res?.data?.getUsers
+    const user = users.filter(user => user.name === params.userId)
     
     return {
       props: {
-        product
+        user
       },
       // Next.js will attempt to re-generate the page:
       // - When a request comes in

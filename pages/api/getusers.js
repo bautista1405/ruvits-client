@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 // mongoose.set('debug', true);
 import { getSession } from "next-auth/client";
-import { boolean } from 'yup';
 
 
 export default async function getUser(req, res) {
@@ -33,9 +32,7 @@ export default async function getUser(req, res) {
                 type: String,
                 required: true,
             },
-            emailVerified: {
-                type: boolean,
-            }
+           
         });
 
         const email = session.user.email
