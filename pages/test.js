@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import axios from 'axios'
 import { Text } from '@chakra-ui/react';
 
-const test = () => {
+const Test = () => {
 
     const getUser = '/api/getusers'
     const [users, setUsers] = useState([]);
@@ -28,4 +28,4 @@ const test = () => {
   )
 }
 
-export default test
+export default Test
