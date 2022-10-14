@@ -40,8 +40,8 @@ const BlogPost = ({ frontMatter, source }) => {
         <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
       </Head> 
       <NextSeo
-        title="Crea tu producto"
-        description="Crea tu producto digital"
+        title="Cómo funciona Ruvits"
+        description="Flujo compra/venta"
         // canonical={url}
         // openGraph={{
         //   title,
