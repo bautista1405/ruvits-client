@@ -1,0 +1,52 @@
+import mongoose from 'mongoose';
+// mongoose.set('debug', true);
+import { getSession } from "next-auth/client";
+import { boolean } from 'yup';
+
+
+export default async function getUser(req, res) {
+
+    const db = process.env.NEXT_PUBLIC_MONGODB_URI
+    mongoose.connect(db, {  //connect to the db
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    
+    const { query } = req
+    const { qry, collection } = query
+    const session = await getSession({req})
+    
+    try {
+
+        mongoose.models = {}
+        
+        const User = mongoose.model('users', {
+            name: {
+                type: String,
+                required: true,
+            },
+            email: {
+                type: String,
+                required: true,
+            },
+            image: {
+                type: String,
+                required: true,
+            },
+            emailVerified: {
+                type: boolean,
+            }
+        });
+
+        const email = session.user.email
+        const getUsers = await User.find({ email })
+        // console.log(getUsers)
+
+        res.status(200).json({ getUsers })
+        return getUsers
+
+    } catch (e) {
+        console.error(e)
+        res.status(500).send(e)
+    }
+}
