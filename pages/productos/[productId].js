@@ -178,9 +178,9 @@ const ProductDetails = ({ product }) => {
             body: JSON.stringify({
                 id: id,
                 title: formik.values.productName.replace(/\s+/g, ''),
-                productName: formik.values.productName,
-                description: formik.values.description,
-                price: formik.values.price,
+                productName: formik.values.productName || product.productName,
+                description: formik.values.description || product.description,
+                price: formik.values.price || product.price,
             }),
         })
         swal({
