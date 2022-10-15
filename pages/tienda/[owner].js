@@ -8,31 +8,35 @@ import { useSession } from "next-auth/client";
 
 const StoreOwner = ({ user }) => {
 
-  const [session, loading] = useSession();
-  const getUser = '/api/getusers'
-  const [users, setUsers] = useState([]);
-  const router = useRouter();
+  // const [session, loading] = useSession();
+  // const getUser = '/api/getusers'
+  // const [users, setUsers] = useState([]);
+  // const router = useRouter();
 
-  useEffect( () => {
-    axios.get(getUser)
-    .then((res) => {
-      setUsers(res?.data?.getUsers || [])
-    })
+  // useEffect( () => {
+  //   axios.get(getUser)
+  //   .then((res) => {
+  //     setUsers(res?.data?.getUsers || [])
+  //   })
+  //   const storeOwner = users.filter(user => window.location.href == `/tienda/${user.name}`)
+  //   const localOwner = localStorage.setItem('owner', JSON.stringify({storeOwner}))
         
-  }, [getUser]) 
+  // }, [getUser]) 
 
-  if(typeof window !== 'undefined') {
-    const storeOwner = users.filter(user => window.location.href == `/tienda/${user.name}`)
-    const localOwner = localStorage.setItem('owner', JSON.stringify({storeOwner}))
-  }
-  const owner = localStorage.getItem('owner');
+  // const handleOwner = () => {
+
+  //   if(typeof window !== 'undefined') {
+  //     const owner = localStorage.getItem('owner');
+  //   }
+  // }
+
 
   return (
     <>
         <Flex justify="center">
-            {owner.length > 0 && owner.map((owner) => {
+            {user.length > 0 && user.map((user) => {
                 return (
-                    <Text key={owner._id} >{owner.name}</Text>
+                    <Text key={user._id} >{user.name}</Text>
                 )
             }) }
             
@@ -58,7 +62,7 @@ export async function getStaticPaths() {
   
     // Get the paths we want to pre-render based on users
     const paths = users.map((user) => ({
-      params: { userId: user._id.toString() },
+      params: { userId: user.name.toString() },
       
     }))
   
