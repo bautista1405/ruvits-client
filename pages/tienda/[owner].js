@@ -1,7 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react'
+import { getSession } from "next-auth/client";
 
 
-const StoreOwner = ({ user }) => {
+const StoreOwner = ({ user, req }) => {
 
     const getUser = '/api/getusers'
 
@@ -23,21 +24,21 @@ const StoreOwner = ({ user }) => {
 // This function gets called at build time on server-side.
 // It may be called again, on a serverless function, if
 // the path has not been generated.
-export async function getStaticPaths() {
+export async function getStaticPaths(req) {
+    const session = await getSession({req})
     const res = await fetch('https://ruvits.com/api/getusers')
-    const users = await res.json() 
+    const user = session.user.name
 
     // const users = await fetch('https://ruvits.com/api/getusers')
     //     .then((res) => {
     //        return res?.data?.getUsers || []
     //     })
-    console.log(users)
+    console.log(user)
   
     // Get the paths we want to pre-render based on users
-    const paths = users.map((user) => ({
-      params: { userId: user._id.toString() },
+    const paths = {params: { userId: user.toString() }}
       
-    }))
+    
   
     // We'll pre-render only these paths at build time.
     // { fallback: blocking } will server-render pages
