@@ -1,19 +1,33 @@
+import { useState, useEffect } from 'react'
 import { Flex, Text } from '@chakra-ui/react'
-import { getSession } from "next-auth/client";
+import axios from 'axios'
 
 
-const StoreOwner = ({ user, req }) => {
 
-    const getUser = '/api/getusers'
+const StoreOwner = ({ user }) => {
+
+  const getUser = '/api/getusers'
+  const [users, setUsers] = useState([]);
+
+  useEffect( () => {
+        
+
+      axios.get(getUser)
+      .then((res) => {
+        setUsers(res?.data?.getUsers || [])
+      })
+        
+  }, [getUser]) 
 
   return (
     <>
         <Flex justify="center">
-            {user.length > 0 && user.map((user) => {
+            {users.length > 0 && users.map((user) => {
                 return (
                     <Text key={user._id} >{user.name}</Text>
                 )
             }) }
+            <Text>hhg</Text>
         </Flex>
     </>
   )
@@ -24,21 +38,21 @@ const StoreOwner = ({ user, req }) => {
 // This function gets called at build time on server-side.
 // It may be called again, on a serverless function, if
 // the path has not been generated.
-export async function getStaticPaths(req) {
-    const session = await getSession({req})
+export async function getStaticPaths() {
     const res = await fetch('https://ruvits.com/api/getusers')
-    const user = session.user.name
+    const users = await res?.data?.getUsers || []
 
     // const users = await fetch('https://ruvits.com/api/getusers')
     //     .then((res) => {
     //        return res?.data?.getUsers || []
     //     })
-    console.log(user)
+    console.log(users)
   
     // Get the paths we want to pre-render based on users
-    const paths = {params: { userId: user.toString() }}
+    const paths = users.map((user) => ({
+      params: { userId: user._id.toString() },
       
-    
+    }))
   
     // We'll pre-render only these paths at build time.
     // { fallback: blocking } will server-render pages
@@ -51,7 +65,7 @@ export async function getStaticPaths(req) {
   // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
     const res = await fetch('https://ruvits.com/api/getusers')
-    const users = await res.json() 
+    const users = await res?.data?.getUsers || []
     const user = users.filter(user => user.name === params.userId)
     
     return {
