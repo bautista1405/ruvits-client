@@ -22,7 +22,7 @@ const StoreOwner = ({ user }) => {
 
       if(window.location.href == `https://ruvits.com/tienda/${user.name}`) {
   
-      } else {
+      } if(window.location.href != `https://ruvits.com/tienda/${user.name}`) {
           router.push('/404')
       }
     })
