@@ -1,21 +1,31 @@
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { Flex, Text } from '@chakra-ui/react'
 import axios from 'axios'
+import { useSession } from "next-auth/client";
 
 
 
 const StoreOwner = ({ user }) => {
 
+  const [session, loading] = useSession();
   const getUser = '/api/getusers'
   const [users, setUsers] = useState([]);
+  const router = useRouter();
 
   useEffect( () => {
-        
+    axios.get(getUser)
+    .then((res) => {
+      setUsers(res?.data?.getUsers || [])
+    })
+    users.map((user) => {
 
-      axios.get(getUser)
-      .then((res) => {
-        setUsers(res?.data?.getUsers || [])
-      })
+      if(window.location.href == `https://ruvits.com/tienda/${user.name}`) {
+  
+      } else {
+          router.push('/404')
+      }
+    })
         
   }, [getUser]) 
 
@@ -27,7 +37,7 @@ const StoreOwner = ({ user }) => {
                     <Text key={user._id} >{user.name}</Text>
                 )
             }) }
-            <Text>hhg</Text>
+            
         </Flex>
     </>
   )
