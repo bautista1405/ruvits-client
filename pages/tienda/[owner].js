@@ -18,22 +18,17 @@ const StoreOwner = ({ user }) => {
     .then((res) => {
       setUsers(res?.data?.getUsers || [])
     })
-    users.map((user) => {
-     if(window.location.href != `https://ruvits.com/tienda/${user.name}`) {
-          router.push('/404')
-      } else {
-        return <Text>correcto</Text>
-      }
-    })
         
   }, [getUser]) 
+
+  const owner = users.filter(user => window.location.href == `https://ruvits.com/tienda/${user.name}`)
 
   return (
     <>
         <Flex justify="center">
-            {users.length > 0 && users.map((user) => {
+            {owner.length > 0 && owner.map((owner) => {
                 return (
-                    <Text key={user._id} >{user.name}</Text>
+                    <Text key={owner._id} >{owner.name}</Text>
                 )
             }) }
             
