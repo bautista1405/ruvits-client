@@ -21,7 +21,7 @@ const StoreOwner = ({ user }) => {
         
   }, [getUser]) 
 
-  const owner = users.filter(user => window.location.href == `https://ruvits.com/tienda/${user.name}`)
+  const owner = users.filter(user => window.location.href == `/tienda/${user.name}`)
 
   return (
     <>
