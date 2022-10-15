@@ -4,7 +4,7 @@ import { Flex, Text } from '@chakra-ui/react'
 const StoreOwner = ({ user }) => {
 
     const getUser = '/api/getusers'
-    console.log(user.name)
+
   return (
     <>
         <Flex justify="center">
@@ -24,12 +24,18 @@ const StoreOwner = ({ user }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-    const res = await fetch('https://ruvits.com/api/getusers')
-    const users = await res?.data?.getUsers || []
+    // const res = await fetch('https://ruvits.com/api/getusers')
+    // const users = await res?.data?.getUsers || []
+
+    const users = await fetch('https://ruvits.com/api/getusers')
+        .then((res) => {
+           return res?.data?.getUsers || []
+        })
     console.log(users)
+  
     // Get the paths we want to pre-render based on users
     const paths = users.map((user) => ({
-      params: { userId: user.name.toString() },
+      params: { userId: user._id.toString() },
       
     }))
   
