@@ -29,7 +29,7 @@ export async function getStaticPaths() {
   
     // Get the paths we want to pre-render based on users
     const paths = users.map((user) => ({
-      params: { userId: user._id.toString() },
+      params: { userId: user.name.toString() },
       
     }))
   
