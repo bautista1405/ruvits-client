@@ -19,11 +19,10 @@ const StoreOwner = ({ user }) => {
       setUsers(res?.data?.getUsers || [])
     })
     users.map((user) => {
-
-      if(window.location.href == `https://ruvits.com/tienda/${user.name}`) {
-  
-      } if(window.location.href != `https://ruvits.com/tienda/${user.name}`) {
+     if(window.location.href != `https://ruvits.com/tienda/${user.name}`) {
           router.push('/404')
+      } else {
+        return <Text>correcto</Text>
       }
     })
         
