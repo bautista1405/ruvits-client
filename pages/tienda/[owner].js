@@ -23,7 +23,7 @@ const StoreOwner = ({ user }) => {
 
   if(typeof window !== 'undefined') {
     const storeOwner = users.filter(user => window.location.href == `/tienda/${user.name}`)
-    localStorage.setItem('owner', JSON.stringify({storeOwner}))
+    const localOwner = localStorage.setItem('owner', JSON.stringify({storeOwner}))
   }
   const owner = localStorage.getItem('owner');
 
