@@ -62,7 +62,7 @@ export async function getStaticPaths() {
   
     // Get the paths we want to pre-render based on users
     const paths = users.map((user) => ({
-      params: { userId: user.name.toString() },
+      params: { userId: user._id.toString() },
       
     }))
   
@@ -78,7 +78,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({params}) {
     const res = await fetch('https://ruvits.com/api/getusers')
     const users = await res?.data?.getUsers || []
-    const user = users.filter(user => user.name === params.userId)
+    const user = users.filter(user => user._id === params.userId)
     
     return {
       props: {
