@@ -17,7 +17,7 @@ export default async function getUser(req, res) {
     
     try {
 
-        mongoose.models = {}
+        mongoose.models = []
         
         const User = mongoose.model('users', {
             name: {
@@ -36,11 +36,11 @@ export default async function getUser(req, res) {
         });
 
         const email = session.user.email
-        const getUsers = await User.find({ email })
+        const getUsers = await User.find()
+        res.json({getUsers})
         console.log(getUsers)
 
-        res.status(200).json({ getUsers })
-        return getUsers
+        
 
     } catch (e) {
         console.error(e)

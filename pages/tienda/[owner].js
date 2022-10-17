@@ -51,12 +51,12 @@ const StoreOwner = ({ user }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-    const res = await fetch('https://ruvits.com/api/getusers')
-    const users = await res?.data?.getUsers || []
+    const res = await fetch(process.env.GET_USER)
+    const users = await res.json()
 
-    // const users = await fetch('https://ruvits.com/api/getusers')
+    // const users = await fetch(process.env.GET_USER)
     //     .then((res) => {
-    //        return res?.data?.getUsers || []
+    //        return res.json(res.data.getUsers)
     //     })
     console.log(users)
   
@@ -76,8 +76,8 @@ export async function getStaticPaths() {
   // It may be called again, on a serverless function, if
   // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
-    const res = await fetch('https://ruvits.com/api/getusers')
-    const users = await res?.data?.getUsers || []
+    const res = await fetch(process.env.GET_USER)
+    const users = await res.json()
     const user = users.filter(user => user._id === params.userId)
     
     return {
