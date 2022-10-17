@@ -37,7 +37,7 @@ export default async function getUser(req, res) {
 
         const email = session.user.email
         const getUsers = await User.find()
-        res.json({getUsers})
+        res.json(getUsers)
         console.log(getUsers)
 
         
