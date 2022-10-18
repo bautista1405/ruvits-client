@@ -35,7 +35,7 @@ const StoreOwner = ({ user }) => {
         <Flex justify="center">
             {user.length > 0 && user.map((user) => {
                 return (
-                    <Text key={user._id}>{user.name}</Text>
+                    <Text key={user._id}>{user.name}d</Text>
                 )
             }) }
             
