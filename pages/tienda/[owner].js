@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { Flex, Text } from '@chakra-ui/react'
 import axios from 'axios'
 import { useSession } from "next-auth/client";
+import mongoose from 'mongoose';
 
 
 
@@ -14,14 +15,12 @@ const StoreOwner = ({ user }) => {
   // const router = useRouter();
 
   // useEffect( () => {
-  //   axios.get(getUser)
-  //   .then((res) => {
-  //     setUsers(res?.data?.getUsers || [])
-  //   })
-  //   const storeOwner = users.filter(user => window.location.href == `/tienda/${user.name}`)
+  
+  //   const storeOwner = user.filter(user => window.location.href == `/tienda/${user.name}`)
   //   const localOwner = localStorage.setItem('owner', JSON.stringify({storeOwner}))
+  //   const owner = localStorage.getItem('owner');
         
-  // }, [getUser]) 
+  // }, []) 
 
   // const handleOwner = () => {
 
@@ -36,7 +35,7 @@ const StoreOwner = ({ user }) => {
         <Flex justify="center">
             {user.length > 0 && user.map((user) => {
                 return (
-                    <Text key={user._id} >{user.name}</Text>
+                    <Text key={user._id}>{user.name}</Text>
                 )
             }) }
             
@@ -51,20 +50,41 @@ const StoreOwner = ({ user }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-    const res = await fetch('https://www.ruvits.com/api/getusers')
-    const users = await res.json()
 
-    // const users = await fetch('https://ruvits.com/api/getusers')
-    //     .then((res) => {
-    //        return res.json(res.data.getUsers)
-    //     })
-    console.log(users)
+    const db = process.env.NEXT_PUBLIC_MONGODB_URI
+    mongoose.connect(db, {  //connect to the db
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+
+    mongoose.models = {}
+
+    const User = mongoose.model('users', {
+      name: {
+          type: String,
+          required: true,
+      },
+      email: {
+          type: String,
+          required: true,
+      },
+      image: {
+          type: String,
+          required: true,
+      },
+     
+  });
+
+  const users = await User.find()
+  
+  
   
     // Get the paths we want to pre-render based on users
     const paths = users.map((user) => ({
-      params: { userId: user._id.toString() },
+      params: { owner: user._id.toString() },
       
     }))
+    // console.log(paths)
   
     // We'll pre-render only these paths at build time.
     // { fallback: blocking } will server-render pages
@@ -76,13 +96,39 @@ export async function getStaticPaths() {
   // It may be called again, on a serverless function, if
   // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
-    const res = await fetch('https://www.ruvits.com/api/getusers')
-    const users = await res.json()
-    const user = users.filter(user => user._id === params.userId)
+
+    const db = process.env.NEXT_PUBLIC_MONGODB_URI
+    mongoose.connect(db, {  //connect to the db
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    
+    mongoose.models = {}
+
+    const User = mongoose.model('users', {
+      name: {
+          type: String,
+          required: true,
+      },
+      email: {
+          type: String,
+          required: true,
+      },
+      image: {
+          type: String,
+          required: true,
+      },
+     
+  });
+
+  const owner = params.owner
+  const user = await User.find({name: { '$regex': owner, $options: 'i' } })
+
+  console.log(user)
     
     return {
       props: {
-        user
+        user: JSON.parse(JSON.stringify(user)) 
       },
       // Next.js will attempt to re-generate the page:
       // - When a request comes in
