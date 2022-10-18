@@ -33,11 +33,16 @@ const StoreOwner = ({ user }) => {
   return (
     <>
         <Flex justify="center">
-            {user.length > 0 && user.map((user) => {
+            {user.length > 0 ? user.map((user) => {
                 return (
-                    <Text key={user._id}>{user.name}d</Text>
+                    <Text key={user._id}>{user.name}</Text>
                 )
-            }) }
+            }) : (
+              <Text>
+                ¡Oopss! Parece que el usuario que buscas no existe.
+              </Text>
+            )
+            }
             
         </Flex>
     </>
@@ -109,7 +114,6 @@ export async function getStaticProps({params}) {
       name: {
           type: String,
           required: true,
-          trim: true,
       },
       email: {
           type: String,
@@ -123,7 +127,7 @@ export async function getStaticProps({params}) {
   });
 
   const owner = params.owner
-  const user = await User.find({name: { '$regex': owner, $options: 'i' } })
+  const user = await User.find({name: { $regex: owner, $options: 'i' } })
 
   console.log(user)
     
