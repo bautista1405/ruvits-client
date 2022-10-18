@@ -109,6 +109,7 @@ export async function getStaticProps({params}) {
       name: {
           type: String,
           required: true,
+          trim: true,
       },
       email: {
           type: String,
