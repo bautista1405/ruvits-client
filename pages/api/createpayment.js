@@ -26,28 +26,6 @@ export default async function createPayment(req, res) {
           useUnifiedTopology: true,
         });
       
-        
-        // const Purchase = mongoose.model('purchase', 
-        //   {
-        //       title: {
-            //           type: String,
-            //           required: true,
-            //         },
-            //         user: {
-                //             type: String,
-                //             required: true,
-                //         },
-                //         price: {
-                    //           type: Number,
-                    //           required: true,
-                    //         },
-                    //         description: {
-                        //           type: String,
-        //           required: true,
-        //         },   
-        //   }
-        // )
-
         const PurchaseSchema = new Schema({
             title: {
                 type: String,

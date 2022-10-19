@@ -2,6 +2,7 @@ import React from "react";
 import Link from 'next/link'
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 import {
   chakra,
@@ -58,6 +59,7 @@ export default function WfWf() {
   const hbgh = useColorModeValue("gray.100", "brand.500");
   
   const [session, loading] = useSession();
+  const router = useRouter();
 
   const MobileNavContent = (
     <VStack
@@ -166,7 +168,7 @@ export default function WfWf() {
               <Button
                 onClick={() =>
                   signIn("google", {
-                    callbackUrl: "https://www.ruvits.com/dashboard",
+                    callbackUrl: "https://www.ruvits.com/onboard",
                   })
                 }
                 rightIcon={<FcGoogle />}

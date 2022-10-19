@@ -128,6 +128,7 @@ export async function getStaticProps({params}) {
 
   const owner = params.owner
   const user = await User.find({name: { $regex: owner, $options: 'i' } })
+  console.log(owner)
 
   console.log(user)
     
