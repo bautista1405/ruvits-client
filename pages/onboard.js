@@ -28,7 +28,6 @@ import {
   } from "@chakra-ui/react";
 import axios from 'axios'
 import { useSession } from "next-auth/client";
-import mongoose from 'mongoose';
 import { useFormik, Field, Formik, Form } from "formik";
 import swal from 'sweetalert';
 
@@ -69,12 +68,12 @@ const OnboardPage = () => {
         </Flex>
         <Flex justify="center">
         <Formik>
-                          <Form className="my-3" id="form-container" onSubmit={handleStore}>
+                          <Form onSubmit={handleStore}>
               
-                            <div className="my-2 inputs_login d-flex">
+                            
                             
                           
-
+{/* 
                               { !session && (
                                   
                                     <Button
@@ -90,9 +89,9 @@ const OnboardPage = () => {
                                     ></Button>
                                   
                                 )
-                              } 
+                              }  */}
                               
-                              { session && (
+                              
 
                                     <>
 
@@ -160,12 +159,9 @@ const OnboardPage = () => {
                                     
 
                                     </>
-                                  )
                                 
-                                
-                              }
 
-                            </div>
+                            
                           </Form>
                         </Formik>
         </Flex>
