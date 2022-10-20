@@ -302,7 +302,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >s</Text>
+                            >{session.user.name}</Text>
                         </FormControl>
 
                         
@@ -329,7 +329,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >s</Text>
+                            >{session.user.email}</Text>
                         </FormControl>
 
                        
