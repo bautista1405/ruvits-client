@@ -8,11 +8,12 @@ import dayjs from "dayjs";
 export default async function updateStore(req, res) {
     
     const { body } = req;
-    const {product} = body;
-    const parsedProduct = JSON.parse(product)
+    console.log(body)
+    // const {product} = body;
+    // const parsedProduct = JSON.parse(product)
     // console.log(body);
     // console.log(parsedProduct)
-    const {id, title, description, price, content, vendor} = parsedProduct
+    // const {id, title, description, price, content, vendor} = parsedProduct
     const session = await getSession({req})
 
     try {
@@ -31,9 +32,14 @@ export default async function updateStore(req, res) {
                 type: String,
                 
             },
+            email: {
+                type: String,
+                required: true,
+            },
             description: {
                 type: String,
-            }
+            },
+            products: []
         });
         
         mongoose.models = {}
@@ -41,8 +47,9 @@ export default async function updateStore(req, res) {
 
         const newStore = new Store({
             storeName,
+            email: session.user.email,
             description,
-            
+            products
         })
         newStore.save()
         

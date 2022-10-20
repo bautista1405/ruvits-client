@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head';
 import { Flex, Text, Box, Grid } from '@chakra-ui/react'
 import axios from 'axios'
 import { useSession } from "next-auth/client";
@@ -21,6 +22,16 @@ const StoreOwner = ({ user }) => {
 
   return (
     <>    
+      <Head>
+        {user.length > 0  && user.map((user) => {
+          return (
+
+            <title>{user.name} | Ruvits </title>
+          )
+          
+        })}
+            <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
+      </Head> 
         {user.length > 0 ? user.map((user) => {
           return (
             <Box pt={{ base: "130px", md: "80px", xl: "80px" }} key={user._id}>

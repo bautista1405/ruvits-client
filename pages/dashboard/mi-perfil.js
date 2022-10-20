@@ -85,7 +85,9 @@ const MyProfile = () => {
 
     const formik = useFormik({
         initialValues: {
+            storeName: '',
             description: '',
+            email: ''
         }
     })
 
@@ -116,13 +118,15 @@ const MyProfile = () => {
                 method: 'PATCH',
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
                 body: JSON.stringify({
-                    description: formik.values.description 
+                    storeName: formik.values.storeName,
+                    description: formik.values.description,
+                    email: session.user.email 
                     
                 }),
             })
             swal({
-                title: "¡Tu producto fue actualizado!",
-                text: "Ahora podes ver tu producto con los cambios correspondientes.",
+                title: "¡Tu tienda fue actualizada!",
+                text: "Ahora podes ver tu tienda con los cambios correspondientes.",
                 icon: "success",
             }).then(() => {router.push('/dashboard')})
         
@@ -302,7 +306,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.name}</Text>
+                            > {session.user.name} </Text>
                         </FormControl>
 
                         
@@ -329,7 +333,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.email}</Text>
+                            > {session.user.email} </Text>
                         </FormControl>
 
                        
@@ -374,14 +378,9 @@ const MyProfile = () => {
                     
                     <Text mb={5} fontSize={22} fontWeight='bold'>Mi tienda</Text>
                     
-                    <chakra.form
-                    method="POST"
-                    shadow="base"
-                    rounded={[null, "md"]}
-                    overflow={{
-                        sm: "hidden",
-                    }}
-                    >
+                    <Formik>
+                        <Form className="my-3" id="form-container" onSubmit={updateStore}>
+                    
                     <Stack
                         px={4}
                         py={5}
@@ -393,35 +392,13 @@ const MyProfile = () => {
                         spacing={6}
                     >
                         <SimpleGrid columns={6} spacing={6} mb={20}>
-                        <FormControl as={GridItem} colSpan={[6, 4]}>
-                            <FormLabel
-                            htmlFor="description"
-                            fontSize="sm"
-                            fontWeight="bold"
-                            color="gray.700"
-                            >
-                                <b>Descripción</b>
-                            </FormLabel>
-                            
-                                <Textarea
-                                color='gray.900'
-                                placeholder="Descripción de tu tienda..."  
-                                type='text'
-                                id='description'
-                                name='description'
-                                value={formik.values.description}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                required
-                                focusBorderColor="brand.700"
-                                rounded="md"
-                                maxLength="2000"
-                                
-                                />
-                            
-                        </FormControl>
 
-                        
+                        <Input 
+                            type='hidden'
+                            id='email'
+                            name='email'
+                            
+                        />
 
                         <FormControl as={GridItem} colSpan={[6, 4]}>
                             <FormLabel
@@ -433,10 +410,16 @@ const MyProfile = () => {
                                 color: "gray.50",
                             }}
                             >
-                            <b>Email</b> 
+                            <b>Nombre</b> 
                             </FormLabel>
-                            <Text
-                                
+                            <Input
+                                type='text'
+                                placeholder="Nombre de tu tienda..."  
+                                id='storeName'
+                                name='storeName'
+                                value={formik.values.storeName}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                                 mt={1}
                                 focusBorderColor="brand.400"
                                 shadow="sm"
@@ -445,13 +428,35 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >s</Text>
+                            />
                         </FormControl>
-
-                       
-
-                        
-
+                        <FormControl as={GridItem} colSpan={[6, 4]}>
+                            <FormLabel
+                            htmlFor="description"
+                            fontSize="sm"
+                            fontWeight="bold"
+                            color="gray.700"
+                            >
+                                <b>Descripción</b>
+                            </FormLabel>
+                            
+                                <Textarea
+                                    color='gray.900'
+                                    placeholder="Descripción de tu tienda..."  
+                                    type='text'
+                                    id='description'
+                                    name='description'
+                                    value={formik.values.description}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                    
+                                    focusBorderColor="brand.700"
+                                    rounded="md"
+                                    maxLength="2000"
+                                
+                                />
+                            
+                        </FormControl>
                         
                         </SimpleGrid>
                     </Stack>
@@ -468,7 +473,7 @@ const MyProfile = () => {
                         }}
                         textAlign="right"
                     >
-                        {/* <Button
+                        <Button
                         type="submit"
                         colorScheme="cyan"
                         _focus={{
@@ -478,9 +483,10 @@ const MyProfile = () => {
                         variant="outline"
                         >
                             Guardar
-                        </Button> */}
+                        </Button>
                     </Box>
-                    </chakra.form>
+                    </Form>
+                    </Formik>
                     </GridItem>
                         
                         <GridItem mt={20}>
