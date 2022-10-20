@@ -112,10 +112,10 @@ const MyProfile = () => {
 
     const updateStore = () => { 
         
-        const name = session.user.name
+        
             fetch('/api/updatestore', {
                 
-                method: 'PATCH',
+                method: 'POST',
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
                 body: JSON.stringify({
                     storeName: formik.values.storeName,
@@ -306,7 +306,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            > {session.user.name} </Text>
+                            >s</Text>
                         </FormControl>
 
                         
@@ -333,7 +333,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            > {session.user.email} </Text>
+                            >s</Text>
                         </FormControl>
 
                        

@@ -9,6 +9,7 @@ export default async function updateStore(req, res) {
     
     const { body } = req;
     console.log(body)
+    const {storeName, description, email} = body
     // const {product} = body;
     // const parsedProduct = JSON.parse(product)
     // console.log(body);
@@ -49,9 +50,12 @@ export default async function updateStore(req, res) {
             storeName,
             email: session.user.email,
             description,
-            products
         })
-        newStore.save()
+
+        if(newStore) {
+
+            newStore.save()
+        }
         
         res.status(201).json({ success: true })
         return newStore
