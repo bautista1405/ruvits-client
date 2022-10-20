@@ -26,7 +26,7 @@ const StoreOwner = ({ user }) => {
         {user.length > 0  && user.map((user) => {
           return (
 
-            <title>{user.name} | Ruvits </title>
+            <title key={user._id} >{user.name} | Ruvits </title>
           )
           
         })}
