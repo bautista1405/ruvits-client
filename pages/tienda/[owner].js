@@ -1,50 +1,73 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, Box, Grid } from '@chakra-ui/react'
 import axios from 'axios'
 import { useSession } from "next-auth/client";
 import mongoose from 'mongoose';
 
+import Banner from "../../components/store/components/Banner";
+import General from "../../components/store/components/General";
+import Notifications from "../../components/store/components/Notifications";
+import Projects from "../../components/store/components/Projects";
+
+import banner from "../../assets/transaction.png";
 
 
 const StoreOwner = ({ user }) => {
 
-  // const [session, loading] = useSession();
-  // const getUser = '/api/getusers'
-  // const [users, setUsers] = useState([]);
-  // const router = useRouter();
-
-  // useEffect( () => {
-  
-  //   const storeOwner = user.filter(user => window.location.href == `/tienda/${user.name}`)
-  //   const localOwner = localStorage.setItem('owner', JSON.stringify({storeOwner}))
-  //   const owner = localStorage.getItem('owner');
-        
-  // }, []) 
-
-  // const handleOwner = () => {
-
-  //   if(typeof window !== 'undefined') {
-  //     const owner = localStorage.getItem('owner');
-  //   }
-  // }
+  const [session, loading] = useSession();
+  const router = useRouter();
 
 
   return (
-    <>
-        <Flex justify="center">
-            {user.length > 0 ? user.map((user) => {
-                return (
-                    <Text key={user._id}>{user.name}</Text>
-                )
-            }) : (
-              <Text>
-                ¡Oopss! Parece que el usuario que buscas no existe.
-              </Text>
+    <>    
+        {user.length > 0 ? user.map((user) => {
+          return (
+            <Box pt={{ base: "130px", md: "80px", xl: "80px" }} key={user._id}>
+          
+              <Grid>
+                
+                <Banner
+                  gridArea='1 / 1 / 2 / 2'
+                  banner={banner}
+                  // avatar={avatar}
+                  name={user.name}
+                  job='Product Designer'
+                  posts='17'
+                  followers='9.7k'
+                  following='274'
+                />
+                
+              </Grid>
+              <Grid
+                mb='20px'
+                margin={20}
+                gap={{ base: "20px", xl: "20px" }}>
+                <Projects
+                  gridArea='1 / 2 / 2 / 2'
+                  // banner={banner}
+                  // avatar={avatar}
+                  name='Adela Parkson'
+                  job='Product Designer'
+                  posts='17'
+                  followers='9.7k'
+                  following='274'
+                />
+                <General
+                  gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
+                  minH='365px'
+                  pe='20px'
+                />
+              
+              </Grid>
+            </Box> 
             )
-            }
-            
-        </Flex>
+            }) : (
+            <Text>
+              ¡Oopss! Parece que el usuario que buscas no existe.
+            </Text>
+            )
+          }
     </>
   )
 }
@@ -127,10 +150,27 @@ export async function getStaticProps({params}) {
   });
 
   const owner = params.owner
-  const user = await User.find({name: { $regex: owner, $options: 'i' } })
-  console.log(owner)
-
-  console.log(user)
+  
+  const user = await User.aggregate([
+    {
+      "$match": {
+        "$expr": {
+          "$eq": [
+            {
+              "$toLower": {
+                "$replaceAll": {
+                  "input": "$name",
+                  "find": " ",
+                  "replacement": ""
+                }
+              }
+            },
+            owner
+          ]
+        }
+      }
+    }
+  ])
     
     return {
       props: {

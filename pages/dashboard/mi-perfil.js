@@ -1,6 +1,7 @@
 import {useEffect} from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import Head from 'next/head';
 
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
 import {
@@ -16,6 +17,9 @@ import {
   Icon,
   Box,
   Button,
+  Input,
+  InputGroup,
+  Textarea
 } from '@chakra-ui/react'
 
 import {
@@ -34,9 +38,9 @@ import {
 } from "react-icons/fi"
 import {BsInfoCircle} from "react-icons/bs"
 import {CgProfile} from 'react-icons/cg'
-import axios from 'axios';
+import { Formik, Form, useFormik } from "formik";
+import axios from "axios";
 import swal from 'sweetalert';
-import Head from 'next/head';
 
 const MyProfile = () => {
 
@@ -79,6 +83,51 @@ const MyProfile = () => {
     
     }   
 
+    const formik = useFormik({
+        initialValues: {
+            description: '',
+        }
+    })
+
+    const updateUser = () => { 
+        
+            const name = session.user.name
+            fetch('/api/update', {
+                
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                body: JSON.stringify({
+                    
+                }),
+            })
+            swal({
+                title: "¡Tu producto fue actualizado!",
+                text: "Ahora podes ver tu producto con los cambios correspondientes.",
+                icon: "success",
+            }).then(() => {router.push('/dashboard')})
+        
+    }
+
+    const updateStore = () => { 
+        
+        const name = session.user.name
+            fetch('/api/updatestore', {
+                
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                body: JSON.stringify({
+                    description: formik.values.description 
+                    
+                }),
+            })
+            swal({
+                title: "¡Tu producto fue actualizado!",
+                text: "Ahora podes ver tu producto con los cambios correspondientes.",
+                icon: "success",
+            }).then(() => {router.push('/dashboard')})
+        
+    }
+
   return (
     <>
         <Head>
@@ -86,7 +135,7 @@ const MyProfile = () => {
             <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
         </Head> 
         <Box >  
-        {!session && (
+        {/* {!session && (
           <Flex alignItems="center" justifyContent="center" h="54vh">
             Para ver tu perfil debes  
             <Button
@@ -102,11 +151,12 @@ const MyProfile = () => {
                 iniciar sesión.
             </Button>
           </Flex>
-        )}
+        )} */}
         
-        {session && (
+        
             <>
                 
+        {/* session && */}
         <Flex
             h={["100vh", null, "60vh", "100vh", "100vh"]}
             maxW="2000px"
@@ -202,7 +252,7 @@ const MyProfile = () => {
                 ml={[null, 100, 100, 100, 5]}
                 
                 >
-                
+                <Text mb={5} fontSize={22} fontWeight='bold'>Mis datos personales</Text>
                 <GridItem
                     mt={[5, null, 0]}
                     colSpan={{
@@ -252,7 +302,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.name}</Text>
+                            >s</Text>
                         </FormControl>
 
                         
@@ -279,7 +329,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.email}</Text>
+                            >s</Text>
                         </FormControl>
 
                        
@@ -314,6 +364,125 @@ const MyProfile = () => {
                         </Button> */}
                     </Box>
                     </chakra.form>
+                    
+                    <GridItem
+                        mt={10}
+                        colSpan={{
+                        md: 2,
+                        }}
+                    >
+                    
+                    <Text mb={5} fontSize={22} fontWeight='bold'>Mi tienda</Text>
+                    
+                    <chakra.form
+                    method="POST"
+                    shadow="base"
+                    rounded={[null, "md"]}
+                    overflow={{
+                        sm: "hidden",
+                    }}
+                    >
+                    <Stack
+                        px={4}
+                        py={5}
+                        p={[null, 6]}
+                        bg="white"
+                        _dark={{
+                        bg: "#141517",
+                        }}
+                        spacing={6}
+                    >
+                        <SimpleGrid columns={6} spacing={6} mb={20}>
+                        <FormControl as={GridItem} colSpan={[6, 4]}>
+                            <FormLabel
+                            htmlFor="description"
+                            fontSize="sm"
+                            fontWeight="bold"
+                            color="gray.700"
+                            >
+                                <b>Descripción</b>
+                            </FormLabel>
+                            
+                                <Textarea
+                                color='gray.900'
+                                placeholder="Descripción de tu tienda..."  
+                                type='text'
+                                id='description'
+                                name='description'
+                                value={formik.values.description}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                required
+                                focusBorderColor="brand.700"
+                                rounded="md"
+                                maxLength="2000"
+                                
+                                />
+                            
+                        </FormControl>
+
+                        
+
+                        <FormControl as={GridItem} colSpan={[6, 4]}>
+                            <FormLabel
+                            htmlFor="email_address"
+                            fontSize="sm"
+                            fontWeight="md"
+                            color="gray.700"
+                            _dark={{
+                                color: "gray.50",
+                            }}
+                            >
+                            <b>Email</b> 
+                            </FormLabel>
+                            <Text
+                                
+                                mt={1}
+                                focusBorderColor="brand.400"
+                                shadow="sm"
+                                size="sm"
+                                w="full"
+                                rounded="md"
+                                
+                                color="gray.500"
+                            >s</Text>
+                        </FormControl>
+
+                       
+
+                        
+
+                        
+                        </SimpleGrid>
+                    </Stack>
+                    
+                    <Box
+                        px={{
+                        base: 4,
+                        sm: 6,
+                        }}
+                        py={3}
+                        bg="gray.50"
+                        _dark={{
+                            bg: "#121212",
+                        }}
+                        textAlign="right"
+                    >
+                        {/* <Button
+                        type="submit"
+                        colorScheme="cyan"
+                        _focus={{
+                            shadow: "",
+                        }}
+                        fontWeight="md"
+                        variant="outline"
+                        >
+                            Guardar
+                        </Button> */}
+                    </Box>
+                    </chakra.form>
+                    </GridItem>
+                        
                         <GridItem mt={20}>
                             <Text fontSize={20} ><b>Otras opciones</b></Text>
                         </GridItem>
@@ -322,12 +491,12 @@ const MyProfile = () => {
                                 Borrar cuenta
                             </Button>
                         </GridItem>
-                </GridItem>
-                </SimpleGrid>
+            </GridItem>
+            </SimpleGrid>
 
         </Flex>
-            </>
-        )}
+    </>
+        
 
             
     </Box>
