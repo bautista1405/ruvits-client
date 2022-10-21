@@ -132,6 +132,11 @@ const MyProfile = () => {
         
     }
 
+    const handleStore = (e) => {
+        e.preventDefault();
+        updateStore();
+    }
+
   return (
     <>
         <Head>
@@ -379,7 +384,7 @@ const MyProfile = () => {
                     <Text mb={5} fontSize={22} fontWeight='bold'>Mi tienda</Text>
                     
                     <Formik>
-                        <Form className="my-3" id="form-container" onSubmit={updateStore}>
+                        <Form className="my-3" id="form-container" onSubmit={handleStore}>
                     
                     <Stack
                         px={4}
