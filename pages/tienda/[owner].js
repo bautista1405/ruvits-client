@@ -18,7 +18,23 @@ const StoreOwner = ({ user }) => {
 
   const [session, loading] = useSession();
   const router = useRouter();
+  const getStores = '/api/getstore'
 
+  const [stores, setStores] = useState([]);
+
+    useEffect( () => {
+        
+            axios.get(getStores)
+            .then((res) => {
+                setStores(res?.data?.getStores || [])
+            })
+        
+    }, [getStores]) 
+
+    const store = stores.filter(store => store.email === user.email )
+    // console.log(stores)
+    // console.log(user.email)
+    // console.log(store.email)
 
   return (
     <>    
@@ -68,7 +84,9 @@ const StoreOwner = ({ user }) => {
                   gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
                   minH='365px'
                   pe='20px'
-                />
+                >
+                  <Text> {store.description} </Text>
+                </General>
               
               </Grid>
             </Box> 
@@ -79,6 +97,12 @@ const StoreOwner = ({ user }) => {
             </Text>
             )
           }
+{/* 
+          {store.map((store) => {
+            return (
+              <Text> {store.storeName} </Text>
+            )
+          } )} */}
     </>
   )
 }
