@@ -110,9 +110,11 @@ const MyProfile = () => {
         
     }
 
+    console.log(session.user.id)
+
     const updateStore = () => { 
-        
-            const id = session.id
+        const id = session.user.id
+            
             fetch('/api/updatestore', {
                 
                 method: 'POST',
