@@ -9,7 +9,7 @@ export default async function updateStore(req, res) {
     
     const { body } = req;
     console.log(body)
-    const {storeName, description, email, id} = body
+    const {storeName, description, email} = body
     // const {product} = body;
     // const parsedProduct = JSON.parse(product)
     // console.log(body);
@@ -55,10 +55,10 @@ export default async function updateStore(req, res) {
             description,
         })
 
-        
+        if(newStore) {
 
-        await Store.findByIdAndUpdate(id, {storeName, email, description})
-        
+           await Store.findByIdAndUpdate(id, {storeName, email, description, banner})
+        }
         
         res.status(201).json({ success: true })
         return newStore
