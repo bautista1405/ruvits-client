@@ -7,7 +7,7 @@ import Information from "./Information";
 
 // Assets
 export default function GeneralInformation(props) {
-  const { ...rest } = props;
+  const { description, ...rest } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -25,13 +25,13 @@ export default function GeneralInformation(props) {
         mb='4px'>
         General Information
       </Text>
-      <Text color={textColorSecondary} fontSize='md' me='26px' mb='40px'>
+      {/* <Text color={textColorSecondary} fontSize='md' me='26px' mb='40px'>
         As we live, our hearts turn colder. Cause pain is what we go through as
         we become older. We get insulted by others, lose trust for those others.
         We get back stabbed by friends. It becomes harder for us to give others
         a hand. We get our heart broken by people we love, even that we give
         them all...
-      </Text>
+      </Text> */}
       <SimpleGrid columns='2' gap='20px'>
         <Information
           boxShadow={cardShadow}

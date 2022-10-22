@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 // Custom components
 import Card from "./card/Card.js";
-import React from "react";
+
 // Assets
 import { MdEdit } from "react-icons/md";
 

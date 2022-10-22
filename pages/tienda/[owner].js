@@ -1,26 +1,37 @@
 import { useState, useEffect } from 'react'
+// import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Head from 'next/head';
-import { Flex, Text, Box, Grid } from '@chakra-ui/react'
+import { Flex, Text, Box, Grid, Icon, GridItem, SimpleGrid, Image,
+  Link,
+  useColorModeValue, } from '@chakra-ui/react'
 import axios from 'axios'
 import { useSession } from "next-auth/client";
 import mongoose from 'mongoose';
 
 import Banner from "../../components/store/components/Banner";
 import General from "../../components/store/components/General";
+import Card from "../../components/store/components/card/Card";
 import Notifications from "../../components/store/components/Notifications";
 import Projects from "../../components/store/components/Projects";
 
-import banner from "../../assets/transaction.png";
-
+import designer from "../../assets/designer.png";
+import { MdEdit } from "react-icons/md";
 
 const StoreOwner = ({ user }) => {
 
   const [session, loading] = useSession();
   const router = useRouter();
   const getStores = '/api/getstore'
+  const getStoreProducts = "/api/getproducts";
 
   const [stores, setStores] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
+  const textColorSecondary = "gray.400";
+  const brandColor = useColorModeValue("brand.500", "white");
+  const bg = useColorModeValue("white", "navy.700");
 
     useEffect( () => {
         
@@ -28,13 +39,15 @@ const StoreOwner = ({ user }) => {
             .then((res) => {
                 setStores(res?.data?.getStores || [])
             })
+            axios.get(getStoreProducts).then((res) => {
+              setProducts(res?.data?.getProducts || []);
+              
+            })
         
-    }, [getStores]) 
+    }, [getStores, getStoreProducts]) 
 
-    const store = stores.filter(store => store.email === user.email )
-    // console.log(stores)
-    // console.log(user.email)
-    // console.log(store.email)
+    const store = stores.filter(store => store.email === user[0].email )
+    const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
 
   return (
     <>    
@@ -52,57 +65,100 @@ const StoreOwner = ({ user }) => {
           return (
             <Box pt={{ base: "130px", md: "80px", xl: "80px" }} key={user._id}>
           
-              <Grid>
-                
-                <Banner
-                  gridArea='1 / 1 / 2 / 2'
-                  banner={banner}
-                  // avatar={avatar}
-                  name={user.name}
-                  job='Product Designer'
-                  posts='17'
-                  followers='9.7k'
-                  following='274'
-                />
-                
-              </Grid>
-              <Grid
-                mb='20px'
-                margin={20}
-                gap={{ base: "20px", xl: "20px" }}>
-                <Projects
-                  gridArea='1 / 2 / 2 / 2'
-                  // banner={banner}
-                  // avatar={avatar}
-                  name='Adela Parkson'
-                  job='Product Designer'
-                  posts='17'
-                  followers='9.7k'
-                  following='274'
-                />
-                <General
-                  gridArea={{ base: "2 / 1 / 3 / 2", lg: "1 / 2 / 2 / 3" }}
-                  minH='365px'
-                  pe='20px'
-                >
-                  <Text> {store.description} </Text>
-                </General>
-              
-              </Grid>
+            {store.length > 0 ? store.map((store) => {
+              return (
+                <>
+                  <Grid>
+                    
+                    <Banner
+                      gridArea='1 / 1 / 2 / 2'
+                      banner={session.user.image}
+                      // avatar={avatar}
+                      name={store.storeName}
+                      job='Product Designer'
+                      productos='17'
+                      ventas='9.7k'
+                      rating='274'
+                    />
+
+                  </Grid>
+
+                  <GridItem margin='80px'>
+                    <Flex justify='center' mb={20}>
+                      {store.description}
+                    {/* <Image src={designer} height='100px' width='100px' /> */}
+                    </Flex>
+                    
+                    <General />
+
+                  </GridItem>
+                  
+                  <Flex justify='center'>
+                    <Text mb={5} fontSize={22} fontWeight='bold'>Productos</Text>
+                  </Flex>
+                  <SimpleGrid
+                    columns={[1, 2, 2, 3]} 
+                    spacing={10} 
+                    margin="50px"  
+                  >
+
+
+                    {storeProducts.map((product) => {
+                        return (
+                          <Card 
+                            bg={bg} 
+                            p='14px' 
+                            shadow="base"
+                            rounded={[null, "md"]}
+                            borderRadius="5px"
+                          >
+                            <Flex align='center' direction={{ base: "column", md: "row" }}>
+                              <Image h='80px' w='80px' src={product.content[0]} borderRadius='8px' me='20px' />
+                              <Box mt={{ base: "10px", md: "0" }}>
+                                <Text
+                                  color={textColorPrimary}
+                                  fontWeight='500'
+                                  fontSize='md'
+                                  mb='4px'>
+                                  {product.productName}
+                                </Text>
+                                <Text
+                                  fontWeight='500'
+                                  color={textColorSecondary}
+                                  fontSize='sm'
+                                  me='4px'>
+                                  
+                                  <Link fontWeight='500' color={brandColor} href={`/productos/${product.title}`} fontSize='sm'>
+                                    Ver detalles
+                                  </Link>
+                                </Text>
+                              </Box>
+                              
+                            </Flex>
+                          </Card>
+                        )
+                    })}
+                    
+                  </SimpleGrid>
+                  
+                  
+                    
+
+              </>
+              )
+            }) : (
+                  <Flex justify='center'>
+                    ¡Oopss! Parece que este usuario aún no configuró su tienda.
+                  </Flex>
+            ) }
             </Box> 
             )
             }) : (
-            <Text>
+            <Flex justify='center'>
               ¡Oopss! Parece que el usuario que buscas no existe.
-            </Text>
+            </Flex>
             )
           }
-{/* 
-          {store.map((store) => {
-            return (
-              <Text> {store.storeName} </Text>
-            )
-          } )} */}
     </>
   )
 }

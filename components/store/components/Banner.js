@@ -4,7 +4,7 @@ import Card from "./card/Card.js";
 import React from "react";
 
 export default function Banner(props) {
-  const { banner, avatar, name, job, posts, followers, following } = props;
+  const { banner, avatar, name, job, productos, ventas, rating } = props;
   // Chakra Color Mode
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -39,26 +39,26 @@ export default function Banner(props) {
       <Flex w='max-content' mx='auto' mt='26px'>
         <Flex mx='auto' me='60px' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-            {posts}
+            {productos}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Posts
+            productos
           </Text>
         </Flex>
         <Flex mx='auto' me='60px' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-            {followers}
+            {ventas}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Followers
+            ventas
           </Text>
         </Flex>
         <Flex mx='auto' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
-            {following}
+            {rating}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
-            Following
+            rating
           </Text>
         </Flex>
       </Flex>
