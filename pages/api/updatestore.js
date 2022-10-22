@@ -9,7 +9,7 @@ export default async function updateStore(req, res) {
     
     const { body } = req;
     console.log(body)
-    const {storeName, description, email} = body
+    const {storeName, description, email, id} = body
     // const {product} = body;
     // const parsedProduct = JSON.parse(product)
     // console.log(body);
