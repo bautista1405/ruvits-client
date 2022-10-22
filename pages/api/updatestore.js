@@ -61,7 +61,7 @@ export default async function updateStore(req, res) {
         
         
         res.status(201).json({ success: true })
-        return newStore
+        // return newStore
         
     } 
     
