@@ -57,7 +57,7 @@ export default async function updateStore(req, res) {
 
         
 
-        await Store.findByIdAndUpdate(id, {storeName, email, description, banner})
+        await Store.findByIdAndUpdate(id, {storeName, email, description})
         
         
         res.status(201).json({ success: true })
