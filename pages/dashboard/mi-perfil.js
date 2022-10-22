@@ -112,12 +112,13 @@ const MyProfile = () => {
 
     const updateStore = () => { 
         
-        
+            const id = session.id
             fetch('/api/updatestore', {
                 
                 method: 'POST',
                 headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
                 body: JSON.stringify({
+                    id,
                     storeName: formik.values.storeName,
                     description: formik.values.description,
                     email: session.user.email 
