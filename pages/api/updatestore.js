@@ -16,6 +16,7 @@ export default async function updateStore(req, res) {
     // console.log(parsedProduct)
     // const {id, title, description, price, content, vendor} = parsedProduct
     const session = await getSession({req})
+    const id = session.user.email
 
     try {
 
@@ -55,10 +56,10 @@ export default async function updateStore(req, res) {
             description,
         })
 
-        if(newStore) {
+        
 
-           await Store.findOneAndUpdate({storeName, email, description})
-        }
+        await Store.findByIdAndUpdate(id, {storeName, email, description})
+        
         
         res.status(201).json({ success: true })
         return newStore
