@@ -67,7 +67,7 @@ const StoreOwner = ({ user }) => {
           
             {store.length > 0 ? store.map((store) => {
               return (
-                <>
+                <Box key={store._id}>
                   <Grid>
                     
                     <Banner
@@ -111,6 +111,7 @@ const StoreOwner = ({ user }) => {
                             shadow="base"
                             rounded={[null, "md"]}
                             borderRadius="5px"
+                            key={product._id}
                           >
                             <Flex align='center' direction={{ base: "column", md: "row" }}>
                               <Image h='80px' w='80px' src={product.content[0]} borderRadius='8px' me='20px' />
@@ -144,7 +145,7 @@ const StoreOwner = ({ user }) => {
                   
                     
 
-              </>
+              </Box>
               )
             }) : (
                   <Flex justify='center'>
