@@ -40,6 +40,9 @@ export default async function updateStore(req, res) {
             description: {
                 type: String,
             },
+            banner: {
+                type: String
+            },
             products: []
         });
         
@@ -54,7 +57,7 @@ export default async function updateStore(req, res) {
 
         if(newStore) {
 
-            newStore.save()
+           await Store.findOneAndUpdate({storeName, email, description})
         }
         
         res.status(201).json({ success: true })
