@@ -19,7 +19,7 @@ export default function Banner(props) {
         bgSize='cover'
         borderRadius='16px'
         h='131px'
-        w='100%'
+        w='50%'
       />
       <Avatar
         mx='auto'
