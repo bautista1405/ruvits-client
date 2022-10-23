@@ -61,6 +61,8 @@ const MyProfile = () => {
     const userStore = stores.filter(store => store.email === session.user.email )
 
     console.log(userStore)
+    console.log(stores)
+    
 
     const deleteUser = () => { 
     
