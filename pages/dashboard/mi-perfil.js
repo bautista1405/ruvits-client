@@ -60,6 +60,8 @@ const MyProfile = () => {
 
     const userStore = stores.filter(store => store.email === session.user.email )
 
+    console.log(userStore)
+
     const deleteUser = () => { 
     
         swal({
@@ -106,7 +108,7 @@ const MyProfile = () => {
 
     const updateUser = () => { 
         
-            const name = session.user.name
+            // const name = session.user.name
             fetch('/api/update', {
                 
                 method: 'PATCH',
@@ -123,7 +125,7 @@ const MyProfile = () => {
         
     }
 
-    console.log(session.user.id)
+    // console.log(session.user.id)
 
     const updateStore = () => { 
 
