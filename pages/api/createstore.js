@@ -48,13 +48,22 @@ export default async function updateStore(req, res) {
         
         mongoose.models = {}
         const Store = mongoose.model('stores', StoreSchema);
-        
 
-        await Store.findByIdAndUpdate(id, {storeName, email, description})
+        const newStore = new Store({
+            storeName,
+            email: session.user.email,
+            description,
+        })
+
+        
+        if(newStore){
+
+            await newStore.save()
+        }
         
         
         res.status(201).json({ success: true })
-        // return newStore
+        return newStore
         
     } 
     

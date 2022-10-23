@@ -103,7 +103,7 @@ const StoreOwner = ({ user }) => {
                   >
 
 
-                    {storeProducts.map((product) => {
+                    {storeProducts.length > 0 ? storeProducts.map((product) => {
                         return (
                           <Card 
                             bg={bg} 
@@ -138,7 +138,12 @@ const StoreOwner = ({ user }) => {
                             </Flex>
                           </Card>
                         )
-                    })}
+                    }) : (
+                      <Flex justify='center'>
+                        ¡Upss! Parece que este usuario todavía no tiene productos.
+                      </Flex>
+                    )
+                    }
                     
                   </SimpleGrid>
                   
