@@ -76,7 +76,6 @@ const MyProfile = () => {
                     fetch('/api/updatestore', {
                         
                         method: 'PATCH',
-                        headers: {'Content-Type': 'multipart/form-data'},
                         body: JSON.stringify({
                             id,
                             storeName: formik.values.storeName,
@@ -85,7 +84,7 @@ const MyProfile = () => {
                             banner
                             
                         }),
-                    })
+                    }, {headers})
                     swal({
                         title: "¡Tu tienda fue actualizada!",
                         text: "Ahora podes ver tu tienda con los cambios correspondientes.",

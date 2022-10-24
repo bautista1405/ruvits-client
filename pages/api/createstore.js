@@ -46,15 +46,16 @@ export default async function updateStore(req, res) {
   
     await fileMiddleware(req, res, upload);
     
-    const { body } = req;
-    console.log(body)
-    const {storeName, description, email, id, banner} = body
+    // const { body } = req;
+    // console.log(body)
+    // const {storeName, description, email, id, banner} = body
     // const {product} = body;
     // const parsedProduct = JSON.parse(product)
     // console.log(body);
     // console.log(parsedProduct)
     // const {id, title, description, price, content, vendor} = parsedProduct
     const session = await getSession({req})
+    console.log(req.file, req.body)
 
     try {
 
@@ -88,13 +89,15 @@ export default async function updateStore(req, res) {
         mongoose.models = {}
         const Store = mongoose.model('stores', StoreSchema);
 
-        const newStore = new Store({
-            storeName,
-            email: session.user.email,
-            description,
-            banner,
-        })
+        // const newStore = new Store({
+        //     storeName,
+        //     email: session.user.email,
+        //     description,
+        //     banner,
+        // })
 
+        console.log(req.body)
+        console.log(req.files)
         const userStore = handleStore(req.body, req.files);
         console.log(userStore);
         const store = new Store(userStore);
