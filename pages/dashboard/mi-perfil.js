@@ -60,11 +60,64 @@ const MyProfile = () => {
 
     const userStore = stores.filter(store => store.email === session.user.email )
 
-    // console.log(userStore)
+    console.log(userStore)
     // console.log(stores)
     // console.log(session.user.email)
+    const id = userStore._id
+    console.log(id)
     
+    const updateStore = () => { 
 
+        if(userStore.length > 0) {
+
+                
+                fetch('/api/updatestore', {
+                    
+                    method: 'PATCH',
+                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                    body: JSON.stringify({
+                        id,
+                        storeName: formik.values.storeName,
+                        description: formik.values.description,
+                        email: session.user.email 
+                        
+                    }),
+                })
+                swal({
+                    title: "¡Tu tienda fue actualizada!",
+                    text: "Ahora podes ver tu tienda con los cambios correspondientes.",
+                    icon: "success",
+                }).then(() => {router.push('/dashboard')})
+        }
+
+        if(userStore.length == 0) {
+                
+                fetch('/api/createstore', {
+                    
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                    body: JSON.stringify({
+                        
+                        storeName: formik.values.storeName,
+                        description: formik.values.description,
+                        email: session.user.email 
+                        
+                    }),
+                })
+                swal({
+                    title: "¡Tu tienda fue actualizada!",
+                    text: "Ahora podes ver tu tienda con los cambios correspondientes.",
+                    icon: "success",
+                }).then(() => {router.push('/dashboard')})
+        }
+        
+    }
+
+    const handleStore = (e) => {
+        e.preventDefault();
+        updateStore();
+    }
+    
     const deleteUser = () => { 
     
         swal({
@@ -130,59 +183,6 @@ const MyProfile = () => {
 
     // console.log(session.user.id)
 
-    const updateStore = () => { 
-
-        if(userStore.length > 0) {
-
-            const id = userStore._id
-            console.log(id)
-                
-                fetch('/api/updatestore', {
-                    
-                    method: 'PATCH',
-                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                    body: JSON.stringify({
-                        id,
-                        storeName: formik.values.storeName,
-                        description: formik.values.description,
-                        email: session.user.email 
-                        
-                    }),
-                })
-                swal({
-                    title: "¡Tu tienda fue actualizada!",
-                    text: "Ahora podes ver tu tienda con los cambios correspondientes.",
-                    icon: "success",
-                }).then(() => {router.push('/dashboard')})
-        }
-
-        if(userStore.length == 0) {
-                
-                fetch('/api/createstore', {
-                    
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                    body: JSON.stringify({
-                        
-                        storeName: formik.values.storeName,
-                        description: formik.values.description,
-                        email: session.user.email 
-                        
-                    }),
-                })
-                swal({
-                    title: "¡Tu tienda fue actualizada!",
-                    text: "Ahora podes ver tu tienda con los cambios correspondientes.",
-                    icon: "success",
-                }).then(() => {router.push('/dashboard')})
-        }
-        
-    }
-
-    const handleStore = (e) => {
-        e.preventDefault();
-        updateStore();
-    }
 
   return (
     <>
