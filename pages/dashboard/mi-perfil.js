@@ -70,7 +70,7 @@ const MyProfile = () => {
 
             const id = store._id
             console.log(id)
-            if(store.length > 0) {
+            if(userStore.length > 0) {
     
                     
                     fetch('/api/updatestore', {
@@ -92,7 +92,7 @@ const MyProfile = () => {
                     }).then(() => {router.push('/dashboard')})
             }
     
-            if(store.length == 0) {
+            if(userStore.length == 0) {
                     
                     fetch('/api/createstore', {
                         
