@@ -92,27 +92,27 @@ const MyProfile = () => {
                     }).then(() => {router.push('/dashboard')})
             }
     
-            if(userStore.length === []) {
-                    
-                    fetch('/api/createstore', {
-                        
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                        body: JSON.stringify({
-                            
-                            storeName: formik.values.storeName,
-                            description: formik.values.description,
-                            email: session.user.email 
-                            
-                        }),
-                    })
-                    swal({
-                        title: "¡Tu tienda fue actualizada!",
-                        text: "Ahora podes ver tu tienda con los cambios correspondientes.",
-                        icon: "success",
-                    }).then(() => {router.push('/dashboard')})
-            }
         })
+        if(userStore.length == 0) {
+                
+                fetch('/api/createstore', {
+                    
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                    body: JSON.stringify({
+                        
+                        storeName: formik.values.storeName,
+                        description: formik.values.description,
+                        email: session.user.email 
+                        
+                    }),
+                })
+                swal({
+                    title: "¡Tu tienda fue actualizada!",
+                    text: "Ahora podes ver tu tienda con los cambios correspondientes.",
+                    icon: "success",
+                }).then(() => {router.push('/dashboard')})
+        }
         
     }
 
