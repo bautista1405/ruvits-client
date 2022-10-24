@@ -132,7 +132,7 @@ const MyProfile = () => {
 
     const updateStore = () => { 
 
-        if(userStore.length == 1) {
+        if(userStore.length > 0) {
 
             const id = userStore._id
                 
