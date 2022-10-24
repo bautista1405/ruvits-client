@@ -58,7 +58,7 @@ const MyProfile = () => {
     
     }, [getStores])
 
-    // const userStore = stores.filter(store => store.email === session.user.email )
+    const userStore = stores.filter(store => store.email === session.user.email )
 
     console.log(userStore)
     console.log(stores)
