@@ -104,7 +104,7 @@ const MyProfile = () => {
                         storeName: formik.values.storeName,
                         description: formik.values.description,
                         email: session.user.email,
-                        banner
+                        banner: formik.values.banner
                         
                     }),
                 })
