@@ -60,9 +60,9 @@ const MyProfile = () => {
 
     const userStore = stores.filter(store => store.email === session.user.email )
 
-    console.log(userStore)
-    console.log(stores)
-    console.log(session.user.email)
+    // console.log(userStore)
+    // console.log(stores)
+    // console.log(session.user.email)
     
 
     const deleteUser = () => { 
@@ -144,7 +144,7 @@ const MyProfile = () => {
                         id,
                         storeName: formik.values.storeName,
                         description: formik.values.description,
-                        // email: session.user.email 
+                        email: session.user.email 
                         
                     }),
                 })
@@ -165,7 +165,7 @@ const MyProfile = () => {
                         
                         storeName: formik.values.storeName,
                         description: formik.values.description,
-                        // email: session.user.email 
+                        email: session.user.email 
                         
                     }),
                 })
