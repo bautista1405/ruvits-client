@@ -63,53 +63,56 @@ const MyProfile = () => {
     console.log(userStore)
     // console.log(stores)
     // console.log(session.user.email)
-    const id = userStore._id
-    console.log(id)
     
     const updateStore = () => { 
 
-        if(userStore.length > 0) {
+        userStore.map(store => {
 
-                
-                fetch('/api/updatestore', {
+            const id = store._id
+            console.log(id)
+            if(store.length > 0) {
+    
                     
-                    method: 'PATCH',
-                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                    body: JSON.stringify({
-                        id,
-                        storeName: formik.values.storeName,
-                        description: formik.values.description,
-                        email: session.user.email 
+                    fetch('/api/updatestore', {
                         
-                    }),
-                })
-                swal({
-                    title: "¡Tu tienda fue actualizada!",
-                    text: "Ahora podes ver tu tienda con los cambios correspondientes.",
-                    icon: "success",
-                }).then(() => {router.push('/dashboard')})
-        }
-
-        if(userStore.length == 0) {
-                
-                fetch('/api/createstore', {
+                        method: 'PATCH',
+                        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                        body: JSON.stringify({
+                            id,
+                            storeName: formik.values.storeName,
+                            description: formik.values.description,
+                            email: session.user.email 
+                            
+                        }),
+                    })
+                    swal({
+                        title: "¡Tu tienda fue actualizada!",
+                        text: "Ahora podes ver tu tienda con los cambios correspondientes.",
+                        icon: "success",
+                    }).then(() => {router.push('/dashboard')})
+            }
+    
+            if(store.length == 0) {
                     
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                    body: JSON.stringify({
+                    fetch('/api/createstore', {
                         
-                        storeName: formik.values.storeName,
-                        description: formik.values.description,
-                        email: session.user.email 
-                        
-                    }),
-                })
-                swal({
-                    title: "¡Tu tienda fue actualizada!",
-                    text: "Ahora podes ver tu tienda con los cambios correspondientes.",
-                    icon: "success",
-                }).then(() => {router.push('/dashboard')})
-        }
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                        body: JSON.stringify({
+                            
+                            storeName: formik.values.storeName,
+                            description: formik.values.description,
+                            email: session.user.email 
+                            
+                        }),
+                    })
+                    swal({
+                        title: "¡Tu tienda fue actualizada!",
+                        text: "Ahora podes ver tu tienda con los cambios correspondientes.",
+                        icon: "success",
+                    }).then(() => {router.push('/dashboard')})
+            }
+        })
         
     }
 
