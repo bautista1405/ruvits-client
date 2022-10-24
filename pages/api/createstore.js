@@ -5,11 +5,50 @@ import dayjs from "dayjs";
 // mongoose.set('debug', true);
 // const conn = mongoose.connection;
 
+import Multer from "multer";
+const path = require('path');
+const aws = require("aws-sdk");
+const multerS3 = require("multer-s3");
+import fileMiddleware from "../../middlewares/fileMiddleware";
+const { handleStore } = require('../../services/store');
+
+export const config = {
+    api: {
+      bodyParser: false,
+    },
+}
+
 export default async function updateStore(req, res) {
+
+    aws.config.update({
+        secretAccessKey: process.env.S3_SECRET,
+        accessKeyId: process.env.S3_ACCESS_KEY,
+        region: "us-east-2",
+    });
+    const s3 = new aws.S3();
+
+    const storage = multerS3({
+        acl: "public-read",
+        s3,
+        bucket: "bitsroad",
+        metadata: (req, file, cb) => {
+            cb(null, { fieldName: file.fieldname });
+        },
+        key: (req, file, cb) => {
+            const ext = path.extname(file.originalname);
+            cb(null, `${file.originalname}`);
+        }
+    });
+    
+    const upload = Multer({ storage: storage }).any('banner');
+  
+    console.log(req.file, req.body)
+  
+    await fileMiddleware(req, res, upload);
     
     const { body } = req;
     console.log(body)
-    const {storeName, description, email, id} = body
+    const {storeName, description, email, id, banner} = body
     // const {product} = body;
     // const parsedProduct = JSON.parse(product)
     // console.log(body);
@@ -53,18 +92,17 @@ export default async function updateStore(req, res) {
             storeName,
             email: session.user.email,
             description,
+            banner,
         })
 
+        const userStore = handleStore(req.body, req.files);
+        console.log(userStore);
+        const store = new Store(userStore);
+        await store.save();
         
-        if(newStore){
-
-            await newStore.save()
-        }
         
         
         res.status(201).json({ success: true })
-        return newStore
-        
     } 
     
     catch (e) {
