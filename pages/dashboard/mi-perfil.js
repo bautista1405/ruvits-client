@@ -61,6 +61,8 @@ const MyProfile = () => {
     }, [getStores])
 
     const userStore = stores.filter(store => store.email === session.user.email )
+
+    const headers = {'Content-Type': 'multipart/form-data'}
     
     const updateStore = () => { 
 
@@ -98,7 +100,6 @@ const MyProfile = () => {
                 fetch('/api/createstore', {
                     
                     method: 'POST',
-                    headers: {'Content-Type': 'multipart/form-data'},
                     body: JSON.stringify({
                         
                         storeName: formik.values.storeName,
@@ -106,8 +107,8 @@ const MyProfile = () => {
                         email: session.user.email,
                         banner: formik.values.banner
                         
-                    }),
-                })
+                    }), 
+                }, {headers})
                 swal({
                     title: "¡Tu tienda fue actualizada!",
                     text: "Ahora podes ver tu tienda con los cambios correspondientes.",
