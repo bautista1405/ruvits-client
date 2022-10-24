@@ -135,6 +135,7 @@ const MyProfile = () => {
         if(userStore.length > 0) {
 
             const id = userStore._id
+            console.log(id)
                 
                 fetch('/api/updatestore', {
                     
