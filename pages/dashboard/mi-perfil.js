@@ -92,7 +92,7 @@ const MyProfile = () => {
                     }).then(() => {router.push('/dashboard')})
             }
     
-            if(userStore.length == 0) {
+            else {
                     
                     fetch('/api/createstore', {
                         
