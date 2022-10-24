@@ -84,7 +84,7 @@ const MyProfile = () => {
                             banner
                             
                         }),
-                    }, {headers})
+                    })
                     swal({
                         title: "¡Tu tienda fue actualizada!",
                         text: "Ahora podes ver tu tienda con los cambios correspondientes.",
@@ -107,7 +107,7 @@ const MyProfile = () => {
                         banner: formik.values.banner
                         
                     }), 
-                }, {headers})
+                })
                 swal({
                     title: "¡Tu tienda fue actualizada!",
                     text: "Ahora podes ver tu tienda con los cambios correspondientes.",

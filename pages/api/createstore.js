@@ -18,7 +18,7 @@ export const config = {
     },
 }
 
-export default async function updateStore(req, res) {
+export default async function createStore(req, res) {
 
     aws.config.update({
         secretAccessKey: process.env.S3_SECRET,
