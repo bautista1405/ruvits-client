@@ -98,7 +98,7 @@ export default async function updateStore(req, res) {
             storeName: req.body.storeName, 
             email: req.body.email, 
             description: req.body.description, 
-            banner: req.files,
+            banner: req.files.location,
         });
         console.log(update)
         
