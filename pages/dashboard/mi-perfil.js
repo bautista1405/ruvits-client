@@ -62,73 +62,159 @@ const MyProfile = () => {
 
     const userStore = stores.filter(store => store.email === session.user.email )
 
-    const headers = {'Content-Type': 'multipart/form-data'}
-    const formik = useFormik({
+    // const headers = {'Content-Type': 'multipart/form-data'}
+    // const formik = useFormik({
+    //     initialValues: {
+    //         storeName: '',
+    //         description: '',
+    //         email: '',
+    //         banner: '',
+    //     }
+    // })
+    
+    // const updateStore = () => { 
+
+    //     userStore.map(store => {
+
+    //         const id = store._id
+    //         console.log(id)
+    //         if(userStore.length > 0) {
+    
+                    
+    //                 fetch('/api/updatestore', {
+                        
+    //                     method: 'PATCH',
+    //                     body: JSON.stringify({
+    //                         id,
+    //                         storeName: formik.values.storeName,
+    //                         description: formik.values.description,
+    //                         email: session.user.email,
+    //                         banner
+                            
+    //                     }),
+    //                 })
+    //                 swal({
+    //                     title: "¡Tu tienda fue actualizada!",
+    //                     text: "Ahora podes ver tu tienda con los cambios correspondientes.",
+    //                     icon: "success",
+    //                 }).then(() => {router.push('/dashboard')})
+    //         }
+    
+    //     })
+        
+    //     if(userStore.length == 0) {
+                
+    //             fetch('/api/createstore', {
+                    
+    //                 method: 'POST',
+    //                 body: JSON.stringify({
+                        
+    //                     storeName: formik.values.storeName,
+    //                     description: formik.values.description,
+    //                     email: session.user.email,
+    //                     banner: formik.values.banner
+                        
+    //                 }), 
+    //             })
+    //             swal({
+    //                 title: "¡Tu tienda fue actualizada!",
+    //                 text: "Ahora podes ver tu tienda con los cambios correspondientes.",
+    //                 icon: "success",
+    //             }).then(() => {router.push('/dashboard')})
+    //     }
+        
+    // }
+
+    const headers = {
+        'Content-Type': 'multipart/form-data',
+    }
+    
+    const formik =  useFormik({
         initialValues: {
             storeName: '',
             description: '',
             email: '',
             banner: '',
-        }
-    })
+        },
+        onSubmit: (values = {storeName, description, email, banner}) => {
     
-    const updateStore = () => { 
-
-        userStore.map(store => {
-
-            const id = store._id
-            console.log(id)
-            if(userStore.length > 0) {
-    
-                    
-                    fetch('/api/updatestore', {
-                        
-                        method: 'PATCH',
-                        body: JSON.stringify({
-                            id,
-                            storeName: formik.values.storeName,
-                            description: formik.values.description,
-                            email: session.user.email,
-                            banner
-                            
-                        }),
-                    })
-                    swal({
-                        title: "¡Tu tienda fue actualizada!",
-                        text: "Ahora podes ver tu tienda con los cambios correspondientes.",
-                        icon: "success",
-                    }).then(() => {router.push('/dashboard')})
-            }
-    
-        })
-        
-        if(userStore.length == 0) {
-                
-                fetch('/api/createstore', {
-                    
-                    method: 'POST',
-                    body: JSON.stringify({
-                        
-                        storeName: formik.values.storeName,
-                        description: formik.values.description,
+          if(userStore.length == 0) {
+            try {
+                    axios.post(
+                    '/api/createstore', 
+                    {
+                        storeName: values.storeName,
+                        description: values.description,
                         email: session.user.email,
-                        banner: formik.values.banner
+                        banner: values.banner,
+                    },
+                    {headers}
+                    )
+                    .then( () => {
+                        swal({
+                            title: "¡Tu tienda fue actualizada!",
+                            text: "Ahora podes ver tu tienda con los cambios correspondientes.",
+                            icon: "success",
+                        }).then(() => {router.push('/dashboard')})
+                    })
+                    
+                    } catch(res) {
+                    if(res.status === 500) {
                         
-                    }), 
-                })
-                swal({
-                    title: "¡Tu tienda fue actualizada!",
-                    text: "Ahora podes ver tu tienda con los cambios correspondientes.",
-                    icon: "success",
-                }).then(() => {router.push('/dashboard')})
-        }
+                        swal({
+                        title: "Oopss. Parece que hubo un error.",
+                        text: "Intenta de nuevo.",
+                        icon: "error",
+                        }).then(() => {router.push('/dashboard')})
+                    }
+                }  
+            }  
+    
+            userStore.map(store => {
+    
+                const id = store._id
+                
+                if(userStore.length > 0) {
+                    
+                    try {
+                        axios.post(
+                        '/api/updatestore', 
+                        {
+                            storeName: values.storeName,
+                            description: values.description,
+                            email: session.user.email,
+                            banner: values.banner,
+                        },
+                        {headers}
+                        )
+                        .then( () => {
+                            swal({
+                                title: "¡Tu tienda fue actualizada!",
+                                text: "Ahora podes ver tu tienda con los cambios correspondientes.",
+                                icon: "success",
+                            }).then(() => {router.push('/dashboard')})
+                        })
+                        
+                        } catch(res) {
+                        if(res.status === 500) {
+                            
+                            swal({
+                            title: "Oopss. Parece que hubo un error.",
+                            text: "Intenta de nuevo.",
+                            icon: "error",
+                            }).then(() => {router.push('/dashboard')})
+                        }
+                    }  
+                }
         
-    }
+            })
+        },
+    });
 
-    const handleStore = (e) => {
-        e.preventDefault();
-        updateStore();
-    }
+    // const handleStore = (e) => {
+    //     e.preventDefault();
+    //     updateStore();
+    // }
     
     const deleteUser = () => { 
     
@@ -436,7 +522,7 @@ const MyProfile = () => {
                     <Text mb={5} fontSize={22} fontWeight='bold'>Mi tienda</Text>
                     
                     <Formik>
-                        <Form className="my-3" id="form-container" onSubmit={handleStore}>
+                        <Form className="my-3" id="form-container" onSubmit={formik.handleSubmit}>
                     
                     <Stack
                         px={4}
