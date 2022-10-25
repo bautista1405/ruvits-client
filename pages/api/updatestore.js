@@ -94,7 +94,7 @@ export default async function updateStore(req, res) {
         const updateUserStore = handleStore(req.body, req.files);
         console.log(updateUserStore);
         const store = new Store(updateUserStore);
-        const update = await store.save();
+        const update = await store.findByIdAndUpdate(id, {storeName, email, description, banner});
         console.log(update)
         
 
