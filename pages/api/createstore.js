@@ -81,7 +81,7 @@ export default async function createStore(req, res) {
                 type: String,
             },
             banner: {
-                type: String
+                type: []
             },
             products: []
         });
