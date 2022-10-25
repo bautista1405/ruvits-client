@@ -134,7 +134,7 @@ const MyProfile = () => {
             storeName: '',
             description: '',
             email: '',
-            banner: '',
+            banner: [],
         },
         onSubmit: (values = {storeName, description, email, banner}) => {
     
@@ -180,6 +180,7 @@ const MyProfile = () => {
                         axios.post(
                         '/api/updatestore', 
                         {
+                            id,
                             storeName: values.storeName,
                             description: values.description,
                             email: session.user.email,
