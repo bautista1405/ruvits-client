@@ -18,7 +18,7 @@ export const config = {
     },
 }
 
-export default async function createStore(req, res) {
+const createStore = async (req, res) => {
 
     aws.config.update({
         secretAccessKey: process.env.S3_SECRET,
@@ -55,7 +55,6 @@ export default async function createStore(req, res) {
     // console.log(parsedProduct)
     // const {id, title, description, price, content, vendor} = parsedProduct
     const session = await getSession({req})
-    console.log(req.file, req.body)
 
     try {
 
@@ -112,3 +111,5 @@ export default async function createStore(req, res) {
         console.log(e)
     }
 }
+
+export default createStore;

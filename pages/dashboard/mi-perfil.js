@@ -63,6 +63,14 @@ const MyProfile = () => {
     const userStore = stores.filter(store => store.email === session.user.email )
 
     const headers = {'Content-Type': 'multipart/form-data'}
+    const formik = useFormik({
+        initialValues: {
+            storeName: '',
+            description: '',
+            email: '',
+            banner: '',
+        }
+    })
     
     const updateStore = () => { 
 
@@ -158,14 +166,6 @@ const MyProfile = () => {
     
     }   
 
-    const formik = useFormik({
-        initialValues: {
-            storeName: '',
-            description: '',
-            email: '',
-            banner: '',
-        }
-    })
 
     const updateUser = () => { 
         
