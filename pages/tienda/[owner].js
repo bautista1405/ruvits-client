@@ -52,7 +52,7 @@ const StoreOwner = ({ user }) => {
   return (
     <>    
       <Head>
-        {user.length > 0  && user.map((user) => {
+        {user.map((user) => {
           return (
 
             <title key={user._id} >{user.name} | Ruvits </title>
@@ -72,8 +72,8 @@ const StoreOwner = ({ user }) => {
                     
                     <Banner
                       gridArea='1 / 1 / 2 / 2'
-                      banner={session.user.image}
-                      // avatar={avatar}
+                      banner={store.banner[0]}
+                      avatar={user.image}
                       name={store.storeName}
                       job='Product Designer'
                       productos='17'
