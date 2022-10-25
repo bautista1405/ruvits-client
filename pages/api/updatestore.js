@@ -98,10 +98,10 @@ export default async function updateStore(req, res) {
             storeName: req.body.storeName, 
             email: req.body.email, 
             description: req.body.description, 
-            banner: req.files.location,
+            banner: req.files[0].location,
         });
         console.log(update)
-        
+        console.log(req.files[0].location)
 
         // const update = await Store.findByIdAndUpdate(id, {storeName, email, description, banner})
         // console.log(update)
