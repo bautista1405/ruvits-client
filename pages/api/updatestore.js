@@ -102,9 +102,6 @@ export default async function updateStore(req, res) {
         });
         console.log(update)
         console.log(req.files[0].location)
-
-        // const update = await Store.findByIdAndUpdate(id, {storeName, email, description, banner})
-        // console.log(update)
         
         res.status(201).json({ success: true })
         // return newStore

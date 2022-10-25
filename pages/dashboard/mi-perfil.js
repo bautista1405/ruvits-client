@@ -478,7 +478,7 @@ const MyProfile = () => {
                             
                         />
 
-                        <FormControl>
+                        <FormControl as={GridItem} colSpan={[6, 4]}>
                                             <FormLabel
                                             fontSize="sm"
                                             fontWeight="bold"
@@ -564,7 +564,7 @@ const MyProfile = () => {
                                 w="full"
                                 rounded="md"
                                 
-                                color="gray.500"
+                                color='gray.900'
                             />
                         </FormControl>
                         <FormControl as={GridItem} colSpan={[6, 4]}>
