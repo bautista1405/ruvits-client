@@ -96,6 +96,7 @@ export default async function updateStore(req, res) {
         });
         console.log(update)
         console.log(req.files[0].location)
+        console.log(req.files[1].location)
         
         res.status(201).json({ success: true })
         // return newStore

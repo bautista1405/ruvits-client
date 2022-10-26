@@ -81,7 +81,7 @@ const MyProfile = () => {
                     axios.post(
                     '/api/createstore', 
                     {
-                        avatar: session.user.image,
+                        avatar: values.avatar,
                         storeName: values.storeName,
                         description: values.description,
                         email: session.user.email,
@@ -121,7 +121,7 @@ const MyProfile = () => {
                         '/api/updatestore', 
                         {
                             id,
-                            avatar: session.user.image,
+                            avatar: values.avatar,
                             storeName: values.storeName,
                             description: values.description,
                             email: session.user.email,

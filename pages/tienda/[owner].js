@@ -82,7 +82,7 @@ const StoreOwner = ({ user }) => {
                         <Banner
                           gridArea='1 / 1 / 2 / 2'
                           banner={store.banner[0]}
-                          avatar={user.image}
+                          avatar={store.avatar}
                           name={store.storeName}
                           job='Product Designer'
                           productos={storeProducts.length}

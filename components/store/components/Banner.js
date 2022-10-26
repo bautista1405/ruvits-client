@@ -23,7 +23,7 @@ export default function Banner(props) {
       />
       <Avatar
         mx='auto'
-        src={`url(${avatar})`}
+        src={avatar}
         h='87px'
         w='87px'
         mt='-43px'
