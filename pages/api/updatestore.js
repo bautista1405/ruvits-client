@@ -20,15 +20,6 @@ export const config = {
 
 export default async function updateStore(req, res) {
     
-    // const { body } = req;
-    // console.log(body)
-    // const {storeName, description, email, id, banner} = body
-    // console.log(id)
-    // const {product} = body;
-    // const parsedProduct = JSON.parse(product)
-    // console.log(body);
-    // console.log(parsedProduct)
-    // const {id, title, description, price, content, vendor} = parsedProduct
     const session = await getSession({req})
 
     aws.config.update({
@@ -69,6 +60,9 @@ export default async function updateStore(req, res) {
         });
       
         const StoreSchema = new Schema({
+            avatar: {
+                type: String,
+            },
             storeName: {
                 type: String,
                 
@@ -83,7 +77,6 @@ export default async function updateStore(req, res) {
             banner: {
                 type: []
             },
-            products: []
         });
         
         mongoose.models = {}
@@ -95,6 +88,7 @@ export default async function updateStore(req, res) {
         console.log(updateUserStore);
         const store = new Store(updateUserStore);
         const update = await Store.findByIdAndUpdate(req.body.id, {
+            avatar: req.files[1].location,
             storeName: req.body.storeName, 
             email: req.body.email, 
             description: req.body.description, 

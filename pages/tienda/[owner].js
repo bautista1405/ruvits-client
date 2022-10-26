@@ -24,9 +24,11 @@ const StoreOwner = ({ user }) => {
   const router = useRouter();
   const getStores = '/api/getstore'
   const getStoreProducts = "/api/getproducts";
+  const getSales = '/api/getpayment'
 
   const [stores, setStores] = useState([]);
   const [products, setProducts] = useState([]);
+  const [sales, setSales] = useState([]);
 
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -43,11 +45,16 @@ const StoreOwner = ({ user }) => {
               setProducts(res?.data?.getProducts || []);
               
             })
+            axios.get(getSales)
+            .then((res) => {
+                setSales(res?.data?.getSales || [])
+            })
         
-    }, [getStores, getStoreProducts]) 
+    }, [getStores, getStoreProducts, getSales]) 
 
     const store = stores.filter(store => store.email === user[0].email )
     const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
+    const storeSales = sales.filter(sale => sale.vendor === user[0].name)
 
   return (
     <>    
@@ -68,21 +75,23 @@ const StoreOwner = ({ user }) => {
             {store.length > 0 ? store.map((store) => {
               return (
                 <Box key={store._id}>
-                  <Grid>
-                    
-                    <Banner
-                      gridArea='1 / 1 / 2 / 2'
-                      banner={store.banner[0]}
-                      avatar={user.image}
-                      name={store.storeName}
-                      job='Product Designer'
-                      productos='17'
-                      ventas='9.7k'
-                      rating='274'
-                    />
+                  
+                  
+                      <Grid>
+                        
+                        <Banner
+                          gridArea='1 / 1 / 2 / 2'
+                          banner={store.banner[0]}
+                          avatar={user.image}
+                          name={store.storeName}
+                          job='Product Designer'
+                          productos={storeProducts.length}
+                          ventas={storeSales.length}
+                          rating='4.5'
+                        />
 
-                  </Grid>
-
+                      </Grid>
+                  
                   <GridItem margin='80px'>
                     <Flex justify='center' mb={20}>
                       {store.description}

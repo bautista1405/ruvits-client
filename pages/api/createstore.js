@@ -68,6 +68,9 @@ const createStore = async (req, res) => {
         });
       
         const StoreSchema = new Schema({
+            avatar: {
+                type: String,
+            },
             storeName: {
                 type: String,
                 
@@ -82,18 +85,10 @@ const createStore = async (req, res) => {
             banner: {
                 type: []
             },
-            products: []
         });
         
         mongoose.models = {}
         const Store = mongoose.model('stores', StoreSchema);
-
-        // const newStore = new Store({
-        //     storeName,
-        //     email: session.user.email,
-        //     description,
-        //     banner,
-        // })
 
         console.log(req.body)
         console.log(req.files)

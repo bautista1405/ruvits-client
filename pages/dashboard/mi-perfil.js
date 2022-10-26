@@ -60,7 +60,7 @@ const MyProfile = () => {
     
     }, [getStores])
 
-    const userStore = stores.filter(store => store.email === session.user.email )
+    // const userStore = stores.filter(store => store.email === session.user.email )
 
     const headers = {
         'Content-Type': 'multipart/form-data',
@@ -68,18 +68,20 @@ const MyProfile = () => {
     
     const formik =  useFormik({
         initialValues: {
+            avatar: '',
             storeName: '',
             description: '',
             email: '',
             banner: [],
         },
-        onSubmit: (values = {storeName, description, email, banner}) => {
+        onSubmit: (values = {avatar, storeName, description, email, banner}) => {
     
           if(userStore.length == 0) {
             try {
                     axios.post(
                     '/api/createstore', 
                     {
+                        avatar: session.user.image,
                         storeName: values.storeName,
                         description: values.description,
                         email: session.user.email,
@@ -119,6 +121,7 @@ const MyProfile = () => {
                         '/api/updatestore', 
                         {
                             id,
+                            avatar: session.user.image,
                             storeName: values.storeName,
                             description: values.description,
                             email: session.user.email,
@@ -217,7 +220,7 @@ const MyProfile = () => {
             <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
         </Head> 
         <Box >  
-        {/* {!session && (
+        {!session && (
           <Flex alignItems="center" justifyContent="center" h="54vh">
             Para ver tu perfil debes  
             <Button
@@ -233,12 +236,12 @@ const MyProfile = () => {
                 iniciar sesión.
             </Button>
           </Flex>
-        )} */}
+        )}
         
         
             <>
                 
-        {/* session && */}
+        {session &&
         <Flex
             h={["100vh", null, "60vh", "100vh", "100vh"]}
             maxW="2000px"
@@ -567,6 +570,66 @@ const MyProfile = () => {
                                 color='gray.900'
                             />
                         </FormControl>
+
+                        <FormControl as={GridItem} colSpan={[6, 4]}>
+                            <FormLabel
+                                fontSize="sm"
+                                fontWeight="bold"
+                                color="gray.700"
+                            >
+                                Foto de tu avatar
+                            </FormLabel>
+                                <Flex alignItems="center" mt={1}>
+                                    <chakra.label
+                                        htmlFor="file-upload1"
+                                        cursor="pointer"
+                                        rounded="md"
+                                        fontSize="sm"
+                                        color="brand.700"
+                                        pos="relative"
+                                        _hover={{
+                                        color: "brand.400",
+                                        }}
+                                    >
+                                            
+                                            <Icon
+                                                mx="auto"
+                                                boxSize={12}
+                                                color="gray.500"
+                                                stroke="currentColor"
+                                                fill="none"
+                                                viewBox="0 0 48 48"
+                                                aria-hidden="true"
+                                            >
+                                                <path
+                                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                            </Icon>
+                                            
+                                            <VisuallyHidden>
+                                                <Input
+                                                    type="file"  
+                                                    id="file-upload1"
+                                                    accept="image/jpeg,image/png"
+                                                    name='avatar'
+                                                    value={undefined}
+                                                    onChange={(e) =>
+                                                    formik.setFieldValue('avatar', e.currentTarget.files[0])
+                                                    }
+                                                    onBlur={formik.handleBlur}
+                                                    required
+                                                />
+                                            </VisuallyHidden>
+                                        </chakra.label>
+                                </Flex>
+                                <FormHelperText>
+                                    Esta foto es la que aparecerá abajo de tu banner, como foto de perfil de la tienda
+                                </FormHelperText>
+                        </FormControl>
+
                         <FormControl as={GridItem} colSpan={[6, 4]}>
                             <FormLabel
                             htmlFor="description"
@@ -638,6 +701,7 @@ const MyProfile = () => {
             </SimpleGrid>
 
         </Flex>
+        }
     </>
         
 
