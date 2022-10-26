@@ -60,7 +60,7 @@ const MyProfile = () => {
     
     }, [getStores])
 
-    // const userStore = stores.filter(store => store.email === session.user.email )
+    const userStore = stores.filter(store => store.email === session.user.email )
 
     const headers = {
         'Content-Type': 'multipart/form-data',
