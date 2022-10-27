@@ -85,7 +85,7 @@ const StoreOwner = ({ user }) => {
                           banner={store.banner[0]}
                           avatar={store.avatar}
                           name={store.storeName}
-                          job='Product Designer'
+                          job={store.category}
                           productos={storeProducts.length}
                           ventas={storeSales.length}
                           rating='4.1'
