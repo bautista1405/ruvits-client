@@ -71,11 +71,17 @@ export default async function updateStore(req, res) {
                 type: String,
                 required: true,
             },
+            category: {
+                type: String,
+            },
             description: {
                 type: String,
             },
             banner: {
                 type: []
+            },
+            personalPage: {
+                type: String,
             },
         });
         
@@ -91,8 +97,10 @@ export default async function updateStore(req, res) {
             avatar: req.files[1].location,
             storeName: req.body.storeName, 
             email: req.body.email, 
+            category: req.body.category,
             description: req.body.description, 
             banner: req.files[0].location,
+            personalPage: req.body.personalPage
         });
         console.log(update)
         console.log(req.files[0].location)

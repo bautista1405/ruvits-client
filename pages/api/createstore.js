@@ -79,11 +79,17 @@ const createStore = async (req, res) => {
                 type: String,
                 required: true,
             },
+            category: {
+                type: String,
+            },
             description: {
                 type: String,
             },
             banner: {
                 type: []
+            },
+            personalPage: {
+                type: String,
             },
         });
         

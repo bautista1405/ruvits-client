@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 // import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Head from 'next/head';
-import { Flex, Text, Box, Grid, Icon, GridItem, SimpleGrid, Image,
+import { Flex, Text, Box, Grid, Icon, GridItem, SimpleGrid, Image, Divider,
   Link,
   useColorModeValue, } from '@chakra-ui/react'
 import axios from 'axios'
@@ -14,6 +14,7 @@ import General from "../../components/store/components/General";
 import Card from "../../components/store/components/card/Card";
 import Notifications from "../../components/store/components/Notifications";
 import Projects from "../../components/store/components/Projects";
+import StoreDescription from '../../components/store/Description';
 
 import designer from "../../assets/designer.png";
 import { MdEdit } from "react-icons/md";
@@ -74,7 +75,7 @@ const StoreOwner = ({ user }) => {
           
             {store.length > 0 ? store.map((store) => {
               return (
-                <Box key={store._id}>
+                <Box key={store._id} >
                   
                   
                       <Grid>
@@ -87,28 +88,49 @@ const StoreOwner = ({ user }) => {
                           job='Product Designer'
                           productos={storeProducts.length}
                           ventas={storeSales.length}
-                          rating='4.5'
+                          rating='4.1'
                         />
 
                       </Grid>
                   
-                  <GridItem margin='80px'>
-                    <Flex justify='center' mb={20}>
+                  <GridItem >
+                    {/* <Flex 
+                      justify='center' 
+                      mb={20} 
+                      margin='150px' 
+                      shadow="base"
+                      rounded={[null, "md"]}
+                      borderRadius="5px"
+                      boxShadow='md' 
+                      p='6'
+                    >
                       {store.description}
-                    {/* <Image src={designer} height='100px' width='100px' /> */}
-                    </Flex>
+                    </Flex> */}
                     
-                    <General />
+                    {/* <General /> */}
+
+                    <StoreDescription 
+                      description={store.description}
+                      storeOwner={store.storeName}
+                      avatar={store.avatar}
+                      personalPage={store.personalPage}
+                      email={`mailto@${store.email}`}
+                    />
 
                   </GridItem>
+
+                  {/* <Flex justify='center' color='black'>
+                    <Divider orientation='horizontal' w='80%' borderColor='black' />
+                  </Flex> */}
                   
+                  <Box margin="150px">
                   <Flex justify='center'>
-                    <Text mb={5} fontSize={22} fontWeight='bold'>Productos</Text>
+                    <Text mb={10} fontSize={22} fontWeight='bold'>Productos</Text>
                   </Flex>
                   <SimpleGrid
                     columns={[1, 2, 2, 3]} 
                     spacing={10} 
-                    margin="50px"  
+                      
                   >
 
 
@@ -155,7 +177,7 @@ const StoreOwner = ({ user }) => {
                     }
                     
                   </SimpleGrid>
-                  
+                  </Box>
                   
                     
 

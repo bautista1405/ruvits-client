@@ -24,8 +24,8 @@ export default function Banner(props) {
       <Avatar
         mx='auto'
         src={avatar}
-        h='87px'
-        w='87px'
+        h='120px'
+        w='120px'
         mt='-43px'
         border='4px solid'
         borderColor={borderColor}

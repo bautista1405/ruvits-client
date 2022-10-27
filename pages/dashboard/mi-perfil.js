@@ -70,11 +70,14 @@ const MyProfile = () => {
         initialValues: {
             avatar: '',
             storeName: '',
+            category: '',
+            // topics: [],
             description: '',
             email: '',
             banner: [],
+            personalPage: '',
         },
-        onSubmit: (values = {avatar, storeName, description, email, banner}) => {
+        onSubmit: (values = {avatar, storeName, category, description, email, banner, personalPage}) => {
     
           if(userStore.length == 0) {
             try {
@@ -83,9 +86,12 @@ const MyProfile = () => {
                     {
                         avatar: values.avatar,
                         storeName: values.storeName,
+                        category: values.category,
+                        // topics: values.topics,
                         description: values.description,
                         email: session.user.email,
                         banner: values.banner,
+                        personalPage: values.personalPage
                     },
                     {headers}
                     )
@@ -123,9 +129,12 @@ const MyProfile = () => {
                             id,
                             avatar: values.avatar,
                             storeName: values.storeName,
+                            category: values.category,
+                            // topics: values.topics,
                             description: values.description,
                             email: session.user.email,
                             banner: values.banner,
+                            personalPage: values.personalPage
                         },
                         {headers}
                         )
@@ -377,7 +386,7 @@ const MyProfile = () => {
                             >
                                 <b>Nombre</b>
                             </FormLabel>
-                            <Text
+                            {/* <Text
                                 
                                 mt={1}
                                 focusBorderColor="brand.400"
@@ -387,7 +396,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.name}</Text>
+                            >{session.user.name}</Text> */}
                         </FormControl>
 
                         
@@ -404,7 +413,7 @@ const MyProfile = () => {
                             >
                             <b>Email</b> 
                             </FormLabel>
-                            <Text
+                            {/* <Text
                                 
                                 mt={1}
                                 focusBorderColor="brand.400"
@@ -414,7 +423,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.email}</Text>
+                            >{session.user.email}</Text> */}
                         </FormControl>
 
                        
@@ -632,6 +641,37 @@ const MyProfile = () => {
 
                         <FormControl as={GridItem} colSpan={[6, 4]}>
                             <FormLabel
+                                htmlFor="email_address"
+                                fontSize="sm"
+                                fontWeight="md"
+                                color="gray.700"
+                                _dark={{
+                                    color: "gray.50",
+                                }}
+                            >
+                            <b>Rubro</b> 
+                            </FormLabel>
+                            <Input
+                                type='text'
+                                placeholder='Programación, arte, ciencia, tecnología, gaming, música, entre otros... '
+                                id='category'
+                                name='category'
+                                value={formik.values.category}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                mt={1}
+                                focusBorderColor="brand.400"
+                                shadow="sm"
+                                size="sm"
+                                w="full"
+                                rounded="md"
+                                
+                                color='gray.900'
+                            />
+                        </FormControl>
+
+                        <FormControl as={GridItem} colSpan={[6, 4]}>
+                            <FormLabel
                             htmlFor="description"
                             fontSize="sm"
                             fontWeight="bold"
@@ -656,6 +696,37 @@ const MyProfile = () => {
                                 
                                 />
                             
+                        </FormControl>
+
+                        <FormControl as={GridItem} colSpan={[6, 4]}>
+                            <FormLabel
+                            htmlFor="email_address"
+                            fontSize="sm"
+                            fontWeight="md"
+                            color="gray.700"
+                            _dark={{
+                                color: "gray.50",
+                            }}
+                            >
+                            <b>Página web personal</b> 
+                            </FormLabel>
+                            <Input
+                                type='text'
+                                placeholder="Tu página..."  
+                                id='personalPage'
+                                name='personalPage'
+                                value={formik.values.personalPage}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                mt={1}
+                                focusBorderColor="brand.400"
+                                shadow="sm"
+                                size="sm"
+                                w="full"
+                                rounded="md"
+                                
+                                color='gray.900'
+                            />
                         </FormControl>
                         
                         </SimpleGrid>
