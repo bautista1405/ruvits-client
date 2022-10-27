@@ -689,10 +689,10 @@ const MyProfile = () => {
                                     value={formik.values.description}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    
+                                    minLength="300"
                                     focusBorderColor="brand.700"
                                     rounded="md"
-                                    maxLength="2000"
+                                    maxLength="1000"
                                 
                                 />
                             

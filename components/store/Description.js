@@ -30,7 +30,7 @@ const storeDescription = (props) => {
                 }}
                 maxW="2xl"
             >
-                <Flex justifyContent="flex-end" alignItems="center">
+                <Flex justifyContent="flex-start" alignItems="center">
                 
                 <Link
                     px={3}
@@ -44,6 +44,7 @@ const storeDescription = (props) => {
                     bg: "gray.500",
                     }}
                     href={personalPage}
+                    target="_blank"
                 >
                     ¡Visita mi página!
                 </Link>
@@ -62,8 +63,8 @@ const storeDescription = (props) => {
                 </chakra.p>
                 </Box>
 
-                <Flex justifyContent="space-between" alignItems="center" mt={4}>
-                <Link
+                <Flex justifyContent="flex-end" alignItems="center" mt={4}>
+                {/* <Link
                     color="teal"
                     // _dark={{
                     // color: "brand.400",
@@ -74,7 +75,7 @@ const storeDescription = (props) => {
                     href={email}
                 >
                     ¡Contactame!
-                </Link>
+                </Link> */}
 
                 <Flex alignItems="center">
                     <Image

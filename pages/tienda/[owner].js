@@ -114,7 +114,7 @@ const StoreOwner = ({ user }) => {
                       storeOwner={store.storeName}
                       avatar={store.avatar}
                       personalPage={store.personalPage}
-                      email={`mailto@${store.email}`}
+                      // email={`mailto@${store.email}`}
                     />
 
                   </GridItem>
