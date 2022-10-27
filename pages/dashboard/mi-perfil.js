@@ -386,7 +386,7 @@ const MyProfile = () => {
                             >
                                 <b>Nombre</b>
                             </FormLabel>
-                            {/* <Text
+                            <Text
                                 
                                 mt={1}
                                 focusBorderColor="brand.400"
@@ -396,7 +396,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.name}</Text> */}
+                            >{session.user.name}</Text>
                         </FormControl>
 
                         
@@ -413,7 +413,7 @@ const MyProfile = () => {
                             >
                             <b>Email</b> 
                             </FormLabel>
-                            {/* <Text
+                            <Text
                                 
                                 mt={1}
                                 focusBorderColor="brand.400"
@@ -423,7 +423,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.email}</Text> */}
+                            >{session.user.email}</Text>
                         </FormControl>
 
                        
