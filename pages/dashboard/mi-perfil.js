@@ -623,10 +623,10 @@ const MyProfile = () => {
                                                     type="file"  
                                                     id="file-upload1"
                                                     accept="image/jpeg,image/png"
-                                                    name='banner'
+                                                    name='avatar'
                                                     value={undefined}
                                                     onChange={(e) =>
-                                                    formik.setFieldValue('banner', e.currentTarget.files[0])
+                                                    formik.setFieldValue('avatar', e.currentTarget.files[0])
                                                     }
                                                     onBlur={formik.handleBlur}
                                                     required
