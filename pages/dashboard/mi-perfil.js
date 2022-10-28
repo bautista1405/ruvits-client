@@ -68,7 +68,7 @@ const MyProfile = () => {
     
     const formik =  useFormik({
         initialValues: {
-            // avatar: '',
+            avatar: '',
             storeName: '',
             category: '',
             // topics: [],

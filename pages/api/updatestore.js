@@ -60,6 +60,9 @@ export default async function updateStore(req, res) {
         });
       
         const StoreSchema = new Schema({
+            avatar: {
+                type: String,
+            },
             storeName: {
                 type: String,
                 
@@ -91,16 +94,17 @@ export default async function updateStore(req, res) {
         console.log(updateUserStore);
         const store = new Store(updateUserStore);
         const update = await Store.findByIdAndUpdate(req.body.id, {
+            avatar: req.files[0].location,
             storeName: req.body.storeName, 
             email: req.body.email, 
             category: req.body.category,
             description: req.body.description, 
-            banner: req.files.location,
+            banner: req.files[1].location,
             personalPage: req.body.personalPage
         });
         console.log(update)
-        console.log(req.files.location)
-        // console.log(req.files[1].location)
+        console.log(req.files[0].location)
+        console.log(req.files[1].location)
         
         res.status(201).json({ success: true })
         // return newStore
