@@ -84,13 +84,13 @@ const MyProfile = () => {
                     axios.post(
                     '/api/createstore', 
                     {
-                        banner: values.banner,
                         avatar: values.avatar,
                         storeName: values.storeName,
                         category: values.category,
                         // topics: values.topics,
                         description: values.description,
                         email: session.user.email,
+                        banner: values.banner,
                         personalPage: values.personalPage
                     },
                     {headers}
