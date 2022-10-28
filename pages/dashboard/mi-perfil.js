@@ -127,14 +127,14 @@ const MyProfile = () => {
                         '/api/updatestore', 
                         {
                             id,
-                            banner: values.banner,
-                            avatar: values.avatar,
-                            storeName: values.storeName,
-                            category: values.category,
+                            banner: values.banner || store.banner[0],
+                            avatar: values.avatar || store.banner[1],
+                            storeName: values.storeName || store.storeName,
+                            category: values.category || store.category,
                             // topics: values.topics,
-                            description: values.description,
-                            email: session.user.email,
-                            personalPage: values.personalPage
+                            description: values.description || store.description,
+                            email: session.user.email || store.email,
+                            personalPage: values.personalPage || store.personalPage,
                         },
                         {headers}
                         )

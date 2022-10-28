@@ -71,7 +71,7 @@ const createStore = async (req, res) => {
             
             storeName: {
                 type: String,
-                
+                required: true
             },
             email: {
                 type: String,
@@ -79,15 +79,19 @@ const createStore = async (req, res) => {
             },
             category: {
                 type: String,
+                required: true
             },
             description: {
                 type: String,
+                required: true
             },
             banner: {
-                type: []
+                type: [],
+                required: true
             },
             personalPage: {
                 type: String,
+                required: true
             },
         });
         

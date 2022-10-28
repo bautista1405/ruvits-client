@@ -113,5 +113,6 @@ export default async function updateStore(req, res) {
     
     catch (e) {
         console.log(e)
+        return e
     }
 }
