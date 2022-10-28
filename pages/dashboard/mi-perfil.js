@@ -199,29 +199,6 @@ const MyProfile = () => {
     
     }   
 
-
-    const updateUser = () => { 
-        
-            // const name = session.user.name
-            fetch('/api/update', {
-                
-                method: 'PATCH',
-                headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                body: JSON.stringify({
-                    
-                }),
-            })
-            swal({
-                title: "¡Tu producto fue actualizado!",
-                text: "Ahora podes ver tu producto con los cambios correspondientes.",
-                icon: "success",
-            }).then(() => {router.push('/dashboard')})
-        
-    }
-
-    // console.log(session.user.id)
-
-
   return (
     <>
         <Head>
