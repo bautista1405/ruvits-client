@@ -112,7 +112,7 @@ const StoreOwner = ({ user }) => {
                     <StoreDescription 
                       description={store.description}
                       storeOwner={store.storeName}
-                      avatar={store.avatar}
+                      avatar={store.banner[0]}
                       personalPage={store.personalPage}
                       // email={`mailto@${store.email}`}
                     />
