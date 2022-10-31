@@ -84,13 +84,13 @@ const MyProfile = () => {
                     axios.post(
                     '/api/createstore', 
                     {
-                        avatar: values.avatar,
+                        banner: values.banner,
                         storeName: values.storeName,
                         category: values.category,
                         // topics: values.topics,
                         description: values.description,
                         email: session.user.email,
-                        banner: values.banner,
+                        avatar: values.avatar,
                         personalPage: values.personalPage
                     },
                     {headers}
@@ -127,13 +127,13 @@ const MyProfile = () => {
                         '/api/updatestore', 
                         {
                             id,
-                            banner: values.banner || store.banner[1],
+                            avatar: values.avatar || store.banner[0],
                             storeName: values.storeName || store.storeName,
                             category: values.category || store.category,
                             // topics: values.topics,
                             description: values.description || store.description,
                             email: session.user.email || store.email,
-                            avatar: values.avatar || store.banner[0],
+                            banner: values.banner || store.banner[1],
                             personalPage: values.personalPage || store.personalPage,
                         },
                         {headers}
