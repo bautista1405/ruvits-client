@@ -206,7 +206,7 @@ const MyProfile = () => {
             <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
         </Head> 
         <Box >  
-        {/* {!session && (
+        {!session && (
           <Flex alignItems="center" justifyContent="center" h="54vh">
             Para ver tu perfil debes  
             <Button
@@ -222,7 +222,7 @@ const MyProfile = () => {
                 iniciar sesión.
             </Button>
           </Flex>
-        )} */}
+        )}
         
         
         <>
@@ -442,8 +442,19 @@ const MyProfile = () => {
                         md: 2,
                         }}
                     >
+
+                   
+                    <Flex justify='space-between'>
                     
-                    <Text mb={5} fontSize={22} fontWeight='bold'>Mi tienda</Text>
+                        <Text mb={5} fontSize={22} fontWeight='bold'>Mi tienda</Text>
+                        
+                        <Link href={`/tienda/${session.user.name}`} >
+                            <Button mb={5} fontSize={16} fontWeight='bold' colorScheme='cyan' variant='ghost'>Ir a Mi Tienda</Button>
+                        </Link>
+                        
+                    </Flex>
+
+                    
                     
                     <Formik>
                         <Form className="my-3" id="form-container" onSubmit={formik.handleSubmit}>
