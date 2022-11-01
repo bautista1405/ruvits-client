@@ -51,7 +51,7 @@ const MyProfile = () => {
     const getStores = '/api/getstore'
     const [stores, setStores] = useState([]);
 
-    const store = session.user.name.replace(/\s+/g, '')
+    const store = session.user.name.replace(/\s+/g, '').toLowerCase()
 
     useEffect( () => {
         
