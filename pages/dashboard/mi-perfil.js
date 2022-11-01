@@ -60,7 +60,7 @@ const MyProfile = () => {
     
     }, [getStores])
 
-    const userStore = stores.filter(store => store.email === session.user.email )
+    // const userStore = stores.filter(store => store.email === session.user.email )
 
     const headers = {
         'Content-Type': 'multipart/form-data',
@@ -206,7 +206,7 @@ const MyProfile = () => {
             <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
         </Head> 
         <Box >  
-        {!session && (
+        {/* {!session && (
           <Flex alignItems="center" justifyContent="center" h="54vh">
             Para ver tu perfil debes  
             <Button
@@ -222,14 +222,14 @@ const MyProfile = () => {
                 iniciar sesión.
             </Button>
           </Flex>
-        )}
+        )} */}
         
         
             <>
                 
-        {session &&
+        {/* {session && */}
         <Flex
-            h={["100vh", null, "60vh", "100vh", "100vh"]}
+            h={["100%", null, "100vh", "100vh", "100vh"]}
             maxW="2000px"
             flexDir={["column", "column", "row"]}
             overflow="hidden"
@@ -363,7 +363,7 @@ const MyProfile = () => {
                             >
                                 <b>Nombre</b>
                             </FormLabel>
-                            <Text
+                            {/* <Text
                                 
                                 mt={1}
                                 focusBorderColor="brand.400"
@@ -373,7 +373,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.name}</Text>
+                            >{session.user.name}</Text> */}
                         </FormControl>
 
                         
@@ -390,7 +390,7 @@ const MyProfile = () => {
                             >
                             <b>Email</b> 
                             </FormLabel>
-                            <Text
+                            {/* <Text
                                 
                                 mt={1}
                                 focusBorderColor="brand.400"
@@ -400,7 +400,7 @@ const MyProfile = () => {
                                 rounded="md"
                                 
                                 color="gray.500"
-                            >{session.user.email}</Text>
+                            >{session.user.email}</Text> */}
                         </FormControl>
 
                        
@@ -516,7 +516,7 @@ const MyProfile = () => {
                                                         formik.setFieldValue('banner', e.currentTarget.files[0])
                                                         }
                                                         onBlur={formik.handleBlur}
-                                                        required
+                                                        
                                                     />
                                                     </VisuallyHidden>
                                                 </chakra.label>
@@ -606,7 +606,7 @@ const MyProfile = () => {
                                                     formik.setFieldValue('avatar', e.currentTarget.files[0])
                                                     }
                                                     onBlur={formik.handleBlur}
-                                                    required
+                                                    
                                                 />
                                             </VisuallyHidden>
                                         </chakra.label>
@@ -749,7 +749,7 @@ const MyProfile = () => {
             </SimpleGrid>
 
         </Flex>
-        }
+        {/* } */}
     </>
         
 
