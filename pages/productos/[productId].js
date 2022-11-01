@@ -1,4 +1,4 @@
-import React from 'react'
+import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useSession } from "next-auth/client";
@@ -191,6 +191,8 @@ const ProductDetails = ({ product }) => {
     })
   }
 
+  const storeOwner = product.vendor.replace(/\s+/g, '').toLowerCase()
+
   return (
     <>
       <div >
@@ -219,11 +221,28 @@ const ProductDetails = ({ product }) => {
                 margin='auto'
                 mb={20}
               >
+                
+                <Flex justify='flex-end'>
+                  <Link href={`/tienda/${storeOwner}`}>
+                    <Button 
+                      bg="teal"
+                      color="white"
+                      _hover={{
+                        transform: 'translateY(2px)',
+                        boxShadow: 'lg',
+                      }}
+                    >
+                      Ir a la tienda del vendedor
+                    </Button>
+                  </Link>
+                </Flex>
+              
+              
               <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
                 spacing={{ base: 8, md: 10 }}
                 py={{ base: 18, md: 24 }}
-              >
+                >
                 <Flex
                   rounded={[null, "md"]}
                   borderRadius="5px"
@@ -233,6 +252,8 @@ const ProductDetails = ({ product }) => {
                   w="500px"
                   
                 >
+
+
                   <Image
                     rounded={'md'}
                     alt={'imagen del producto'}
