@@ -206,7 +206,7 @@ const MyProfile = () => {
             <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
         </Head> 
         <Box >  
-        {!session && (
+        {/* {!session && (
           <Flex alignItems="center" justifyContent="center" h="54vh">
             Para ver tu perfil debes  
             <Button
@@ -222,10 +222,10 @@ const MyProfile = () => {
                 iniciar sesión.
             </Button>
           </Flex>
-        )}
+        )} */}
         
         
-            <>
+        <>
                 
         {session &&
         <Flex
@@ -457,6 +457,11 @@ const MyProfile = () => {
                         bg: "#141517",
                         }}
                         spacing={6}
+                        shadow="base"
+                        rounded={[null, "md"]}
+                        overflow={{
+                            sm: "hidden",
+                        }}
                     >
                         <SimpleGrid columns={6} spacing={6} mb={20}>
 
@@ -707,18 +712,16 @@ const MyProfile = () => {
                         </FormControl>
                         
                         </SimpleGrid>
-                    </Stack>
-                    
                     <Box
                         px={{
                         base: 4,
                         sm: 6,
                         }}
                         py={3}
-                        bg="gray.50"
-                        _dark={{
-                            bg: "#121212",
-                        }}
+                        // bg="gray.50"
+                        // _dark={{
+                        //     bg: "#121212",
+                        // }}
                         textAlign="right"
                     >
                         <Button
@@ -733,6 +736,8 @@ const MyProfile = () => {
                             Guardar
                         </Button>
                     </Box>
+                    </Stack>
+                    
                     </Form>
                     </Formik>
                     </GridItem>
