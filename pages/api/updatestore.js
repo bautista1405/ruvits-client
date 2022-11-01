@@ -60,9 +60,6 @@ export default async function updateStore(req, res) {
         });
       
         const StoreSchema = new Schema({
-            banner: {
-                type: []
-            },
             avatar: {
                 type: String,
             },
@@ -79,6 +76,9 @@ export default async function updateStore(req, res) {
             },
             description: {
                 type: String,
+            },
+            banner: {
+                type: []
             },
             personalPage: {
                 type: String,
