@@ -223,7 +223,7 @@ const ProductDetails = ({ product }) => {
                 mb={20}
               >
                 
-                <Flex justify='flex-end'>
+                {/* <Flex justify='flex-end'>
                   <Link href={`/tienda/${storeOwner}`}>
                     <Button 
                       bg="teal"
@@ -236,7 +236,7 @@ const ProductDetails = ({ product }) => {
                       Ir a la tienda del vendedor
                     </Button>
                   </Link>
-                </Flex>
+                </Flex> */}
               
               
               <SimpleGrid
