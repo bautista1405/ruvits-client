@@ -68,7 +68,9 @@ const createStore = async (req, res) => {
         });
       
         const StoreSchema = new Schema({
-            
+            avatar: {
+                type: String,
+            },
             storeName: {
                 type: String,
                 required: true
