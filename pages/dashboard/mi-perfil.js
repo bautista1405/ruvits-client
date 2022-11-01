@@ -51,6 +51,8 @@ const MyProfile = () => {
     const getStores = '/api/getstore'
     const [stores, setStores] = useState([]);
 
+    const store = session.user.name.replace(/\s+/g, '')
+
     useEffect( () => {
         
         axios.get(getStores)
@@ -448,7 +450,7 @@ const MyProfile = () => {
                     
                         <Text mb={5} fontSize={22} fontWeight='bold'>Mi tienda</Text>
                         
-                        <Link href={`/tienda/${session.user.name}`} >
+                        <Link href={`/tienda/${store}`} >
                             <Button mb={5} fontSize={16} fontWeight='bold' colorScheme='cyan' variant='ghost'>Ir a Mi Tienda</Button>
                         </Link>
                         
