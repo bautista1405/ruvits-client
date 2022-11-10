@@ -18,8 +18,11 @@ export default function Banner(props) {
         bg={`url(${banner})`}
         bgSize='cover'
         borderRadius='16px'
-        h='220px'
+        h='100%'
         w='60%'
+        backgroundSize='cover'
+        backgroundRepeat='no-repeat'
+        backgroundPosition='center'
       />
       <Avatar
         mx='auto'
