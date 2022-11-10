@@ -88,7 +88,7 @@ const StoreOwner = ({ user }) => {
                           job={store.category}
                           productos={storeProducts.length}
                           ventas={storeSales.length}
-                          rating='4.1'
+                          // rating='4.1'
                         />
 
                       </Grid>
