@@ -71,7 +71,7 @@ const StoreOwner = ({ user }) => {
       </Head> 
         {user.length > 0 ? user.map((user) => {
           return (
-            <Box pt={{ base: "130px", md: "80px", xl: "80px" }} key={user._id}>
+            <Box key={user._id}>
           
             {store.length > 0 ? store.map((store) => {
               return (
