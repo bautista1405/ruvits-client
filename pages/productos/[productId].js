@@ -192,7 +192,7 @@ const ProductDetails = ({ product }) => {
     })
   }
 
-  const storeOwner = product.vendor.replace(/\s+/g, '').toLowerCase()
+  // const storeOwner = product.vendor.replace(/\s+/g, '').toLowerCase()
 
   return (
     <>
