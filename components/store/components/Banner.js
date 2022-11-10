@@ -13,7 +13,7 @@ export default function Banner(props) {
     "#111C44 !important"
   );
   return (
-    <Card mb={{ base: "0px", lg: "20px" }} align='center'>
+    <Card mb={10} align='center'>
       <Box
         bg={`url(${banner})`}
         bgSize='cover'
