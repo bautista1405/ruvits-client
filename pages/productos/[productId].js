@@ -227,7 +227,7 @@ const ProductDetails = ({ product }) => {
                   )
                   .then( () => {
                       swal({
-                          title: "¡Tu tienda fue actualizada!",
+                          title: "¡Otros usuarios ahora podrán ver tu comentario!",
                           text: "",
                           icon: "success",
                       }).then(() => {router.push('/dashboard')})
@@ -237,7 +237,7 @@ const ProductDetails = ({ product }) => {
                   if(res.status === 500) {
                       
                       swal({
-                        title: "Oopss. Parece que hubo un error.",
+                        title: "Uupss. Parece que hubo un error.",
                         text: "Intenta de nuevo.",
                         icon: "error",
                       }).then(() => {router.push('/dashboard')})
