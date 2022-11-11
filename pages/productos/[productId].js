@@ -655,6 +655,7 @@ const ProductDetails = ({ product }) => {
               p='6'
               margin='auto'
               mb={20}
+              key={product._id}
             >
               <Text fontWeight='bold' fontSize={24} mb={10}> Comentarios </Text>
 
@@ -675,6 +676,7 @@ const ProductDetails = ({ product }) => {
                   // </Flex>
 
                   <Flex
+                  key={comment._id}
                   mb={5}
                   boxShadow={'lg'}
                   maxW={'640px'}
