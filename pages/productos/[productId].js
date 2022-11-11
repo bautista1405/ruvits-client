@@ -210,7 +210,8 @@ const ProductDetails = ({ product }) => {
     },
     onSubmit: (values = {comment, user, productOwner, productTitle}) => {
 
-      
+      if(session) {
+
         product.map(product => {
           
           try {
@@ -243,6 +244,7 @@ const ProductDetails = ({ product }) => {
                   }
                 }  
         })
+      }
         
         if(!session) {
             swal({
