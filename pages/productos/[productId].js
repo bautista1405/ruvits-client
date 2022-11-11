@@ -228,9 +228,9 @@ const ProductDetails = ({ product }) => {
                   if(res.status === 500) {
                       
                       swal({
-                      title: "Oopss. Parece que hubo un error.",
-                      text: "Intenta de nuevo.",
-                      icon: "error",
+                        title: "Oopss. Parece que hubo un error.",
+                        text: "Intenta de nuevo.",
+                        icon: "error",
                       }).then(() => {router.push('/dashboard')})
                   }
                 }  
