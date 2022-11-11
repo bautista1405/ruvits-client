@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -38,6 +38,18 @@ const ProductDetails = ({ product }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
+
+  const getComments = '/api/getcomments'
+
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+
+    axios.get(getComments)
+    .then((res) => {
+      setComments(res?.data?.getComments || [])
+    })
+  }, [getComments])
   
   const handleSubmit = () => {
     
@@ -193,9 +205,10 @@ const ProductDetails = ({ product }) => {
         comment: '',
         user: '',
         productOwner: '',
+        productTitle: '',
         
     },
-    onSubmit: (values = {comment, user, productOwner}) => {
+    onSubmit: (values = {comment, user, productOwner, productTitle}) => {
 
       
         product.map(product => {
@@ -207,6 +220,7 @@ const ProductDetails = ({ product }) => {
                       comment: values.comment,
                       // user: session.user.name,
                       productOwner: product.vendor,
+                      productTitle: product.title,
                   },
                   {headers}
                   )
@@ -627,65 +641,83 @@ const ProductDetails = ({ product }) => {
                 <p>¡Oopsss! Parece que este producto no existe.</p> 
               </Flex>
         }
-           
-        <Container 
-          maxW={'7xl'}  
-          rounded={[null, "md"]}
-          borderRadius="5px"
-          boxShadow='2xl' 
-          p='6'
-          margin='auto'
-          mb={20}
-        >
-          <Text fontWeight='bold' fontSize={24}> Comentarios </Text>
 
+        {product.map((product) => {
+          const productComments = comments.filter(comment => comment.productTitle == product.title)
+          console.log(productComments)
+          return (
 
+            <Container 
+              maxW={'7xl'}  
+              rounded={[null, "md"]}
+              borderRadius="5px"
+              boxShadow='2xl' 
+              p='6'
+              margin='auto'
+              mb={20}
+            >
+              <Text fontWeight='bold' fontSize={24}> Comentarios </Text>
 
-          <Formik>
-            <Form className="my-3" id="form-container" onSubmit={formik.handleSubmit}>
+              {productComments.map((comment) => {
+                return (
 
-              <Stack direction='horizontal'>
-                <Flex alignItems='center'>
-                  <FormControl as={GridItem} colSpan={[6, 4]} mb={5} mt={5}>
-                                  
-                                  <Input
-                                      type='text'
-                                      placeholder="Deja tu comentario..."  
-                                      id='comment'
-                                      name='comment'
-                                      value={formik.values.comment}
-                                      onChange={formik.handleChange}
-                                      onBlur={formik.handleBlur}
-                                      mt={1}
-                                      focusBorderColor="brand.400"
-                                      shadow="sm"
-                                      size="sm"
-                                      w={["250px", "250px", "500px", "800px"]}
-                                      h='50px'
-                                      rounded="md"
-                                      color='gray.900'
-                                      mr={3}
-                                  />
-                  </FormControl>
-                                
-                                <Button
-                                  type="submit"
-                                  colorScheme="teal"
-                                  h='48px'
-                                  _focus={{
-                                      shadow: "",
-                                  }}
-                                  fontWeight="md"
-                                  variant="solid"
-                                >
-                                  Comentar
-                                </Button>
-
+                  <Flex>
+                    <Text>
+                      {comment.comment}
+                    </Text>
                   </Flex>
-                </Stack>               
-              </Form>
-            </Formik>
-        </Container>
+                )
+              })}
+
+              <Formik>
+                <Form className="my-3" id="form-container" onSubmit={formik.handleSubmit}>
+
+                  <Stack direction='horizontal'>
+                    <Flex alignItems='center'>
+
+                      <FormControl as={GridItem} colSpan={[6, 4]} mb={5} mt={5}>
+                                      
+                                      <Input
+                                          type='text'
+                                          placeholder="Deja tu comentario..."  
+                                          id='comment'
+                                          name='comment'
+                                          value={formik.values.comment}
+                                          onChange={formik.handleChange}
+                                          onBlur={formik.handleBlur}
+                                          mt={1}
+                                          focusBorderColor="brand.400"
+                                          shadow="sm"
+                                          size="sm"
+                                          w={["250px", "250px", "500px", "800px"]}
+                                          h='50px'
+                                          rounded="md"
+                                          color='gray.900'
+                                          mr={3}
+                                      />
+                      </FormControl>
+                                    
+                                    <Button
+                                      type="submit"
+                                      colorScheme="teal"
+                                      h='48px'
+                                      _focus={{
+                                          shadow: "",
+                                      }}
+                                      fontWeight="md"
+                                      variant="solid"
+                                    >
+                                      Comentar
+                                    </Button>
+
+                      </Flex>
+                    </Stack>               
+                  </Form>
+                </Formik>
+            </Container>
+          )
+        })}
+           
         
       </div>
     </>

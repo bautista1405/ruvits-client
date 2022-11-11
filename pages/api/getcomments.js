@@ -32,6 +32,10 @@ export default async function getPayment(req, res) {
                 type: String,
                 required: true
                },
+               productTitle: {
+                type: String,
+                required: true,
+               },
                date: {
                 type: String,
                 required: true,
