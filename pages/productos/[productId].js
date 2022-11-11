@@ -639,7 +639,7 @@ const ProductDetails = ({ product }) => {
 
 
           <Formik>
-            <Form className="my-3" id="form-container" onSubmit={formikComment.handleSubmit}>
+            <Form className="my-3" id="form-container" onSubmit={formik.handleSubmit}>
 
               <Stack direction='horizontal'>
                 <Flex alignItems='center'>
