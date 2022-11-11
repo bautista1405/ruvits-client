@@ -686,7 +686,7 @@ const ProductDetails = ({ product }) => {
                   p={10}
                   justifyContent={'space-between'}
                   position={'relative'}
-                  bg={useColorModeValue('white', 'gray.800')}
+                  bg='white'
                   _after={{
                     content: '""',
                     position: 'absolute',
