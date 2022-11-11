@@ -30,6 +30,7 @@ import { MdLocalShipping } from 'react-icons/md';
 import { Formik, Form, useFormik } from "formik";
 import axios from "axios";
 import swal from 'sweetalert';
+import ReactStars from 'react-stars'
 
 
 const ProductDetails = ({ product }) => {
@@ -206,9 +207,10 @@ const ProductDetails = ({ product }) => {
         user: '',
         productOwner: '',
         productTitle: '',
+        rating: Number,
         
     },
-    onSubmit: (values = {comment, user, productOwner, productTitle}) => {
+    onSubmit: (values = {comment, user, productOwner, productTitle, rating}) => {
 
       if(session) {
 
@@ -222,6 +224,7 @@ const ProductDetails = ({ product }) => {
                       user: session.user.name,
                       productOwner: product.vendor,
                       productTitle: product.title,
+                      rating: values.rating,
                   },
                   {headers}
                   )
@@ -663,23 +666,9 @@ const ProductDetails = ({ product }) => {
 
               {productComments.map((comment) => {
                 return (
-
-                  // <Flex 
-                  //   mb={4}
-                  //   rounded={[null, "md"]}
-                  //   borderRadius="5px"
-                  //   boxShadow='md' 
-                  //   p='6'
-                  //   margin='auto'
-                  // >
-                  //   <Text>
-                  //     {comment.comment}
-                  //   </Text>
-                  // </Flex>
-
                   <Flex
                   key={comment._id}
-                  mb={5}
+                  mb={55}
                   boxShadow={'lg'}
                   maxW={'640px'}
                   direction={{ base: 'column-reverse', md: 'row' }}
@@ -725,6 +714,14 @@ const ProductDetails = ({ product }) => {
 
                     
                   </Flex>
+
+                    <ReactStars
+                      count={5}
+                      value={comment.rating}
+                      size={24}
+                      color2={'#ffd700'} 
+                      edit={false}
+                    />
                   </Flex>
                 )
               })}
@@ -732,10 +729,22 @@ const ProductDetails = ({ product }) => {
               <Formik>
                 <Form className="my-3" id="form-container" onSubmit={formik.handleSubmit}>
 
-                  <Stack direction='horizontal' mt={5}>
+                  <Text color='gray.600'>¿Qué te pareció este producto?</Text>
+                  <ReactStars
+                    count={5}
+                    id='rating'
+                    name='rating'
+                    onChange={(value) => {
+                      formik.setFieldValue("rating", value);
+                    }}
+                    value={formik.values.rating}
+                    size={24}
+                    color2={'#ffd700'} 
+                  />
+                  <Stack direction='horizontal'>
                     <Flex alignItems='center'>
 
-                      <FormControl as={GridItem} colSpan={[6, 4]} mb={5} mt={5}>
+                      <FormControl as={GridItem} colSpan={[6, 4]} mb={5} mt={2}>
                                       
                                       <Input
                                           type='text'
@@ -755,6 +764,7 @@ const ProductDetails = ({ product }) => {
                                           color='gray.900'
                                           mr={3}
                                       />
+                                      
                       </FormControl>
                                     
                                     <Button
@@ -770,10 +780,10 @@ const ProductDetails = ({ product }) => {
                                       Comentar
                                     </Button>
 
-                      </Flex>
-                    </Stack>               
-                  </Form>
-                </Formik>
+                    </Flex>
+                  </Stack>               
+                </Form>
+              </Formik>
             </Container>
           )
         })}

@@ -24,10 +24,10 @@ export default async function getPayment(req, res) {
                 type: String,
                 required: true,
                },
-            //    user: {
-            //     type: String,
-            //     required: true,
-            //    },
+               user: {
+                type: String,
+                required: true,
+               },
                productOwner: {
                 type: String,
                 required: true

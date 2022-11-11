@@ -9,7 +9,7 @@ const createStore = async (req, res) => {
     
     const { body } = req;
     // console.log(body)
-    const {comment, productOwner, user, productTitle} = body
+    const {comment, productOwner, user, productTitle, rating} = body
     // const {product} = body;
     // const parsedProduct = JSON.parse(product)
     // console.log(body);
@@ -45,6 +45,10 @@ const createStore = async (req, res) => {
             type: String,
             required: true,
            },
+           rating: {
+            type: Number,
+            required: true,
+           },
            date: {
             type: String,
             required: true,
@@ -59,6 +63,7 @@ const createStore = async (req, res) => {
             productOwner,
             user,
             productTitle,
+            rating,
             date: dayjs().format("DD-MM-YYYY")
         })
         

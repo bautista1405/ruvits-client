@@ -49,6 +49,7 @@
     "react-dom": "18.1.0",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.3.1",
+    "react-stars": "^2.2.5",
     "reading-time": "^1.4.0",
     "remark-code-titles": "^0.1.2",
     "remark-slug": "^6.1.0",
