@@ -160,15 +160,6 @@ const ProductDetails = ({ product }) => {
     })
   }
 
-  const formik = useFormik({
-    initialValues: {
-      title: '',
-      productName: '',
-      description: '',
-      price: '',
-    }
-  })
-
   const updateItem = () => { 
     product.map(product => {
         const id = product._id
@@ -194,7 +185,7 @@ const ProductDetails = ({ product }) => {
 
   // const storeOwner = product.vendor.replace(/\s+/g, '').toLowerCase()
 
-  const formikComment =  useFormik({
+  const formik = useFormik({
     initialValues: {
         comment: '',
         user: '',
