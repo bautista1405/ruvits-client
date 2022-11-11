@@ -6,7 +6,7 @@ import { useSession } from "next-auth/client";
 
 
 import {
-  SimpleGrid, Box, Flex, Button, Image, Heading,
+  SimpleGrid, Box, Flex, Button, Image, Heading, chakra, GridItem,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -193,6 +193,58 @@ const ProductDetails = ({ product }) => {
   }
 
   // const storeOwner = product.vendor.replace(/\s+/g, '').toLowerCase()
+
+  const formikComment =  useFormik({
+    initialValues: {
+        comment: '',
+        user: '',
+        productOwner: '',
+        
+    },
+    onSubmit: (values = {comment, user, productOwner}) => {
+
+      if(session) {
+        product.map(product => {
+          
+          try {
+                  axios.post(
+                  '/api/createcomment', 
+                  {
+                      comment: values.comment,
+                      user: session.user.name,
+                      productOwner: product.vendor,
+                  },
+                  {headers}
+                  )
+                  .then( () => {
+                      swal({
+                          title: "¡Tu tienda fue actualizada!",
+                          text: "",
+                          icon: "success",
+                      }).then(() => {router.push('/dashboard')})
+                  })
+                  
+                  } catch(res) {
+                  if(res.status === 500) {
+                      
+                      swal({
+                      title: "Oopss. Parece que hubo un error.",
+                      text: "Intenta de nuevo.",
+                      icon: "error",
+                      }).then(() => {router.push('/dashboard')})
+                  }
+                }  
+        })
+        } 
+        if(!session) {
+            swal({
+              title: "Uupss. Parece que no iniciaste sesión.",
+              text: "Intenta de nuevo.",
+              icon: "error",
+              }).then(() => {router.push('/dashboard')})
+          }
+    },
+});
 
   return (
     <>
@@ -582,6 +634,64 @@ const ProductDetails = ({ product }) => {
               </Flex>
         }
            
+        <Container 
+          maxW={'7xl'}  
+          rounded={[null, "md"]}
+          borderRadius="5px"
+          boxShadow='2xl' 
+          p='6'
+          margin='auto'
+          mb={20}
+        >
+          <Text fontWeight='bold' fontSize={24}> Comentarios </Text>
+
+
+
+          <Formik>
+            <Form className="my-3" id="form-container" onSubmit={formikComment.handleSubmit}>
+
+              <Stack direction='horizontal'>
+                <Flex alignItems='center'>
+                  <FormControl as={GridItem} colSpan={[6, 4]} mb={5} mt={5}>
+                                  
+                                  <Input
+                                      type='text'
+                                      placeholder="Deja tu comentario..."  
+                                      id='comment'
+                                      name='comment'
+                                      value={formik.values.comment}
+                                      onChange={formik.handleChange}
+                                      onBlur={formik.handleBlur}
+                                      mt={1}
+                                      focusBorderColor="brand.400"
+                                      shadow="sm"
+                                      size="sm"
+                                      w={["250px", "250px", "500px", "800px"]}
+                                      h='50px'
+                                      rounded="md"
+                                      color='gray.900'
+                                      mr={3}
+                                  />
+                  </FormControl>
+                                
+                                <Button
+                                  type="submit"
+                                  colorScheme="teal"
+                                  h='48px'
+                                  _focus={{
+                                      shadow: "",
+                                  }}
+                                  fontWeight="md"
+                                  variant="solid"
+                                >
+                                  Comentar
+                                </Button>
+
+                  </Flex>
+                </Stack>               
+              </Form>
+            </Formik>
+        </Container>
         
       </div>
     </>
