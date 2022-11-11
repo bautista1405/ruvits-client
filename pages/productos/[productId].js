@@ -6,7 +6,7 @@ import { useSession } from "next-auth/client";
 
 
 import {
-  SimpleGrid, Box, Flex, Button, Image, Heading, chakra, GridItem,
+  SimpleGrid, Box, Flex, Button, Image, Heading, chakra, GridItem, useColorModeValue,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -218,7 +218,7 @@ const ProductDetails = ({ product }) => {
                   '/api/createcomment', 
                   {
                       comment: values.comment,
-                      // user: session.user.name,
+                      user: session.user.name,
                       productOwner: product.vendor,
                       productTitle: product.title,
                   },
@@ -244,13 +244,13 @@ const ProductDetails = ({ product }) => {
                 }  
         })
         
-        // if(!session) {
-        //     swal({
-        //       title: "Uupss. Parece que no iniciaste sesión.",
-        //       text: "Intenta de nuevo.",
-        //       icon: "error",
-        //       }).then(() => {router.push('/dashboard')})
-        //   }
+        if(!session) {
+            swal({
+              title: "Uupss. Parece que no iniciaste sesión.",
+              text: "Intenta de nuevo.",
+              icon: "error",
+              }).then(() => {router.push('/dashboard')})
+          }
     },
   });
 
@@ -656,15 +656,71 @@ const ProductDetails = ({ product }) => {
               margin='auto'
               mb={20}
             >
-              <Text fontWeight='bold' fontSize={24}> Comentarios </Text>
+              <Text fontWeight='bold' fontSize={24} mb={10}> Comentarios </Text>
 
               {productComments.map((comment) => {
                 return (
 
-                  <Flex>
-                    <Text>
-                      {comment.comment}
-                    </Text>
+                  // <Flex 
+                  //   mb={4}
+                  //   rounded={[null, "md"]}
+                  //   borderRadius="5px"
+                  //   boxShadow='md' 
+                  //   p='6'
+                  //   margin='auto'
+                  // >
+                  //   <Text>
+                  //     {comment.comment}
+                  //   </Text>
+                  // </Flex>
+
+                  <Flex
+                  mb={5}
+                  boxShadow={'lg'}
+                  maxW={'640px'}
+                  direction={{ base: 'column-reverse', md: 'row' }}
+                  width={'full'}
+                  rounded={'xl'}
+                  p={10}
+                  justifyContent={'space-between'}
+                  position={'relative'}
+                  bg={useColorModeValue('white', 'gray.800')}
+                  _after={{
+                    content: '""',
+                    position: 'absolute',
+                    height: '21px',
+                    width: '29px',
+                    left: '35px',
+                    top: '-10px',
+                    backgroundSize: 'cover',
+              
+                  }}
+                  _before={{
+                    content: '""',
+                    position: 'absolute',
+                    zIndex: '-1',
+                    height: 'full',
+                    maxW: '640px',
+                    width: 'full',
+                    filter: 'blur(40px)',
+                    transform: 'scale(0.98)',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    top: 0,
+                    left: 0,
+                    
+                  }}>
+                  <Flex
+                    direction={'column'}
+                    textAlign={'left'}
+                    justifyContent={'space-between'}
+                    overflow='hidden'
+                  >
+
+                    {comment.comment}
+
+                    
+                  </Flex>
                   </Flex>
                 )
               })}
@@ -672,7 +728,7 @@ const ProductDetails = ({ product }) => {
               <Formik>
                 <Form className="my-3" id="form-container" onSubmit={formik.handleSubmit}>
 
-                  <Stack direction='horizontal'>
+                  <Stack direction='horizontal' mt={5}>
                     <Flex alignItems='center'>
 
                       <FormControl as={GridItem} colSpan={[6, 4]} mb={5} mt={5}>
