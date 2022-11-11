@@ -39,11 +39,6 @@ const ProductDetails = ({ product }) => {
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
   
-  
-
-    
-  
-  
   const handleSubmit = () => {
     
     const appID = process.env.APP_ID
