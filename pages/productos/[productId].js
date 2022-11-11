@@ -185,6 +185,14 @@ const ProductDetails = ({ product }) => {
 
   // const storeOwner = product.vendor.replace(/\s+/g, '').toLowerCase()
 
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+  }
+
   const formik = useFormik({
     initialValues: {
         comment: '',
@@ -194,7 +202,7 @@ const ProductDetails = ({ product }) => {
     },
     onSubmit: (values = {comment, user, productOwner}) => {
 
-      if(session) {
+      
         product.map(product => {
           
           try {
@@ -202,7 +210,7 @@ const ProductDetails = ({ product }) => {
                   '/api/createcomment', 
                   {
                       comment: values.comment,
-                      user: session.user.name,
+                      // user: session.user.name,
                       productOwner: product.vendor,
                   },
                   {headers}
@@ -226,16 +234,16 @@ const ProductDetails = ({ product }) => {
                   }
                 }  
         })
-        } 
-        if(!session) {
-            swal({
-              title: "Uupss. Parece que no iniciaste sesión.",
-              text: "Intenta de nuevo.",
-              icon: "error",
-              }).then(() => {router.push('/dashboard')})
-          }
+        
+        // if(!session) {
+        //     swal({
+        //       title: "Uupss. Parece que no iniciaste sesión.",
+        //       text: "Intenta de nuevo.",
+        //       icon: "error",
+        //       }).then(() => {router.push('/dashboard')})
+        //   }
     },
-});
+  });
 
   return (
     <>

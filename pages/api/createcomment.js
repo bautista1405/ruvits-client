@@ -9,7 +9,7 @@ const createStore = async (req, res) => {
     
     const { body } = req;
     console.log(body)
-    const {comment, user, productOwner} = body
+    const {comment, productOwner, user} = body
     // const {product} = body;
     // const parsedProduct = JSON.parse(product)
     // console.log(body);
@@ -33,10 +33,10 @@ const createStore = async (req, res) => {
             type: String,
             required: true,
            },
-           user: {
-            type: String,
-            required: true,
-           },
+        //    user: {
+        //     type: String,
+        //     required: true,
+        //    },
            productOwner: {
             type: String,
             required: true
@@ -53,7 +53,7 @@ const createStore = async (req, res) => {
         const newComment = new Comment({
             comment,
             productOwner,
-            user,
+            // user,
             date: dayjs().format("DD-MM-YYYY")
         })
         
