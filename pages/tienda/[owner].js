@@ -19,13 +19,14 @@ import StoreDescription from '../../components/store/Description';
 import designer from "../../assets/designer.png";
 import { MdEdit } from "react-icons/md";
 
-const StoreOwner = ({ user }) => {
+const StoreOwner = ({ user, rating }) => {
 
   const [session, loading] = useSession();
   const router = useRouter();
   const getStores = '/api/getstore'
   const getStoreProducts = "/api/getproducts";
   const getSales = '/api/getpayment'
+  const getRating = '/api/getcomments'
 
   const [stores, setStores] = useState([]);
   const [products, setProducts] = useState([]);
@@ -51,7 +52,7 @@ const StoreOwner = ({ user }) => {
                 setSales(res?.data?.getSales || [])
             })
         
-    }, [getStores, getStoreProducts, getSales]) 
+    }, [getStores, getStoreProducts, getSales, getRating]) 
 
     const store = stores.filter(store => store.email === user[0].email )
     const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
@@ -80,20 +81,25 @@ const StoreOwner = ({ user }) => {
                   
                       <Grid>
                         
-                        <Banner
-                          gridArea='1 / 1 / 2 / 2'
-                          banner={store.banner[0]}
-                          avatar={store.banner[1] || store.avatar}
-                          name={store.storeName}
-                          job={store.category}
-                          productos={storeProducts.length}
-                          ventas={storeSales.length}
-                          // rating='4.1'
-                        />
+                        {rating.map((rating) => {
+                          return (
+
+                            <Banner
+                              gridArea='1 / 1 / 2 / 2'
+                              banner={store.banner[0]}
+                              avatar={store.banner[1] || store.avatar}
+                              name={store.storeName}
+                              job={store.category}
+                              productos={storeProducts.length}
+                              ventas={storeSales.length}
+                              rating={rating}
+                            />
+                          )
+                        })}
 
                       </Grid>
                   
-                  <GridItem >
+                  <GridItem mt={60}>
                     {/* <Flex 
                       justify='center' 
                       mb={20} 
@@ -299,10 +305,45 @@ export async function getStaticProps({params}) {
       }
     }
   ])
+
+  const Comment = mongoose.model('comments', {
+    comment: {
+      type: String,
+      required: true,
+    },
+    user: {
+      type: String,
+      required: true,
+    },
+    productOwner: {
+      type: String,
+      required: true
+    },
+    productTitle: {
+      type: String,
+      required: true,
+    },
+    date: {
+      type: String,
+      required: true,
+    }   
+  });
+
+  const rating = Comment.aggregate([
+    {
+      "$group": {
+         "_id": null,
+         "AvgValue": {
+            "$avg": "$rating"
+            }
+         }
+    }
+  ]);
     
     return {
       props: {
-        user: JSON.parse(JSON.stringify(user)) 
+        user: JSON.parse(JSON.stringify(user)),
+        rating: JSON.parse(JSON.stringify(rating))
       },
       // Next.js will attempt to re-generate the page:
       // - When a request comes in

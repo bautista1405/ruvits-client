@@ -39,8 +39,8 @@ export default function Banner(props) {
       <Text color={textColorSecondary} fontSize='sm'>
         {job}
       </Text>
-      <Flex justify='center'  mx='auto' mt='26px'>
-        <Flex me='60px' align='center' direction='column'>
+      <Flex w='max-content' mx='auto' mt='26px'>
+        <Flex me='60px' mx='auto' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
             {productos}
           </Text>
@@ -48,7 +48,7 @@ export default function Banner(props) {
             productos
           </Text>
         </Flex>
-        <Flex align='center' direction='column'>
+        <Flex me='60px' mx='auto' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
             {ventas}
           </Text>
@@ -56,14 +56,14 @@ export default function Banner(props) {
             ventas
           </Text>
         </Flex>
-        {/* <Flex mx='auto' align='center' direction='column'>
+        <Flex mx='auto' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
             {rating}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
             rating
           </Text>
-        </Flex> */}
+        </Flex>
       </Flex>
     </Card>
   );
