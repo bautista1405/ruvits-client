@@ -7,7 +7,6 @@ import { Flex, Text, Box, Grid, Icon, GridItem, SimpleGrid, Image, Divider,
   useColorModeValue, } from '@chakra-ui/react'
 import axios from 'axios'
 import { useSession } from "next-auth/client";
-import { getSession } from "next-auth/client";
 import mongoose from 'mongoose';
 
 import Banner from "../../components/store/components/Banner";
@@ -94,7 +93,7 @@ const StoreOwner = ({ user, rating }) => {
                               job={store.category}
                               productos={storeProducts.length}
                               ventas={storeSales.length}
-                              rating={rating}
+                              rating={rating.avg_val}
                             />
                             )
                           })}
@@ -259,9 +258,7 @@ export async function getStaticPaths() {
   // This function gets called at build time on server-side.
   // It may be called again, on a serverless function, if
   // revalidation is enabled and a new request comes in
-export async function getStaticProps({params}, req) {
-
-    const session = await getSession({req})
+export async function getStaticProps({params}) {
 
     const db = process.env.NEXT_PUBLIC_MONGODB_URI
     mongoose.connect(db, {  //connect to the db
@@ -337,7 +334,7 @@ export async function getStaticProps({params}, req) {
     }   
   });
 
-  const username = session.user.name
+  const username = user.name
   const comment = await Comment.find({productOwner: username})
 
   const rating = await Comment.aggregate(
