@@ -744,7 +744,7 @@ const ProductDetails = ({ product }) => {
                   <Stack direction='horizontal'>
                     <Flex alignItems='center'>
 
-                      <FormControl as={GridItem} colSpan={[6, 4]} mb={5} mt={2}>
+                      <FormControl as={GridItem} colSpan={[6, 4]} mb={5} mt={5}>
                                       
                                       <Input
                                           type='text'
