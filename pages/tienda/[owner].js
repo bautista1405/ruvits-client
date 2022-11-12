@@ -259,7 +259,7 @@ export async function getStaticPaths() {
   // This function gets called at build time on server-side.
   // It may be called again, on a serverless function, if
   // revalidation is enabled and a new request comes in
-export async function getStaticProps({params}) {
+export async function getStaticProps({params}, req) {
 
     const session = await getSession({req})
 
