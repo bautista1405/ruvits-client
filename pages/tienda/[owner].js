@@ -7,6 +7,7 @@ import { Flex, Text, Box, Grid, Icon, GridItem, SimpleGrid, Image, Divider,
   useColorModeValue, } from '@chakra-ui/react'
 import axios from 'axios'
 import { useSession } from "next-auth/client";
+import { getSession } from "next-auth/client";
 import mongoose from 'mongoose';
 
 import Banner from "../../components/store/components/Banner";
@@ -259,6 +260,8 @@ export async function getStaticPaths() {
   // It may be called again, on a serverless function, if
   // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
+
+    const session = await getSession({req})
 
     const db = process.env.NEXT_PUBLIC_MONGODB_URI
     mongoose.connect(db, {  //connect to the db
