@@ -81,22 +81,22 @@ const StoreOwner = ({ user, rating }) => {
                   
                       <Grid>
                         
-                        {rating.map((rating) => {
+                        {/* {rating.map((rating) => {
                           return (
 
-                            <Banner
-                              key={rating}
-                              gridArea='1 / 1 / 2 / 2'
-                              banner={store.banner[0]}
-                              avatar={store.banner[1] || store.avatar}
-                              name={store.storeName}
-                              job={store.category}
-                              productos={storeProducts.length}
-                              ventas={storeSales.length}
-                              rating={rating}
-                            />
-                          )
-                        })}
+                            )
+                          })} */}
+                          <Banner
+                            key={rating}
+                            gridArea='1 / 1 / 2 / 2'
+                            banner={store.banner[0]}
+                            avatar={store.banner[1] || store.avatar}
+                            name={store.storeName}
+                            job={store.category}
+                            productos={storeProducts.length}
+                            ventas={storeSales.length}
+                            // rating={rating}
+                          />
 
                       </Grid>
                   
@@ -344,7 +344,7 @@ export async function getStaticProps({params}) {
     return {
       props: {
         user: JSON.parse(JSON.stringify(user)),
-        rating
+        rating: JSON.parse(JSON.stringify(rating))
       },
       // Next.js will attempt to re-generate the page:
       // - When a request comes in

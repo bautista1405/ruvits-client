@@ -56,14 +56,14 @@ export default function Banner(props) {
             ventas
           </Text>
         </Flex>
-        <Flex mx='auto' align='center' direction='column'>
+        {/* <Flex mx='auto' align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
             {rating}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
             rating
           </Text>
-        </Flex>
+        </Flex> */}
       </Flex>
     </Card>
   );
