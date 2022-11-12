@@ -344,7 +344,7 @@ export async function getStaticProps({params}) {
     return {
       props: {
         user: JSON.parse(JSON.stringify(user)),
-        rating: JSON.parse(JSON.stringify(rating))
+        rating
       },
       // Next.js will attempt to re-generate the page:
       // - When a request comes in
