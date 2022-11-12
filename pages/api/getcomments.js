@@ -36,6 +36,10 @@ export default async function getPayment(req, res) {
                 type: String,
                 required: true,
                },
+               rating: {
+                type: Number,
+                required: true,
+               },
                date: {
                 type: String,
                 required: true,

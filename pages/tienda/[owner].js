@@ -81,22 +81,22 @@ const StoreOwner = ({ user, rating }) => {
                   
                       <Grid>
                         
-                        {/* {rating.map((rating) => {
+                        {rating.length > 0 && rating.map((rating) => {
                           return (
 
+                            <Banner
+                              key={rating}
+                              gridArea='1 / 1 / 2 / 2'
+                              banner={store.banner[0]}
+                              avatar={store.banner[1] || store.avatar}
+                              name={store.storeName}
+                              job={store.category}
+                              productos={storeProducts.length}
+                              ventas={storeSales.length}
+                              rating={rating}
+                            />
                             )
-                          })} */}
-                          <Banner
-                            key={rating}
-                            gridArea='1 / 1 / 2 / 2'
-                            banner={store.banner[0]}
-                            avatar={store.banner[1] || store.avatar}
-                            name={store.storeName}
-                            job={store.category}
-                            productos={storeProducts.length}
-                            ventas={storeSales.length}
-                            // rating={rating}
-                          />
+                          })}
 
                       </Grid>
                   
@@ -324,22 +324,30 @@ export async function getStaticProps({params}) {
       type: String,
       required: true,
     },
+    rating: {
+      type: Number,
+      required: true,
+    },
     date: {
       type: String,
       required: true,
     }   
   });
 
-  const rating = Comment.aggregate([
+  const username = session.user.name
+  const comment = await Comment.find({productOwner: username})
+
+  const rating = await Comment.aggregate(
+    [
+      {$group: {_id:null, avg_val:{$avg:"$rating"}}}
+    ],
     {
-      "$group": {
-         "_id": null,
-         "AvgValue": {
-            "$avg": "$rating"
-            }
-         }
+      allowDiskUse: true
     }
-  ]);
+  );
+
+  console.log(rating)
+  console.log(comment)
     
     return {
       props: {
@@ -352,6 +360,6 @@ export async function getStaticProps({params}) {
       revalidate: 10, // In seconds
     }
 }
-  
+
 
 export default StoreOwner
