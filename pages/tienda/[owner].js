@@ -85,6 +85,7 @@ const StoreOwner = ({ user, rating }) => {
                           return (
 
                             <Banner
+                              key={rating}
                               gridArea='1 / 1 / 2 / 2'
                               banner={store.banner[0]}
                               avatar={store.banner[1] || store.avatar}
