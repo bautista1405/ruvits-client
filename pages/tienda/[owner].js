@@ -54,7 +54,7 @@ const StoreOwner = ({ user, rating }) => {
                 setSales(res?.data?.getSales || [])
             })
         
-    }, [getStores, getStoreProducts, getSales, getRating]) 
+    }, [getStores, getStoreProducts, getSales]) 
 
     const store = stores.filter(store => store.email === user[0].email )
     const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
@@ -84,7 +84,7 @@ const StoreOwner = ({ user, rating }) => {
                   
                       <Grid>
                         
-                        {storeRating.length > 0 ? storeRating.map((rating) => {
+                        {storeRating.length > 0 && storeRating.map((rating) => {
                           const avgValue = Number.parseFloat(rating.avg_val).toFixed(1);
 
                           return (
@@ -102,10 +102,7 @@ const StoreOwner = ({ user, rating }) => {
                               star={BsFillStarFill}
                             />
                             )
-                          }) : (
-                            <Text>s</Text>
-                          )
-                        }
+                          })}
 
                       </Grid>
                   
