@@ -249,7 +249,8 @@ export async function getStaticPaths() {
   // This function gets called at build time on server-side.
   // It may be called again, on a serverless function, if
   // revalidation is enabled and a new request comes in
-export async function getStaticProps({params}) {
+
+  export async function getStaticProps({params}) {
 
     const db = process.env.NEXT_PUBLIC_MONGODB_URI
     mongoose.connect(db, {  //connect to the db
@@ -336,7 +337,7 @@ export async function getStaticProps({params}) {
     }
   );
 
-  const storeRating = rating.filter(rating => rating._id === user[0].name)
+  const storeRating = rating.filter(rating => rating._id === user.name)
 
   console.log(rating)
   console.log(comment)
