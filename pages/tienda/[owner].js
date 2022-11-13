@@ -18,8 +18,10 @@ import StoreDescription from '../../components/store/Description';
 
 import designer from "../../assets/designer.png";
 import { MdEdit } from "react-icons/md";
+import {BsFillStarFill} from "react-icons/bs"
+import Star from "../../assets/star.png";
 
-const StoreOwner = ({ user, rating }) => {
+const StoreOwner = ({ user, storeRating }) => {
 
   const [session, loading] = useSession();
   const router = useRouter();
@@ -81,11 +83,13 @@ const StoreOwner = ({ user, rating }) => {
                   
                       <Grid>
                         
-                        {rating.length > 0 && rating.map((rating) => {
+                        {storeRating.length > 0 && storeRating.map((rating) => {
+                          const avgValue = Number.parseFloat(rating.avg_val).toFixed(1);
+
                           return (
 
                             <Banner
-                              key={rating}
+                              key={rating._id}
                               gridArea='1 / 1 / 2 / 2'
                               banner={store.banner[0]}
                               avatar={store.banner[1] || store.avatar}
@@ -93,7 +97,8 @@ const StoreOwner = ({ user, rating }) => {
                               job={store.category}
                               productos={storeProducts.length}
                               ventas={storeSales.length}
-                              rating={rating.avg_val}
+                              calificación={avgValue}
+                              star={BsFillStarFill}
                             />
                             )
                           })}
@@ -101,20 +106,6 @@ const StoreOwner = ({ user, rating }) => {
                       </Grid>
                   
                   <GridItem mt={60}>
-                    {/* <Flex 
-                      justify='center' 
-                      mb={20} 
-                      margin='150px' 
-                      shadow="base"
-                      rounded={[null, "md"]}
-                      borderRadius="5px"
-                      boxShadow='md' 
-                      p='6'
-                    >
-                      {store.description}
-                    </Flex> */}
-                    
-                    {/* <General /> */}
 
                     <StoreDescription 
                       description={store.description}
@@ -123,7 +114,7 @@ const StoreOwner = ({ user, rating }) => {
                       personalPage={store.personalPage}
                       // email={`mailto@${store.email}`}
                     />
-
+                    
                   </GridItem>
 
                   {/* <Flex justify='center' color='black'>
@@ -334,25 +325,29 @@ export async function getStaticProps({params}) {
     }   
   });
 
-  const username = user.name
+  const username = user[0].name
+  console.log(username)
   const comment = await Comment.find({productOwner: username})
 
   const rating = await Comment.aggregate(
     [
-      {$group: {_id:null, avg_val:{$avg:"$rating"}}}
+      {$group: {_id:"$productOwner", avg_val:{$avg:"$rating"}}}
     ],
     {
       allowDiskUse: true
     }
   );
 
+  const storeRating = rating.filter(rating => rating._id === user[0].name)
+
   console.log(rating)
   console.log(comment)
+  console.log(storeRating)
     
     return {
       props: {
         user: JSON.parse(JSON.stringify(user)),
-        rating: JSON.parse(JSON.stringify(rating))
+        storeRating: JSON.parse(JSON.stringify(storeRating))
       },
       // Next.js will attempt to re-generate the page:
       // - When a request comes in
