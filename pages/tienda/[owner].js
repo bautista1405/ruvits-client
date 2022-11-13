@@ -28,11 +28,12 @@ const StoreOwner = ({ user, rating }) => {
   const getStores = '/api/getstore'
   const getStoreProducts = "/api/getproducts";
   const getSales = '/api/getpayment'
-  const getRating = '/api/getcomments'
+  const getRating = '/api/getstorerating'
 
   const [stores, setStores] = useState([]);
   const [products, setProducts] = useState([]);
   const [sales, setSales] = useState([]);
+  const [ownerRating, setOwnerRating] = useState([]);
 
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -53,13 +54,19 @@ const StoreOwner = ({ user, rating }) => {
             .then((res) => {
                 setSales(res?.data?.getSales || [])
             })
+            axios.get(getRating)
+            .then((res) => {
+                setOwnerRating(res?.data?.rating || [])
+            })
         
-    }, [getStores, getStoreProducts, getSales]) 
+    }, [getStores, getStoreProducts, getSales, getRating]) 
 
     const store = stores.filter(store => store.email === user[0].email )
     const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
     const storeSales = sales.filter(sale => sale.vendor === user[0].name)
-    const storeRating = rating.filter(rating => rating._id === user[0].name)
+    const storeRating = ownerRating.filter(rating => rating._id === user[0].name)
+
+    console.log(storeRating)
 
   return (
     <>    
@@ -300,54 +307,54 @@ export async function getStaticPaths() {
     }
   ])
 
-  const Comment = mongoose.model('comments', {
-    comment: {
-      type: String,
-      required: true,
-    },
-    user: {
-      type: String,
-      required: true,
-    },
-    productOwner: {
-      type: String,
-      required: true
-    },
-    productTitle: {
-      type: String,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-    },
-    date: {
-      type: String,
-      required: true,
-    }   
-  });
+  // const Comment = mongoose.model('comments', {
+  //   comment: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   user: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   productOwner: {
+  //     type: String,
+  //     required: true
+  //   },
+  //   productTitle: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   rating: {
+  //     type: Number,
+  //     required: true,
+  //   },
+  //   date: {
+  //     type: String,
+  //     required: true,
+  //   }   
+  // });
 
-  const comment = await Comment.find()
+  // const comment = await Comment.find()
 
-  const rating = await Comment.aggregate(
-    [
-      {$group: {_id:"$productOwner", avg_val:{$avg:"$rating"}}}
-    ],
-    {
-      allowDiskUse: true
-    }
-  );
+  // const rating = await Comment.aggregate(
+  //   [
+  //     {$group: {_id:"$productOwner", avg_val:{$avg:"$rating"}}}
+  //   ],
+  //   {
+  //     allowDiskUse: true
+  //   }
+  // );
 
   // const storeRating = rating.filter(rating => rating._id === user.name)
 
-  console.log(rating)
-  console.log(comment)
+  // console.log(rating)
+  // console.log(comment)
   // console.log(storeRating)
     
     return {
       props: {
         user: JSON.parse(JSON.stringify(user)),
-        rating: JSON.parse(JSON.stringify(rating))
+        // rating: JSON.parse(JSON.stringify(rating))
       },
       // Next.js will attempt to re-generate the page:
       // - When a request comes in

@@ -643,7 +643,7 @@ const ProductDetails = ({ product }) => {
             )
         }) : 
               <Flex alignItems="center" justifyContent="center" h="54vh">
-                <p>¡Oopsss! Parece que este producto no existe.</p> 
+                <p>¡Uupsss! Parece que este producto no existe.</p> 
               </Flex>
         }
 
