@@ -285,9 +285,8 @@ const ProductDetails = ({ product }) => {
           
         {product.length > 0 ?
           product.map(product => {
-                
             const productRating = rating.filter(rating => rating._id === product.title)
-            console.log(productRating)
+            
             return (
               <Container 
                 maxW={'7xl'} 
@@ -352,7 +351,7 @@ const ProductDetails = ({ product }) => {
                       {product.productName}
                     </Heading>
                     <Text
-                    mt={4}
+                      mt={4}
                       color="gray.800"
                       fontWeight={300}
                       fontSize={'2xl'}>
@@ -368,11 +367,17 @@ const ProductDetails = ({ product }) => {
                         borderColor="gray.700"
                       />
                     }>
-                      <Stack direction='horizontal' fontSize={22}>
-                        <Text> {productRating[0].avg_val} </Text> 
-                        <Icon as={BsFillStarFill} pt={2}/> 
-                      </Stack>
 
+                      {productRating.length > 0 ? productRating.map((rating) => {
+                        return (
+
+                          <Stack direction='horizontal' fontSize={22}>
+                            <Text> {rating.avg_val} </Text> 
+                            <Icon as={BsFillStarFill} pt={2}/> 
+                          </Stack>
+                        )
+                      }) : null }
+                      
                     
                     <Box>
                       
