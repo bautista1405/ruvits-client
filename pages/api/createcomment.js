@@ -47,7 +47,7 @@ const createStore = async (req, res) => {
            },
            rating: {
             type: Number,
-            required: true,
+            
            },
            date: {
             type: String,
@@ -63,7 +63,7 @@ const createStore = async (req, res) => {
             productOwner,
             user,
             productTitle,
-            rating,
+            rating: rating || null,
             date: dayjs().format("DD-MM-YYYY")
         })
         

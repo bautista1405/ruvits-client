@@ -91,7 +91,7 @@ const StoreOwner = ({ user, rating }) => {
                   
                       <Grid>
                         
-                        {storeRating.length > 0 && storeRating.map((rating) => {
+                        {storeRating.map((rating) => {
                           const avgValue = Number.parseFloat(rating.avg_val).toFixed(1);
 
                           return (
@@ -105,7 +105,7 @@ const StoreOwner = ({ user, rating }) => {
                               job={store.category}
                               productos={storeProducts.length}
                               ventas={storeSales.length}
-                              calificación={avgValue}
+                              calificación={avgValue || '-'}
                               star={BsFillStarFill}
                             />
                             )

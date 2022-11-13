@@ -23,9 +23,11 @@ import {
   Container,
   Stack,
   StackDivider,
+  Icon,
 } from '@chakra-ui/react'
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
+import {BsFillStarFill} from "react-icons/bs"
 
 import { Formik, Form, useFormik } from "formik";
 import axios from "axios";
@@ -41,8 +43,10 @@ const ProductDetails = ({ product }) => {
   const finalRef = React.useRef(null)
 
   const getComments = '/api/getcomments'
+  const getRating = '/api/getproductrating'
 
   const [comments, setComments] = useState([]);
+  const [rating, setRating] = useState([]);
 
   useEffect(() => {
 
@@ -50,7 +54,11 @@ const ProductDetails = ({ product }) => {
     .then((res) => {
       setComments(res?.data?.getComments || [])
     })
-  }, [getComments])
+    axios.get(getRating)
+    .then((res) => {
+      setRating(res?.data?.rating || [])
+    })
+  }, [getComments, getRating])
   
   const handleSubmit = () => {
     
@@ -68,7 +76,7 @@ const ProductDetails = ({ product }) => {
           }
         ],
         "marketplace": appID,
-        "marketplace_fee": 1,
+        "marketplace_fee": 5,
         "auto_return": "approved",
         "back_urls": {
           "success": "https://ruvits.com/successful",
@@ -259,6 +267,8 @@ const ProductDetails = ({ product }) => {
     },
   });
 
+  // console.log(rating)
+
   return (
     <>
       <div >
@@ -276,6 +286,8 @@ const ProductDetails = ({ product }) => {
         {product.length > 0 ?
           product.map(product => {
                 
+            const productRating = rating.filter(rating => rating._id === product.title)
+            console.log(productRating)
             return (
               <Container 
                 maxW={'7xl'} 
@@ -302,7 +314,8 @@ const ProductDetails = ({ product }) => {
                     </Button>
                   </Link>
                 </Flex> */}
-              
+
+                
               
               <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
@@ -339,6 +352,7 @@ const ProductDetails = ({ product }) => {
                       {product.productName}
                     </Heading>
                     <Text
+                    mt={4}
                       color="gray.800"
                       fontWeight={300}
                       fontSize={'2xl'}>
@@ -354,6 +368,10 @@ const ProductDetails = ({ product }) => {
                         borderColor="gray.700"
                       />
                     }>
+                      <Stack direction='horizontal' fontSize={22}>
+                        <Text> {productRating[0].avg_val} </Text> 
+                        <Icon as={BsFillStarFill} pt={2}/> 
+                      </Stack>
 
                     
                     <Box>
@@ -649,7 +667,7 @@ const ProductDetails = ({ product }) => {
 
         {product.map((product) => {
           const productComments = comments.filter(comment => comment.productTitle == product.title)
-          console.log(productComments)
+          // console.log(productComments)
           return (
 
             <Container 
