@@ -369,10 +369,11 @@ const ProductDetails = ({ product }) => {
                     }>
 
                       {productRating.length > 0 ? productRating.map((rating) => {
+                        const avgValue = Number.parseFloat(rating.avg_val).toFixed(1);
                         return (
 
                           <Stack direction='horizontal' fontSize={22} key={rating._id}>
-                            <Text> {rating.avg_val} </Text> 
+                            <Text> {avgValue} </Text> 
                             <Icon as={BsFillStarFill} pt={2}/> 
                           </Stack>
                         )
