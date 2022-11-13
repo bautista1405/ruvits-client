@@ -325,9 +325,7 @@ export async function getStaticProps({params}) {
     }   
   });
 
-  const username = user[0].name
-  console.log(username)
-  const comment = await Comment.find({productOwner: username})
+  const comment = await Comment.find()
 
   const rating = await Comment.aggregate(
     [
