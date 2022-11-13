@@ -21,7 +21,7 @@ import { MdEdit } from "react-icons/md";
 import {BsFillStarFill} from "react-icons/bs"
 import Star from "../../assets/star.png";
 
-const StoreOwner = ({ user, storeRating }) => {
+const StoreOwner = ({ user, rating }) => {
 
   const [session, loading] = useSession();
   const router = useRouter();
@@ -59,6 +59,7 @@ const StoreOwner = ({ user, storeRating }) => {
     const store = stores.filter(store => store.email === user[0].email )
     const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
     const storeSales = sales.filter(sale => sale.vendor === user[0].name)
+    const storeRating = rating.filter(rating => rating._id === user[0].name)
 
   return (
     <>    
@@ -337,16 +338,16 @@ export async function getStaticPaths() {
     }
   );
 
-  const storeRating = rating.filter(rating => rating._id === user.name)
+  // const storeRating = rating.filter(rating => rating._id === user.name)
 
   console.log(rating)
   console.log(comment)
-  console.log(storeRating)
+  // console.log(storeRating)
     
     return {
       props: {
         user: JSON.parse(JSON.stringify(user)),
-        storeRating: JSON.parse(JSON.stringify(storeRating))
+        rating: JSON.parse(JSON.stringify(rating))
       },
       // Next.js will attempt to re-generate the page:
       // - When a request comes in
