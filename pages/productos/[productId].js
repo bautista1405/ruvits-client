@@ -371,7 +371,7 @@ const ProductDetails = ({ product }) => {
                       {productRating.length > 0 ? productRating.map((rating) => {
                         return (
 
-                          <Stack direction='horizontal' fontSize={22}>
+                          <Stack direction='horizontal' fontSize={22} key={rating._id}>
                             <Text> {rating.avg_val} </Text> 
                             <Icon as={BsFillStarFill} pt={2}/> 
                           </Stack>
