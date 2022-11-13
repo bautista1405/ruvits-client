@@ -40,7 +40,7 @@ export default function Banner(props) {
         {job}
       </Text>
       <Flex w='max-content' mx='auto' mt='26px'>
-        <Flex me='60px' mx={2} align='center' direction='column'>
+        <Flex me='60px' mx={6} align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
             {productos}
           </Text>
@@ -57,7 +57,7 @@ export default function Banner(props) {
           </Text>
         </Flex>
         <Flex mx={3} alignItems='center' direction='column'>
-          <Stack direction='horizontal'>
+          <Stack direction='horizontal' ml={4}>
             <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
               {calificación}
             <Icon as={star} mx={2} pt={2} />
