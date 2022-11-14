@@ -327,7 +327,7 @@ const ProductDetails = ({ product }) => {
                   boxShadow='dark-lg'
                   margin='auto'
                   h="300px"
-                  w="500px"
+                  w={["320px", "500px"]}
                   
                 >
 
@@ -732,6 +732,7 @@ const ProductDetails = ({ product }) => {
                     textAlign={'left'}
                     justifyContent={'space-between'}
                     overflow='hidden'
+                    maxW='400px'
                   >
 
                     {comment.comment}

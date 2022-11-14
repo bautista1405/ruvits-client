@@ -1,7 +1,7 @@
 export const seo = {
     title: "Ruvits",
     description:
-      "A marketplace for buying and selling digital products.",
+      "Marketplace de productos digitales.",
     image: "/assets/ruvitsLogo-bg.png",
     canonical: "https://ruvits.com",
 }
