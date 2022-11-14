@@ -1,10 +1,10 @@
 import React, {useEffect, useState, useMemo} from 'react'
-import Image from 'next/image'
+// import Image from 'next/image'
 import axios from 'axios'
 import { useSession } from "next-auth/client";
 import {getSession} from "next-auth/client"
 
-import { SimpleGrid, Box, Flex, chakra, Link, Input, Select, Stack } from '@chakra-ui/react'
+import { SimpleGrid, Box, Flex, chakra, Link, Input, Select, Stack, Image } from '@chakra-ui/react'
 
 import image from '../../assets/transaction.png'
 
@@ -128,19 +128,19 @@ const Discover = () => {
                             w="sm"
                             mx="auto"
                         >
-                            <Box
-                                bg="gray.300"
-                                h={64}
-                                w="full"
-                                rounded="lg"
-                                shadow="md"
-                                bgSize="cover"
-                                bgPos="center"
-                                style={{
-                                    backgroundImage:
-                                    `url(${value.content[0]})`,
-                                }}
-                            ></Box>
+                            <Box h='320px' w='350px' >
+                                            <Image
+                                                
+                                                height='100%'
+                                                width="100%"
+                                                rounded="lg"
+                                                shadow="md"
+                                                // objectFit='contain'
+                                                // bgSize="cover"
+                                                // bgPos="center"
+                                                src={value.content[0]}
+                                            ></Image>
+                            </Box>
 
                             <Box
                                 w={{
@@ -243,19 +243,19 @@ const Discover = () => {
                                 w="sm"
                                 mx="auto"
                             >
-                                <Box
-                                    bg="gray.300"
-                                    h={64}
-                                    w="full"
-                                    rounded="lg"
-                                    shadow="md"
-                                    bgSize="cover"
-                                    bgPos="center"
-                                    style={{
-                                        backgroundImage:
-                                        `url(${value.content[0]})`,
-                                    }}
-                                ></Box>
+                               <Box h='320px' w='350px' >
+                                            <Image
+                                                
+                                                height='100%'
+                                                width="100%"
+                                                rounded="lg"
+                                                shadow="md"
+                                                // objectFit='contain'
+                                                // bgSize="cover"
+                                                // bgPos="center"
+                                                src={value.content[0]}
+                                            ></Image>
+                                </Box>
     
                                 <Box
                                     w={{
@@ -358,7 +358,7 @@ const Discover = () => {
                                             mx="auto"
                                             p='5'
                                         >
-                                            <h3>¡Ooppsss! Parece que ese producto no existe.</h3>
+                                            <h3>¡Uuppsss! Parece que ese producto no existe.</h3>
                                         </Flex>
                                     </Flex>
                                 
@@ -384,19 +384,19 @@ const Discover = () => {
                                         w="sm"
                                         mx="auto"
                                     >
-                                        <Box
-                                            bg="gray.300"
-                                            h={64}
-                                            w="full"
-                                            rounded="lg"
-                                            shadow="md"
-                                            bgSize="cover"
-                                            bgPos="center"
-                                            style={{
-                                                backgroundImage:
-                                                `url(${product.content[0]})`,
-                                            }}
-                                        ></Box>
+                                        <Box h='320px' w='350px' >
+                                            <Image
+                                                
+                                                height='100%'
+                                                width="100%"
+                                                rounded="lg"
+                                                shadow="md"
+                                                // objectFit='contain'
+                                                // bgSize="cover"
+                                                // bgPos="center"
+                                                src={product.content[0]}
+                                            ></Image>
+                                        </Box>
             
                                         <Box
                                             w={{
