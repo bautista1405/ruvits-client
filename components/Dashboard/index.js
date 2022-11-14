@@ -183,7 +183,7 @@ export default function Dashboard({data}) {
                     mb={4}
                     letterSpacing="tight"
                 >
-                   Bienvenido, <Flex display="inline-flex" fontWeight="bold"> {session.user.name} </Flex>
+                   Bienvenido/a, <Flex display="inline-flex" fontWeight="bold"> {session.user.name} </Flex>
                 </Heading>
                 {/* <Text color="gray" fontSize="sm">Mi Balance</Text>
                 <Text fontWeight="bold" fontSize="2xl">$5,750.20</Text> */}
