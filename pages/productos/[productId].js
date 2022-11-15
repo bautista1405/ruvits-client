@@ -28,6 +28,7 @@ import {
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
 import {BsFillStarFill} from "react-icons/bs"
+import {MdMarkEmailRead} from "react-icons/md"
 
 import { Formik, Form, useFormik } from "formik";
 import axios from "axios";
@@ -395,7 +396,7 @@ const ProductDetails = ({ product }) => {
                             const avgValue = Number.parseFloat(rating.avg_val).toFixed(1);
                             return (
     
-                              <Stack direction='horizontal' fontSize={22} key={rating._id} color="gold">
+                              <Stack direction='horizontal' fontSize={24} key={rating._id} color="gold">
                                 <Text> {avgValue} </Text> 
                                 <Icon as={BsFillStarFill} pt={2}/> 
                               </Stack>
@@ -660,7 +661,7 @@ const ProductDetails = ({ product }) => {
                       
         
                   <Stack direction="row" alignItems="center" justifyContent={'center'} mt={5}>
-                    <MdLocalShipping />
+                    <MdMarkEmailRead />
                     <Text>El producto te llega a tu mail.</Text>
                   </Stack>
             </Container>
