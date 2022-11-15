@@ -551,7 +551,7 @@ const MyProducts = () => {
                                     >
                                     
                                       <a href={`/productos/${product.title}`} >
-                                        <Box h='320px' w='320px'>
+                                        <Box h='320px' w='300px'>
                                             <Image
                                                 src={product.content[0]}
                                                 alt='Imagen del producto'
