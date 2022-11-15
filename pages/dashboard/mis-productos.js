@@ -206,7 +206,7 @@ const MyProducts = () => {
                 </>
             )}
 
-            {/* {product.length > 0 && product.length < 4 && (
+            {product.length > 0 && product.length < 4 && (
 
             <Flex 
                 flexDir={["column", "column", "row", "row", "row"]}
@@ -218,7 +218,7 @@ const MyProducts = () => {
                 margin={[null, "null", "100px"]}
                 h={[null, null, null, null, "60vh"]}
             >
-                Column 1
+                {/* Column 1 */}
 
                 <Flex
                     w={["100%", "100%", "10%", "15%", "15%"]}
@@ -325,6 +325,7 @@ const MyProducts = () => {
                                   borderWidth="1px"
                                   rounded="lg"
                                   shadow="lg"
+                                  maxH='480px'
                                 >
                                 
                                   <a href={`/productos/${product.title}`} >
@@ -427,9 +428,9 @@ const MyProducts = () => {
                 
 
             </Flex>
-            )} */}
+            )}
 
-            {product.length > 0 && (
+            {product.length >= 4 && (
 
                 <Flex 
                     flexDir={["column", "column", "row", "row", "row"]}
