@@ -56,7 +56,7 @@ export default function Banner(props) {
             ventas
           </Text>
         </Flex>
-        <Flex mx={3} alignItems='center' direction='column'>
+        <Flex mx={3} alignItems='center' direction='column' color="gold">
           <Stack direction='horizontal' ml={4}>
             <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
               {calificación}
