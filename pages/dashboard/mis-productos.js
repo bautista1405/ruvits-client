@@ -206,7 +206,7 @@ const MyProducts = () => {
                 </>
             )}
 
-            {product.length > 0 && product.length < 4 && (
+            {session && product.length > 0 && product.length < 4 && (
 
             <Flex 
                 flexDir={["column", "column", "row", "row", "row"]}
