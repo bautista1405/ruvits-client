@@ -439,6 +439,7 @@ const MyProducts = () => {
                     boxShadow='2xl' 
                     p='6'
                     margin={[null, "null", "100px"]}
+                    h='auto'
                     
                 >
                     {/* Column 1 */}
