@@ -530,14 +530,14 @@ const MyProducts = () => {
                             {product.map( product =>  {
                                 const productRating = rating.filter(rating => rating._id === product.title)
                                 return (
-                                    <Flex
-                                    bg="#edf3f8"
-                                    p={50}
-                                    w="full"
-                                    alignItems="center"
-                                    justifyContent="center"
-                                    key={product._id}
-                                  >
+                                //     <Flex
+                                //     bg="#edf3f8"
+                                //     p={50}
+                                //     w="full"
+                                //     alignItems="center"
+                                //     justifyContent="center"
+                                //     key={product._id}
+                                //   >
                                     <Box
                                       bg="gray.600"
                                       _dark={{
@@ -547,6 +547,7 @@ const MyProducts = () => {
                                       borderWidth="1px"
                                       rounded="lg"
                                       shadow="lg"
+                                      key={product._id}
                                     >
                                     
                                       <a href={`/productos/${product.title}`} >
@@ -641,7 +642,7 @@ const MyProducts = () => {
                                         </Box>
                                       </Box>
                                     </Box>
-                                  </Flex>
+                                //   </Flex>
                                 )
                             })}
                         </SimpleGrid>
