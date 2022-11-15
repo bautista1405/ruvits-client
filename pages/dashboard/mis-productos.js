@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
+// import Image from 'next/image'
 import Link from 'next/link'
 
 
@@ -13,7 +13,7 @@ import {
     Icon,
     Tooltip,
     Box,
-    Button, Badge, Stack
+    Button, Badge, Stack, Image
   } from '@chakra-ui/react'
   
   import {
