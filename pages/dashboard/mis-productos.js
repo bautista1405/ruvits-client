@@ -13,7 +13,7 @@ import {
     Icon,
     Tooltip,
     Box,
-    Button, Badge,
+    Button, Badge, Stack
   } from '@chakra-ui/react'
   
   import {
