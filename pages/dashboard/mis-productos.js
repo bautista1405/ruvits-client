@@ -216,7 +216,7 @@ const MyProducts = () => {
                 boxShadow='2xl' 
                 p='6'
                 margin={[null, "null", "100px"]}
-                h={[null, null, null, null, "80vh"]}
+                h={[null, null, null, null, "100vh"]}
             >
                 {/* Column 1 */}
 
