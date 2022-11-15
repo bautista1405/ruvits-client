@@ -6,7 +6,7 @@ import { useSession } from "next-auth/client";
 
 
 import {
-  SimpleGrid, Box, Flex, Button, Image, Heading, chakra, GridItem, useColorModeValue,
+  SimpleGrid, Box, Flex, Button, Image, Heading, chakra, GridItem, useColorModeValue, List, ListItem,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -326,7 +326,7 @@ const ProductDetails = ({ product }) => {
                   borderRadius="5px"
                   boxShadow='dark-lg'
                   margin='auto'
-                  h="300px"
+                  h="400px"
                   w={["320px", "500px"]}
                   
                 >
@@ -339,7 +339,7 @@ const ProductDetails = ({ product }) => {
                     backgroundSize="contain"
                     align={'center'}
                     width="100%"
-                    
+                    height='100%'
                   />
                 </Flex>
                 <Stack spacing={{ base: 6, md: 10 }}>
@@ -353,7 +353,7 @@ const ProductDetails = ({ product }) => {
                     <Text
                       mt={4}
                       color="gray.800"
-                      fontWeight={300}
+                      fontWeight={500}
                       fontSize={'2xl'}>
                       ${product.price}
                     </Text>
@@ -368,16 +368,6 @@ const ProductDetails = ({ product }) => {
                       />
                     }>
 
-                      {productRating.length > 0 ? productRating.map((rating) => {
-                        const avgValue = Number.parseFloat(rating.avg_val).toFixed(1);
-                        return (
-
-                          <Stack direction='horizontal' fontSize={22} key={rating._id}>
-                            <Text> {avgValue} </Text> 
-                            <Icon as={BsFillStarFill} pt={2}/> 
-                          </Stack>
-                        )
-                      }) : null }
                       
                     
                     <Box>
@@ -386,22 +376,33 @@ const ProductDetails = ({ product }) => {
                         mt={1}
                         fontSize="sm"
                         color="gray.700"
+                        fontWeight={600}
                       >
                         {product.description}
                       </Text>
                     </Box>
                     
-                    {/* <Box>
+                    <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
                         color="gray.700"
-                        fontWeight={'500'}
+                        fontWeight='bold'
                         textTransform={'uppercase'}
                         mb={'4'}>
-                        Features
+                        Categoría: {product.category}
                       </Text>
+                          {productRating.length > 0 ? productRating.map((rating) => {
+                            const avgValue = Number.parseFloat(rating.avg_val).toFixed(1);
+                            return (
+    
+                              <Stack direction='horizontal' fontSize={22} key={rating._id} color="gold">
+                                <Text> {avgValue} </Text> 
+                                <Icon as={BsFillStarFill} pt={2}/> 
+                              </Stack>
+                            )
+                          }) : null }
         
-                      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+                      {/* <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                         <List spacing={2}>
                           <ListItem>Chronograph</ListItem>
                           <ListItem>Master Chronometer Certified</ListItem>{' '}
@@ -412,10 +413,10 @@ const ProductDetails = ({ product }) => {
                           <ListItem>Chronometer</ListItem>
                           <ListItem>Small seconds</ListItem>
                         </List>
-                      </SimpleGrid>
+                      </SimpleGrid> */}
                     </Box>
-                    <Box>
-                      <Text
+                    {/* <Box> */}
+                      {/* <Text
                         fontSize={{ base: '16px', lg: '18px' }}
                         color="gray.800"
                         fontWeight={'500'}
@@ -468,8 +469,8 @@ const ProductDetails = ({ product }) => {
                           </Text>{' '}
                           5 bar (50 metres / 167 feet){' '}
                         </ListItem>
-                      </List>
-                    </Box> */}
+                      </List> */}
+                    {/* </Box> */}
                   </Stack>
         
                   
