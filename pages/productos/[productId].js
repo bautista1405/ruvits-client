@@ -729,18 +729,25 @@ const ProductDetails = ({ product }) => {
                     left: 0,
                     
                   }}>
-                  <Flex
-                    direction={'column'}
-                    textAlign={'left'}
-                    justifyContent={'space-between'}
-                    overflow='hidden'
-                    maxW='400px'
-                  >
 
-                    {comment.comment}
+                  <Stack>
+                    <Flex
+                      direction={'column'}
+                      textAlign={'left'}
+                      justifyContent={'space-between'}
+                      overflow='hidden'
+                      maxW='400px'
+                    >
 
-                    
-                  </Flex>
+                      {comment.comment}
+                      
+                    </Flex>
+                    <Flex pt={5}>
+                      <Text color='gray.400' fontSize={13}>
+                        {comment.date}
+                      </Text>
+                    </Flex>
+                  </Stack>
 
                     <ReactStars
                       count={5}
@@ -749,7 +756,9 @@ const ProductDetails = ({ product }) => {
                       color2={'#ffd700'} 
                       edit={false}
                     />
+                  
                   </Flex>
+                   
                 )
               })}
 
