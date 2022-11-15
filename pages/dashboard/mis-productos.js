@@ -206,7 +206,7 @@ const MyProducts = () => {
                 </>
             )}
 
-            {product.length > 0 && product.length < 4 && (
+            {/* {product.length > 0 && product.length < 4 && (
 
             <Flex 
                 flexDir={["column", "column", "row", "row", "row"]}
@@ -218,7 +218,7 @@ const MyProducts = () => {
                 margin={[null, "null", "100px"]}
                 h={[null, null, null, null, "60vh"]}
             >
-                {/* Column 1 */}
+                Column 1
 
                 <Flex
                     w={["100%", "100%", "10%", "15%", "15%"]}
@@ -345,7 +345,7 @@ const MyProducts = () => {
                                       <Badge rounded="full" px="2" colorScheme="teal">
                                         {product.category}
                                       </Badge>
-                                      {/* <Box
+                                      <Box
                                         color="gray.500"
                                         fontWeight="semibold"
                                         letterSpacing="wide"
@@ -354,7 +354,7 @@ const MyProducts = () => {
                                         ml="2"
                                       >
                                         {property.beds} beds &bull; {property.baths} baths
-                                      </Box> */}
+                                      </Box>
                                     </Box>
                           
                                     <Text
@@ -385,9 +385,9 @@ const MyProducts = () => {
                                         
                                         )
                                     }) : null }
-                                      {/* <Box as="span" ml="2" color="gray.200" fontSize="sm">
+                                      <Box as="span" ml="2" color="gray.200" fontSize="sm">
                                          reviews
-                                      </Box> */}
+                                      </Box>
 
                                     <a href={`/productos/${product.title}`} >
                                         <chakra.button
@@ -427,9 +427,9 @@ const MyProducts = () => {
                 
 
             </Flex>
-            )}
+            )} */}
 
-            {product.length >= 4 && (
+            {product.length > 0 && (
 
                 <Flex 
                     flexDir={["column", "column", "row", "row", "row"]}
