@@ -326,6 +326,7 @@ const MyProducts = () => {
                                   rounded="lg"
                                   shadow="lg"
                                   maxH='480px'
+                                  key={product._id}
                                 >
                                 
                                   <a href={`/productos/${product.title}`} >
