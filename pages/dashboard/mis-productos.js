@@ -518,6 +518,7 @@ const MyProducts = () => {
                             mt={10}
                             p='6' 
                             ml={[null, 100, 200, 100, null]}
+                            h='auto'
                         >
 
                         <SimpleGrid 
