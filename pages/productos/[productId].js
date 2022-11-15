@@ -386,7 +386,7 @@ const ProductDetails = ({ product }) => {
                     <Box>
                       <Text
                         fontSize={{ base: '16px', lg: '18px' }}
-                        color="gray.700"
+                        color="gray.500"
                         fontWeight='bold'
                         textTransform={'uppercase'}
                         mb={'4'}>
@@ -762,10 +762,10 @@ const ProductDetails = ({ product }) => {
                 )
               })}
 
-              <Formik>
-                <Form className="my-3" id="form-container" onSubmit={formik.handleSubmit}>
+              <Formik >
+                <Form className="my-3" id="form-container" onSubmit={formik.handleSubmit} >
 
-                  <Text color='gray.600'>¿Qué te pareció este producto?</Text>
+                  <Text color='gray.800' fontSize={24} fontWeight={500}>¿Qué te pareció este producto?</Text>
                   <ReactStars
                     count={5}
                     id='rating'
