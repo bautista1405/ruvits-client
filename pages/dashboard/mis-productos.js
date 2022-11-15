@@ -216,7 +216,7 @@ const MyProducts = () => {
                 boxShadow='2xl' 
                 p='6'
                 margin={[null, "null", "100px"]}
-                h={[null, null, null, null, "100vh"]}
+                h={[null, null, null, null, "60vh"]}
             >
                 {/* Column 1 */}
 
@@ -295,7 +295,7 @@ const MyProducts = () => {
                         mt={10}
                         p='6' 
                         ml={[null, 100, 200, 100, null]}
-                       
+                        h={[null, null, null, null, "60vh"]}
                     >
 
                     <SimpleGrid 
