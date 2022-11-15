@@ -396,7 +396,7 @@ const ProductDetails = ({ product }) => {
                             const avgValue = Number.parseFloat(rating.avg_val).toFixed(1);
                             return (
     
-                              <Stack direction='horizontal' fontSize={24} key={rating._id} color="gold">
+                              <Stack direction='horizontal' fontWeight='bold' fontSize={24} key={rating._id} color="gold">
                                 <Text> {avgValue} </Text> 
                                 <Icon as={BsFillStarFill} pt={2}/> 
                               </Stack>
