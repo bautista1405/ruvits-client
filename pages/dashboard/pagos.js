@@ -33,16 +33,16 @@ const Payments = () => {
   const [tokens, setTokens] = useState([]);
 
   useEffect( () => {
-      if(session) {
+      
 
           axios.get(getAccessToken)
           .then((res) => {
               setTokens(res?.data?.getToken || [])
           })
-      }
+      
     }, [getAccessToken])
 
-    const token = tokens.filter(token => token.email === session.user.email)
+    const token = async () => tokens.filter(token => token.email === session.user.email)
 
 
     const deleteToken = () => { 
