@@ -42,7 +42,7 @@ const Payments = () => {
       }
     }, [getAccessToken])
 
-    const token = async () => tokens.filter(token => token.email === session.user.email)
+    const token = tokens.filter(token => token.email === session.user.email)
 
 
     const deleteToken = () => { 
