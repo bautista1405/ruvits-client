@@ -208,14 +208,14 @@ const StoreOwner = ({ user, rating }) => {
 
               </Box>
               )
-            }) : (
+            }) : store.length == 0 && (
                   <Flex alignItems="center" justifyContent="center" h="54vh">
                     ¡Uupss! Parece que este usuario aún no configuró su tienda.
                   </Flex>
             ) }
             </Box> 
             )
-            }) : user.length == 0 && (
+            }) : (
             <Flex alignItems="center" justifyContent="center" h="54vh">
               ¡Uupss! Parece que el usuario que buscas no existe.
             </Flex>
