@@ -13,7 +13,7 @@ import {
     Icon,
     Tooltip,
     Box,
-    Button, Badge, Stack, Image
+    Button, Badge, Stack, Image, Divider
   } from '@chakra-ui/react'
   
   import {
@@ -565,7 +565,7 @@ const MyProducts = () => {
                                             />
                                         </Box>
                                       </a>
-                              
+                                      <Divider />
                                       <Box p="6">
                                         <Box display="flex" alignItems="baseline">
                                           <Badge rounded="full" px="2" colorScheme="teal">

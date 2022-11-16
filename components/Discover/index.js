@@ -153,7 +153,7 @@ const Discover = () => {
                             />
                         </Box>
                       </a>
-              
+                      <Divider />
                       <Box p="6">
                         <Box display="flex" alignItems="baseline">
                           <Badge rounded="full" px="2" colorScheme="teal">
@@ -273,7 +273,7 @@ const Discover = () => {
                                         />
                                     </Box>
                                   </a>
-                          
+                                  <Divider />
                                   <Box p="6">
                                     <Box display="flex" alignItems="baseline">
                                       <Badge rounded="full" px="2" colorScheme="teal">
