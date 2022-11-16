@@ -196,8 +196,8 @@ const StoreOwner = ({ user, rating }) => {
             ) }
             </Box> 
             )
-            }) : (
-            <Flex justify='center'>
+            }) : user.length == 0 && (
+            <Flex alignItems="center" justifyContent="center" h="54vh">
               ¡Uupss! Parece que el usuario que buscas no existe.
             </Flex>
             )
