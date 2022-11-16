@@ -200,8 +200,6 @@ const ProductDetails = ({ product }) => {
     })
   }
 
-  // const storeOwner = product.vendor.replace(/\s+/g, '').toLowerCase()
-
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -287,7 +285,7 @@ const ProductDetails = ({ product }) => {
         {product.length > 0 ?
           product.map(product => {
             const productRating = rating.filter(rating => rating._id === product.title)
-            
+            const storeOwner = product.vendor.replace(/\s+/g, '').toLowerCase()
             return (
               <Container 
                 maxW={'7xl'} 
@@ -300,20 +298,21 @@ const ProductDetails = ({ product }) => {
                 mb={20}
               >
                 
-                {/* <Flex justify='flex-end'>
+                <Flex justify='flex-end'>
                   <Link href={`/tienda/${storeOwner}`}>
                     <Button 
-                      bg="teal"
-                      color="white"
+                      // bg="teal"
+                      colorScheme="teal"
                       _hover={{
-                        transform: 'translateY(2px)',
+                        transform: 'translateY(7px)',
                         boxShadow: 'lg',
                       }}
+                      variant='outline'
                     >
                       Ir a la tienda del vendedor
                     </Button>
                   </Link>
-                </Flex> */}
+                </Flex>
 
                 
               
@@ -545,7 +544,7 @@ const ProductDetails = ({ product }) => {
                                       color="white"
                                       textTransform={'uppercase'}
                                       _hover={{
-                                        transform: 'translateY(2px)',
+                                        transform: 'translateY(5px)',
                                         boxShadow: 'lg',
                                       }}
                                     >Comprar</Button>

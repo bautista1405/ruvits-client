@@ -104,7 +104,7 @@ const StoreOwner = ({ user, rating }) => {
                               name={store.storeName}
                               job={store.category}
                               productos={storeProducts.length}
-                              ventas={storeSales.length}
+                              // ventas={storeSales.length}
                               calificación={avgValue || '-'}
                               star={BsFillStarFill}
                             />

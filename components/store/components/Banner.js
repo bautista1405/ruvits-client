@@ -48,14 +48,14 @@ export default function Banner(props) {
             productos
           </Text>
         </Flex>
-        <Flex me='60px' mx={2} align='center' direction='column'>
+        {/* <Flex me='60px' mx={2} align='center' direction='column'>
           <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
             {ventas}
           </Text>
           <Text color={textColorSecondary} fontSize='sm' fontWeight='400'>
             ventas
           </Text>
-        </Flex>
+        </Flex> */}
         <Flex mx={3} alignItems='center' direction='column' color="gold">
           <Stack direction='horizontal' ml={4}>
             <Text color={textColorPrimary} fontSize='2xl' fontWeight='700'>
