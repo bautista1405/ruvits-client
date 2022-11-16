@@ -61,11 +61,15 @@ const StoreOwner = ({ user, rating }) => {
         
     }, [getStores, getStoreProducts, getSales, getRating]) 
 
-    
+    const store = stores.filter(store => store.email === user[0].email )
+    const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
+    const storeSales = sales.filter(sale => sale.vendor === user[0].name)
+    const storeRating = ownerRating.filter(rating => rating._id === user[0].name)
+
     console.log(storeRating)
-    
-    return (
-      <>    
+
+  return (
+    <>    
       <Head>
         {user.map((user) => {
           return (
@@ -77,10 +81,6 @@ const StoreOwner = ({ user, rating }) => {
             <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
       </Head> 
         {user.length > 0 ? user.map((user) => {
-          const store = stores.filter(store => store.email === user[0].email )
-          const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
-          const storeSales = sales.filter(sale => sale.vendor === user[0].name)
-          const storeRating = ownerRating.filter(rating => rating._id === user[0].name)
           return (
             <Box key={user._id}>
           
