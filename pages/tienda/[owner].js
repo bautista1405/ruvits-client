@@ -61,10 +61,10 @@ const StoreOwner = ({ user, rating }) => {
         
     }, [getStores, getStoreProducts, getSales, getRating]) 
 
-    const store = async () => stores.filter(store => store.email === user[0].email )
-    const storeProducts = async () => products.filter(storeProducts => storeProducts.vendor === user[0].name)
-    const storeSales = async () => sales.filter(sale => sale.vendor === user[0].name)
-    const storeRating = async () => ownerRating.filter(rating => rating._id === user[0].name)
+    const store = stores.filter(store => store.email === user[0].email )
+    const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
+    const storeSales = sales.filter(sale => sale.vendor === user[0].name)
+    const storeRating = ownerRating.filter(rating => rating._id === user[0].name)
 
     console.log(storeRating)
 
