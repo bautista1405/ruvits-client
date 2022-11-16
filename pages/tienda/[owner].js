@@ -40,31 +40,31 @@ const StoreOwner = ({ user, rating }) => {
   const brandColor = useColorModeValue("brand.500", "white");
   const bg = useColorModeValue("white", "navy.700");
 
-    useEffect( () => {
+    useEffect(() => {
         
-            axios.get(getStores)
+          axios.get(getStores)
             .then((res) => {
                 setStores(res?.data?.getStores || [])
             })
-            axios.get(getStoreProducts).then((res) => {
+          axios.get(getStoreProducts).then((res) => {
               setProducts(res?.data?.getProducts || []);
               
             })
-            axios.get(getSales)
+          axios.get(getSales)
             .then((res) => {
                 setSales(res?.data?.getSales || [])
             })
-            axios.get(getRating)
+          axios.get(getRating)
             .then((res) => {
                 setOwnerRating(res?.data?.rating || [])
             })
         
     }, [getStores, getStoreProducts, getSales, getRating]) 
 
-    const store = stores.filter(store => store.email === user[0].email )
-    const storeProducts = products.filter(storeProducts => storeProducts.vendor === user[0].name)
-    const storeSales = sales.filter(sale => sale.vendor === user[0].name)
-    const storeRating = ownerRating.filter(rating => rating._id === user[0].name)
+    const store = async () => stores.filter(store => store.email === user[0].email )
+    const storeProducts = async () => products.filter(storeProducts => storeProducts.vendor === user[0].name)
+    const storeSales = async () => sales.filter(sale => sale.vendor === user[0].name)
+    const storeRating = async () => ownerRating.filter(rating => rating._id === user[0].name)
 
     console.log(storeRating)
 
@@ -215,7 +215,8 @@ const StoreOwner = ({ user, rating }) => {
             ) }
             </Box> 
             )
-            }) : (
+            }) 
+            : (
             <Flex alignItems="center" justifyContent="center" h="54vh">
               ¡Uupss! Parece que el usuario que buscas no existe.
             </Flex>
