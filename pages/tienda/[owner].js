@@ -91,7 +91,7 @@ const StoreOwner = ({ user, rating }) => {
                   
                       <Grid>
                         
-                        {storeRating.map((rating) => {
+                        {storeRating.length > 0 && storeRating.map((rating) => {
                           const avgValue = Number.parseFloat(rating.avg_val).toFixed(1);
 
                           return (
@@ -109,7 +109,26 @@ const StoreOwner = ({ user, rating }) => {
                               star={BsFillStarFill}
                             />
                             )
-                          })}
+                        })}
+
+                        {storeRating.length == 0 && 
+
+                         
+
+                            <Banner
+                              key={store._id}
+                              gridArea='1 / 1 / 2 / 2'
+                              banner={store.banner[0]}
+                              avatar={store.banner[1] || store.avatar}
+                              name={store.storeName}
+                              job={store.category}
+                              productos={storeProducts.length}
+                              // ventas={storeSales.length}
+                              calificación='-'
+                              star={BsFillStarFill}
+                            />
+                            
+                        }
 
                       </Grid>
                   
