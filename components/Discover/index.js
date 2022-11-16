@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useSession } from "next-auth/client";
 import {getSession} from "next-auth/client"
 
-import { SimpleGrid, Box, Flex, chakra, Link, Input, Select, Stack, Image, Badge, Text, Icon } from '@chakra-ui/react'
+import { SimpleGrid, Box, Flex, chakra, Link, Input, Select, Stack, Image, Badge, Text, Icon, Divider } from '@chakra-ui/react'
 
 import image from '../../assets/transaction.png'
 import {BsFillStarFill} from "react-icons/bs"
@@ -419,7 +419,7 @@ const Discover = () => {
                                         />
                                     </Box>
                                   </a>
-                          
+                                  <Divider />
                                   <Box p="6">
                                     <Box display="flex" alignItems="baseline">
                                       <Badge rounded="full" px="2" colorScheme="teal">
