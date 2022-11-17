@@ -1,45 +1,95 @@
 import React, {useEffect, useState, useMemo} from 'react'
 // import Image from 'next/image'
+import useSWR from 'swr'
 import axios from 'axios'
 import { useSession } from "next-auth/client";
 import {getSession} from "next-auth/client"
 
-import { SimpleGrid, Box, Flex, chakra, Link, Input, Select, Stack, Image, Badge, Text, Icon, Divider } from '@chakra-ui/react'
+import { SimpleGrid, Box, Flex, chakra, Link, Input, Select, Stack, Image, Badge, Text, Icon, Divider, Button } from '@chakra-ui/react'
 
 import image from '../../assets/transaction.png'
 import {BsFillStarFill} from "react-icons/bs"
 
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 const Discover = () => {
 
-    const url = "/api/getproducts";
-    const getRating = '/api/getproductrating'
-    
-    const [session, loading] = useSession();
-    
-    const [products, setProducts] = useState([]);
-    const [filteredData, setFilteredData] = useState(products);
-    const [wordEntered, setWordEntered] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState();
-    const [rating, setRating] = useState([]);
-
-
-    const headers = {
+  const url = "/api/getproducts";
+  const categorizedProducts = '/api/getcategorizedproducts'
+  const getRating = '/api/getproductrating'
+  
+  const [session, loading] = useSession();
+  
+  const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
+  const { data, error } = useSWR(`/api/getproducts?page=${page}`, fetcher);
+  const [filteredData, setFilteredData] = useState(products);
+  const [wordEntered, setWordEntered] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [rating, setRating] = useState([]);
+  
+  // Avoid duplicate function calls with useMemo
+  const categorizedList = useMemo(getFilteredList, [selectedCategory, products]);
+  
+  const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
         'Content-Type': 'application/json',
+  }
+  
+  useEffect(() => {
+    if (data) {
+      setPageCount(data.pageCount);
     }
-    
-    useEffect(() => {
-        axios.get(url, {headers}).then((res) => {
-            setProducts(res?.data?.getProducts || []);
-            
-        })
-        axios.get(getRating)
-        .then((res) => {
-            setRating(res?.data?.rating || [])
-        })
-    }, [url, getRating])
+    axios.get(getRating)
+    .then((res) => {
+      setRating(res?.data?.rating || [])
+    })
+  }, [data, getRating, categorizedProducts]);
+  
+  
 
+  // Function to get filtered list
+  function getFilteredList() {
+        // Avoid filter when selectedCategory is null
+        if (!selectedCategory) {
+        return products;
+        }
+        return products.filter((value) => value.category === selectedCategory);
+  }
+
+  function handleCategoryChange(event) {
+    setSelectedCategory(event.target.value);
+  }
+
+  function handlePrevious() {
+    setPage((p) => {
+      if (p === 1) return p;
+      return p - 1;
+    });
+    console.log(page)
+    console.log(pageCount)
+  }
+
+  function handleNext() {
+    setPage((p) => {
+      if (p === pageCount) return p;
+      return p + 1;
+    });
+    console.log(page)
+    console.log(pageCount)
+  }
+
+  if (error) {
+    return <div>{JSON.stringify(error)}</div>;
+  }
+
+  if (!data) {
+    return <p>Cargando...</p>;
+  }
+    
+    
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
@@ -54,22 +104,38 @@ const Discover = () => {
           setFilteredData(newFilter);
         }
     };
+
+      const PagButton = (props) => {
+        const activeStyle = {
+          bg: "brand.600",
+          _dark: {
+            bg: "brand.500",
+          },
+          color: "white",
+        };
+        return (
+          <chakra.button
+            mx={1}
+            px={4}
+            py={2}
+            rounded="md"
+            bg="white"
+            color="gray.700"
+            _dark={{
+              color: "white",
+              bg: "gray.800",
+            }}
+            opacity={props.disabled && 0.6}
+            _hover={!props.disabled && activeStyle}
+            cursor={props.disabled && "not-allowed"}
+            {...(props.active && activeStyle)}
+          >
+            {props.children}
+          </chakra.button>
+        );
+      };
     
-  // Function to get filtered list
-  function getFilteredList() {
-        // Avoid filter when selectedCategory is null
-        if (!selectedCategory) {
-        return products;
-        }
-        return products.filter((value) => value.category === selectedCategory);
-   }
 
-  // Avoid duplicate function calls with useMemo
-  const categorizedList = useMemo(getFilteredList, [selectedCategory, products]);
-
-  function handleCategoryChange(event) {
-    setSelectedCategory(event.target.value);
-  }
 
   return (
     <div>
@@ -101,6 +167,7 @@ const Discover = () => {
                 value={wordEntered}
                 onChange={handleFilter}
                 width={['60vw', '50vw', '50vw', '50vw', '50vw']}
+                disabled={selectedCategory}
             />
         </Flex>
 
@@ -117,19 +184,21 @@ const Discover = () => {
             borderRadius="5px" 
         >
 
+
+
             {
             selectedCategory ?
             categorizedList.map((value, index) => {
                 const productRating = rating.filter(rating => rating._id === value.title)
                 return (
                     <Flex
-                    bg="#edf3f8"
-                    p={50}
-                    w="full"
-                    alignItems="center"
-                    justifyContent="center"
-                    key={value._id}
-                  >
+                      bg="#edf3f8"
+                      p={50}
+                      w="full"
+                      alignItems="center"
+                      justifyContent="center"
+                      key={value._id}
+                    >
                     <Box
                       bg="gray.600"
                       _dark={{
@@ -166,7 +235,7 @@ const Discover = () => {
                             fontSize="xs"
                             textTransform="uppercase"
                             ml="2"
-                          >
+                            >
                             {property.beds} beds &bull; {property.baths} baths
                           </Box> */}
                         </Box>
@@ -384,7 +453,7 @@ const Discover = () => {
                         
                         ) : (
 
-                        !selectedCategory && products.map((product) => {
+                        !selectedCategory && data.items.map((product) => {
                             const productRating = rating.filter(rating => rating._id === product.title)
                             return (
 
@@ -507,10 +576,58 @@ const Discover = () => {
                     
             )
         
-            }
+          }
+
 
             
         </SimpleGrid>
+          
+          {!selectedCategory ? 
+          
+          <Flex
+            bg="#edf3f8"
+            _dark={{
+              bg: "#3e3e3e",
+            }}
+            p={50}
+            w="full"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Flex>
+              <Button disabled={page === 1} onClick={handlePrevious}
+                mx={1}
+                px={4}
+                py={2}
+                rounded="md"
+                bg="white"
+                color="gray.700"
+                _dark={{
+                  color: "white",
+                  bg: "gray.800",
+                }}
+              >Anterior</Button>
+              {/* <PagButton active>1</PagButton>
+              <PagButton>2</PagButton>
+              <PagButton>3</PagButton>
+              <PagButton>4</PagButton>
+              <PagButton>5</PagButton> */}
+              <Button disabled={page === pageCount} onClick={handleNext}
+                mx={1}
+                px={4}
+                py={2}
+                rounded="md"
+                bg="white"
+                color="gray.700"
+                _dark={{
+                  color: "white",
+                  bg: "gray.800",
+                }}
+              >Siguiente</Button>
+            </Flex>
+          </Flex> : null
+          }
+          
     </div>
   )
 }
