@@ -46,6 +46,10 @@ const Discover = () => {
     .then((res) => {
       setRating(res?.data?.rating || [])
     })
+    axios.get(categorizedProducts, {headers}).then((res) => {
+      setProducts(res?.data?.getProducts || []);
+      
+    })
   }, [data, getRating, categorizedProducts]);
   
   
