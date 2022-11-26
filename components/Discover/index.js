@@ -23,11 +23,11 @@ const Discover = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
+  const { data, error } = useSWR(`/api/getproducts?page=${page}`, fetcher);
   const [filteredData, setFilteredData] = useState(products);
   const [wordEntered, setWordEntered] = useState("");
   const [selectedCategory, setSelectedCategory] = useState();
   const [rating, setRating] = useState([]);
-  const { data, error } = useSWR(`/api/getproducts?page=${page}`, fetcher);
   
   // Avoid duplicate function calls with useMemo
   const categorizedList = useMemo(getFilteredList, [selectedCategory, products]);
@@ -47,7 +47,7 @@ const Discover = () => {
       setRating(res?.data?.rating || [])
     })
     axios.get(categorizedProducts, {headers}).then((res) => {
-      setProducts(res?.data?.getProducts || []);
+      setProducts(res?.data?.items || []);
       
     })
   }, [data, getRating, categorizedProducts]);
