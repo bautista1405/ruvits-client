@@ -52,7 +52,16 @@ export default async function getPayment(req, res) {
 
         const rating = await Comment.aggregate(
             [
-              {$group: {_id:"$productTitle", avg_val:{$avg:"$rating"}}}
+              {
+                $group: {
+                    _id:"$productName", 
+                    avg_val:{$avg:"$rating"}, 
+                    productOwner: {$push: "$productOwner"},
+                    content: {$push: "$content"},
+                    price: {$push: "$price"},
+                    category: {$push: "$category"}
+                }
+              }
             ],
             {
               allowDiskUse: true

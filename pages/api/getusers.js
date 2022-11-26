@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 // mongoose.set('debug', true);
-import { getSession } from "next-auth/client";
+// import { getSession } from "next-auth/client";
 
 
 export default async function getUser(req, res) {
@@ -13,7 +13,7 @@ export default async function getUser(req, res) {
     
     const { query } = req
     const { qry, collection } = query
-    const session = await getSession({req})
+    // const session = await getSession({req})
     
     try {
 
@@ -35,9 +35,9 @@ export default async function getUser(req, res) {
            
         });
 
-        const email = session.user.email
+        // const email = session.user.email
         const getUsers = await User.find({  })
-        console.log(getUsers)
+        // console.log(getUsers)
 
         res.status(200).json({ getUsers })
         return getUsers

@@ -46,18 +46,24 @@ export default async function getPayment(req, res) {
                }   
         });
 
-        // const email = session.user.email
-        const getComments = await Comment.find({})
-        // console.log(getComments)
-
         const rating = await Comment.aggregate(
             [
-              {$group: {_id:"$productOwner", avg_val:{$avg:"$rating"}}}
+                
+                {
+                    $group: {
+                        _id:"$productOwner", 
+                        avg_val:{$avg:"$rating"}, 
+                        category: {$push: "$category"},
+                        
+                    }
+                },
+                { $sort : { avg_val : -1 } }
+              
             ],
             {
               allowDiskUse: true
             }
-        );
+        )
 
         res.status(200).json({ rating })
         return rating

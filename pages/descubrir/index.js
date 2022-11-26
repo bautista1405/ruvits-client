@@ -1,13 +1,13 @@
 import React from 'react'
 import { signIn, signOut, useSession, getSession } from "next-auth/client";
-import Discover from '../components/Discover'
+import Discover from '../../components/Discover'
 import Head from 'next/head';
 
 const DiscoverPage = () => {
   return (
     <div>
       <Head>
-        <title>Ruvits | Descubre</title>
+        <title>Ruvits | Descubrir</title>
         <link rel="icon" href="/favicon-32x32.png" sizes="16x16 32x32" type="image/png"/>
       </Head>
         <Discover />

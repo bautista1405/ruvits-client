@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useSession } from "next-auth/client";
 import {getSession} from "next-auth/client"
 
-import { SimpleGrid, Box, Flex, chakra, Link, Input, Select, Stack, Image, Badge, Text, Icon, Divider, Button } from '@chakra-ui/react'
+import { SimpleGrid, Box, Flex, chakra, Link, Input, Select, Stack, Image, Badge, Text, Icon, Divider, Button, Spinner } from '@chakra-ui/react'
 
 import image from '../../assets/transaction.png'
 import {BsFillStarFill} from "react-icons/bs"
@@ -23,11 +23,11 @@ const Discover = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
-  const { data, error } = useSWR(`/api/getproducts?page=${page}`, fetcher);
   const [filteredData, setFilteredData] = useState(products);
   const [wordEntered, setWordEntered] = useState("");
   const [selectedCategory, setSelectedCategory] = useState();
   const [rating, setRating] = useState([]);
+  const { data, error } = useSWR(`/api/getproducts?page=${page}`, fetcher);
   
   // Avoid duplicate function calls with useMemo
   const categorizedList = useMemo(getFilteredList, [selectedCategory, products]);
@@ -90,7 +90,19 @@ const Discover = () => {
   }
 
   if (!data) {
-    return <p>Cargando...</p>;
+    return (
+      <Flex alignItems="center" justifyContent="center" h="54vh">
+        
+        <Spinner
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='gray.200'
+                color='blue.500'
+                size='xl'
+              />
+      </Flex>
+    )
+    
   }
     
     
@@ -175,9 +187,6 @@ const Discover = () => {
             />
         </Flex>
 
-        <Flex justifyContent="center">
-        </Flex>
-
         <SimpleGrid 
             columns={[1, 2, 2, 3]} 
             spacing={10} 
@@ -193,7 +202,7 @@ const Discover = () => {
             {
             selectedCategory ?
             categorizedList.map((value, index) => {
-                const productRating = rating.filter(rating => rating._id === value.title)
+                const productRating = rating.filter(rating => rating._id === value.productName)
                 return (
                     <Flex
                       bg="#edf3f8"
@@ -313,7 +322,7 @@ const Discover = () => {
                 wordEntered.length > 0 &&
                 filteredData.length > 0 ? (
                     filteredData.map((value, key) => {
-                        const productRating = rating.filter(rating => rating._id === value.title)
+                        const productRating = rating.filter(rating => rating._id === value.productName)
                         return (
                             <Flex
                                 bg="#edf3f8"
@@ -458,7 +467,7 @@ const Discover = () => {
                         ) : (
 
                         !selectedCategory && data.items.map((product) => {
-                            const productRating = rating.filter(rating => rating._id === product.title)
+                            const productRating = rating.filter(rating => rating._id === product.productName)
                             return (
 
                                 <Flex

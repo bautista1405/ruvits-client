@@ -11,50 +11,38 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+
 // Custom components
-import Card from "components/card/Card.js";
+import Card from "./Card";
+
 // Assets
 import React, { useState } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 
 export default function NFT(props) {
-  const { image, name, author, bidders, download, currentbid } = props;
+  
+  const { image, name, author, bidders, download, currentbid, rating } = props;
   const [like, setLike] = useState(false);
   const textColor = useColorModeValue("navy.700", "white");
   const textColorBid = useColorModeValue("brand.500", "white");
+  
   return (
-    <Card p='20px'>
+    <Card 
+      p='20px' 
+      shadow="base"
+      rounded={[null, "md"]}
+      borderRadius="5px"
+    >
       <Flex direction={{ base: "column" }} justify='center'>
-        <Box mb={{ base: "20px", "2xl": "20px" }} position='relative'>
+        <Box mb={{ base: "20px", "2xl": "20px" }} h='300px' w='300px'>
+          
           <Image
             src={image}
-            w={{ base: "100%", "3xl": "100%" }}
-            h={{ base: "100%", "3xl": "100%" }}
+            w='100%'
+            h='100%'
             borderRadius='20px'
           />
-          <Button
-            position='absolute'
-            bg='white'
-            _hover={{ bg: "whiteAlpha.900" }}
-            _active={{ bg: "white" }}
-            _focus={{ bg: "white" }}
-            p='0px !important'
-            top='14px'
-            right='14px'
-            borderRadius='50%'
-            minW='36px'
-            h='36px'
-            onClick={() => {
-              setLike(!like);
-            }}>
-            <Icon
-              transition='0.2s linear'
-              w='20px'
-              h='20px'
-              as={like ? IoHeart : IoHeartOutline}
-              color='brand.500'
-            />
-          </Button>
+         
         </Box>
         <Flex flexDirection='column' justify='space-between' h='100%'>
           <Flex
@@ -93,9 +81,9 @@ export default function NFT(props) {
                 {author}
               </Text>
             </Flex>
-            <AvatarGroup
+            {/* <AvatarGroup
               max={3}
-              color={textColorBid}
+              color={"blackAlpha.700"}
               size='sm'
               mt={{
                 base: "0px",
@@ -104,11 +92,11 @@ export default function NFT(props) {
                 xl: "10px",
                 "2xl": "0px",
               }}
-              fontSize='12px'>
-              {bidders.map((avt, key) => (
+              fontSize='12px'> */}
+              {/* {bidders.map((avt, key) => (
                 <Avatar key={key} src={avt} />
-              ))}
-            </AvatarGroup>
+              ))} */}
+            {/* </AvatarGroup> */}
           </Flex>
           <Flex
             align='start'
@@ -122,7 +110,8 @@ export default function NFT(props) {
             }}
             mt='25px'>
             <Text fontWeight='700' fontSize='sm' color={textColorBid}>
-              Current Bid: {currentbid}
+              {rating}
+              {currentbid}
             </Text>
             <Link
               href={download}

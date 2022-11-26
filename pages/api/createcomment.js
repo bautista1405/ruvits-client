@@ -9,7 +9,7 @@ const createStore = async (req, res) => {
     
     const { body } = req;
     // console.log(body)
-    const {comment, productOwner, user, productTitle, rating} = body
+    const {comment, productOwner, user, productTitle, rating, category, content, price, productName, productDate} = body
     // const {product} = body;
     // const parsedProduct = JSON.parse(product)
     // console.log(body);
@@ -52,7 +52,27 @@ const createStore = async (req, res) => {
            date: {
             type: String,
             required: true,
-           }   
+           },
+           category: {
+            type: String,
+            required: true,
+           },
+           content: {
+            type: String,
+            required: true
+           },
+           price: {
+            type: Number,
+            required: true,
+           },
+           productName: {
+            type: String,
+            required: true
+           },
+           productDate: {
+            type: String,
+            required: true,
+           }
         });
         
         mongoose.models = {}
@@ -64,7 +84,12 @@ const createStore = async (req, res) => {
             user,
             productTitle,
             rating: rating || null,
-            date: dayjs().format("DD-MM-YYYY")
+            date: dayjs().format("DD-MM-YYYY"),
+            category,
+            content,
+            price,
+            productName,
+            productDate
         })
         
             

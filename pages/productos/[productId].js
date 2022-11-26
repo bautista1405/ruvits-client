@@ -34,6 +34,7 @@ import { Formik, Form, useFormik } from "formik";
 import axios from "axios";
 import swal from 'sweetalert';
 import ReactStars from 'react-stars'
+import dayjs from "dayjs";
 
 
 const ProductDetails = ({ product }) => {
@@ -215,9 +216,14 @@ const ProductDetails = ({ product }) => {
         productOwner: '',
         productTitle: '',
         rating: Number,
+        category: '',
+        content: '',
+        price: Number,
+        productName: '',
+        productDate: '',
         
     },
-    onSubmit: (values = {comment, user, productOwner, productTitle, rating}) => {
+    onSubmit: (values = {comment, user, productOwner, productTitle, rating, category, content, price, productName, productDate}) => {
 
       if(session) {
 
@@ -232,6 +238,11 @@ const ProductDetails = ({ product }) => {
                       productOwner: product.vendor,
                       productTitle: product.title,
                       rating: values.rating,
+                      category: product.category,
+                      content: product.content[0],
+                      price: product.price,
+                      productName: product.productName,
+                      productDate: product.creationDate,
                   },
                   {headers}
                   )

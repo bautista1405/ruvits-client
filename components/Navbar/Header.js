@@ -83,7 +83,7 @@ export default function WfWf() {
         onClick={mobileNav.onClose}
       />
 
-      <Link href='/descubre'>
+      <Link href='/descubrir'>
         <Button w="full" variant="ghost" leftIcon={<RiCompassDiscoverLine />}>
           Descubrir
         </Button>
@@ -121,7 +121,7 @@ export default function WfWf() {
                   _focus={{ boxShadow: "none" }}
                   colorScheme='gray' variant='ghost'
                 >
-                  <Link display="flex" alignItems="center" href="/descubre">
+                  <Link display="flex" alignItems="center" href="/descubrir">
                     Descubrir
                   </Link>
                 </Button>

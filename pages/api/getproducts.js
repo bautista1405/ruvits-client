@@ -66,7 +66,7 @@ export default async function getProducts(request, res) {
         
         const countPromise = Product.estimatedDocumentCount(qry);
 
-        const itemsPromise = Product.find(qry).limit(ITEMS_PER_PAGE).skip(skip);
+        const itemsPromise = Product.find(qry).sort({_id:-1}).limit(ITEMS_PER_PAGE).skip(skip);
 
         const [count, items] = await Promise.all([countPromise, itemsPromise]);
 
