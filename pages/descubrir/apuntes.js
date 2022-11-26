@@ -426,7 +426,7 @@ export default function Notes() {
                       
 
                       return (
-                        <Tbody>
+                        <Tbody key={vendor._id} >
                               <Tr>
                                 <Td>{vendor._id}</Td>
                                 <Td textAlign='center'> {avgValue} </Td>
