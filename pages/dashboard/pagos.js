@@ -10,6 +10,7 @@ import {
   Tooltip,
   Box,
   Button,
+  Spinner,
 } from '@chakra-ui/react'
 
 import {
@@ -31,6 +32,7 @@ const Payments = () => {
   const getAccessToken = '/api/gettoken'
 
   const [tokens, setTokens] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect( () => {
       if(session) {
@@ -38,11 +40,28 @@ const Payments = () => {
           axios.get(getAccessToken)
           .then((res) => {
               setTokens(res?.data?.getToken || [])
+              setIsLoading(false);
           })
       }
     }, [getAccessToken])
 
     const token = tokens.filter(token => token.email === session.user.email)
+
+    if (isLoading) {
+        return (
+          <Flex alignItems="center" justifyContent="center" h="54vh">
+            
+            <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                  />
+          </Flex>
+        )
+        
+    }
 
 
     const deleteToken = () => { 

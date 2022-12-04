@@ -26,6 +26,7 @@ import {
   Checkbox,
   RadioGroup,
   Radio,
+  Spinner,
 } from "@chakra-ui/react";
 
 import axios from 'axios'
@@ -46,6 +47,7 @@ export default function ProductForm() {
   const getAccessToken = '/api/gettoken'
 
   const [tokens, setTokens] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
     useEffect( () => {
         if(session) {
@@ -53,11 +55,27 @@ export default function ProductForm() {
             axios.get(getAccessToken)
             .then((res) => {
                 setTokens(res?.data?.getToken || [])
+                setIsLoading(false);
             })
         }
     }, [getAccessToken])
 
     const token = tokens.filter(token => token.email === session.user.email)
+
+    if (isLoading) {
+      return (
+        <Flex alignItems="center" justifyContent="center" h="54vh">
+          
+          <Spinner
+                  thickness='4px'
+                  speed='0.65s'
+                  emptyColor='gray.200'
+                  color='blue.500'
+                  size='xl'
+                />
+        </Flex>
+      )
+    }
 
     const headers = {
         'Content-Type': 'multipart/form-data',

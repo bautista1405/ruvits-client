@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 // import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Head from 'next/head';
-import { Flex, Text, Box, Grid, Icon, GridItem, SimpleGrid, Image, Divider,
+import { Flex, Text, Box, Grid, Icon, GridItem, SimpleGrid, Image, Divider, Spinner,
   Link,
   useColorModeValue, } from '@chakra-ui/react'
 import axios from 'axios'
@@ -34,6 +34,7 @@ const StoreOwner = ({ user, rating }) => {
   const [products, setProducts] = useState([]);
   const [sales, setSales] = useState([]);
   const [ownerRating, setOwnerRating] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const textColorPrimary = useColorModeValue("secondaryGray.900", "white");
   const textColorSecondary = "gray.400";
@@ -41,21 +42,25 @@ const StoreOwner = ({ user, rating }) => {
   const bg = useColorModeValue("white", "navy.700");
 
     useEffect(() => {
-        
+          
           axios.get(getStores)
             .then((res) => {
-                setStores(res?.data?.getStores || [])
+              setStores(res?.data?.getStores || [])
+              setIsLoading(false);
             })
           axios.get(getStoreProducts).then((res) => {
+            
               setProducts(res?.data?.getProducts || []);
               
             })
           axios.get(getSales)
             .then((res) => {
+              
                 setSales(res?.data?.getSales || [])
             })
           axios.get(getRating)
             .then((res) => {
+              
                 setOwnerRating(res?.data?.rating || [])
             })
         
@@ -66,7 +71,23 @@ const StoreOwner = ({ user, rating }) => {
     const storeSales = sales.filter(sale => sale.vendor === user[0].name)
     const storeRating = ownerRating.filter(rating => rating._id === user[0].name)
 
-    console.log(storeRating)
+    // console.log(storeRating)
+
+    if (isLoading) {
+      return (
+        <Flex alignItems="center" justifyContent="center" h="54vh">
+          
+          <Spinner
+                  thickness='4px'
+                  speed='0.65s'
+                  emptyColor='gray.200'
+                  color='blue.500'
+                  size='xl'
+                />
+        </Flex>
+      )
+      
+    }
 
   return (
     <>    

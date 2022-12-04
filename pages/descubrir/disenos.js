@@ -26,7 +26,7 @@ import {
 } from "@chakra-ui/react";
 
 // Custom components
-import Banner from "../../components/Categories/components/Banner";
+import Banner from "../../components/Categories/components/DesignBanner";
 
 import NFT from "../../components/store/components/card/NFT";
 import Card from "../../components/store/components/card/Card";
@@ -77,13 +77,13 @@ export default function Designs() {
   }, [categorizedProducts, getRating, getVendorRating])
   
   
-  const ratedProducts = rating.filter(rating => rating.category[0] === 'Apuntes/Trabajos')
+  const ratedProducts = rating.filter(rating => rating.category[0] === 'Ilustraciones/Diseños')
   
   const topRatedProducts = ratedProducts.filter(rating => rating.avg_val >= 3)
   
-  const filteredProducts = products.filter(product => product.category === 'Apuntes/Trabajos')
+  const filteredProducts = products.filter(product => product.category === 'Ilustraciones/Diseños')
   
-  const topVendors = vendors.filter(vendors => vendors.category[0] === 'Apuntes/Trabajos')
+  const topVendors = vendors.filter(vendors => vendors.category[0] === 'Ilustraciones/Diseños')
   
   console.log(topVendors)
   
