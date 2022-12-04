@@ -26,6 +26,7 @@ import {
   Checkbox,
   RadioGroup,
   Radio,
+  Spinner,
 } from "@chakra-ui/react";
 
 import axios from 'axios'
@@ -46,6 +47,7 @@ export default function ProductForm() {
   const getAccessToken = '/api/gettoken'
 
   const [tokens, setTokens] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
     useEffect( () => {
         if(session) {
@@ -53,23 +55,25 @@ export default function ProductForm() {
             axios.get(getAccessToken)
             .then((res) => {
                 setTokens(res?.data?.getToken || [])
+                setIsLoading(false);
             })
         }
     }, [getAccessToken])
 
     const token = tokens.filter(token => token.email === session.user.email)
 
+    
     const headers = {
-        'Content-Type': 'multipart/form-data',
+      'Content-Type': 'multipart/form-data',
     }
-
-  
+    
+    
     token.map((token) => {
       if(typeof window !== 'undefined') {
         const vendorToken = localStorage.setItem('vendorAccessToken', token.mpAccessToken);
       }
     })
-
+    
     const formik =  useFormik({
       initialValues: {
         vendor: session.user.name,
@@ -88,8 +92,8 @@ export default function ProductForm() {
             '/api/createproduct', 
             {
               
-
-                
+              
+              
   
                   vendor: values.vendor,
                   title: values.title.replace(/\s+/g, ''),
@@ -101,17 +105,17 @@ export default function ProductForm() {
                   content: values.content, 
                   mpAccessToken: localStorage.getItem('vendorAccessToken'),
                   creationDate: values.creationDate,
-                
-              
-            },
-            {headers}
-            )
-            .then( () => {
-              swal({
-                title: "Tu producto fue exitosamente creado.",
-                text: "¡Tu producto ya está online!",
-                icon: "success",
-              }).then(() => {router.push('/dashboard')})
+                  
+                  
+                },
+                {headers}
+                )
+                .then( () => {
+                  swal({
+                    title: "Tu producto fue exitosamente creado.",
+                    text: "¡Tu producto ya está online!",
+                    icon: "success",
+                  }).then(() => {router.push('/dashboard')})
             })
             
           } catch(res) {
@@ -124,22 +128,25 @@ export default function ProductForm() {
               }).then(() => {router.push('/dashboard')})
             }
           }    
-      },
-    });
-
-    // useEffect(() => {
-    //   setTimeout(() => {
-    //     token.length == 0 ? (
-    //       swal({
-    //         title: "Oopss. Parece que todavía no vinculaste tu cuenta de Mercado Pago.",
-    //         text: "Vinculá tu cuenta e intentá de nuevo.",
-    //         icon: "warning",
-    //       }).then(() => {router.push('/dashboard/pagos')})
-    //     ) : ("d")
-    //   }, (5000))
-    // }, [])
-    
-    
+        },
+      });
+      
+      
+      if (isLoading) {
+        return (
+          <Flex alignItems="center" justifyContent="center" h="54vh">
+            
+            <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                  />
+          </Flex>
+        )
+      }
+      
     
     
     return (
