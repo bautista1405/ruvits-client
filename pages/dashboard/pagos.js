@@ -47,21 +47,21 @@ const Payments = () => {
 
     const token = tokens.filter(token => token.email === session.user.email)
 
-    // if (isLoading) {
-    //     return (
-    //       <Flex alignItems="center" justifyContent="center" h="54vh">
+    if (isLoading) {
+        return (
+          <Flex alignItems="center" justifyContent="center" h="54vh">
             
-    //         <Spinner
-    //                 thickness='4px'
-    //                 speed='0.65s'
-    //                 emptyColor='gray.200'
-    //                 color='blue.500'
-    //                 size='xl'
-    //               />
-    //       </Flex>
-    //     )
+            <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                  />
+          </Flex>
+        )
         
-    // }
+    }
 
 
     const deleteToken = () => { 
@@ -205,32 +205,15 @@ const Payments = () => {
                             borderRadius="5px"
                             boxShadow='sm'
                         >
-
-                            {isLoading && 
+                            <p>
                             
-                                <Spinner
-                                    thickness='4px'
-                                    speed='0.65s'
-                                    emptyColor='gray.200'
-                                    color='blue.500'
-                                    size='xl'
-                                />
-                            }
-
-                            {!isLoading && 
-                                <>
-                                    <p>
-                                    
-                                    <b>Ya tenes tu cuenta de Mercado Pago vinculada con la plataforma.</b>
-                                    
-                                    </p>
-                                
-                                    <Button colorScheme='cyan' variant='outline' mt={10} onClick={deleteToken}>
-                                        Desvincular mi cuenta de Mercado Pago    
-                                    </Button> 
-                                </>
-                            }
-
+                            <b>Ya tenes tu cuenta de Mercado Pago vinculada con la plataforma.</b>
+                            
+                            </p>
+                            
+                                <Button colorScheme='cyan' variant='outline' mt={10} onClick={deleteToken}>
+                                    Desvincular mi cuenta de Mercado Pago    
+                                </Button> 
                             
                         </Flex>
             
