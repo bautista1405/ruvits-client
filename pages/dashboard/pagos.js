@@ -217,15 +217,20 @@ const Payments = () => {
                                 />
                             }
 
-                            <p>
-                            
-                            <b>Ya tenes tu cuenta de Mercado Pago vinculada con la plataforma.</b>
-                            
-                            </p>
-                            
-                                <Button colorScheme='cyan' variant='outline' mt={10} onClick={deleteToken}>
-                                    Desvincular mi cuenta de Mercado Pago    
-                                </Button> 
+                            {!isLoading && 
+                                <>
+                                    <p>
+                                    
+                                    <b>Ya tenes tu cuenta de Mercado Pago vinculada con la plataforma.</b>
+                                    
+                                    </p>
+                                
+                                    <Button colorScheme='cyan' variant='outline' mt={10} onClick={deleteToken}>
+                                        Desvincular mi cuenta de Mercado Pago    
+                                    </Button> 
+                                </>
+                            }
+
                             
                         </Flex>
             
