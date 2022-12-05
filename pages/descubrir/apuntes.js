@@ -22,7 +22,7 @@ import {
   Th,
   Thead,
   Tr,
-  TableContainer, TableCaption,
+  TableContainer, TableCaption, Spinner,
 } from "@chakra-ui/react";
 
 // Custom components
@@ -53,6 +53,7 @@ export default function Notes() {
   const [products, setProducts] = useState([]);
   const [rating, setRating] = useState([]);
   const [vendors, setVendors] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -61,13 +62,15 @@ export default function Notes() {
   }
 
   useEffect(() => {
+    
     axios.get(categorizedProducts, {headers}).then((res) => {
         setProducts(res?.data?.items || []);
-        
+        setIsLoading(false);
     })
     axios.get(getRating)
     .then((res) => {
       setRating(res?.data?.rating || [])
+      setIsLoading(false);
     })
     axios.get(getVendorRating)
     .then((res) => {
@@ -85,7 +88,7 @@ export default function Notes() {
   
   const topVendors = vendors.filter(vendors => vendors.category[0] === 'Apuntes/Trabajos')
   
-  console.log(topVendors)
+  // console.log(topVendors)
   
   return (
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }} bg='gray.200' p={10}>
@@ -146,6 +149,17 @@ export default function Notes() {
             </Flex>
             
             <SimpleGrid columns={{ base: 1, md: 3 }} gap='20px' >
+
+              {isLoading && 
+              
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                />
+              }
                       {topRatedProducts.length > 0 && topRatedProducts.map((product) => {
                         
                         const avgValue = Number.parseFloat(product.avg_val).toFixed(1);
@@ -279,6 +293,17 @@ export default function Notes() {
               columns={{ base: 1, md: 3 }}
               gap='20px'
               mb={{ base: "20px", xl: "0px" }}>
+
+              {isLoading && 
+                
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                />
+              }
 
               {filteredProducts.map((product) => {
                 return (

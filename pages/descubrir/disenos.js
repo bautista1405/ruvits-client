@@ -22,7 +22,7 @@ import {
   Th,
   Thead,
   Tr,
-  TableContainer, TableCaption,
+  TableContainer, TableCaption, Spinner,
 } from "@chakra-ui/react";
 
 // Custom components
@@ -53,6 +53,7 @@ export default function Designs() {
   const [products, setProducts] = useState([]);
   const [rating, setRating] = useState([]);
   const [vendors, setVendors] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -61,13 +62,15 @@ export default function Designs() {
   }
 
   useEffect(() => {
+    
     axios.get(categorizedProducts, {headers}).then((res) => {
         setProducts(res?.data?.items || []);
-        
+        setIsLoading(false);
     })
     axios.get(getRating)
     .then((res) => {
       setRating(res?.data?.rating || [])
+      setIsLoading(false);
     })
     axios.get(getVendorRating)
     .then((res) => {
@@ -146,6 +149,18 @@ export default function Designs() {
             </Flex>
             
             <SimpleGrid columns={{ base: 1, md: 3 }} gap='20px' >
+
+              {isLoading && 
+                
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                />
+              }
+
                       {topRatedProducts.length > 0 && topRatedProducts.map((product) => {
                         
                         const avgValue = Number.parseFloat(product.avg_val).toFixed(1);
@@ -278,7 +293,19 @@ export default function Designs() {
             <SimpleGrid
               columns={{ base: 1, md: 3 }}
               gap='20px'
-              mb={{ base: "20px", xl: "0px" }}>
+              mb={{ base: "20px", xl: "0px" }}
+            >
+
+              {isLoading && 
+                
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                />
+              }
 
               {filteredProducts.map((product) => {
                 return (
