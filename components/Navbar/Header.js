@@ -89,6 +89,18 @@ export default function WfWf() {
         </Button>
       </Link>
 
+      <Link href='/descubrir/disenos'>
+        <Button w="full" variant="ghost" leftIcon={<RiCompassDiscoverLine />}>
+          Diseños
+        </Button>
+      </Link>
+
+      <Link href='/descubrir/apuntes'>
+        <Button w="full" variant="ghost" leftIcon={<RiCompassDiscoverLine />}>
+          Apuntes
+        </Button>
+      </Link>
+
       {/* <Link href='/blog'>
       <Button w="full" variant="ghost" leftIcon={<GrBlog />}>
         Blog
@@ -107,6 +119,23 @@ export default function WfWf() {
             
           </Link>
           {/* <Spacer /> */}
+
+          <Box display={{ base: "none", md: "inline-flex" }} >
+            <Flex alignItems="center" justifyContent="center" mx="auto" margin="30px">
+              <Link href='/descubrir/disenos'>
+                <Button variant='ghost'>
+                  Diseños
+                </Button>
+              </Link>
+
+              <Link href='/descubrir/apuntes'>
+                <Button variant='ghost'>
+                  Apuntes
+                </Button>
+              </Link>
+            </Flex>
+          </Box>
+
           <Box display="flex" alignItems="center">
           <HStack spacing={2}>
           <Box display={{ base: "none", md: "inline-flex" }} >
@@ -189,7 +218,7 @@ export default function WfWf() {
             /> */}
             <IconButton
               display={{ base: "flex", md: "none" }}
-              aria-label="Open menu"
+              aria-label="Abrir menu"
               fontSize="20px"
               color={useColorModeValue("gray.800", "inherit")}
               variant="ghost"

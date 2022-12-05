@@ -62,7 +62,7 @@ const Hero = () => {
                 color={useColorModeValue("brand.600", "gray.400")}
                 letterSpacing="wider"
               >
-                Puede ser cualquier tipo de archivo digital: desde PDFs, PPTs, hasta videos, audios, imágenes, etcétera. <br />
+                
                 Apuntes, guías, manuales, trabajos, beats, snippets de código, software (apps, plugins, entre otros), clases, 
                 cursos, diseños, ilustraciones. 
               

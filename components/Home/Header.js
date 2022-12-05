@@ -71,9 +71,9 @@ const Header = () => {
           letterSpacing="wider"
         >
           Vendé tus productos de una manera simple. Asociá tu cuenta de Mercado Pago y empezá a vender. <br />
-          Acá te dejamos una  <b><Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link></b> para 
-          crear tu primer producto y te contamos <b><Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
-            cómo funciona Ruvits.</Link></b>
+          Acá te dejamos una  <b style={{textDecoration: 'underline'}}><Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link></b> para 
+          crear tu primer producto y te contamos <b style={{textDecoration: 'underline'}}><Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
+          cómo funciona Ruvits.</Link></b>
 
         </chakra.p>
         

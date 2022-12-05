@@ -279,6 +279,46 @@ const ProductDetails = ({ product }) => {
 
   // console.log(rating)
 
+  const deleteComment = () => {
+    comments.map(comment => {
+        const id = comment._id
+        swal({
+          title: "¿Estás seguro que querés eliminar tu comentario?",
+          buttons: {
+            cancel: "No",
+            positive: {
+              text: "Sí",
+              value: "positive",
+            }
+          }, 
+          icon: "warning",
+          }).then( (value) => {
+
+            switch (value) {
+           
+              case "positive":
+                fetch('/api/deletecomment', {
+                    
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                    body: JSON.stringify({
+                        id: id
+                    }),
+                }).then( () => {
+
+                  swal("Tu comentario fue eliminado.", "", "success")
+                  .then(() => {router.push('/dashboard')})
+                })
+                break;
+           
+              default:
+                swal("Tu comentario no fue eliminado.", "", "success");
+            }
+
+          })
+    })
+  }
+
   return (
     <>
       <div >
@@ -686,6 +726,7 @@ const ProductDetails = ({ product }) => {
         {product.map((product) => {
           const productComments = comments.filter(comment => comment.productTitle == product.title)
           // console.log(productComments)
+          
           return (
 
             <Container 
@@ -740,32 +781,53 @@ const ProductDetails = ({ product }) => {
                     
                   }}>
 
-                  <Stack>
-                    <Flex
-                      direction={'column'}
-                      textAlign={'left'}
-                      justifyContent={'space-between'}
-                      overflow='hidden'
-                      maxW='400px'
-                    >
+                    <Stack>
+                      <Flex
+                        direction={'column'}
+                        textAlign={'left'}
+                        justifyContent={'space-between'}
+                        overflow='hidden'
+                        maxW='400px'
+                      >
 
-                      {comment.comment}
-                      
-                    </Flex>
-                    <Flex pt={5}>
-                      <Text color='gray.400' fontSize={13}>
-                        {comment.date}
+                        {comment.comment}
+                        
+                      </Flex>
+                      <Flex pt={5}>
+                        <Text color='gray.400' fontSize={13}>
+                          {comment.date}
+                        </Text>
+                      </Flex>
+                      <Text 
+                        onClick={deleteComment} 
+                        colorScheme='red' 
+                        style={
+                          {
+                            cursor: 'pointer',
+                            position:'relative',
+                            bottom:'1px'
+                          }
+                        } 
+                        color='gray.500'
+                        _hover={{
+                          textDecoration: 'underline'
+                        }}
+                        
+                      >
+                        Eliminar
                       </Text>
-                    </Flex>
-                  </Stack>
+                    </Stack>
 
-                    <ReactStars
-                      count={5}
-                      value={comment.rating}
-                      size={24}
-                      color2={'#ffd700'} 
-                      edit={false}
-                    />
+                    <Box >
+
+                      <ReactStars
+                        count={5}
+                        value={comment.rating}
+                        size={24}
+                        color2={'#ffd700'} 
+                        edit={false}
+                      />
+                    </Box>
                   
                   </Flex>
                    
