@@ -798,6 +798,9 @@ const ProductDetails = ({ product }) => {
                           {comment.date}
                         </Text>
                       </Flex>
+
+                      {session && session.user.name == comment.user && 
+                      
                       <Text 
                         onClick={deleteComment} 
                         colorScheme='red' 
@@ -816,6 +819,8 @@ const ProductDetails = ({ product }) => {
                       >
                         Eliminar
                       </Text>
+                      }
+
                     </Stack>
 
                     <Box >
