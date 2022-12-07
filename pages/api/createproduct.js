@@ -25,7 +25,7 @@ const filesUpload = async (req, res) => {
 
     // Use the body-parser middleware to parse incoming request bodies
   server.use(bodyParser.json({
-    limit: '50mb', // Set the maximum allowed request size to 50MB
+    limit: 5000000, // Set the maximum allowed request size to 50MB
   }));
 
     aws.config.update({
