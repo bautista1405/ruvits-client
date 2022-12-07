@@ -1,3 +1,11 @@
+const express = require('express');
+const next = require('next');
+const bodyParser = require('body-parser');
+
+const app = next({ dev });
+const handle = app.getRequestHandler();
+const server = express();
+
 import Multer from "multer";
 import { getSession } from "next-auth/client";
 import mongoose from 'mongoose';
@@ -19,11 +27,12 @@ export const config = {
     },
 }
 
-.api.bodyParser.json({
-    limit: '50mb', // Set the maximum allowed request size to 50MB
-})
-
 const filesUpload = async (req, res) => {
+
+    // Use the body-parser middleware to parse incoming request bodies
+  server.use(bodyParser.json({
+    limit: '50mb', // Set the maximum allowed request size to 50MB
+  }));
 
     aws.config.update({
         secretAccessKey: process.env.S3_SECRET,
