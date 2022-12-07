@@ -16,9 +16,9 @@ const Home = () => {
       <Box margin="auto">
         
         <Header />
-        <TopRatedProducts />
+        {/* <TopRatedProducts /> */}
         <Hero />
-        <TopRatedNotes />
+        {/* <TopRatedNotes /> */}
         <CTA />
         
       </Box>
