@@ -15,11 +15,13 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 
 export const config = {
     api: {
-      bodyParser: {
-        limit: '50mb'
-      }
+      bodyParser: false,
     },
 }
+
+.api.bodyParser.json({
+    limit: '50mb', // Set the maximum allowed request size to 50MB
+})
 
 const filesUpload = async (req, res) => {
 
