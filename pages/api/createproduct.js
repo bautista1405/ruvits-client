@@ -21,12 +21,6 @@ const { createProduct } = require('../../services/product');
 
 import fileMiddleware from "../../middlewares/fileMiddleware";
 
-export const config = {
-    api: {
-      bodyParser: false,
-    },
-}
-
 const filesUpload = async (req, res) => {
 
     // Use the body-parser middleware to parse incoming request bodies
