@@ -17,7 +17,7 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '50mb' // Set desired value here
+            sizeLimit: '5000000' // Set desired value here
         }
     }
 }
