@@ -49,7 +49,7 @@ const CTA = () => {
           textTransform="uppercase"
           fontWeight="extrabold"
         >
-          ¿Querés aprender y no sabés por dónde empezar?
+          ¿Querés aprender sobre IT y no sabés por dónde empezar?
         </chakra.span>
         <chakra.h1
           mb={4}

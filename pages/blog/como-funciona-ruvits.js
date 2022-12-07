@@ -102,7 +102,15 @@ const BlogPost = ({ frontMatter, source }) => {
             </Flex>
           </Box>
 
-          <Flex justify="center" >
+          <Flex 
+            justify="center"
+            shadow="dark-lg"
+            rounded={[null, "md"]}
+            borderRadius="5px" 
+            p={10}
+            bg="#F9FAFB"
+            mt={10}
+          >
             <Box as="article">
               <Text>
                 

@@ -102,7 +102,15 @@ const BlogPost = ({ frontMatter, source }) => {
             </Flex>
           </Box>
 
-          <Flex justify="center" >
+          <Flex 
+            justify="center"
+            shadow="dark-lg"
+            rounded={[null, "md"]}
+            borderRadius="5px" 
+            p={10}
+            bg="#F9FAFB"
+            mt={10}
+          >
             <Box as="article">
               <Text>
                 
@@ -119,7 +127,7 @@ const BlogPost = ({ frontMatter, source }) => {
                 <br />
                 <br />
                 3. Volviendo al dashboard, hacé click en el botón &quot;Nuevo producto&quot;: allí agregá
-                toda la información correspondiente a tu producto; nombre, descripción, precio,
+                toda la información correspondiente a tu producto; nombre, descripción, precio, categoría,
                 foto de portada y contenido (archivos como videos, imágenes, PDFs, MP4, PPTs).
 
                 <br />

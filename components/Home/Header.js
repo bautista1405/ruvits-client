@@ -23,7 +23,11 @@ import peep5 from '../../assets/peep5-bg.png'
 
 const Header = () => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={50} pl={20}>
+    <SimpleGrid 
+      columns={{ base: 1, md: 2 }} 
+      spacing={50} 
+      pl={20}
+    >
       <Flex display={["none", "none", "block", "block"]} ml={20}>
         <Image
           src={peep5}
@@ -44,39 +48,41 @@ const Header = () => {
         // py={24}
         // zIndex={3}
         mr={20}
-      >
-        <chakra.span
-          color={useColorModeValue("brand.600", "gray.300")}
-          fontSize="lg"
-          textTransform="uppercase"
-          fontWeight="extrabold"
-        >
-          ¿Sos creador de contenido digital?
-        </chakra.span>
-        <chakra.h1
-          mb={4}
-          fontSize={{ base: "4xl", md: "4xl", lg: "5xl" }}
-          fontWeight="bold"
-          color={useColorModeValue("brand.600", "gray.300")}
-          lineHeight="shorter"
-          textShadow="2px 0 currentcolor"
-        >
-          Crealo una vez, vendelo muchas veces.
-        </chakra.h1>
-        <chakra.p
-          pr={{ base: 0, lg: 16 }}
-          mb={4}
-          fontSize="lg"
-          color={useColorModeValue("brand.600", "gray.400")}
-          letterSpacing="wider"
-        >
-          Vendé tus productos de una manera simple. Asociá tu cuenta de Mercado Pago y empezá a vender. <br />
-          Acá te dejamos una  <b style={{textDecoration: 'underline'}}><Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link></b> para 
-          crear tu primer producto y te contamos <b style={{textDecoration: 'underline'}}><Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
-          cómo funciona Ruvits.</Link></b>
-
-        </chakra.p>
         
+      >
+        <Box> 
+          <chakra.span
+            color={useColorModeValue("brand.600", "gray.300")}
+            fontSize="lg"
+            textTransform="uppercase"
+            fontWeight="extrabold"
+          >
+            ¿Sos creador de contenido digital?
+          </chakra.span>
+          <chakra.h1
+            mb={4}
+            fontSize={{ base: "4xl", md: "4xl", lg: "5xl" }}
+            fontWeight="bold"
+            color={useColorModeValue("brand.600", "gray.300")}
+            lineHeight="shorter"
+            textShadow="2px 0 currentcolor"
+          >
+            Crealo una vez, vendelo muchas veces.
+          </chakra.h1>
+          <chakra.p
+            pr={{ base: 0, lg: 16 }}
+            mb={4}
+            fontSize="lg"
+            color={useColorModeValue("brand.600", "gray.400")}
+            letterSpacing="wider"
+          >
+            Vendé tus productos de una manera simple. Asociá tu cuenta de Mercado Pago y empezá a vender. <br />
+            Acá te dejamos una  <b style={{textDecoration: 'underline'}}><Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link></b> para 
+            crear tu primer producto y te contamos <b style={{textDecoration: 'underline'}}><Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
+            cómo funciona Ruvits.</Link></b>
+
+          </chakra.p>
+        </Box> 
       </Flex>
     </SimpleGrid>
   );

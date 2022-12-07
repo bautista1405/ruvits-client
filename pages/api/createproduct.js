@@ -15,7 +15,9 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 
 export const config = {
     api: {
-      bodyParser: false,
+      bodyParser: {
+        limit: '50mb'
+      }
     },
 }
 
@@ -99,13 +101,13 @@ const filesUpload = async (req, res) => {
         mongoose.models = {}
         const Product = mongoose.model('products', ProductSchema);
     
-        console.log(req.body)
-        console.log(req.files)
+        // console.log(req.body)
+        // console.log(req.files)
         const newProduct = createProduct(req.body, req.files);
-        console.log(newProduct);
+        // console.log(newProduct);
         const product = new Product(newProduct);
         await product.save();
-        console.log(product)
+        // console.log(product)
         res.status(201).json({message: 'Producto dado de alta'})
         
 };
