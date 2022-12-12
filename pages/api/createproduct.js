@@ -14,13 +14,22 @@ const { createProduct } = require('../../services/product');
 
 import fileMiddleware from "../../middlewares/fileMiddleware";
 
+// export const config = {
+//     api: {
+//         bodyParser: {
+//             sizeLimit: '50mb' // Set desired value here
+//         }
+//     }
+// }
+
 export const config = {
     api: {
-        bodyParser: {
-            sizeLimit: '5000000' // Set desired value here
-        }
-    }
+      bodyParser: {
+        sizeLimit: '5000kb',
+      },
+    },
 }
+  
 
 const filesUpload = async (req, res) => {
 
