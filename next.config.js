@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   api: {
-    bodyParser: true,
+    bodyParser: {
+      sizeLimit: '5000'
+    }
   },
   webpack: (config, { nextRuntime }) => {
     // Undocumented property of next 12.
