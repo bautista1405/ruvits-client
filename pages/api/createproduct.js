@@ -121,7 +121,7 @@ export default filesUpload;
 export const config = {
     api: {
       bodyParser: {
-        sizeLimit: '5000'
+        sizeLimit: '5000kb'
       }
     },
 }
