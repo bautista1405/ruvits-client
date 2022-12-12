@@ -11,6 +11,7 @@ const path = require('path');
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const { createProduct } = require('../../services/product');
+const bodyParser = require('body-parser')
 
 import fileMiddleware from "../../middlewares/fileMiddleware";
 
@@ -21,7 +22,6 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 //         }
 //     }
 // }
-
 
 
 const filesUpload = async (req, res) => {
@@ -121,7 +121,7 @@ export default filesUpload;
 export const config = {
     api: {
       bodyParser: {
-        sizeLimit: '5000kb',
+       bodyLimit: '50mb'
       },
     },
 }
