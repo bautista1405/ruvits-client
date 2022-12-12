@@ -11,7 +11,7 @@ const path = require('path');
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const { createProduct } = require('../../services/product');
-const bodyParser = require('body-parser')
+import config from '../../next.config'
 
 import fileMiddleware from "../../middlewares/fileMiddleware";
 
