@@ -24,6 +24,14 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 // }
 
 
+export const config = {
+    api: {
+      bodyParser: {
+        sizeLimit: '5000kb'
+      }
+    },
+}
+
 const filesUpload = async (req, res) => {
 
     aws.config.update({
@@ -123,11 +131,3 @@ const filesUpload = async (req, res) => {
 
 
 export default filesUpload;
-
-export const config = {
-    api: {
-      bodyParser: {
-        sizeLimit: '5000kb'
-      }
-    },
-}
