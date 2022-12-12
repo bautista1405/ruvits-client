@@ -33,85 +33,91 @@ const filesUpload = async (req, res) => {
     });
     const s3 = new aws.S3();
 
-    const storage = multerS3({
-        acl: "public-read",
-        s3,
-        bucket: "bitsroad",
-        metadata: (req, file, cb) => {
-            cb(null, { fieldName: file.fieldname });
-        },
-        key: (req, file, cb) => {
-            const ext = path.extname(file.originalname);
-            cb(null, `${file.originalname}`);
-        }
-    });
-    
-    const upload = Multer({ storage: storage }).any('content');
-    
-    console.log(req.file, req.body)
-    
-    await fileMiddleware(req, res, upload);
-    
-    const db = process.env.NEXT_PUBLIC_MONGODB_URI
-    
-        // const conn = mongoose.connection;
-        
-        mongoose.connect(db, {  //connect to the db
-            useNewUrlParser: true,
-          useUnifiedTopology: true,
+    try {
+
+        const storage = multerS3({
+            acl: "public-read",
+            s3,
+            bucket: "bitsroad",
+            metadata: (req, file, cb) => {
+                cb(null, { fieldName: file.fieldname });
+            },
+            key: (req, file, cb) => {
+                const ext = path.extname(file.originalname);
+                cb(null, `${file.originalname}`);
+            }
         });
         
+        const upload = Multer({ storage: storage }).any('content');
         
-        const ProductSchema = new Schema({
-            title: {
-                type: String,
-                required: true,
-            },
-            productName: {
-                type: String,
-                required: true,
-            },
-            vendor: {
-                type: String,
-                required: true,
-            },
-            price: {
-                type: Number,
-                required: true,
-            },
-            description: {
-                type: String,
-                required: true,
-            },
-            category: {
-                type: String,
-                required: true,
-            },
-            content: {
-                type: [],
-                required: true,
-            },
-            mpAccessToken: {
-                type: String,
-                required: true,
-            },
-            creationDate: {
-                type: String,
-                required: true,
-            }   
-        });
+        console.log(req.file, req.body)
         
-        mongoose.models = {}
-        const Product = mongoose.model('products', ProductSchema);
+        await fileMiddleware(req, res, upload);
         
-        // console.log(req.body)
-        // console.log(req.files)
-        const newProduct = createProduct(req.body, req.files);
-        // console.log(newProduct);
-        const product = new Product(newProduct);
-        await product.save();
-        // console.log(product)
-        res.status(201).json({message: 'Producto dado de alta'})
+        const db = process.env.NEXT_PUBLIC_MONGODB_URI
+        
+            // const conn = mongoose.connection;
+            
+            mongoose.connect(db, {  //connect to the db
+                useNewUrlParser: true,
+              useUnifiedTopology: true,
+            });
+            
+            
+            const ProductSchema = new Schema({
+                title: {
+                    type: String,
+                    required: true,
+                },
+                productName: {
+                    type: String,
+                    required: true,
+                },
+                vendor: {
+                    type: String,
+                    required: true,
+                },
+                price: {
+                    type: Number,
+                    required: true,
+                },
+                description: {
+                    type: String,
+                    required: true,
+                },
+                category: {
+                    type: String,
+                    required: true,
+                },
+                content: {
+                    type: [],
+                    required: true,
+                },
+                mpAccessToken: {
+                    type: String,
+                    required: true,
+                },
+                creationDate: {
+                    type: String,
+                    required: true,
+                }   
+            });
+            
+            mongoose.models = {}
+            const Product = mongoose.model('products', ProductSchema);
+            
+            // console.log(req.body)
+            // console.log(req.files)
+            const newProduct = createProduct(req.body, req.files);
+            // console.log(newProduct);
+            const product = new Product(newProduct);
+            await product.save();
+            // console.log(product)
+            res.status(201).json({message: 'Producto dado de alta'})
+    } catch(error) {
+        console.log(error)
+    }
+
         
 };
 
