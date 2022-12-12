@@ -2,9 +2,7 @@
 
 const nextConfig = {
   api: {
-    bodyParser: {
-      sizeLimit: '5000'
-    }
+    bodyParser: true,
   },
   webpack: (config, { nextRuntime }) => {
     // Undocumented property of next 12.
