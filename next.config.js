@@ -17,6 +17,9 @@ const nextConfig = {
       },
     };
   },
+  serverRuntimeConfig: {
+    bodyLimit: '50mb'
+  },
   reactStrictMode: true,
   images: {
     domains: ['lh3.googleusercontent.com', 'bitsroad.s3.amazonaws.com'],
