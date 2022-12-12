@@ -22,14 +22,7 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 //     }
 // }
 
-export const config = {
-    api: {
-      bodyParser: {
-        sizeLimit: '5000kb',
-      },
-    },
-}
-  
+
 
 const filesUpload = async (req, res) => {
 
@@ -54,21 +47,21 @@ const filesUpload = async (req, res) => {
     });
     
     const upload = Multer({ storage: storage }).any('content');
-  
+    
     console.log(req.file, req.body)
-  
+    
     await fileMiddleware(req, res, upload);
-
+    
     const db = process.env.NEXT_PUBLIC_MONGODB_URI
-
+    
         // const conn = mongoose.connection;
-      
+        
         mongoose.connect(db, {  //connect to the db
-          useNewUrlParser: true,
+            useNewUrlParser: true,
           useUnifiedTopology: true,
         });
-      
-
+        
+        
         const ProductSchema = new Schema({
             title: {
                 type: String,
@@ -110,7 +103,7 @@ const filesUpload = async (req, res) => {
         
         mongoose.models = {}
         const Product = mongoose.model('products', ProductSchema);
-    
+        
         // console.log(req.body)
         // console.log(req.files)
         const newProduct = createProduct(req.body, req.files);
@@ -124,3 +117,11 @@ const filesUpload = async (req, res) => {
 
 
 export default filesUpload;
+
+export const config = {
+    api: {
+      bodyParser: {
+        sizeLimit: '5000kb',
+      },
+    },
+}
