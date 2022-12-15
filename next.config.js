@@ -19,7 +19,7 @@ const nextConfig = {
   },
   serverRuntimeConfig: {
     bodyParser: {
-      sizeLimit: '50mb'
+      limit: '50mb'
     }
   },
   reactStrictMode: true,
