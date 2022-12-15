@@ -17,10 +17,8 @@ const nextConfig = {
       },
     };
   },
-  serverRuntimeConfig: {
-    bodyParser: {
-      limit: '50mb'
-    }
+  server: {
+    maxPayload: 50485760 // 50MB
   },
   reactStrictMode: true,
   images: {
