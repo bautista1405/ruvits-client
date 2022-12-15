@@ -17,13 +17,13 @@ import { config } from 'next/config'
 
 import fileMiddleware from "../../middlewares/fileMiddleware";
 
-// export const config = {
-//     api: {
-//         bodyParser: {
-//             sizeLimit: '50mb' // Set desired value here
-//         }
-//     }
-// }
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '50mb' // Set desired value here
+        }
+    }
+}
 
 
 // export const config = {
@@ -34,7 +34,7 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 //     },
 // }
 
-config.api.bodyParser.sizeLimit = '50mb';
+// config.api.bodyParser.sizeLimit = '50mb';
 
 const filesUpload = async (req, res) => {
 
