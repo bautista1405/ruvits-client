@@ -12,6 +12,8 @@ const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const { createProduct } = require('../../services/product');
 
+import { config } from 'next/config'
+
 
 import fileMiddleware from "../../middlewares/fileMiddleware";
 
@@ -32,10 +34,11 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 //     },
 // }
 
-export const config = { api: { bodyParser: { sizeLimit: '25mb' } } } // Set desired value here
 
 const filesUpload = async (req, res) => {
-
+    
+    config.api.bodyParser.sizeLimit = '50mb';
+    
     aws.config.update({
         secretAccessKey: process.env.S3_SECRET,
         accessKeyId: process.env.S3_ACCESS_KEY,
