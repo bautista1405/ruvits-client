@@ -34,11 +34,10 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 //     },
 // }
 
+config.api.bodyParser.sizeLimit = '50mb';
 
 const filesUpload = async (req, res) => {
-    
-    config.api.bodyParser.sizeLimit = '50mb';
-    
+
     aws.config.update({
         secretAccessKey: process.env.S3_SECRET,
         accessKeyId: process.env.S3_ACCESS_KEY,
