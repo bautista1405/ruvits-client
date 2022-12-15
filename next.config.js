@@ -18,7 +18,9 @@ const nextConfig = {
     };
   },
   serverRuntimeConfig: {
-    sizeLimit: '5000kb'
+    bodyParser: {
+      sizeLimit: '50mb'
+    }
   },
   reactStrictMode: true,
   images: {
