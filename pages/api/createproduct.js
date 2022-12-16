@@ -7,12 +7,12 @@ import dayjs from "dayjs";
 // mongoose.set('debug', true);
 // const conn = mongoose.connection;
 const path = require('path');
+const { createServer } = require('micro');
 
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const { createProduct } = require('../../services/product');
 
-import { config } from 'next/config'
 
 
 import fileMiddleware from "../../middlewares/fileMiddleware";
@@ -26,6 +26,10 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 // }
 
 // config.api.bodyParser.sizeLimit = '50mb';
+
+const server = createServer(handler, {
+    maxPayloadBytes: 50 * 1024 * 1024, // 50MB
+});
 
 const filesUpload = async (req, res) => {
 
@@ -55,7 +59,7 @@ const filesUpload = async (req, res) => {
         
         console.log(req.file, req.body)
         
-        await fileMiddleware(req, res, upload);
+        await fileMiddleware(req, res, server, upload);
         
         const db = process.env.NEXT_PUBLIC_MONGODB_URI
         
