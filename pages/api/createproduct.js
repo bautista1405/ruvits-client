@@ -20,9 +20,9 @@ const bodyParser = require('body-parser');
 import fileMiddleware from "../../middlewares/fileMiddleware";
 
 
-const filesUpload = async (req, res) => {
+
     
-    app.post(express.json({ limit: '50mb' }), async () => {
+    app.post(express.json({ limit: '50mb' }), async (req, res) => {
     
         aws.config.update({
             secretAccessKey: process.env.S3_SECRET,
@@ -118,7 +118,6 @@ const filesUpload = async (req, res) => {
     })
 
         
-};
 
 
-export default filesUpload;
+
