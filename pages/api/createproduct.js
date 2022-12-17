@@ -14,6 +14,7 @@ const { createProduct } = require('../../services/product');
 
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 
 import fileMiddleware from "../../middlewares/fileMiddleware";
