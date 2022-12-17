@@ -33,7 +33,7 @@ const filesUpload = () => {
         maxPayloadBytes: 50 * 1024 * 1024, // 50MB
     });
     
-    server.post( async (req, res) => {
+    server.post('/api/createproduct', async (req, res) => {
     
         aws.config.update({
             secretAccessKey: process.env.S3_SECRET,
