@@ -45,7 +45,7 @@ const filesUpload = async (req, res) => {
             }
         });
         
-        const upload = Multer({ storage: storage }).any('content');
+        const upload = Multer({ storage: storage, limits: 5000000 }).any('content');
         
         console.log(req.file, req.body)
         
