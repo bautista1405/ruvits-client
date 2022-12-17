@@ -19,7 +19,11 @@ const bodyParser = require('body-parser');
 
 import fileMiddleware from "../../middlewares/fileMiddleware";
 
-app.post('/api/createproduct', bodyParser.json({ limit: '50mb' }), filesUpload);
+// app.post('/api/createproduct', bodyParser.json({ limit: '50mb' }), filesUpload);
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(express.json());
 
 const filesUpload = async (req, res) => {
 
