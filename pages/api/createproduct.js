@@ -22,7 +22,7 @@ import fileMiddleware from "../../middlewares/fileMiddleware";
 
 const filesUpload = async (req, res) => {
     
-    app.post(express.json({ limit: '50mb' }), async (req, res) => {
+    app.post(express.json({ limit: '50mb' }), async () => {
     
         aws.config.update({
             secretAccessKey: process.env.S3_SECRET,
