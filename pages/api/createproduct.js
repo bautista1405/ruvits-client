@@ -11,49 +11,81 @@ const path = require('path');
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const { createProduct } = require('../../services/product');
-
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-
-
 import fileMiddleware from "../../middlewares/fileMiddleware";
 
-// app.post('/api/createproduct', bodyParser.json({ limit: '50mb' }), filesUpload);
 
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-app.use(express.json());
+import { S3Client } from "@aws-sdk/client-s3";
+import {
+  CreateBucketCommand,
+  DeleteObjectCommand,
+  PutObjectCommand,
+  DeleteBucketCommand
+} from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import fetch from "node-fetch";
+
+// Set the AWS Region
+const REGION = "us-east-2";
+// Create an Amazon S3 service client object
+const s3Client = new S3Client({ region: REGION });
+
+// Set parameters
+// Create a random name for the Amazon Simple Storage Service (Amazon S3) bucket and key
+const bucketParams = {
+  Bucket: "bitsroad",
+  Key: process.env.S3_ACCESS_KEY,
+  Body: "BODY"
+};
+
 
 const filesUpload = async (req, res) => {
 
-    aws.config.update({
-        secretAccessKey: process.env.S3_SECRET,
-        accessKeyId: process.env.S3_ACCESS_KEY,
-        region: "us-east-2",
-    });
-    const s3 = new aws.S3();
+    // aws.config.update({
+    //     secretAccessKey: process.env.S3_SECRET,
+    //     accessKeyId: process.env.S3_ACCESS_KEY,
+    //     region: "us-east-2",
+    // });
+    // const s3 = new aws.S3();
 
     try {
 
-        const storage = multerS3({
-            acl: "public-read",
-            s3,
-            bucket: "bitsroad",
-            metadata: (req, file, cb) => {
-                cb(null, { fieldName: file.fieldname });
-            },
-            key: (req, file, cb) => {
-                const ext = path.extname(file.originalname);
-                cb(null, `${file.originalname}`);
-            }
-        });
+        // const storage = multerS3({
+        //     acl: "public-read",
+        //     s3,
+        //     bucket: "bitsroad",
+        //     metadata: (req, file, cb) => {
+        //         cb(null, { fieldName: file.fieldname });
+        //     },
+        //     key: (req, file, cb) => {
+        //         const ext = path.extname(file.originalname);
+        //         cb(null, `${file.originalname}`);
+        //     }
+        // });
         
-        const upload = Multer({ storage: storage, limits: 5000000 }).any('content');
+        // const upload = Multer({ storage: storage }).any('content');
         
-        console.log(req.file, req.body)
+        // console.log(req.file, req.body)
         
-        await fileMiddleware(req, res, upload);
+        // await fileMiddleware(req, res, upload);
+
+        try {
+            // Create a command to put the object in the S3 bucket
+            const command = new PutObjectCommand(bucketParams);
+            // Create the presigned URL
+            const signedUrl = await getSignedUrl(s3Client, command, {
+              expiresIn: 3600,
+            });
+            console.log(
+              `\nPutting "${bucketParams.Key}" using signedUrl with body "${bucketParams.Body}" in v3`
+            );
+            console.log(signedUrl);
+            const response = await fetch(signedUrl, {method: 'PUT', body: bucketParams.Body});
+            console.log(
+              `\nResponse returned by signed URL: ${await response.text()}\n`
+            );
+          } catch (err) {
+            console.log("Error creating presigned URL", err);
+          }
         
         const db = process.env.NEXT_PUBLIC_MONGODB_URI
         
