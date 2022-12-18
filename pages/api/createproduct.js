@@ -38,121 +38,86 @@ const bucketParams = {
 };
 
 
-const filesUpload = async (req, res) => {
-
-    // aws.config.update({
-    //     secretAccessKey: process.env.S3_SECRET,
-    //     accessKeyId: process.env.S3_ACCESS_KEY,
-    //     region: "us-east-2",
-    // });
-    // const s3 = new aws.S3();
-
-    // try {
-
-        // const storage = multerS3({
-        //     acl: "public-read",
-        //     s3,
-        //     bucket: "bitsroad",
-        //     metadata: (req, file, cb) => {
-        //         cb(null, { fieldName: file.fieldname });
-        //     },
-        //     key: (req, file, cb) => {
-        //         const ext = path.extname(file.originalname);
-        //         cb(null, `${file.originalname}`);
-        //     }
-        // });
-        
-        // const upload = Multer({ storage: storage }).any('content');
-        
-        // console.log(req.file, req.body)
-        
-        // await fileMiddleware(req, res, upload);
-
-        try {
-            // Create a command to put the object in the S3 bucket
-            const command = new PutObjectCommand(bucketParams);
-            // Create the presigned URL
-            const signedUrl = await getSignedUrl(s3Client, command, {
-              expiresIn: 3600,
-            });
-            console.log(
-              `\nPutting "${bucketParams.Key}" using signedUrl with body "${bucketParams.Body}" in v3`
-            );
-            console.log(signedUrl);
-            const response = await fetch(signedUrl, {method: 'PUT', body: bucketParams.Body});
-            console.log(
-              `\nResponse returned by signed URL: ${await response.text()}\n`
-            );
-          } catch (err) {
-            console.log("Error creating presigned URL", err);
-          }
-        
-        const db = process.env.NEXT_PUBLIC_MONGODB_URI
-        
-            // const conn = mongoose.connection;
-            
-            mongoose.connect(db, {  //connect to the db
-                useNewUrlParser: true,
-              useUnifiedTopology: true,
-            });
-            
-            
-            const ProductSchema = new Schema({
-                title: {
-                    type: String,
-                    required: true,
-                },
-                productName: {
-                    type: String,
-                    required: true,
-                },
-                vendor: {
-                    type: String,
-                    required: true,
-                },
-                price: {
-                    type: Number,
-                    required: true,
-                },
-                description: {
-                    type: String,
-                    required: true,
-                },
-                category: {
-                    type: String,
-                    required: true,
-                },
-                content: {
-                    type: [],
-                    required: true,
-                },
-                mpAccessToken: {
-                    type: String,
-                    required: true,
-                },
-                creationDate: {
-                    type: String,
-                    required: true,
-                }   
-            });
-            
-            mongoose.models = {}
-            const Product = mongoose.model('products', ProductSchema);
-            
-            // console.log(req.body)
-            // console.log(req.files)
-            const newProduct = createProduct(req.body, req.files);
-            // console.log(newProduct);
-            const product = new Product(newProduct);
-            await product.save();
-            // console.log(product)
-            res.status(201).json({message: 'Producto dado de alta'})
-    // } catch(error) {
-    //     console.log(error)
-    // }
-
-        
+export const run = async () => {
+    try {
+      // Create a command to put the object in the S3 bucket.
+      const command = new PutObjectCommand(bucketParams);
+      // Create the presigned URL.
+      const signedUrl = await getSignedUrl(s3Client, command, {
+        expiresIn: 3600,
+      });
+      console.log(
+        `\nPutting "${bucketParams.Key}" using signedUrl with body "${bucketParams.Body}" in v3`
+      );
+      console.log(signedUrl);
+      const response = await fetch(signedUrl, {method: 'PUT', body: bucketParams.Body});
+      console.log(
+        `\nResponse returned by signed URL: ${await response.text()}\n`
+      );
+      const db = process.env.NEXT_PUBLIC_MONGODB_URI
+      
+          // const conn = mongoose.connection;
+          
+          mongoose.connect(db, {  //connect to the db
+              useNewUrlParser: true,
+            useUnifiedTopology: true,
+          });
+          
+          
+          const ProductSchema = new Schema({
+              title: {
+                  type: String,
+                  required: true,
+              },
+              productName: {
+                  type: String,
+                  required: true,
+              },
+              vendor: {
+                  type: String,
+                  required: true,
+              },
+              price: {
+                  type: Number,
+                  required: true,
+              },
+              description: {
+                  type: String,
+                  required: true,
+              },
+              category: {
+                  type: String,
+                  required: true,
+              },
+              content: {
+                  type: [],
+                  required: true,
+              },
+              mpAccessToken: {
+                  type: String,
+                  required: true,
+              },
+              creationDate: {
+                  type: String,
+                  required: true,
+              }   
+          });
+          
+          mongoose.models = {}
+          const Product = mongoose.model('products', ProductSchema);
+          
+          // console.log(req.body)
+          // console.log(req.files)
+          const newProduct = createProduct(req.body, req.files);
+          // console.log(newProduct);
+          const product = new Product(newProduct);
+          await product.save();
+          // console.log(product)
+          res.status(201).json({message: 'Producto dado de alta'})
+    } catch (err) {
+      console.log("Error creating presigned URL", err);
+    }
 };
+    run();
 
-
-export default filesUpload;
+        
