@@ -47,7 +47,7 @@ const filesUpload = async (req, res) => {
     // });
     // const s3 = new aws.S3();
 
-    try {
+    // try {
 
         // const storage = multerS3({
         //     acl: "public-read",
@@ -147,9 +147,9 @@ const filesUpload = async (req, res) => {
             await product.save();
             // console.log(product)
             res.status(201).json({message: 'Producto dado de alta'})
-    } catch(error) {
-        console.log(error)
-    }
+    // } catch(error) {
+    //     console.log(error)
+    // }
 
         
 };
