@@ -89,7 +89,7 @@ export default function ProductForm() {
       onSubmit: (values = {vendor, title, productName, description, category, price, photos, content, mpAccessToken, creationDate}) => {
         try {
           axios.post(
-            'http://3.95.83.1:3000/api/products', 
+            '/api/createproduct', 
             {
               
               
