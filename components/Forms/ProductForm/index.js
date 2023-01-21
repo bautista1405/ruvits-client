@@ -89,25 +89,21 @@ export default function ProductForm() {
       onSubmit: (values = {vendor, title, productName, description, category, price, photos, content, mpAccessToken, creationDate}) => {
         try {
           axios.post(
-            '/api/createproduct', 
+            'https://3.95.83.1:3000/api/products', 
             {
               
-              
-              
-  
-                  vendor: values.vendor,
-                  title: values.title.replace(/\s+/g, ''),
-                  productName: values.title, 
-                  description: values.description, 
-                  category: values.category,
-                  price: values.price, 
-                  photos: values.photos,
-                  content: values.content, 
-                  mpAccessToken: localStorage.getItem('vendorAccessToken'),
-                  creationDate: values.creationDate,
+              vendor: values.vendor,
+              title: values.title.replace(/\s+/g, ''),
+              productName: values.title, 
+              description: values.description, 
+              category: values.category,
+              price: values.price, 
+              photos: values.photos,
+              content: values.content, 
+              mpAccessToken: localStorage.getItem('vendorAccessToken'),
+              creationDate: values.creationDate,
                   
-                  
-                },
+            },
                 {headers}
                 )
                 .then( () => {
