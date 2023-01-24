@@ -911,7 +911,7 @@ const ProductDetails = ({ product }) => {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch(process.env.GET_ALL_PRODUCTS)
+  const res = await fetch('https://api.ruvits.com/api/products')
   const products = await res.json()
 
   // Get the paths we want to pre-render based on products
