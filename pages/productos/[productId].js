@@ -912,7 +912,7 @@ const ProductDetails = ({ product }) => {
 // the path has not been generated.
 export async function getStaticPaths() {
   const res = await fetch('https://ruvits.com/api/getproducts')
-  const products = await res.json()
+  const products = await res?.data?.items.json()
 
   // Get the paths we want to pre-render based on products
   const paths = products.map((product) => ({
