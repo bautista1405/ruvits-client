@@ -89,7 +89,7 @@ export default function ProductForm() {
       onSubmit: (values = {vendor, title, productName, description, category, price, photos, content, mpAccessToken, creationDate}) => {
         try {
           axios.post(
-            '/api/createproduct', 
+            'https://api.ruvits.com/api/products', 
             {
               
               vendor: values.vendor,
