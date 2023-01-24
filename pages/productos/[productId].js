@@ -930,7 +930,7 @@ export async function getStaticPaths() {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({params}) {
-  const res = await fetch(process.env.GET_ALL_PRODUCTS)
+  const res = await fetch('https://api.ruvits.com/api/products')
   const products = await res.json();
   const product = products.filter(product => product.title === params.productId)
   
