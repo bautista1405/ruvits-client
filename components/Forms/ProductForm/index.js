@@ -104,9 +104,10 @@ export default function ProductForm() {
               creationDate: values.creationDate,
                   
             },
-                {headers}
-                )
-                .then( () => {
+
+            {headers}
+          )
+            .then( () => {
                   swal({
                     title: "Tu producto fue exitosamente creado.",
                     text: "¡Tu producto ya está online!",
