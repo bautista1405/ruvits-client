@@ -115,11 +115,11 @@ export default function ProductForm() {
                   }).then(() => {router.push('/dashboard')})
             })
             
-          } catch(res) {
-            if(res.status === 500) {
+          } catch(e) {
+            if(e) {
               
               swal({
-                title: "Oopss. Parece que hubo un error.",
+                title: "Upss. Parece que hubo un error.",
                 text: "Intenta de nuevo.",
                 icon: "error",
               }).then(() => {router.push('/dashboard')})
