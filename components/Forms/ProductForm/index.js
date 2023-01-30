@@ -525,15 +525,14 @@ export default function ProductForm() {
                       fontWeight="md"
                       
                     >
-                      <b>
-                        <Spinner
-                          thickness='4px'
-                          speed='0.65s'
-                          emptyColor='gray.200'
-                          color='blue.500'
-                          size='xl'
-                        />
-                      </b>
+                      
+                      <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='blue.500'
+                        size='sm'
+                      />
                     </Button>
                 </Box>
                  : 
