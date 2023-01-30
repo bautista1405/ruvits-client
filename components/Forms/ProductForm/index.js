@@ -49,6 +49,7 @@ export default function ProductForm() {
 
   const [tokens, setTokens] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isUploading, setIsUploading] = useState(false);
 
     useEffect( () => {
         if(session) {
@@ -89,7 +90,7 @@ export default function ProductForm() {
       },
       onSubmit: (values = {vendor, title, productName, description, category, price, photos, content, mpAccessToken, creationDate}) => {
         try {
-          setIsLoading(true)
+          setIsUploading(true)
           axios.post(
             'https://api.ruvits.com/api/products', 
             {
@@ -111,7 +112,7 @@ export default function ProductForm() {
           )
             .then( () => {
               setTimeout(3000, 
-                setIsLoading(false),
+                setIsUploading(false),
                 swal({
                   title: "Tu producto fue exitosamente creado.",
                   text: "¡Tu producto ya está online!",
@@ -505,7 +506,7 @@ export default function ProductForm() {
                   required  
                 />
 
-                {isLoading ? 
+                {isUploading ? 
                 
                   <Box
                     px={{ base: 4, sm: 6 }}
