@@ -36,6 +36,7 @@ import swal from 'sweetalert';
 import { FaUser } from "react-icons/fa";
 import { signIn, signOut, useSession, getSession, session } from "next-auth/client";
 import dayjs from "dayjs";
+import { setTimeout } from "timers/promises";
 
 export default function ProductForm() {
 
@@ -88,6 +89,7 @@ export default function ProductForm() {
       },
       onSubmit: (values = {vendor, title, productName, description, category, price, photos, content, mpAccessToken, creationDate}) => {
         try {
+          setIsLoading(true)
           axios.post(
             'https://api.ruvits.com/api/products', 
             {
@@ -108,11 +110,14 @@ export default function ProductForm() {
             {headers}
           )
             .then( () => {
-                  swal({
-                    title: "Tu producto fue exitosamente creado.",
-                    text: "¡Tu producto ya está online!",
-                    icon: "success",
-                  }).then(() => {router.push('/dashboard')})
+              setTimeout(3000, 
+                setIsLoading(false),
+                swal({
+                  title: "Tu producto fue exitosamente creado.",
+                  text: "¡Tu producto ya está online!",
+                  icon: "success",
+                }).then(() => {router.push('/dashboard')})
+              )
             })
             
           } catch(e) {
@@ -499,27 +504,58 @@ export default function ProductForm() {
                   value={formik.values.mpAccessToken}
                   required  
                 />
+
+                {isLoading ? 
                 
-                <Box
-                  px={{ base: 4, sm: 6 }}
-                  py={3}
-                  bg="gray.400"
-                  display="flex"
-                  justifyContent="center"
-                  shadow="base"
-                  rounded={[null, "md"]}
-                  borderRadius="5px"
-                  >
-                  <Button
-                    type="submit"
-                    color="gray.700"
-                    _focus={{ shadow: "" }}
-                    fontWeight="md"
-                    
-                  >
-                    <b>Crear producto</b>
-                  </Button>
+                  <Box
+                    px={{ base: 4, sm: 6 }}
+                    py={3}
+                    bg="gray.400"
+                    display="flex"
+                    justifyContent="center"
+                    shadow="base"
+                    rounded={[null, "md"]}
+                    borderRadius="5px"
+                    >
+                    <Button
+                      type="submit"
+                      color="gray.700"
+                      _focus={{ shadow: "" }}
+                      fontWeight="md"
+                      
+                    >
+                      <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='blue.500'
+                        size='xl'
+                      />
+                    </Button>
                 </Box>
+                 : 
+                  <Box
+                      px={{ base: 4, sm: 6 }}
+                      py={3}
+                      bg="gray.400"
+                      display="flex"
+                      justifyContent="center"
+                      shadow="base"
+                      rounded={[null, "md"]}
+                      borderRadius="5px"
+                      >
+                      <Button
+                        type="submit"
+                        color="gray.700"
+                        _focus={{ shadow: "" }}
+                        fontWeight="md"
+                        
+                      >
+                        <b>Crear producto</b>
+                      </Button>
+                  </Box>
+                }
+                
               </form>
               
             </GridItem>
