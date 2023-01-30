@@ -111,7 +111,7 @@ export default function ProductForm() {
             {headers}
           )
             .then( () => {
-              setTimeout(3000, 
+              setTimeout(5000, 
                 setIsUploading(false),
                 swal({
                   title: "Tu producto fue exitosamente creado.",
@@ -525,13 +525,15 @@ export default function ProductForm() {
                       fontWeight="md"
                       
                     >
-                      <Spinner
-                        thickness='4px'
-                        speed='0.65s'
-                        emptyColor='gray.200'
-                        color='blue.500'
-                        size='xl'
-                      />
+                      <b>
+                        <Spinner
+                          thickness='4px'
+                          speed='0.65s'
+                          emptyColor='gray.200'
+                          color='blue.500'
+                          size='xl'
+                        />
+                      </b>
                     </Button>
                 </Box>
                  : 
