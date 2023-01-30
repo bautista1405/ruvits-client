@@ -163,6 +163,7 @@ export default function Designs() {
 
                       {topRatedProducts.length > 0 && topRatedProducts.map((product) => {
                         
+                        const productName = product._id.replace(/\s/g, '');
                         const avgValue = Number.parseFloat(product.avg_val).toFixed(1);
                         
                         return (
@@ -186,7 +187,7 @@ export default function Designs() {
                                   shadow="lg"
                                 >
                                 
-                                  <a href={`/productos/${product.title}`} >
+                                  <a href={`/productos/${productName}`} >
                                     <Box h='320px' w='320px'>
                                         <Image
                                             src={product.content[0]}
@@ -246,7 +247,7 @@ export default function Designs() {
                                          reviews
                                       </Box> */}
 
-                                    <a href={`/productos/${product.title}`} >
+                                    <a href={`/productos/${productName}`} >
                                         <chakra.button
                                             bg="gray.800"
                                             fontSize="xs"
