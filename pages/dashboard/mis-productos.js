@@ -53,7 +53,7 @@ const MyProducts = () => {
         if(session) {
 
             axios.get(url).then((res) => {
-                setProducts(res?.data?.getProducts || []);
+                setProducts(res?.data?.items || []);
                 
             })
             axios.get(getRating)
