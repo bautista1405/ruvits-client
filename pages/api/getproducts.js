@@ -61,7 +61,7 @@ export default async function getProducts(request, res) {
         });
         
         // const email = session.user.email
-        const getProducts = await Product.find({ })
+        const getProducts = await Product.find({}).sort({_id:-1})
         // console.log(getProducts)
         
         // const countPromise = Product.estimatedDocumentCount(qry);
