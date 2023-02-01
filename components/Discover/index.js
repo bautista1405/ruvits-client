@@ -54,7 +54,7 @@ const Discover = () => {
     axios.get(url, {headers})
     .then((res) => {
       setAllProducts(res?.data?.getProducts || [])
-      console.log(res.data.getProducts)
+      // console.log(res.data.getProducts)
     })
   }, [data, getRating, categorizedProducts, url]);
   
