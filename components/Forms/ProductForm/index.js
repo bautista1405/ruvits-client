@@ -526,7 +526,7 @@ export default function ProductForm() {
                       fontWeight="md"
                       
                     >
-                      <b>Subiendo tu producto...</b>
+                      <b>Subiendo tu producto... {" "}</b>
                       <Spinner
                         thickness='4px'
                         speed='0.65s'
