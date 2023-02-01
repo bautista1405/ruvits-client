@@ -115,7 +115,7 @@ const Discover = () => {
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
-        const newFilter = products.filter((value) => {
+        const newFilter = allProducts.filter((value) => {
           return Object.values(value).join('').toLowerCase().match(searchWord.toLowerCase());
         });
         
