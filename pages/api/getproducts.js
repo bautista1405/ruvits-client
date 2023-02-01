@@ -14,16 +14,16 @@ export default async function getProducts(request, res) {
     // const { qry, collection } = query
     // const session = await getSession({req})
     
-    const ITEMS_PER_PAGE = 9;
-    const page = request.query.page || 1;
+    // const ITEMS_PER_PAGE = 9;
+    // const page = request.query.page || 1;
 
     // Put all your query params in here
-    const query = {};
-    const { qry } = query
+    // const query = {};
+    // const { qry } = query
     
     try {
 
-        const skip = (page - 1) * ITEMS_PER_PAGE; // 1 * 20 = 20
+        // const skip = (page - 1) * ITEMS_PER_PAGE; // 1 * 20 = 20
 
         
         
@@ -61,27 +61,27 @@ export default async function getProducts(request, res) {
         });
         
         // const email = session.user.email
-        // const getProducts = await Product.find({ })
+        const getProducts = await Product.find({ })
         // console.log(getProducts)
         
-        const countPromise = Product.estimatedDocumentCount(qry);
+        // const countPromise = Product.estimatedDocumentCount(qry);
 
-        const itemsPromise = Product.find(qry).sort({_id:-1}).limit(ITEMS_PER_PAGE).skip(skip);
+        // const itemsPromise = Product.find(qry).sort({_id:-1}).limit(ITEMS_PER_PAGE).skip(skip);
 
-        const [count, items] = await Promise.all([countPromise, itemsPromise]);
+        // const [count, items] = await Promise.all([countPromise, itemsPromise]);
 
-        const pageCount = count / ITEMS_PER_PAGE; // 400 items / 20 = 20
+        // const pageCount = count / ITEMS_PER_PAGE; 400 items / 20 = 20
 
-        res.status(200).json({ items, pageCount })
+        res.status(200).json({ getProducts })
         // return getProducts
 
-        return {
-            pagination: {
-              count,
-              pageCount,
-            },
-            items,
-          };
+        // return {
+        //     pagination: {
+        //       count,
+        //       pageCount,
+        //     },
+        //     items,
+        //   };
 
     } catch (e) {
         console.error(e)

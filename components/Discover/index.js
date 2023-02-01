@@ -20,6 +20,7 @@ const Discover = () => {
   
   const [session, loading] = useSession();
   
+  const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
@@ -30,7 +31,7 @@ const Discover = () => {
   const [rating, setRating] = useState([]);
   
   // Avoid duplicate function calls with useMemo
-  const categorizedList = useMemo(getFilteredList, [selectedCategory, products]);
+  const categorizedList = useMemo(getFilteredList, [selectedCategory, allProducts]);
   
   const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -50,7 +51,11 @@ const Discover = () => {
       setProducts(res?.data?.items || []);
       
     })
-  }, [data, getRating, categorizedProducts]);
+    axios.get(url, {headers})
+    .then((res) => {
+      setAllProducts(res?.data?.getProducts || [])
+    })
+  }, [data, getRating, categorizedProducts, url]);
   
   
 
@@ -60,7 +65,7 @@ const Discover = () => {
         if (!selectedCategory) {
         return products;
         }
-        return products.filter((value) => value.category === selectedCategory);
+        return allProducts.filter((value) => value.category === selectedCategory);
   }
 
   function handleCategoryChange(event) {
