@@ -66,7 +66,7 @@ export default async function getPayment(req, res) {
             {
               allowDiskUse: true
             }
-        );
+        ).sort({_id:-1}).limit(6);
 
         res.status(200).json({ rating })
         return rating

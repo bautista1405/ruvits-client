@@ -49,6 +49,7 @@ export default function Designs() {
   const categorizedProducts = '/api/getcategorizedproducts'
   const getRating = '/api/getproductrating'
   const getVendorRating = '/api/getstorerating'
+  const recentProducts = '/api/getrecentproducts'
 
   const [products, setProducts] = useState([]);
   const [rating, setRating] = useState([]);
@@ -63,8 +64,8 @@ export default function Designs() {
 
   useEffect(() => {
     
-    axios.get(categorizedProducts, {headers}).then((res) => {
-        setProducts(res?.data?.items || []);
+    axios.get(recentProducts, {headers}).then((res) => {
+        setProducts(res?.data?.getProducts || []);
         setIsLoading(false);
     })
     axios.get(getRating)
@@ -77,7 +78,7 @@ export default function Designs() {
       setVendors(res?.data?.rating || [])
       
     })
-  }, [categorizedProducts, getRating, getVendorRating])
+  }, [recentProducts, getRating, getVendorRating])
   
   
   const ratedProducts = rating.filter(rating => rating.category[0] === 'Ilustraciones/Diseños')
@@ -85,10 +86,11 @@ export default function Designs() {
   const topRatedProducts = ratedProducts.filter(rating => rating.avg_val >= 3)
   
   const filteredProducts = products.filter(product => product.category === 'Ilustraciones/Diseños')
+  // console.log(filteredProducts)
   
   const topVendors = vendors.filter(vendors => vendors.category[0] === 'Ilustraciones/Diseños')
   
-  console.log(topVendors)
+  // console.log(topVendors)
   
   return (
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }} bg='gray.200' p={10}>

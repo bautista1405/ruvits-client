@@ -49,6 +49,7 @@ export default function Notes() {
   const categorizedProducts = '/api/getcategorizedproducts'
   const getRating = '/api/getproductrating'
   const getVendorRating = '/api/getstorerating'
+  const recentProducts = '/api/getrecentproducts'
 
   const [products, setProducts] = useState([]);
   const [rating, setRating] = useState([]);
@@ -63,8 +64,8 @@ export default function Notes() {
 
   useEffect(() => {
     
-    axios.get(categorizedProducts, {headers}).then((res) => {
-        setProducts(res?.data?.items || []);
+    axios.get(recentProducts, {headers}).then((res) => {
+        setProducts(res?.data?.getProducts || []);
         setIsLoading(false);
     })
     axios.get(getRating)
@@ -77,7 +78,7 @@ export default function Notes() {
       setVendors(res?.data?.rating || [])
       
     })
-  }, [categorizedProducts, getRating, getVendorRating])
+  }, [recentProducts, getRating, getVendorRating])
   
   
   const ratedProducts = rating.filter(rating => rating.category[0] === 'Apuntes/Trabajos')
@@ -85,6 +86,7 @@ export default function Notes() {
   const topRatedProducts = ratedProducts.filter(rating => rating.avg_val >= 3)
   
   const filteredProducts = products.filter(product => product.category === 'Apuntes/Trabajos')
+  console.log(filteredProducts)
   
   const topVendors = vendors.filter(vendors => vendors.category[0] === 'Apuntes/Trabajos')
   
