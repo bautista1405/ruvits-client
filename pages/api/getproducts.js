@@ -73,7 +73,7 @@ export default async function getProducts(request, res) {
         // const pageCount = count / ITEMS_PER_PAGE; 400 items / 20 = 20
 
         res.status(200).json({ getProducts })
-        // return getProducts
+        return getProducts
 
         // return {
         //     pagination: {
