@@ -494,6 +494,7 @@ export default function ProductForm() {
                     </Flex>
                     <FormHelperText mt={5} fontSize="md" >
                      Si tenés varios archivos, los podés comprimir en una carpeta ZIP y subirla 😉
+                     ⚠️ Tené en cuenta que si son archivos muy pesados, puede llevar un tiempo en subirse ⚠️
                     </FormHelperText>
                   </FormControl>
                 </Stack>
@@ -525,7 +526,7 @@ export default function ProductForm() {
                       fontWeight="md"
                       
                     >
-                      
+                      <b>Subiendo tu producto...</b>
                       <Spinner
                         thickness='4px'
                         speed='0.65s'
