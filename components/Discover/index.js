@@ -24,14 +24,14 @@ const Discover = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
-  const { data, error } = useSWR(`/api/getproducts?page=${page}`, fetcher);
+  const { data, error } = useSWR(`/api/getcategorizedproducts?page=${page}`, fetcher);
   const [filteredData, setFilteredData] = useState(products);
   const [wordEntered, setWordEntered] = useState("");
   const [selectedCategory, setSelectedCategory] = useState();
   const [rating, setRating] = useState([]);
   
   // Avoid duplicate function calls with useMemo
-  const categorizedList = useMemo(getFilteredList, [selectedCategory, products]);
+  const categorizedList = useMemo(getFilteredList, [selectedCategory, allProducts]);
   
   const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -66,7 +66,7 @@ const Discover = () => {
         if (!selectedCategory) {
         return products;
         }
-        return products.filter((value) => value.category === selectedCategory);
+        return allProducts.filter((value) => value.category === selectedCategory);
   }
 
   function handleCategoryChange(event) {
