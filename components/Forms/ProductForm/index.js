@@ -493,7 +493,7 @@ export default function ProductForm() {
                       </Stack>
                     </Flex>
                     <FormHelperText mt={5} fontSize="md" >
-                     Si tenés varios archivos, los podés comprimir en una carpeta ZIP y subirla 😉
+                     Si tenés varios archivos, los podés comprimir en una carpeta ZIP y subirla 😉 <br />
                      ⚠️ Tené en cuenta que si son archivos muy pesados, puede llevar un tiempo en subirse ⚠️
                     </FormHelperText>
                   </FormControl>
