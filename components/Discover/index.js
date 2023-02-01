@@ -54,6 +54,7 @@ const Discover = () => {
     axios.get(url, {headers})
     .then((res) => {
       setAllProducts(res?.data?.getProducts || [])
+      console.log(res.data.getProducts)
     })
   }, [data, getRating, categorizedProducts, url]);
   
@@ -65,7 +66,7 @@ const Discover = () => {
         if (!selectedCategory) {
         return products;
         }
-        return allProducts.filter((value) => value.category === selectedCategory);
+        return products.filter((value) => value.category === selectedCategory);
   }
 
   function handleCategoryChange(event) {
