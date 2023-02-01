@@ -170,7 +170,6 @@ const Discover = () => {
                     <option value='Ilustraciones/Diseños'>Ilustraciones/Diseños</option>
                     <option value='Manuales/Guías'>Manuales/Guías</option>
                     <option value='Clases/Cursos'>Clases/Cursos</option>
-                    <option value='Beats/Tracks'>Beats/Tracks</option>
                     <option value='Snippets de código'>Snippets de código</option>
                 </Select>
                 
