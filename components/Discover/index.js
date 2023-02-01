@@ -31,7 +31,7 @@ const Discover = () => {
   const [rating, setRating] = useState([]);
   
   // Avoid duplicate function calls with useMemo
-  const categorizedList = useMemo(getFilteredList, [selectedCategory, allProducts]);
+  const categorizedList = useMemo(getFilteredList, [selectedCategory, products]);
   
   const headers = {
         'Access-Control-Allow-Origin': '*',
