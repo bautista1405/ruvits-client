@@ -53,7 +53,7 @@ const MyProducts = () => {
         if(session) {
 
             axios.get(url).then((res) => {
-                setProducts(res?.data?.items || []);
+                setProducts(res?.data?.getProducts || []);
                 
             })
             axios.get(getRating)
@@ -64,8 +64,6 @@ const MyProducts = () => {
     }, [url, getRating])
     
     const product = products.filter(product => product.vendor === session.user.name)
-    console.log(products)
-    console.log(product)
     
   return (
     <>
