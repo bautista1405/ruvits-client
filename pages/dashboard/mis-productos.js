@@ -64,6 +64,8 @@ const MyProducts = () => {
     }, [url, getRating])
     
     const product = products.filter(product => product.vendor === session.user.name)
+    console.log(products)
+    console.log(product)
     
   return (
     <>
