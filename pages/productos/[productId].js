@@ -398,7 +398,7 @@ const ProductDetails = ({ product }) => {
                     <Heading
                       lineHeight={1.1}
                       fontWeight={600}
-                      fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
+                      fontSize={{ base: '2xl', sm: '3xl', lg: '3xl' }}>
                       {product.productName}
                     </Heading>
                     <Text

@@ -100,12 +100,12 @@ const Discover = () => {
       <Flex alignItems="center" justifyContent="center" h="54vh">
         
         <Spinner
-                thickness='4px'
-                speed='0.65s'
-                emptyColor='gray.200'
-                color='blue.500'
-                size='xl'
-              />
+          thickness='4px'
+          speed='0.65s'
+          emptyColor='gray.200'
+          color='blue.500'
+          size='xl'
+        />
       </Flex>
     )
     
@@ -625,11 +625,13 @@ const Discover = () => {
                   bg: "gray.800",
                 }}
               >Anterior</Button>
-              {/* <PagButton active>1</PagButton>
+
+              <PagButton active>1</PagButton>
               <PagButton>2</PagButton>
               <PagButton>3</PagButton>
               <PagButton>4</PagButton>
-              <PagButton>5</PagButton> */}
+              <PagButton>5</PagButton>
+              
               <Button disabled={page === pageCount} onClick={handleNext}
                 mx={1}
                 px={4}

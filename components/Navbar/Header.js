@@ -38,6 +38,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import {FiChevronDown} from "react-icons/fi"
 import {FcGoogle} from 'react-icons/fc'
 import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
+import { SiMaterialdesignicons, SiGoogleclassroom } from "react-icons/si"
+import { CgNotes } from "react-icons/cg"
 import {GrBlog} from "react-icons/gr"
 import {RiCompassDiscoverLine} from "react-icons/ri"
 import { BsFillCameraVideoFill } from "react-icons/bs";
@@ -90,14 +92,20 @@ export default function WfWf() {
       </Link>
 
       <Link href='/descubrir/disenos'>
-        <Button w="full" variant="ghost" leftIcon={<RiCompassDiscoverLine />}>
+        <Button w="full" variant="ghost" leftIcon={<SiMaterialdesignicons />}>
           Diseños
         </Button>
       </Link>
 
       <Link href='/descubrir/apuntes'>
-        <Button w="full" variant="ghost" leftIcon={<RiCompassDiscoverLine />}>
+        <Button w="full" variant="ghost" leftIcon={<CgNotes />}>
           Apuntes
+        </Button>
+      </Link>
+
+      <Link href='/descubrir/cursos'>
+        <Button w="full" variant="ghost" leftIcon={<SiGoogleclassroom />}>
+          Cursos
         </Button>
       </Link>
 
@@ -131,6 +139,12 @@ export default function WfWf() {
               <Link href='/descubrir/apuntes'>
                 <Button variant='ghost'>
                   Apuntes
+                </Button>
+              </Link>
+
+              <Link href='/descubrir/cursos'>
+                <Button variant='ghost'>
+                  Cursos
                 </Button>
               </Link>
             </Flex>
