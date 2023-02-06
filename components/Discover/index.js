@@ -29,6 +29,8 @@ const Discover = () => {
   const [wordEntered, setWordEntered] = useState("");
   const [selectedCategory, setSelectedCategory] = useState();
   const [rating, setRating] = useState([]);
+  const [totalPages, setTotalPages] = useState(0)
+  const ITEMS_PER_PAGE = 9;
   
   // Avoid duplicate function calls with useMemo
   const categorizedList = useMemo(getFilteredList, [selectedCategory, allProducts]);
@@ -41,7 +43,9 @@ const Discover = () => {
   
   useEffect(() => {
     if (data) {
-      setPageCount(data.pageCount);
+      const { items, pagination } = data;
+      // setPageCount(data.pagination.pageCount);
+      setTotalPages(Math.ceil(data.pagination.count / ITEMS_PER_PAGE));
     }
     axios.get(getRating)
     .then((res) => {
@@ -90,6 +94,10 @@ const Discover = () => {
     console.log(page)
     console.log(pageCount)
   }
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
 
   if (error) {
     return <div>{JSON.stringify(error)}</div>;
@@ -150,7 +158,7 @@ const Discover = () => {
             opacity={props.disabled && 0.6}
             _hover={!props.disabled && activeStyle}
             cursor={props.disabled && "not-allowed"}
-            {...(props.active && activeStyle)}
+            
           >
             {props.children}
           </chakra.button>
@@ -618,31 +626,27 @@ const Discover = () => {
                 px={4}
                 py={2}
                 rounded="md"
-                bg="white"
-                color="gray.700"
-                _dark={{
-                  color: "white",
-                  bg: "gray.800",
-                }}
+                variant='outline' 
+                colorScheme='teal'
               >Anterior</Button>
 
-              {/* <PagButton active>1</PagButton>
-              <PagButton>2</PagButton>
-              <PagButton>3</PagButton>
-              <PagButton>4</PagButton>
-              <PagButton>5</PagButton> */}
+              
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                <Button key={p} onClick={() => handlePageChange(p)} variant='outline' colorScheme='teal' ml={2}>
+                  {p}
+                </Button>
+              ))}
+              
+
               
               <Button disabled={page === pageCount} onClick={handleNext}
                 mx={1}
                 px={4}
                 py={2}
                 rounded="md"
-                bg="white"
-                color="gray.700"
-                _dark={{
-                  color: "white",
-                  bg: "gray.800",
-                }}
+                variant='outline' 
+                colorScheme='teal'
+                ml={3}
               >Siguiente</Button>
             </Flex>
           </Flex> : null
