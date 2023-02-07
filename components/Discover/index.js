@@ -639,7 +639,7 @@ const Discover = () => {
               
 
               
-              <Button disabled={page === pageCount} onClick={handleNext}
+              <Button disabled={page === totalPages} onClick={handleNext}
                 mx={1}
                 px={4}
                 py={2}
