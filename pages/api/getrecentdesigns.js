@@ -55,7 +55,7 @@ export default async function getProducts(request, res) {
             }   
         });
         
-        const getProducts = await Product.find({}).sort({_id:-1}).limit(4)
+        const getProducts = await Product.find({}).sort({_id:-1}).limit(6)
 
         res.status(200).json({ getProducts })
         return getProducts

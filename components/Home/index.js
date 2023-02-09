@@ -7,8 +7,8 @@ import Hero from './Hero'
 import CTA from './Cta'
 import Fgl from './Features'
 import Header from './Header'
-import TopRatedProducts from './TopRatedDesigns'
-import TopRatedNotes from './TopRatedNotes'
+import TopRatedProducts from './TopRatedProducts'
+import MostRecentProducts from './MostRecentProducts'
 
 const Home = () => {
   return (
@@ -16,9 +16,9 @@ const Home = () => {
       <Box margin="auto">
         
         <Header />
-        {/* <TopRatedProducts /> */}
+        <TopRatedProducts />
         <Hero />
-        {/* <TopRatedNotes /> */}
+        <MostRecentProducts />
         <CTA />
         
       </Box>

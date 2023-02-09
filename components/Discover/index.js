@@ -43,8 +43,7 @@ const Discover = () => {
   
   useEffect(() => {
     if (data) {
-      const { items, pagination } = data;
-      // setPageCount(data.pagination.pageCount);
+      
       setTotalPages(Math.ceil(data.pagination.count / ITEMS_PER_PAGE));
     }
     axios.get(getRating)

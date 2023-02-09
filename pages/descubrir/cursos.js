@@ -88,7 +88,10 @@ export default function Courses() {
   const filteredProducts = products.filter(product => product.category === 'Clases/Cursos')
   // console.log(filteredProducts)
   
-  const topVendors = vendors.filter(vendors => vendors.category[0] === 'Clases/Cursos')
+  //const topVendors = vendors.filter(vendors => vendors.category === 'Clases/Cursos')
+
+  const topVendors = vendors.filter(vendor => vendor.category.some(category => category === 'Clases/Cursos'));
+
   
   // console.log(topVendors)
   
@@ -99,7 +102,8 @@ export default function Courses() {
         mb='20px'
         gridTemplateColumns={{ xl: "repeat(3, 1fr)", "2xl": "1fr 0.46fr" }}
         gap={{ base: "20px", xl: "20px" }}
-        display={{ base: "block", xl: "grid" }}>
+        display={{ base: "block", xl: "grid" }}
+      >
         <Flex
           flexDirection='column'
           gridArea={{ xl: "1 / 1 / 2 / 3", "2xl": "1 / 1 / 2 / 2" }}>
@@ -150,7 +154,7 @@ export default function Courses() {
               </Flex> */}
             </Flex>
             
-            <SimpleGrid columns={{ base: 1, md: 3 }} gap='20px' >
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 3 }} gap='20px' >
 
               {isLoading && 
                 
@@ -294,7 +298,7 @@ export default function Courses() {
                 Los más recientes
             </Text>
             <SimpleGrid
-              columns={{ base: 1, md: 3 }}
+              columns={{ base: 1, md: 2, lg: 3, xl: 3 }}
               gap='20px'
               mb={{ base: "20px", xl: "0px" }}
             >

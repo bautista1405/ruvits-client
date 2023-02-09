@@ -63,7 +63,7 @@ const Hero = () => {
                 letterSpacing="wider"
               >
                 
-                Apuntes, guías, manuales, trabajos, beats, snippets de código, software (apps, plugins, entre otros), clases, 
+                Apuntes, guías, manuales, trabajos, tutoriales, snippets de código, software (apps, plugins, entre otros), clases, 
                 cursos, diseños, ilustraciones. 
               
               </chakra.p>

@@ -42,13 +42,13 @@ import axios from 'axios'
 export default function Notes() {
   // Chakra Color Mode
   const textColor = useColorModeValue("secondaryGray.900", "white");
-  const textColorBrand = useColorModeValue("brand.500", "white");
-  const picture = "https://via.placeholder.com/200"
   const banner = BannerNFT
   
+  const allProducts = "/api/getproducts";
   const categorizedProducts = '/api/getcategorizedproducts'
   const getRating = '/api/getproductrating'
   const getVendorRating = '/api/getstorerating'
+  const getTopRatedProducts = '/api/gettopratedproducts'
 
   const [products, setProducts] = useState([]);
   const [rating, setRating] = useState([]);
@@ -67,7 +67,7 @@ export default function Notes() {
         setProducts(res?.data?.items || []);
         setIsLoading(false);
     })
-    axios.get(getRating)
+    axios.get(getTopRatedProducts)
     .then((res) => {
       setRating(res?.data?.rating || [])
       setIsLoading(false);
@@ -80,15 +80,7 @@ export default function Notes() {
   }, [categorizedProducts, getRating, getVendorRating])
   
   
-  const ratedProducts = rating.filter(rating => rating.category[0] === 'Ilustraciones/Diseños')
-  
-  const topRatedProducts = ratedProducts.filter(rating => rating.avg_val >= 3)
-  
-  const filteredProducts = products.filter(product => product.category === 'Apuntes/Trabajos')
-  
-  const topVendors = vendors.filter(vendors => vendors.category[0] === 'Apuntes/Trabajos')
-  
-  // console.log(topVendors)
+  const topRatedProducts = rating.filter(rating => rating.avg_val >= 4)
   
   return (
     // <Box pt={{ base: "180px", md: "80px", xl: "80px" }} bg='gray.200' p={10}>
@@ -111,8 +103,8 @@ export default function Notes() {
               justifyContent='center'
               direction={{ base: "column", md: "row" }}
               align={{ base: "start", md: "center" }}>
-              <Text color={textColor} fontSize='2xl' ms='24px' fontWeight='700'>
-                Los diseños más destacados
+              <Text color={textColor} fontSize='3xl' ms='24px' fontWeight='700'>
+                Los más destacados
               </Text>
 
 
@@ -148,7 +140,7 @@ export default function Notes() {
               </Flex> */}
             </Flex>
             
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing='20px' >
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing='20px' >
 
               {isLoading && 
               

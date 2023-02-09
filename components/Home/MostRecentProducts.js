@@ -42,13 +42,12 @@ import axios from 'axios'
 export default function Notes() {
   // Chakra Color Mode
   const textColor = useColorModeValue("secondaryGray.900", "white");
-  const textColorBrand = useColorModeValue("brand.500", "white");
-  const picture = "https://via.placeholder.com/200"
   const banner = BannerNFT
   
   const categorizedProducts = '/api/getcategorizedproducts'
   const getRating = '/api/getproductrating'
   const getVendorRating = '/api/getstorerating'
+  const mostRecentProducts = '/api/getrecentproducts'
 
   const [products, setProducts] = useState([]);
   const [rating, setRating] = useState([]);
@@ -63,8 +62,8 @@ export default function Notes() {
 
   useEffect(() => {
     
-    axios.get(categorizedProducts, {headers}).then((res) => {
-        setProducts(res?.data?.items || []);
+    axios.get(mostRecentProducts, {headers}).then((res) => {
+        setProducts(res?.data?.getProducts || []);
         setIsLoading(false);
     })
     axios.get(getRating)
@@ -77,18 +76,7 @@ export default function Notes() {
       setVendors(res?.data?.rating || [])
       
     })
-  }, [categorizedProducts, getRating, getVendorRating])
-  
-  
-  const ratedProducts = rating.filter(rating => rating.category[0] === 'Apuntes/Trabajos')
-  
-  const topRatedProducts = ratedProducts.filter(rating => rating.avg_val >= 3)
-  
-  const filteredProducts = products.filter(product => product.category === 'Apuntes/Trabajos')
-  
-  const topVendors = vendors.filter(vendors => vendors.category[0] === 'Apuntes/Trabajos')
-  
-  // console.log(topVendors)
+  }, [mostRecentProducts, getRating, getVendorRating])
   
   return (
     // <Box pt={{ base: "180px", md: "80px", xl: "80px" }} bg='gray.200' p={10}>
@@ -111,8 +99,8 @@ export default function Notes() {
               justifyContent='center'
               direction={{ base: "column", md: "row" }}
               align={{ base: "start", md: "center" }}>
-              <Text color={textColor} fontSize='2xl' ms='24px' fontWeight='700'>
-                Los apuntes más destacados
+              <Text color={textColor} fontSize='3xl' ms='24px' fontWeight='700'>
+                Los más recientes
               </Text>
 
 
@@ -148,7 +136,7 @@ export default function Notes() {
               </Flex> */}
             </Flex>
             
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing='20px' >
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing='20px' >
 
               {isLoading && 
               
@@ -160,7 +148,7 @@ export default function Notes() {
                     size='xl'
                 />
               }
-                      {topRatedProducts.length > 0 && topRatedProducts.map((product) => {
+                      {products.length > 0 && products.map((product) => {
                         
                         const avgValue = Number.parseFloat(product.avg_val).toFixed(1);
                         
@@ -201,7 +189,7 @@ export default function Notes() {
                                   <Box p="6">
                                     <Box display="flex" alignItems="baseline">
                                       <Badge rounded="full" px="2" colorScheme="teal">
-                                        {product.category[0]}
+                                        {product.category}
                                       </Badge>
                                       {/* <Box
                                         color="gray.500"
@@ -223,27 +211,15 @@ export default function Notes() {
                                       noOfLines={1}
                                       color='gray.200'
                                     >
-                                      {product._id}
+                                      {product.productName}
                                     </Text>
                           
                                     <Box color='gray.400'>
-                                      ${product.price[0]}
+                                      ${product.price}
                                       
                                     </Box>
                           
                                     <Box display="flex" mt="2" alignItems="center" justifyContent='space-between'>
-                                    
-                                        
-                
-                                            <Stack direction='horizontal' fontWeight='bold' fontSize={20} key={rating._id} color="gold">
-                                                <Text> {avgValue} </Text> 
-                                                <Icon as={BsFillStarFill} pt={2}/> 
-                                            </Stack>
-                                        
-                                     
-                                      {/* <Box as="span" ml="2" color="gray.200" fontSize="sm">
-                                         reviews
-                                      </Box> */}
 
                                     <a href={`/productos/${product.title}`} >
                                         <chakra.button

@@ -49,7 +49,7 @@ export default function Notes() {
   const categorizedProducts = '/api/getcategorizedproducts'
   const getRating = '/api/getproductrating'
   const getVendorRating = '/api/getstorerating'
-  const recentProducts = '/api/getrecentproducts'
+  const recentProducts = '/api/getproducts'
 
   const [products, setProducts] = useState([]);
   const [rating, setRating] = useState([]);
@@ -86,9 +86,11 @@ export default function Notes() {
   const topRatedProducts = ratedProducts.filter(rating => rating.avg_val >= 3)
   
   const filteredProducts = products.filter(product => product.category === 'Apuntes/Trabajos')
-  console.log(filteredProducts)
+  // console.log(filteredProducts)
   
-  const topVendors = vendors.filter(vendors => vendors.category[0] === 'Apuntes/Trabajos')
+  // const topVendors = vendors.filter(vendors => vendors.category[0] === 'Apuntes/Trabajos')
+
+  const topVendors = vendors.filter(vendor => vendor.category.some(category => category === 'Apuntes/Trabajos'));
   
   // console.log(topVendors)
   
@@ -150,7 +152,7 @@ export default function Notes() {
               </Flex> */}
             </Flex>
             
-            <SimpleGrid columns={{ base: 1, md: 3 }} gap='20px' >
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 3 }} gap='20px' >
 
               {isLoading && 
               
@@ -293,7 +295,7 @@ export default function Notes() {
                 Los más recientes
             </Text>
             <SimpleGrid
-              columns={{ base: 1, md: 3 }}
+              columns={{ base: 1, md: 2, lg: 3, xl: 3 }}
               gap='20px'
               mb={{ base: "20px", xl: "0px" }}>
 
