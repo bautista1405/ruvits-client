@@ -63,9 +63,6 @@ export default function WfWf() {
   const [session, loading] = useSession();
   const router = useRouter();
 
-  const store = session.user.name.replace(/\s+/g, '').toLowerCase()
-
-
   const MobileNavContent = (
     <VStack
       pos="absolute"
@@ -203,13 +200,6 @@ export default function WfWf() {
                           <p>Dashboard</p>
                         </Link> 
                       
-                    </MenuItem>
-                    
-                    <MenuItem>
-                      
-                      <Link href={`/tienda/${store}`} >
-                        <p>Mi tienda</p>
-                      </Link>
                     </MenuItem>
                     
                     <MenuItem>
