@@ -78,7 +78,7 @@ const ProductDetails = ({ product }) => {
           }
         ],
         "marketplace": appID,
-        "marketplace_fee": 5,
+        "marketplace_fee": 2,
         "auto_return": "approved",
         "back_urls": {
           "success": "https://ruvits.com/successful",

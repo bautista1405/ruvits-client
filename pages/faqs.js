@@ -88,7 +88,7 @@ const FrequentQuestions = () => {
                     </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4} w='70vw'>
-                        Se cobra un 5% por venta. No cobramos por mantención de cuenta ni ninguna mensualidad.
+                        Se cobra un 2% por venta. No cobramos por mantención de cuenta ni ninguna mensualidad.
                     </AccordionPanel>
                 </AccordionItem>
 
