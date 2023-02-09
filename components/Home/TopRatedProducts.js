@@ -102,7 +102,8 @@ export default function Notes() {
               mb='20px'
               justifyContent='center'
               direction={{ base: "column", md: "row" }}
-              align={{ base: "start", md: "center" }}>
+              align={{ base: "start", md: "center" }}
+            >
               
               <Stack>
                 <Text color={textColor} fontSize='3xl' ms='24px' fontWeight='700'>

@@ -63,6 +63,9 @@ export default function WfWf() {
   const [session, loading] = useSession();
   const router = useRouter();
 
+  const store = session.user.name.replace(/\s+/g, '').toLowerCase()
+
+
   const MobileNavContent = (
     <VStack
       pos="absolute"
@@ -157,18 +160,18 @@ export default function WfWf() {
             <HStack spacing={1}>
               
               <Button
-                  bg={bg}
-                  color="gray.700"
-                  alignItems="center"
-                  fontSize="md"
-                  _hover={{ color: cl }}
-                  _focus={{ boxShadow: "none" }}
-                  colorScheme='gray' variant='ghost'
-                >
-                  <Link display="flex" alignItems="center" href="/descubrir">
-                    Descubrir
-                  </Link>
-                </Button>
+                bg={bg}
+                color="gray.700"
+                alignItems="center"
+                fontSize="md"
+                _hover={{ color: cl }}
+                _focus={{ boxShadow: "none" }}
+                colorScheme='gray' variant='ghost'
+              >
+                <Link display="flex" alignItems="center" href="/descubrir">
+                   Descubrir
+                </Link>
+              </Button>
                 
               
               {/* <Button
@@ -201,6 +204,14 @@ export default function WfWf() {
                         </Link> 
                       
                     </MenuItem>
+                    
+                    <MenuItem>
+                      
+                      <Link href={`/tienda/${store}`} >
+                        <p>Mi tienda</p>
+                      </Link>
+                    </MenuItem>
+                    
                     <MenuItem>
                       <p onClick={() => signOut()}>Cerrar sesión</p>
                     </MenuItem>
