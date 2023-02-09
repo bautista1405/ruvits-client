@@ -63,21 +63,21 @@ export default function Notes() {
 
   useEffect(() => {
     
-    axios.get(categorizedProducts, {headers}).then((res) => {
-        setProducts(res?.data?.items || []);
-        setIsLoading(false);
-    })
+    // axios.get(categorizedProducts, {headers}).then((res) => {
+    //     setProducts(res?.data?.items || []);
+    //     setIsLoading(false);
+    // })
     axios.get(getTopRatedProducts)
     .then((res) => {
       setRating(res?.data?.rating || [])
       setIsLoading(false);
     })
-    axios.get(getVendorRating)
-    .then((res) => {
-      setVendors(res?.data?.rating || [])
+    // axios.get(getVendorRating)
+    // .then((res) => {
+    //   setVendors(res?.data?.rating || [])
       
-    })
-  }, [categorizedProducts, getRating, getVendorRating])
+    // })
+  }, [getTopRatedProducts])
   
   
   const topRatedProducts = rating.filter(rating => rating.avg_val >= 4)
@@ -103,11 +103,26 @@ export default function Notes() {
               justifyContent='center'
               direction={{ base: "column", md: "row" }}
               align={{ base: "start", md: "center" }}>
-              <Text color={textColor} fontSize='3xl' ms='24px' fontWeight='700'>
-                Los más destacados
-              </Text>
+              
+              <Stack>
+                <Text color={textColor} fontSize='3xl' ms='24px' fontWeight='700'>
+                  Los más destacados
+                </Text>
 
-
+                {isLoading && 
+                
+                  <Flex justifyContent='center' >
+                    <Spinner
+                      thickness='4px'
+                      speed='0.65s'
+                      emptyColor='gray.200'
+                      color='blue.500'
+                      size='xl'
+                      mt={20}
+                    />
+                  </Flex>
+                }
+              </Stack>
               {/* <Flex
                 align='center'
                 me='20px'
@@ -142,16 +157,6 @@ export default function Notes() {
             
             <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing='20px' >
 
-              {isLoading && 
-              
-                <Spinner
-                    thickness='4px'
-                    speed='0.65s'
-                    emptyColor='gray.200'
-                    color='blue.500'
-                    size='xl'
-                />
-              }
                       {topRatedProducts.length > 0 && topRatedProducts.map((product) => {
                         
                         const avgValue = Number.parseFloat(product.avg_val).toFixed(1);
