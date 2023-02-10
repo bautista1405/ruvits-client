@@ -84,17 +84,6 @@ const Header = () => {
                     <Text>💤 Empezar a vender</Text>
                   </chakra.ul>
           </Stack>
-
-          {/* <Image
-            src={peep5}
-            alt="3 women looking at a laptop"
-            fit="cover"
-            width="350px"
-            h="350px"
-            bg="gray.100"
-            loading="lazy"
-            // style={{filter:"drop-shadow(8px 8px 30px rgb(88, 200, 228))"}}
-          /> */}
         </Flex>
         <Flex
           // direction="column"
@@ -127,21 +116,6 @@ const Header = () => {
                 </chakra.ul>
               </Stack>
             
-            
-            
-            {/* <chakra.p
-              pr={{ base: 0, lg: 16 }}
-              mb={4}
-              fontSize="lg"
-              color={useColorModeValue("brand.600", "gray.400")}
-              letterSpacing="wider"
-            >
-              Vendé tus productos de una manera simple. Asociá tu cuenta de Mercado Pago (Argentina) y empezá a vender. <br />
-              Acá te dejamos una  <b style={{textDecoration: 'underline'}}><Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link></b> para 
-              crear tu primer producto y te contamos <b style={{textDecoration: 'underline'}}><Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
-              cómo funciona Ruvits.</Link></b>
-
-            </chakra.p> */}
           </Box> 
         </Flex>
       </SimpleGrid>
@@ -156,6 +130,7 @@ const Header = () => {
         h='80px'
         margin='auto'
         justifyContent='space-around'
+        
       >
         <Flex>
           <Stack direction='horizontal' alignItems='center'>
@@ -164,10 +139,18 @@ const Header = () => {
           </Stack>
         </Flex>
 
-        <Flex>
-          <Stack direction='horizontal' alignItems='center'>
-            <Image src={debitCard} w='20px' h='20px' />
-            <Text ml={2} fontSize={18}>Tarjeta de débito</Text>
+        <Flex mt={4}>
+          <Stack>
+            
+            <Stack direction='horizontal' alignItems='center' pl={7}>
+              <Image src={debitCard} w='20px' h='20px' />
+              <Text ml={2} fontSize={18}>Tarjeta de débito</Text>
+            </Stack>
+
+            <Stack >
+              <Text mt={5} mb={5} textAlign='center'>*MP solo acepta pagos de Argentina</Text>
+            </Stack>
+
           </Stack>
         </Flex>
 

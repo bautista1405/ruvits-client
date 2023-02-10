@@ -7,6 +7,7 @@ import designer from '../../assets/designer.png'
 import ideas from '../../assets/ideas.jpg'
 import peep1 from '../../assets/peep1-bg.png'
 import peep2 from '../../assets/peep2-bg.png'
+import peep5 from '../../assets/peep5-bg.png'
 
 const Hero = () => {
   const bg = useColorModeValue("white", "gray.800");
@@ -43,13 +44,13 @@ const Hero = () => {
                 color={useColorModeValue("gray.900", "white")}
               >
                 <chakra.span display={{ base: "block", xl: "inline" }}>
-                  ¿Qué productos puedo{" "}
+                  Conocé cómo {" "}
                 </chakra.span>
                 <chakra.span
                   display={{ base: "block", xl: "inline" }}
                   color={useColorModeValue("brand.600", "brand.400")}
                 >
-                  publicar?
+                  funciona Ruvits
                 </chakra.span>
               </chakra.h1>
               <chakra.p
@@ -63,8 +64,10 @@ const Hero = () => {
                 letterSpacing="wider"
               >
                 
-                Apuntes, guías, manuales, trabajos, tutoriales, snippets de código, software (apps, plugins, entre otros), clases, 
-                cursos, diseños, ilustraciones. 
+                Vendé tus productos de una manera simple. Asociá tu cuenta de Mercado Pago (Argentina) y empezá a vender. <br />
+                Acá te dejamos una  <b style={{textDecoration: 'underline'}}><Link href="/blog/crea-tu-producto" color="gray.800" fontWeight="bold">guía rápida</Link></b> para 
+                crear tu primer producto y te contamos <b style={{textDecoration: 'underline'}}><Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
+                cómo funciona Ruvits.</Link></b>
               
               </chakra.p>
               
@@ -81,14 +84,15 @@ const Hero = () => {
         w={["300px", "400px", "500px", "500px", "600px"]}
         border="solid 1px transparent"
       >
-        <Image
-          height="500px"
-          width="500px"
-          fit="cover"
-          src={peep2}
-          alt=""
-          loading="lazy"
-          // style={{filter:"drop-shadow(8px 8px 100px rgb(88, 200, 228))"}}
+       <Image
+            src={peep5}
+            alt="3 women looking at a laptop"
+            fit="cover"
+            width="350px"
+            h="350px"
+            bg="gray.100"
+            loading="lazy"
+            // style={{filter:"drop-shadow(8px 8px 30px rgb(88, 200, 228))"}}
         />
       </Box>
     </Box>
