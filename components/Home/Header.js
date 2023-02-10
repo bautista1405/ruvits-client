@@ -34,13 +34,58 @@ import debitCard from '../../assets/debit-card.png'
 const Header = () => {
   return (
     <>
+      <Flex columns={{ base: 1, md: 2 }} justifyContent='center' mb={10} >
+        <Stack p='20px'>
+            <chakra.span
+              color={useColorModeValue("brand.600", "gray.300")}
+              fontSize="lg"
+              textTransform="uppercase"
+              fontWeight="extrabold"
+              textAlign='center'
+            >
+              ¿Sos creador de contenido digital?
+            </chakra.span>
+            <chakra.h1
+              mb={4}
+              fontSize={{ base: "4xl", md: "4xl", lg: "4xl" }}
+              fontWeight="bold"
+              color={useColorModeValue("brand.600", "gray.300")}
+              lineHeight="shorter"
+              textShadow="2px 0 currentcolor"
+            >
+              Crealo una vez, vendelo muchas veces.
+            </chakra.h1>
+        </Stack>
+      </Flex>
       <SimpleGrid 
+        placeContent='center'
         columns={{ base: 1, md: 2 }} 
-        spacing={50} 
-        pl={20}
+        mb={10}
       >
-        <Flex display={["none", "none", "block", "block"]} ml={20}>
-          <Image
+        <Flex display={["block", "block", "block", "block"]} margin='auto' fontSize={18}
+         shadow="base"
+         rounded={[null, "md"]}
+         borderRadius="5px"
+         boxShadow='2xl' 
+         p='10'
+         bg='#eff2f5'
+         h={{base: '320px', md: '300px', lg: '290px', xl: '260px'}}
+         w={{base: '300px', md: '350px', lg: '500px', xl: '500px'}}
+        >
+
+          <Stack>
+                  <Text fontWeight='bold'>Sin Ruvits ❌</Text>
+                  <chakra.ul>
+                    <Text>💤 Crea tu producto</Text>
+                    <Text>💤 Comprar un dominio</Text>
+                    <Text>💤 Configurar tu página y servicio de host</Text>
+                    <Text>💤 Diseñar tu página web</Text>
+                    <Text>💤 Configurar plugins para procesar tus pagos</Text>
+                    <Text>💤 Empezar a vender</Text>
+                  </chakra.ul>
+          </Stack>
+
+          {/* <Image
             src={peep5}
             alt="3 women looking at a laptop"
             fit="cover"
@@ -49,38 +94,42 @@ const Header = () => {
             bg="gray.100"
             loading="lazy"
             // style={{filter:"drop-shadow(8px 8px 30px rgb(88, 200, 228))"}}
-          />
+          /> */}
         </Flex>
         <Flex
-          direction="column"
-          alignItems="start"
-          justifyContent="center"
+          // direction="column"
+          // alignItems="start"
+          // justifyContent="center"
           // px={{ base: 4, md: 8, lg: 20 }}
           // py={24}
           // zIndex={3}
-          mr={20}
-          
+          // mr={20}
+          margin='auto'
         >
-          <Box> 
-            <chakra.span
-              color={useColorModeValue("brand.600", "gray.300")}
-              fontSize="lg"
-              textTransform="uppercase"
-              fontWeight="extrabold"
-            >
-              ¿Sos creador de contenido digital?
-            </chakra.span>
-            <chakra.h1
-              mb={4}
-              fontSize={{ base: "4xl", md: "4xl", lg: "5xl" }}
-              fontWeight="bold"
-              color={useColorModeValue("brand.600", "gray.300")}
-              lineHeight="shorter"
-              textShadow="2px 0 currentcolor"
-            >
-              Crealo una vez, vendelo muchas veces.
-            </chakra.h1>
-            <chakra.p
+          <Box fontSize={18}
+          shadow="base"
+          rounded={[null, "md"]}
+          borderRadius="5px"
+          boxShadow='2xl' 
+          p='10'
+          bg='#eff2f5'
+          h={{base: '250px', md: '300px', lg: '290px', xl: '260px'}}
+          w={{base: '300px', md: '350px', lg: '500px', xl: '500px'}}
+          > 
+
+              <Stack>
+               <Text fontWeight='bold'>Con Ruvits ✔️</Text> 
+                <chakra.ul>
+                  <Text>✅ Crea tu producto</Text>
+                  <Text>✅ Asocía tu cuenta de Mercado Pago</Text>
+                  <Text>✅ Subí tu producto</Text>
+                  <Text>✅ Empezá a vender</Text>
+                </chakra.ul>
+              </Stack>
+            
+            
+            
+            {/* <chakra.p
               pr={{ base: 0, lg: 16 }}
               mb={4}
               fontSize="lg"
@@ -92,7 +141,7 @@ const Header = () => {
               crear tu primer producto y te contamos <b style={{textDecoration: 'underline'}}><Link href="/blog/como-funciona-ruvits" color="gray.800" fontWeight="bold">
               cómo funciona Ruvits.</Link></b>
 
-            </chakra.p>
+            </chakra.p> */}
           </Box> 
         </Flex>
       </SimpleGrid>
@@ -111,21 +160,21 @@ const Header = () => {
         <Flex>
           <Stack direction='horizontal' alignItems='center'>
             <Image src={creditCard} w='20px' h='20px' />
-            <Text ml={2} fontSize={22}>Tarjeta de crédito</Text>
+            <Text ml={2} fontSize={18}>Tarjeta de crédito</Text>
           </Stack>
         </Flex>
 
         <Flex>
           <Stack direction='horizontal' alignItems='center'>
             <Image src={debitCard} w='20px' h='20px' />
-            <Text ml={2} fontSize={22}>Tarjeta de débito</Text>
+            <Text ml={2} fontSize={18}>Tarjeta de débito</Text>
           </Stack>
         </Flex>
 
         <Flex>
           <Stack direction='horizontal' alignItems='center'>
             <Image src={mpIcon} w='20px' h='20px' />
-            <Text ml={2} fontSize={22}>Mercado Pago (Argentina)</Text>
+            <Text ml={2} fontSize={18}>Mercado Pago (Argentina)</Text>
           </Stack>
         </Flex>
       </Flex>

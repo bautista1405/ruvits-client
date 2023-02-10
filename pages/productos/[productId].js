@@ -452,6 +452,8 @@ const ProductDetails = ({ product }) => {
                               </Stack>
                             )
                           }) : null }
+
+                          
         
                       {/* <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                         <List spacing={2}>
@@ -523,7 +525,7 @@ const ProductDetails = ({ product }) => {
                       </List> */}
                     {/* </Box> */}
                   </Stack>
-        
+                  <Text fontWeight={1}>*Mercado Pago solo acepta pagos desde Argentina</Text>
                   
                   
                   {/* <Button
