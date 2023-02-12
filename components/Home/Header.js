@@ -77,11 +77,11 @@ const Header = () => {
                   <Text fontWeight='bold'>Sin Ruvits ❌</Text>
                   <chakra.ul>
                     <Text>💤 Crea tu producto</Text>
-                    <Text>💤 Comprar un dominio</Text>
-                    <Text>💤 Configurar tu página y servicio de host</Text>
-                    <Text>💤 Diseñar tu página web</Text>
-                    <Text>💤 Configurar plugins para procesar tus pagos</Text>
-                    <Text>💤 Empezar a vender</Text>
+                    <Text>💤 Compra un dominio</Text>
+                    <Text>💤 Configura tu página y servicio de host</Text>
+                    <Text>💤 Diseña tu página web</Text>
+                    <Text>💤 Configurar pasarela de pagos</Text>
+                    <Text>💤 Empezá a vender</Text>
                   </chakra.ul>
           </Stack>
         </Flex>
