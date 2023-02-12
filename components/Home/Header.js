@@ -69,7 +69,7 @@ const Header = () => {
          boxShadow='2xl' 
          p='6'
          bg='#eff2f5'
-         h={{base: '320px', md: '300px', lg: '290px', xl: '260px'}}
+         h={{base: '350px', md: '300px', lg: '290px', xl: '260px'}}
          w={{base: '300px', md: '350px', lg: '500px', xl: '500px'}}
         >
 
