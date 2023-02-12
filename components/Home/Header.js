@@ -67,7 +67,7 @@ const Header = () => {
          rounded={[null, "md"]}
          borderRadius="5px"
          boxShadow='2xl' 
-         p='10'
+         p='6'
          bg='#eff2f5'
          h={{base: '320px', md: '300px', lg: '290px', xl: '260px'}}
          w={{base: '300px', md: '350px', lg: '500px', xl: '500px'}}
@@ -78,10 +78,11 @@ const Header = () => {
                   <chakra.ul>
                     <Text>💤 Crea tu producto</Text>
                     <Text>💤 Compra un dominio</Text>
-                    <Text>💤 Configura tu página y servicio de host</Text>
+                    <Text>💤 Configura tu servicio de host</Text>
                     <Text>💤 Diseña tu página web</Text>
-                    <Text>💤 Configurar pasarela de pagos</Text>
+                    <Text>💤 Configura pasarela de pagos</Text>
                     <Text>💤 Empezá a vender</Text>
+                    <Text>💤 Envía el producto a tus compradores</Text>
                   </chakra.ul>
           </Stack>
         </Flex>
@@ -100,7 +101,7 @@ const Header = () => {
           rounded={[null, "md"]}
           borderRadius="5px"
           boxShadow='2xl' 
-          p='10'
+          p='6'
           bg='#eff2f5'
           h={{base: '250px', md: '300px', lg: '290px', xl: '260px'}}
           w={{base: '300px', md: '350px', lg: '500px', xl: '500px'}}
@@ -113,6 +114,7 @@ const Header = () => {
                   <Text>✅ Asocía tu cuenta de Mercado Pago</Text>
                   <Text>✅ Subí tu producto</Text>
                   <Text>✅ Empezá a vender</Text>
+                  <Text>✅ Tu producto es enviado automáticamente</Text>
                 </chakra.ul>
               </Stack>
             
