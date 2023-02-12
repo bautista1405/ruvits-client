@@ -150,7 +150,7 @@ const Header = () => {
             </Stack>
 
             <Stack >
-              <Text mt={5} mb={5} textAlign='center'>*MP solo acepta pagos de Argentina</Text>
+              <Text mt={2} mb={5} textAlign='center' fontSize={12} pl={10}>*MP solo acepta pagos de Argentina</Text>
             </Stack>
 
           </Stack>
